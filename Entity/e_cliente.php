@@ -1,6 +1,9 @@
 <?php 
 
+require_once'inc.php';
+
 class e_cliente{
+    
     private $nickname;
     private $mail;
     
@@ -17,6 +20,7 @@ class e_cliente{
     function setMail (string $mail){
         $this->mail=$mail;
     }
+    
     function getMail(){
         return $this->mail;
     }

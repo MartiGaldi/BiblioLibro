@@ -1,5 +1,6 @@
 <?php 
 
+require_once'inc.php';
 class e_id {
     protected $id;
     function getId():int{

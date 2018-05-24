@@ -1,6 +1,6 @@
 <?php
 
-include_once "Entity/e_id.php";
+require_once'inc.php';
 
 class e_prenota extends e_id {
     
@@ -10,7 +10,7 @@ class e_prenota extends e_id {
     
     function __constructor(){}
     
-    function setPriorita (string $autore){
+    function setPriorita (int $priorita){
         $this->priorita=$priorita;
     }
     
@@ -21,15 +21,40 @@ class e_prenota extends e_id {
     function setNickCliente (string $nick_cliente){
         $this->nick_cliente=$nickcliente;
     }
+    
     function getNickCliente(){
         return $this->nick_cliente;
     }
+    
     function setIdLibro(int $id_libro){
         $this->id_libro=$id_libro;
     }
+    
     function getIdLibro(){
         return $this->id_libro;
     }
+    
+    function controlla_dispinibilità( &$isbn_u) : bool {
+       $numero = count (select *
+                        from PRESTITO
+                        where isbn = isbn_u)
+                     
+        if($n_copie<$numero)
+             //return 1 (disponiile)
+             return
+             else 
+                // return 0 (non disponibile)
+                return
+    }
+    
+    function mail_prenotazione(){
+     
+    }
+    
+    function prenotazione_effettuata(){
+        //passaggio da prenotazione a prestito
+        
+    }   
 }
 
 ?>
