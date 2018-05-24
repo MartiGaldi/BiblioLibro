@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 24, 2018 alle 16:43
+-- Creato il: Mag 24, 2018 alle 19:00
 -- Versione del server: 10.1.30-MariaDB
 -- Versione PHP: 7.2.2
 
@@ -40,11 +40,18 @@ CREATE TABLE `cliente` (
 --
 
 CREATE TABLE `libro` (
-  `id` int(13) NOT NULL COMMENT 'ISBN',
+  `id` varchar(13) NOT NULL COMMENT 'ISBN',
   `n_copie` int(3) NOT NULL DEFAULT '0',
   `titolo` varchar(50) NOT NULL,
   `autore` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `libro`
+--
+
+INSERT INTO `libro` (`id`, `n_copie`, `titolo`, `autore`) VALUES
+('1234567891234', 4, 'CIAO', 'MARTINA');
 
 -- --------------------------------------------------------
 

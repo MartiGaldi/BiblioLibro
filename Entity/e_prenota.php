@@ -2,6 +2,7 @@
 
 require_once'inc.php';
 
+
 class e_prenota extends e_id {
     
     private $priorita;
@@ -34,7 +35,7 @@ class e_prenota extends e_id {
         return $this->id_libro;
     }
     
-    function controlla_dispinibilità( &$isbn_u) : bool {
+    /*function controlla_dispinibilità( &$isbn_u) : bool {
        $numero = count (select *
                         from PRESTITO
                         where isbn = isbn_u)
@@ -45,7 +46,7 @@ class e_prenota extends e_id {
              else 
                 // return 0 (non disponibile)
                 return
-    }
+    }*/
     
     function mail_prenotazione(){
      

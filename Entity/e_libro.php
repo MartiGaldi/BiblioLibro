@@ -1,11 +1,12 @@
 <?php 
 
 require_once'inc.php';
-class e_libro extends e_id{
+include_once 'Entity/e_id.php';
+class e_libro {
     private $autore;
     private $titolo;
     private $num_copie;
-    private $isbn
+    private $isbn;
     
     function __constructor(){}
     
@@ -33,11 +34,11 @@ class e_libro extends e_id{
         return $this->num_copie;
     }
     
-    function setIsbn(int $isbn){
+    function setIsbn(string $isbn){
         $this->isbn=$isbn;
     }
     
-    function getIsbn(){
+    function getIsbn() : string {
         return $this->isbn;
     }
 }
