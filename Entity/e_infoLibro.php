@@ -1,0 +1,53 @@
+<?php
+
+require_once'inc.php';
+include_once 'Entity/e_id.php';
+class e_infoLibro {
+    private $isbn;
+    private $descrizione;
+    private $categoria;
+    private $copertina;
+    
+    function __constructor(){}
+     
+    function setIsbn(string $isbn){
+        $this->isbn=$isbn;
+    }
+    
+    function getIsbn() : string {
+        return $this->isbn;
+    }
+    
+    function setDescrizione(string $descrizione){
+        $this->descrizione=$descrizione;
+    }
+    
+    function getDescrizione(){
+        return $this->descrizione;
+    }
+    
+    function setCategoria(string $categoria){
+        $this->categoria=$categoria;
+    }
+    
+    function getCategoria(){
+        return $this->categoria;
+    }
+    
+    function setCopertina(e_copertina $copertina){
+        $this->copertina=$copertina;
+    }
+    
+    function getCopertina(){
+        return $this->copertina;
+    }
+    
+    public $_commento = array();
+    
+    function addCommento(e_commento $commento) {
+        array_push($this->_commento, $commento);
+    }
+ 
+}
+
+?>

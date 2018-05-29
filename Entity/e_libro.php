@@ -8,6 +8,7 @@ class e_libro {
     private $num_copie;
     private $isbn;
     
+    
     function __constructor(){}
     
     function setAutore(string $autore){
@@ -41,6 +42,7 @@ class e_libro {
     function getIsbn() : string {
         return $this->isbn;
     }
+  
 }
 
 ?>
