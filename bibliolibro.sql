@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 24, 2018 alle 19:00
+-- Creato il: Giu 06, 2018 alle 18:10
 -- Versione del server: 10.1.30-MariaDB
 -- Versione PHP: 7.2.2
 
@@ -31,6 +31,31 @@ SET time_zone = "+00:00";
 CREATE TABLE `cliente` (
   `nickname` varchar(20) NOT NULL,
   `mail` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `copertina`
+--
+
+CREATE TABLE `copertina` (
+  `id` int(10) NOT NULL,
+  `mime_type` varchar(10) NOT NULL,
+  `size` float NOT NULL,
+  `file_cop` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `info_libro`
+--
+
+CREATE TABLE `info_libro` (
+  `id` varchar(13) NOT NULL COMMENT 'ISBN',
+  `descrizione` varchar(100) NOT NULL,
+  `categoria` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -90,6 +115,12 @@ CREATE TABLE `prestito` (
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`nickname`),
   ADD UNIQUE KEY `mail` (`mail`);
+
+--
+-- Indici per le tabelle `copertina`
+--
+ALTER TABLE `copertina`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `libro`
