@@ -1,46 +1,53 @@
 <?php
 
-require_once'inc.php';
-
-class e_copertina extends e_id{
-    private $isbn_cop;
-    private $mime_type;
+class e_copertina {
+    
+    private $id;
+    private $mime_type; //formato
     private $size;
-    private $file;
+    private $file_cop;
     
     
     function __constructor(){}
     
-    function setIsbnCop(string $isbn_cop){
-        $this->isbn_cop=$isbn_cop;
+    
+    function setId(int $id){
+        
+        $this->isbn_cop=$id;
     }
     
-    function getIsbnCop(){
-        return $this->isbn_cop;
+    function getId() : int {
+        
+        return $this->id;
     }
     
-    function setMimeType(string $mime_type){
+    function setMimeType(string $mime_type) {
+        
         $this->mime_type=$mime_type;
     }
     
-    function getMimeType(){
+    function getMimeType() : string {
+        
         return $this->mime_type;
     }
     
+    
     function setSize(int $size){
+        
         $this->size=$size;
     }
     
-    function getSize(){
+    function getSize() : float {
         return $this->size;
     }
     
-    function setFile(...){
+    function setFile(){
         $this->file=$file;
     }
     
-    function getFile() {
+    function getFile(){
+        
         return $this->file;
     }
-        ;
+       
     }

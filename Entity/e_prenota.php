@@ -35,7 +35,7 @@ class e_prenota extends e_id {
         return $this->id_libro;
     }
     
-    /*function controlla_dispinibilità( &$isbn_u) : bool {
+    function get_copie_disponibili (string $isbn) : bool {
        $numero = count (select *
                         from PRESTITO
                         where isbn = isbn_u)

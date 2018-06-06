@@ -16,7 +16,7 @@ require_once 'Foundation/f_clientphp';
 require_once 'Foundation/f_persistance.php';
 require_once 'Foundation/f_prenota.php';
 require_once 'Foundation/f_libro.php';
-//require_once 'Foundation/f_prestito.php';
+require_once 'Foundation/f_prestito.php';
 require_once 'Foundation/f_commento.php';
 require_once 'Foundation/f_infoCliente.php';
 require_once 'Foundation/f_infoLibro.php';

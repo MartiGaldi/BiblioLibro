@@ -14,4 +14,5 @@ class f_prenota{
         $stmt->bindValue(':priorita', $pren->getPriorita(), PDO::PARAM_STR);
     }
 }
+
 ?>

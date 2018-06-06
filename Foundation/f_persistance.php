@@ -36,7 +36,7 @@ class f_persistance {
     function contaRighe (&$oggetto) : bool {
         $risultato=false;
         switch($oggetto){
-            case(is_a($oggetto, e_prenota::class)):
+            case(is_a($oggetto, e_prestito::class)):
                // $sql =  f_prestito::      
         }
     }
