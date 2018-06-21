@@ -1,6 +1,6 @@
 <?php
 
-class e_commento {
+class e_commento extends e_oggetto{
     
     private $id;  // id commento
     private $isbn;  //id libro commentato

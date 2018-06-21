@@ -9,6 +9,7 @@ require_once 'Entity/e_infoCliente.php';
 require_once 'Entity/e_infoLibro.php';
 require_once 'Entity/e_copertina.php';
 require_once 'Entity/e_prestito.php';
+require_once 'Entity/e_visitatore.php';
 
 
 

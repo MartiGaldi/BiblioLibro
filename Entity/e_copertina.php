@@ -1,34 +1,28 @@
 <?php
 
-class e_copertina {
+require_once 'inc.php';
+include_once 'Entity/e_oggetto.php';
+
+class e_copertina extends e_oggetto{
     
-    private $id;
-    private $mime_type; //formato
-    private $size;
-    private $file_cop;
+    private $tipo; //formato
+    private $size; //dimensione
+    private $immagine; //byte immagine
     
-    
-    function __constructor(){}
-    
-    
-    function setId(int $id){
-        
-        $this->isbn_cop=$id;
+    //inizializzazione immagine vuota
+    function __constructor(){
+        $this->size=0;
+        $this->tipo='non definito';
     }
     
-    function getId() : int {
+    function setTipo(string $tipo) {
         
-        return $this->id;
+        $this->tipo=$tipo;
     }
     
-    function setMimeType(string $mime_type) {
+    function getTipo() : string {
         
-        $this->mime_type=$mime_type;
-    }
-    
-    function getMimeType() : string {
-        
-        return $this->mime_type;
+        return $this->tipo;
     }
     
     
@@ -37,17 +31,30 @@ class e_copertina {
         $this->size=$size;
     }
     
-    function getSize() : float {
+    function getSize() : int {
+        
         return $this->size;
     }
     
-    function setFile(){
-        $this->file=$file;
+    function setImmagine($immagine){
+        
+        $this->immagine=$immagine;
     }
     
-    function getFile(){
+    function getImmagine(bool $encode=null){
         
-        return $this->file;
+        if($enconde)
+            $this->immagine=base64_encode($this->immagine);
+        return $this->immagine;
+    }
+    
+    function SetStatico()
+    {
+        $file=dirname(__DIR__)."/def/defProPic.jpg";
+        
+        $this->immagine=file_get_contests($file);
+        $this->tipo=mime_content_type($file);
+        $this->size=(int) filesize($file);
     }
        
     }

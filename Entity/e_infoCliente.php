@@ -1,10 +1,10 @@
 <?php
 
 require_once'inc.php';
+include_once 'Entity/e_oggetto';
 
-class e_infoCliente {
+class e_infoCliente extends e_oggetto{
     
-   private $nickname;
    private $nome;
    private $cognome;
    private $cod_fisc;
@@ -15,22 +15,22 @@ class e_infoCliente {
    
     
     
-    function __constructor(){}
-    
-    
-    function setNickname (string $nickname) {
-        $this->nickname=$nickname;
-    }
-    
-    function getNickname(){
-        return $this->nickname;
+    function __construct(){
+        parent::__construct();
+        $this->nome='';
+        $this->cognome='';
+        $this->cod_fisc='';
+        $this->telefono='';
+        $this->sesso='';
+        $this->dt_nascita='';
+        $this->luogo_nascita='';
     }
     
     function setNome (string $nome){
         $this->nome=$nome;
     }
     
-    function getNome(){
+    function getNome() : string {
         return $this->nome;
     }
     
@@ -38,7 +38,7 @@ class e_infoCliente {
     $this->cognome=$cognome;
     }
 
-    function getCognome(){
+    function getCognome() : string {
     return $this->cognome;
     }
     
@@ -46,7 +46,7 @@ class e_infoCliente {
         $this->cod_fisc=$cod_fisc;
     }
     
-    function getCodFisc (){
+    function getCodFisc () : string {
         return $this->cod_fisc;
     }
     
@@ -54,7 +54,7 @@ class e_infoCliente {
         $this->telefono=$telefono;
     }
     
-    function getTelefono(){
+    function getTelefono() : int{
         return $this->telefono;
     }
     
@@ -62,15 +62,15 @@ class e_infoCliente {
         $this->sesso=$sesso;
     }
     
-    function getSesso(){
+    function getSesso() : string{
         return $this->sesso;
     }
     
-    function setDtNas(DateTime $dt_nascita){
-            $this->dt_nascita=$dt_nascita;
+    function setDtNas(string $dt_nascita){
+            $this->dt_nascita=new DateTime($dt_nascita);
         }
         
-     function getDtNasc(){
+     function getDtNasc() : DateTime {
             return $this->dt_nasc;
     }
 
