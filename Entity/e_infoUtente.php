@@ -86,7 +86,7 @@ class e_infoCliente extends e_oggetto
     }
     
     
-    function setDtNas(string $dt_nasc)
+    function setDtNasc(string $dt_nasc)
     {
             $this->dt_nasc=new DateTime($dt_nasc);
     }
