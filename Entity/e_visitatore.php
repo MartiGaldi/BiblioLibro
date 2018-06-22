@@ -1,8 +1,9 @@
 <?php
+
 require_once 'inc.php';
 include_once 'Entity/e_oggetto.php';
 
-class e_visitatore extends e_cliente
+class e_visitatore extends e_utente
 {
     function __construct()
     {

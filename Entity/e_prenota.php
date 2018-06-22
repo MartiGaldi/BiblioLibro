@@ -3,14 +3,22 @@
 require_once'inc.php';
 
 
-class e_prenota extends e_id {
+class e_prenota {
     
+    private $id;
     private $priorita;
     private $nick_cliente;
     private $id_libro;
     
     function __constructor(){}
     
+    function setId (int $id){
+        $this->id=$id;
+    }
+    
+    function getId(){
+        return $this->id;
+        
     function setPriorita (int $priorita){
         $this->priorita=$priorita;
     }

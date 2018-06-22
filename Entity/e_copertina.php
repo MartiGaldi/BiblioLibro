@@ -48,6 +48,7 @@ class e_copertina extends e_oggetto{
         return $this->immagine;
     }
     
+    //imposta l'oggetto con valori statici ricavati da un'immagine nella directory di lavoro
     function SetStatico()
     {
         $file=dirname(__DIR__)."/def/defProPic.jpg";

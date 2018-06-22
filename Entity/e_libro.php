@@ -1,7 +1,7 @@
 <?php 
 
 require_once'inc.php';
-include_once 'Entity/e_id.php';
+
 class e_libro {
     private $autore;
     private $titolo;
