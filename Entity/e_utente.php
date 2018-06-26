@@ -73,6 +73,7 @@ class e_utente extends e_oggetto{
             return false;
     }
     
+    //cripta la password
     function hashPassword () {
         $this->password=password_hash($this->password, PASSWORD_DEFAULT);
     }

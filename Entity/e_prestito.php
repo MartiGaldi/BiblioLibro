@@ -2,7 +2,7 @@
 
 require_once "inc.php";
 
-class e_libro extends e_id{
+class e_prestito {
     
     private $nick_cliente;
     private $data_inizio;
