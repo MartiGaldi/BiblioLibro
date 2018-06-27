@@ -2,7 +2,8 @@
 
 require_once'inc.php';
 
-class e_libro {
+class e_libro extends e_oggetto {
+    
     private $autore;
     private $titolo;
     private $num_copie;

@@ -24,7 +24,7 @@ class c_cerca
         
         $v_ricerca = new v_ricerca();
         
-        $utente = c_session::getUtenteDaSessione();
+        $utente = c_sessione::getUtenteDaSessione();
         
         
         $string = $v_cerca->getValoreRicerca();

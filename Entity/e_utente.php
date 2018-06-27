@@ -82,8 +82,9 @@ class e_utente extends e_oggetto{
         return password_verify($this->password, f_persistance::getIstance()->load(e_cliente::class, $this->id)->getPassword());
     }
     
-
-    //restituisce le informazioni relative all'utente o null
+    /**
+     * restituisce le informazioni relative all'utente o null
+     */
     function getInfoUtente()
     {
         $info_utente = f_persistance::getIstance()->load(e_infoUtente::class, $this->id);
