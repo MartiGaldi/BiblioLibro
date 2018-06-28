@@ -11,9 +11,9 @@ require_once 'Entity/e_prestito.php';
 require_once 'Entity/e_oggetto.php';
 require_once 'Entity/e_utente.php';
 require_once 'Entity/e_visitatore.php';
+require_once 'Entity/e_bibliotecario.php';
 
 
-require_once 'Foundation/f_cliente.php';
 require_once 'Foundation/f_persistance.php';
 require_once 'Foundation/f_prenota.php';
 require_once 'Foundation/f_libro.php';
@@ -23,8 +23,15 @@ require_once 'Foundation/f_infoUtente.php';
 require_once 'Foundation/f_infoLibro.php';
 require_once 'Foundation/f_bibliotecario.php';
 require_once 'Foundation/f_copertina.php';
-require_once 'Foundation/f_oggetto.php';
 require_once 'Foundation/f_utente.php';
-require_once 'Foundation/f_visitatore.php';
+require_once 'Foundation/f_target';
+
+
+require_once 'Controller/c_amministratore.php';
+require_once 'Controller/c_cerca.php';
+require_once 'Controller/c_libro.php';
+require_once 'Controller/c_sessione.php';
+require_once 'Controller/c_utente.php';
+
 
 ?>

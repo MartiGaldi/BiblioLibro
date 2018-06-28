@@ -52,7 +52,7 @@ class f_utente
     
     static function creaOggettoDaDB($ennupla) : e_Utente
     {
-        $tipoUtente = 'E'.ucfirst($ennupla['tipo']);
+        $tipoUtente = 'e_'.ucfirst($ennupla['tipo']);
         
         $utente = new $tipoUtente();
         

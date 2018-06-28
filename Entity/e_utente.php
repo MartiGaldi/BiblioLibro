@@ -5,23 +5,12 @@ include_once 'Entity/e_oggetto.php';
 
 class e_utente extends e_oggetto{
     
-    protected $nickname;
     protected $mail;
     protected $password;
     protected $info_utente
     
     function __construct(){
         parent::__construct();
-    }
-    
-    function setNickname (string $nickname)
-    {
-        $this->nickname=$nickname;
-    }
-    
-    function getNickname() : string
-    {
-        return $this->nickname;
     }
     
     function validazzioneNickName() : bool
@@ -104,16 +93,16 @@ class e_utente extends e_oggetto{
          $info->setId($this->id);
          $this->info_utente = $info;
          
-         if(!f_persistance::getInstance()->load(e_infoUtente::class, $this->id)) 
+         if(!f_persistance::getInstance()->carica(e_infoUtente::class, $this->id)) 
          {   //se le info non sono presenti vengono aggiunte nel db   
-             f_persistance::getInstance()->store($this->info_utente);
+             f_persistance::getInstance()->salva($this->info_utente);
          
          }
          
          else
          
          { //altrimenti vengono aggiornate
-             f_persistence::getInstance()->update($this->info_utente);
+             f_persistence::getInstance()->aggiorna($this->info_utente);
              
          }
         
