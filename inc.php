@@ -1,5 +1,6 @@
 <?php 
 
+
 require_once 'Entity/e_cliente.php';
 require_once 'Entity/e_libro.php';
 require_once 'Entity/e_prenota.php';
@@ -32,6 +33,14 @@ require_once 'Controller/c_cerca.php';
 require_once 'Controller/c_libro.php';
 require_once 'Controller/c_sessione.php';
 require_once 'Controller/c_utente.php';
+require_once 'Controller/c_infoUtente.php';
+require_once 'Controller/FrontController.php';
+
+
+require_once 'View/v_amministratore.php';
+require_once 'View/v_cerca';
+require_once 'View/v_infoUtente';
+require_once 'View/v_oggetto';
 
 
 ?>
