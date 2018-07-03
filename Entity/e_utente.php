@@ -13,15 +13,6 @@ class e_utente extends e_oggetto{
         parent::__construct();
     }
     
-    function validazzioneNickName() : bool
-    {
-        if($this->nickname && preg_match('/^[[:alpha:]]{5,20}$/', $this->nickname)
-            return true;
-            else
-                return false;
-    }
-    
-    
     function setMail (string $mail)
     {
         $this->mail=$mail;
