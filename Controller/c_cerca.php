@@ -79,12 +79,12 @@ class c_cerca
                 {   
                     $oggetti = f_peristance::getInstance()->cerca($key, $string);
                     
-                    $v_cerca->mostraRisultato ($user, $oggetti, $key, $string);
+                    $v_cerca->mostraRisultato ($utente, $oggetti, $key, $string);
                     
                 }
                 
                 else
-                    $v_cerca-> Errore($user, 'I valori inseriti non sono corretti');
+                    $v_cerca-> Errore($utente, 'I valori inseriti non sono corretti');
                     
             }
             
