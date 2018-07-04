@@ -3,6 +3,18 @@
 require_once'inc.php';
 include_once 'Entity/e_oggetto.php';
 
+
+/**
+* La classe e_utente contiene tutti gli attributi e metodi base che sono adoperati da tutte
+* le tipologie di utente (cliente, bibliotecario,visitatore).
+* Contiene metodi per impostare, ottenere, validare i seguenti attributi:
+* - mail: l'indirizzo utilizzato in fase di registrazione
+* - password: la password per accedere nell'applicazione
+* - info: oggetto e_InfoUtente contenente informazioni da modificare e visualizzabili nel profilo
+* @author gruppo11
+* @package Entity
+*/
+
 class e_utente extends e_oggetto{
     
     protected $mail;
@@ -13,21 +25,28 @@ class e_utente extends e_oggetto{
         parent::__construct();
     }
     
+    
     function setMail (string $mail)
     {
         $this->mail=$mail;
     }
+    
+    
     
     function getMail() : string
     {
         return $this->mail;
     }
     
-    //metodo che verifica che la struttura dell'e-mail sia valida
+    
+    /** Metodo che verifica che la struttura dell'e-mail sia valida
+     * @return bool true se l'email e' corretta, false altrimenti
+     */
     function validazioneMail() : bool
     {
         if($this->mail && filter_var($this->mail, FILTER_VALIDATE_EMAIL))
             return true;
+        
             else
                 return false;
     }
@@ -39,28 +58,50 @@ class e_utente extends e_oggetto{
         $this->password=$password;
     }
     
+    
+    
     function getPassword() : string
     {
         return $this->password;
     }
     
-    //metodo che verifica che che la password sia composta da caratteri alfanumerici
-    //ed abbia la lunghezza almeno pari a 8 e massimo 20
-    function validazionePassword() : bool {
+    
+    /* Metodo che verifica che la password sia corretta ovvero composta da caratteri alfanumerici
+     *  ed abbia la lunghezza almeno pari a 8 e massimo 20
+     *  @return bool true se la password è corretta, false altrimenti
+     */
+    function validazionePassword() : bool
+    {
         if($this->password && preg_match('/^[[:alpha:]]{8,20}$/', $this->password))
             return true;
+        
         else
             return false;
     }
     
-    //cripta la password
-    function hashPassword () {
+    
+    /**
+     * Metodo che cripta la password
+     */
+    function hashPassword ()
+    {
         $this->password=password_hash($this->password, PASSWORD_DEFAULT);
     }
     
-    function verificaPassword () : bool {
+    
+    
+    /**
+    * Metodo che controlla se la password dell'oggetto sia corrispondente alla entry nel database
+    * che contiene lo stesso id dell'oggetto che ha richiamato il metodo
+    * @param string $password la password
+    * @return bool
+    */
+    function verificaPassword () : bool
+    {
         return password_verify($this->password, f_persistance::getIstance()->load(e_cliente::class, $this->id)->getPassword());
     }
+    
+    
     
     /**
      * restituisce le informazioni relative all'utente o null
@@ -75,7 +116,9 @@ class e_utente extends e_oggetto{
         return $this->info_utente;
     }
     
-    //impone le informazioni utente
+    /**
+     * Imposta le informazioni dell'utente
+     */
     function setInfoUtente(e_infoUtente $info = null)
     {
         if(!$info)

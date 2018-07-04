@@ -2,12 +2,18 @@
 
 require_once'inc.php';
 
+/**
+* @author gruppo 11
+* @package Entity
+* La classe e_libro caratterizza i testi presenti nel catalogo della biblioteca.
+* Contiene le informazioni principali riguardanti quest'ultimi quali titolo, autore e numero di copie presenti.
+*/
+
 class e_libro extends e_oggetto {
     
     private $autore;
     private $titolo;
     private $num_copie;
-    private $isbn;
     
     
     function __constructor(){}
@@ -35,15 +41,6 @@ class e_libro extends e_oggetto {
     function getNumCopie(){
         return $this->num_copie;
     }
-    
-    function setIsbn(string $isbn){
-        $this->isbn=$isbn;
-    }
-    
-    function getIsbn() : string {
-        return $this->isbn;
-    }
-  
 }
 
 ?>
