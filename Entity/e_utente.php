@@ -17,6 +17,7 @@ include_once 'Entity/e_oggetto.php';
 
 class e_utente extends e_oggetto{
     
+    protected $nick_name
     protected $mail;
     protected $password;
     protected $info_utente
@@ -25,6 +26,15 @@ class e_utente extends e_oggetto{
         parent::__construct();
     }
     
+    function setNick (string $nick_name)
+    {
+        $this->nick_name=$nick_name   
+    }
+        
+    function getNIck() : string
+    {
+        return $this->nick_name
+    }
     
     function setMail (string $mail)
     {
