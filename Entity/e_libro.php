@@ -14,6 +14,7 @@ class e_libro extends e_oggetto {
     private $autore;
     private $titolo;
     private $num_copie;
+    private $durata;
     private $info_libro;
     
     
@@ -23,7 +24,7 @@ class e_libro extends e_oggetto {
         $this->autore=$autore;
     }
     
-    function getAutore(){
+    function getAutore() : string {
         return $this->autore;
     }
     
@@ -31,7 +32,7 @@ class e_libro extends e_oggetto {
         $this->titolo=$titolo;
     }
     
-    function getTitolo(){
+    function getTitolo() : string {
         return $this->titolo;
     }
     
@@ -39,8 +40,23 @@ class e_libro extends e_oggetto {
         $this->num_copie=$num_copie;
     }
     
-    function getNumCopie(){
+    function getNumCopie() : int {
         return $this->num_copie;
+    }
+    
+    function validazioneDurata() : bool {
+        if($this->durata=='consultazione' || durata=='breve' || durata=='lungo')
+            return true;
+        else
+            return false;
+    }
+    
+    function setDurata(string $durata){
+        $this->durata=$durata;
+    }
+    
+    function getDurata() : string {
+        return $this->durata;
     }
     
     /**

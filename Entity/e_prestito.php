@@ -6,6 +6,7 @@ class e_prestito extends e_oggetto {
     
     private $nick_cliente;
     private $data_inizio;
+    private $data_fine;
     private $attesa;
     private $isbn
     
@@ -25,6 +26,11 @@ class e_prestito extends e_oggetto {
     
     function getDataInizio(){
         return $this->data_inizio;
+    }
+    
+    function setDataFine(DateTime $data_inizio, string $durata){
+        if($durata=='consultaione')
+            $data_fine=
     }
     
     function setAttesa(bool $attesa){

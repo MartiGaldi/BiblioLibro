@@ -108,7 +108,7 @@ class e_utente extends e_oggetto{
     */
     function verificaPassword () : bool
     {
-        return password_verify($this->password, f_persistance::getIstance()->load(e_cliente::class, $this->id)->getPassword());
+        return password_verify($this->password, f_persistance::getIstance()->carica(e_cliente::class, $this->id)->getPassword());
     }
     
     

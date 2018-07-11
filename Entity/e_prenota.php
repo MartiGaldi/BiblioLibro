@@ -6,9 +6,10 @@ require_once'inc.php';
 class e_prenota extends e_oggetto {
     
     private $data;
-    private $priorità;
     private $nick_cliente;
     private $isbn;
+    private $data_fine;
+    private $acquisito = false;
     
     function __constructor(){}
     
@@ -18,14 +19,6 @@ class e_prenota extends e_oggetto {
     
     function getData() : DateTime {
         return $this->data;
-    }
-    
-    function setPriorità(int $priorità) {
-        $this->prestito=$prestito;
-    }
-    
-    function getPriorità() : int {
-        return $this->priorità;
     }
     
     function setNickCliente (string $nick_cliente){
@@ -44,6 +37,14 @@ class e_prenota extends e_oggetto {
         return $this->isbn;
     }
     
+    function setDataFine() {
+        $this->data_fine = time + (3*24*60*60);
+    }
+    
+    function getDataFine() : DateTime {
+        return $this->date('Y/m/d', $data_fine);
+    }
+    
     function get_copie_disponibili (string $isbn) : bool {
        $numero = count (select *
                         from PRESTITO
@@ -55,16 +56,23 @@ class e_prenota extends e_oggetto {
              else 
                 // return 0 (non disponibile)
                 return
-    }*/
-    
-    function mail_prenotazione(){
-     
     }
     
-    function prenotazione_effettuata(){
+    function prenotazioneEffettuata(){
         //passaggio da prenotazione a prestito
-        
-    }   
+        if($acquisito)
+           eliminaPrenotazione();
+        else
+            caricaPrestito();
+    }  
+    
+    function eliminaPrenotazione(int $id, DateTime $data_fine){
+        $data_odierna=time();
+        if($data_odierna>$data_fine)
+        {
+            rimuoviPrenotazione();
+        }
+    }
 }
 
 ?>

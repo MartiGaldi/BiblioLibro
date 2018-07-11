@@ -13,6 +13,13 @@ class f_prenota{
         $stmt->bindValue(':id_cliente', $pren->getIdliente(), PDO::PARAM_INT);
         $stmt->bindValue(':priorita', $pren->getPriorita(), PDO::PARAM_STR);
     }
+    
+    static function rimuoviPrenotazione() : string
+    {
+        return "SELECT *
+                FROM prenota
+                WHERE id = :id;";
+    }
 }
 
 ?>
