@@ -65,6 +65,17 @@ class e_infoLibro {
     {
         array_push($this->_commento, $commento);
     }
+    
+    /**
+     * Restituisce un array di commenti relativi al libro
+     * @access public
+     * @return array
+     * @ReturnType array
+     */
+    public function getCommenti() 
+    {
+        return ($this->_commento);
+    }
  
 }
 

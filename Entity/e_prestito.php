@@ -2,7 +2,7 @@
 
 require_once "inc.php";
 
-class e_prestito {
+class e_prestito extends e_oggetto {
     
     private $nick_cliente;
     private $data_inizio;
@@ -15,7 +15,7 @@ class e_prestito {
         $this->nick_cliente=$nick_cliente;
     }
     
-    function getNickCliente(){
+    function getNickCliente() : string {
         return $this->nick_cliente;
     }
  

@@ -3,44 +3,45 @@
 require_once'inc.php';
 
 
-class e_prenota {
+class e_prenota extends e_oggetto {
     
-    private $id;
-    private $priorita;
+    private $data;
+    private $priorità;
     private $nick_cliente;
-    private $id_libro;
+    private $isbn;
     
     function __constructor(){}
     
-    function setId (int $id){
-        $this->id=$id;
+    function setData (DateTime $data){
+        $this->data=$data;
     }
     
-    function getId(){
-        return $this->id;
-        
-    function setPriorita (int $priorita){
-        $this->priorita=$priorita;
+    function getData() : DateTime {
+        return $this->data;
     }
     
-    function getPriorita(){
-        return $this->priorita;
+    function setPriorità(int $priorità) {
+        $this->prestito=$prestito;
+    }
+    
+    function getPriorità() : int {
+        return $this->priorità;
     }
     
     function setNickCliente (string $nick_cliente){
         $this->nick_cliente=$nickcliente;
     }
     
-    function getNickCliente(){
+    function getNickCliente() : string{
         return $this->nick_cliente;
     }
     
-    function setIdLibro(int $id_libro){
-        $this->id_libro=$id_libro;
+    function setIsbn(string $isbn){
+        $this->isbn=$isbn;
     }
     
-    function getIdLibro(){
-        return $this->id_libro;
+    function getIsbn() : string {
+        return $this->isbn;
     }
     
     function get_copie_disponibili (string $isbn) : bool {

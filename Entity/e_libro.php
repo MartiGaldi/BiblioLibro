@@ -14,6 +14,7 @@ class e_libro extends e_oggetto {
     private $autore;
     private $titolo;
     private $num_copie;
+    private $info_libro;
     
     
     function __constructor(){}
@@ -41,6 +42,43 @@ class e_libro extends e_oggetto {
     function getNumCopie(){
         return $this->num_copie;
     }
+    
+    /**
+     * Imposta le informazioni del libro
+     */
+    
+    function setInfoLibro(e_infoLibro $info=null) {
+        if(!$info)
+            $info = new e_infoLibro();
+        
+        $info->setId($this->id);
+        $this->info_libro=$info;
+        
+        if(!f_persistance::getIstance()->carica(e_infoLIbro::class, $this->id))
+        {  //se le info non sono presenti vengono aggiunte nel db
+            f_persistance::getIstance()->salva($this->info_libro);
+        }
+        
+        else
+            
+        {  //altrimenti vengono aggiornate
+            f_persistance::getIstance()->aggiorna($this->infoLibro);
+        }
+    }
+    
+    /**
+     * restituisce le informazioni relative al libro o null
+     */
+    
+    function getInfoLibro() {
+        $info_libro = f_persistance::getIstance()->carica(e_infoLibro::class, $this->id);
+        if(info_libro)
+            $this->info_libro = $info_libro;
+        else
+            $this->info_libro = new e_infoLibro();
+        return $this->info_libro;
+    }
+    
 }
 
 ?>

@@ -118,7 +118,7 @@ class e_utente extends e_oggetto{
      */
     function getInfoUtente()
     {
-        $info_utente = f_persistance::getIstance()->load(e_infoUtente::class, $this->id);
+        $info_utente = f_persistance::getIstance()->carica(e_infoUtente::class, $this->id);
         if($info_utente)
             $this->info_utente = $info_utente;
         else
