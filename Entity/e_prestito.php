@@ -9,6 +9,7 @@ class e_prestito extends e_oggetto {
     private $data_fine;
     private $attesa;
     private $isbn
+    private $prenotazione;
     
     function __constructor(){}
     
@@ -24,13 +25,22 @@ class e_prestito extends e_oggetto {
         $this->data_inizio=$data_inizio;
     }
     
-    function getDataInizio(){
+    function getDataInizio() : DateTime{
         return $this->data_inizio;
     }
     
     function setDataFine(DateTime $data_inizio, string $durata){
         if($durata=='consultaione')
-            $data_fine=
+            $this->$data_fine = $data_inizio
+        else
+            if($durata=='breve')
+                $data_fine = $data_inizio->add(new DateInterval('P7D'));
+            else
+                $data_fine = $data_inizio->add(new DateInterval('P30D'));
+    }
+    
+    function getDataFine() : DataTime {
+        return $this->data_fine
     }
     
     function setAttesa(bool $attesa){
@@ -49,22 +59,21 @@ class e_prestito extends e_oggetto {
         return $this->isbn;
     }
     
-    function prestito_effettuato(){
-        return
-    }
-        
-    function controlla_scadenza(){
-        return
-    }
-        
-    function mail_prestito(){
-        return
-    }
-        
-    function mail_sollecito(){
-        return
-    }
+    /**
+     * Restituisce le informazioni relative alla prenotazione
+     */
     
+    function getPrenotazione() {
+        $acquisito = f_persistance::getIstance()->carica(e_prenota::class, $this->id)->getAcquisito();
+        if($acquisito==true)
+            $prenotazione = f_persistance::getIstance()->carica(e_prenota::class, $this->id);
+            if($prenotazione)
+                $this->prenotazione = $prenotazione;
+            else
+                $this->prenotazione = new e_prenota();
+        return $this->prenotazione;
+    }
+        
 }
 
 ?>

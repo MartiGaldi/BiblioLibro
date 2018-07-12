@@ -31,7 +31,7 @@ class e_utente extends e_oggetto{
         $this->nick_name=$nick_name   
     }
         
-    function getNIck() : string
+    function getNick() : string
     {
         return $this->nick_name
     }

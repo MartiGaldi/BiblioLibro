@@ -45,6 +45,14 @@ class e_prenota extends e_oggetto {
         return $this->date('Y/m/d', $data_fine);
     }
     
+    function setAcquisito(bool $acquisito) {
+        $this->acquisito=$acquisito;
+    }
+    
+    function getAcquisito() : bool {
+        return $this->acquisito;
+    }
+    
     function get_copie_disponibili (string $isbn) : bool {
        $numero = count (select *
                         from PRESTITO
@@ -58,14 +66,17 @@ class e_prenota extends e_oggetto {
                 return
     }
     
-    function prenotazioneEffettuata(){
-        //passaggio da prenotazione a prestito
-        if($acquisito)
+    /**
+     * metodo che permette il controllo della prenotazione
+     */
+    function controllaPrenotazione(){
+        if($acquisito == false)
            eliminaPrenotazione();
-        else
-            caricaPrestito();
     }  
     
+    /**
+     * metodo che elimina la prenotazione se entro tre giorni il libro non viene ritirato
+     */
     function eliminaPrenotazione(int $id, DateTime $data_fine){
         $data_odierna=time();
         if($data_odierna>$data_fine)
