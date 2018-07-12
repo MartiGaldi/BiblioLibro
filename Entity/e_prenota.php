@@ -10,6 +10,7 @@ class e_prenota extends e_oggetto {
     private $isbn;
     private $data_fine;
     private $acquisito = false;
+    private $disp = false;
     
     function __constructor(){}
     
@@ -53,23 +54,29 @@ class e_prenota extends e_oggetto {
         return $this->acquisito;
     }
     
-    function get_copie_disponibili (string $isbn) : bool {
-       $numero = count (select *
-                        from PRESTITO
-                        where isbn = isbn_u)
-                     
-        if($n_copie<$numero)
-             //return 1 (disponiile)
-             return
-             else 
-                // return 0 (non disponibile)
-                return
+    function setDisp(bool $disp)
+        {
+            $numero=contaNumero();
+            $num_copie= f_persistance::getIstance()->carica(e_libro::class, $this->id)->getNumCopie();
+            
+            if($num_copie<$numero)
+                $disp=false;
+                else
+                    $disp=true;
+        
+        $this->disp=$disp;
+        }
+    
+    function getDisp() : bool {
+        return $this->disp;
     }
     
+   
     /**
      * metodo che permette il controllo della prenotazione
      */
-    function controllaPrenotazione(){
+    function controllaPrenotazione(bool $acquisito)
+    {
         if($acquisito == false)
            eliminaPrenotazione();
     }  

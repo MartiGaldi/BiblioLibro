@@ -63,17 +63,27 @@ class e_prestito extends e_oggetto {
      * Restituisce le informazioni relative alla prenotazione
      */
     
-    function getPrenotazione() {
+    function getPrenotazione()
+    {
+       $disp= f_persistance::getIstance()->carica(e_prenota::class, $this->id)->getDisp();
+       
+       if ($disp==true)
+       {
         $acquisito = f_persistance::getIstance()->carica(e_prenota::class, $this->id)->getAcquisito();
+        
         if($acquisito==true)
+        {
             $prenotazione = f_persistance::getIstance()->carica(e_prenota::class, $this->id);
             if($prenotazione)
                 $this->prenotazione = $prenotazione;
             else
                 $this->prenotazione = new e_prenota();
+        }
+       }
         return $this->prenotazione;
-    }
-        
+    } 
+    else
+        echo "Attualmente non sono disponibili copie per il prestito";
 }
 
 ?>

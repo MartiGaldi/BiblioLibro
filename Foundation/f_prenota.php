@@ -20,6 +20,13 @@ class f_prenota{
                 FROM prenota
                 WHERE id = :id;";
     }
+    
+    static function contaNumero() : int
+    {
+        return "SELECT count (*)
+                FROM PRESTITO
+                WHERE isbn = :isbn;";
+    }
 }
 
 ?>
