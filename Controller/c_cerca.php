@@ -12,7 +12,6 @@ class c_cerca
     const KEY_ADVANCED = 'Autore';
     const KEY_ADVANCED = 'Genere';
     const KEY_ADVANCED = 'Isbn';
-    const KEY_ADVANCED = 'Editore';
     
     
     

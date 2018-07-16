@@ -6,7 +6,7 @@ include_once 'View/v_oggetto.php';
 /**
 * La classe v_libro si occupa dell'input-output per quanto riguarda i dati riguardanti i libri.
 *  Ovvero:
-* - dai dati inseriti dal bubliotecario costruiscono un oggetto e_libro
+* - dai dati inseriti dal bibliotecario costruiscono un oggetto e_libro
 * - predispone e visualizza le varie pagine HTML per la creazione/modifica/rimozione/visualizzazione di un testo.
 * @package View
 */
