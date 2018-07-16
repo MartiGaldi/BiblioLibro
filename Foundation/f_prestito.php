@@ -33,7 +33,7 @@ class f_prestito{
     }
     
     /**
-     * Query che rimuove una prenotazione dalla tabella prenota.
+     * Query che rimuove un prestito dalla tabella prestito.
      * @return string contenente la query sql
      */
     static function rimuoviPrestito() : string
@@ -41,6 +41,18 @@ class f_prestito{
         return "DELETE
                 FROM prestito
                 WHERE id = :id;";
+    }
+    
+    /**
+     * Cancella tutte le entry di una query. Usata a scopo di debug.
+     * @param PDO $db
+     */
+    static function tabellaVuota (PDO &$database)
+    {
+        $database->beginTransaction();                         //inizio transazione
+        $stmt = $database->prepare("TRUNCATE TABLE prestito;");    //prepara lo statement
+        $stmt->execute();
+        $database->commit();
     }
     
     /**
