@@ -1,18 +1,61 @@
 <?php
 class f_prestito{
-    
+    /**
+     * Query che effettua il salvataggio di un prestito nella tabella prestito
+     * @return string contenente la query sql
+     */
     static function salvaPrestito():string
     {
-        return "INSERT INTO prestito(nick_cliente,isbn,attesa,data_inizio)
-                VALUES(:nick_cliente,:isbn,:attesa,:data_inizio)";
+        return "INSERT INTO prestito(id,nick_cliente,data_inizio,data_fine,attesa,isbn,prenotazione)
+                VALUES(:id,:nick_cliente,:data_inizio,:data_fine,:attesa,:isbn,:prenotazione)";
     }
     
+    /**
+     * Query che effettua l'aggiornamento di una prestito nella tabella prestito
+     * @return string contenente la query sql
+     */
+    static function aggiornaPrestito() : string
+    {
+        return "UPDATE prestito
+                SET nick_cliente = :nick_cliente, data_inizio = :data_inizio, data_fine = :data_fine, attesa = :attesa, isbn = :isbn, prenotazione = :prenotazione
+                WHERE id = :id;";
+    }
     
+    /**
+     * Query per il caricamento di un prestito
+     * @return string sql rappresentante la SELECT.
+     */
+    static function caricaPrestito() : string
+    {
+        return "SELECT *
+                FROM prestito
+                WHERE id = :id;";
+    }
+    
+    /**
+     * Query che rimuove una prenotazione dalla tabella prenota.
+     * @return string contenente la query sql
+     */
+    static function rimuoviPrestito() : string
+    {
+        return "DELETE
+                FROM prestito
+                WHERE id = :id;";
+    }
+    
+    /**
+     * Associazione di un oggetto e_prestito ai campi di una query sql per la tabella prenota.
+     * @param PDOStatement $stmt lo statement contenente i campi da riempire
+     * @param e_prestito $pres il prestito da cui prelevare i dati
+     */
     static function bindValues(PDOStatement &$stmt, e_prestito &$pres){
+        $stmt->bindValue('id', $pres->getId(), PDO::PARAM_INT);
         $stmt->bindValue(':nick_cliente', $pres->getNickCliente(), PDO::PARAM_STR);
-        $stmt->bindValue(':isbn', $pres->getIsbn(), PDO::PARAM_STR);
+        $stmt->bindValue(':data_inizio', $pres->getDataInizio(), PDO::PARAM_STR);
+        $stmt->bindValue(':data_fine', $pres->getDataFine(), PDO::PARAM_STR);
         $stmt->bindValue(':attesa', $pres->getAttesa(), PDO::PARAM_BOOL);
-        $stmt->bindValue(':data_inizio', $pres->getDataInizio(), PDO::PARAM_DATE);
+        $stmt->bindValue(':isbn', $pres->getIsbn(), PDO::PARAM_STR);
+        $stmt->bindValue('prenotazione', pres->getPrenotazione(), PDO::PARAM_STR);
     }
     
 }

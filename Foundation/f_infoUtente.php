@@ -2,12 +2,21 @@
 
 class f_infoUtente{
     
+    /**
+     * Salva una e_infoUtente nel database
+     * @param PDO $database la connessione verso il dbms
+     * @return string la query sql per la INSERT
+     */
     static function salvaInfoUtente() : string
     {
         return "INSERT INTO info_utente (id, nome, cognome, cod_fisc, telefono, sesso, dt_nascita,luogo_nascita)
                 VALUES(:id, :nome, :cognome, :cod_fisc, :telefono, :sesso, :dt_nascita, :luogo_nascita)";
     }
     
+    /**
+     * Query che effettua l'aggiornamento delle info di un utente nella tabella infoUtente
+     * @return string contenente la query sql
+     */
     static function aggiornaInfoUtente() : string 
     {
         return "UPDATE info_utente
@@ -21,6 +30,10 @@ class f_infoUtente{
                 WHERE id = :id;";
     }
     
+    /**
+     * Carica info_utente dal database.
+     * @return string la query sql per la SELECT
+     */
     static function caricaInfoUtente() : string
     {
         return "SELECT *
@@ -28,6 +41,35 @@ class f_infoUtente{
                 WHERE id = :id;";
     }
     
+    /**
+     * Elimina le info di un utente dal database .
+     * @param PDO $database la connessione al dbms
+     * @param int $id l'utente da eliminare
+     */
+    static function eliminaInfoUtente() : string
+    {
+        return "DELETE
+                FROM infoUtente
+                WHERE id = :id;";
+    }
+    
+    /**
+     * Cancella tutte le entry di una query. Usata a scopo di debug.
+     * @param PDO $db
+     */
+    static function tabellaVuota (PDO &$database)
+    {
+        $database->beginTransaction();                         //inizio transazione
+        $stmt = $database->prepare("TRUNCATE TABLE infoUtente;");    //prepara lo statement
+        $stmt->execute();
+        $database->commit();
+    }
+    
+    /**
+     * Associa ai campi della query i corrispondenti attributi dell'oggetto e_infoUtente.
+     * @param PDOStatement $stmt da cui prelevare i campi
+     * @param e_infoUtente $infu da cui prelevare gli attributi
+     */
     static function bindValues(PDOStatement &$stmt, e_infoUtente &$infu)
     {
         $stmt->bindValue(':id', $infu->getId(), PDO::PARAM_INT);
@@ -62,6 +104,11 @@ class f_infoUtente{
         
     }
     
+    /**
+     * Istanzia un oggetto e_infoUtente a partire dai valori di una tupla ricevuta dal dbms
+     * @param array $ennupla la tupla ricevuta dal dbms
+     * @return infoUtente l'oggetto e_infoUtente risultato dell'operazione
+     */
     static function creaOggettoDaDB($ennupla) : e_infoUtente
     {
         $utente = new e_infoUtente();

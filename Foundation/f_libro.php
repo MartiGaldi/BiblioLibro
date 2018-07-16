@@ -9,8 +9,8 @@ class f_libro{
     */
     static function salvaLibro() : string
     {
-        return "INSERT INTO libro(n_copie,titolo,autore,durata)
-                VALUES(:n_copie,:titolo,:autore,:durata)";
+        return "INSERT INTO libro(id,num_copie,titolo,autore,durata,genere)
+                VALUES(:id,:num_copie,:titolo,:autore,:durata,:genere)";
     }
         
     /**
@@ -21,18 +21,18 @@ class f_libro{
     {
         return "SELECT libro.*
                 FROM libro
-                where libro.id= :id;"; //query sql
+                where libro.id = :id;"; //query sql
     }   
         
     /**
-    * Aggiorna i dati di un libro
-    * @param PDO $database, e_libro $libro
-    */
+     * Query che effettua l'aggiornamento del libro nella tabella libro
+     * @return string contenente la query sql
+     */
     static function aggiornaLibro() : string
     {
         return "UPDATE libro
-                SET n_copie= :n_copie, titolo = :titolo, autore = :autore, durata = :durata
-                WHERE id= :id ;";
+                SET num_copie = :num_copie, titolo = :titolo, autore = :autore, durata = :durata, genere = :genere
+                WHERE id = :id ;";
     }
         
     /**
@@ -44,7 +44,7 @@ class f_libro{
     {
         return "DELETE
                 FROM libro
-                WHERE id= :id ;"; //query sql
+                WHERE id = :id ;"; //query sql
     }
         
         
@@ -57,7 +57,7 @@ class f_libro{
         $database->beginTransaction();                         //inizio transazione
         $stmt = $database->prepare("TRUNCATE TABLE libro;");    //prepara lo statement
         $stmt->execute();
-        $db->commit();
+        $database->commit();
     }
         
     static function ricercaLibroDaTitolo() : string
@@ -81,24 +81,26 @@ class f_libro{
     * @param e_libro $lib da cui prelevare gli attributi
     */
     static function bindValues(PDOStatement &$stmt, e_libro &$lib){
-        $stmt->bindValue(':n_copie', $lib->getNumCopie(), PDO::PARAM_INT);
+        $stmt->bindValue(':num_copie', $lib->getNumCopie(), PDO::PARAM_INT);
         $stmt->bindValue(':titolo', $lib->getTitolo(), PDO::PARAM_STR);
         $stmt->bindValue(':autore', $lib->getAutore(), PDO::PARAM_STR);
         $stmt->bindValue(':durata', $lib->getDurata(), PDO::PARAM_STR);
+        $stmt->bindValue(':genere', $lib->getgGenere(), PDO::PARAM_STR);
     } 
     
     /**
     * Istanzia un oggetto e_libro a partire dai valori di una tupla ricevuta dal dbms
     * @param array $ennupla la tupla ricevuta dal dbms
-    * @return e_libro l'oggetto e_libro risultato dell'operazione
+    * @return libro l'oggetto e_libro risultato dell'operazione
     */
     static function creaOggettoDaDB($ennupla)
     {
         // creazione dell'oggetto e_libro
         $libro = new e_libro();
         $libro->setId($ennupla['id']);
-        $libro->setAutore($ennupla['autore']);
+        $libro->setNumCopie($ennupla['num_copie']);
         $libro->setTitolo($ennupla['titolo']);
+        $libro->setAutore($ennupla['autore']);
         $libro->setDurata($ennupla['durata']);
                     
         return $libro;
