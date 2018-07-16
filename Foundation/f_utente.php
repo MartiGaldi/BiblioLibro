@@ -18,8 +18,8 @@ class f_utente
     
     static function salvataggioUtente() : string
     {
-        return "INSERT INTO utente(nickname, mail, password, tipo)
-                VALUES (:nickname, :mail, :password, :tipo);";
+        return "INSERT INTO utente(id,nickname,mail,password,tipo)
+                VALUES (:id,:nickname,:mail,:password,:tipo);";
     }
     
     static function aggiornaUtente() : string
@@ -43,7 +43,9 @@ class f_utente
                 WHERE id = :id;";
     }
     
-    static function bindValues(PDOStatement &$stmt, e_utente &$utente){
+    static function bindValues(PDOStatement &$stmt, e_utente &$utente)
+    {
+        $stmt->bindValue('id', $utente->getId(), PDO::PARAM_INT);
         $stmt->bindValue(':nickname', $utente->getNickname(), PDO::PARAM_STR);
         $stmt->bindValue(':mail', $utente->getMail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR);
@@ -56,10 +58,10 @@ class f_utente
         
         $utente = new $tipoUtente();
         
-        $user->setId($ennupla['id']);
-        $user->setNickname($ennupla['nickname']);
-        $user->setMail($ennupla['mail']);
-        $user->setPassword($ennupla['password']);
+        $utente->setId($ennupla['id']);
+        $utente->setNickname($ennupla['nickname']);
+        $utente->setMail($ennupla['mail']);
+        $utente->setPassword($ennupla['password']);
                                     
         return $utente;
     }

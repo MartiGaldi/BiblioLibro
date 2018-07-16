@@ -15,6 +15,7 @@ class e_libro extends e_oggetto {
     private $titolo;
     private $num_copie;
     private $durata;
+    private $genere;
     private $info_libro;
     
     
@@ -57,6 +58,14 @@ class e_libro extends e_oggetto {
     
     function getDurata() : string {
         return $this->durata;
+    }
+    
+    function setGenere(string $genere){
+        $this->genere=$genere;
+    }
+    
+    function getGenere() : string {
+        return $this->genere;
     }
     
     /**
