@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>Ricerca</title>
+<title>Rimuovi {$libro->getTitolo()}</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -15,34 +14,19 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-	{utente->getId assign='uId'} 
-	
+
+	{utente->getNick assign='uNome'}
+	{utente->getId assign='uId'}
+
 	{include file="navbar.tpl"}
 
-	
-
-	<div class="container text-center">
-		<div class="col-sm-3">
-
-		
-
-        </div>
-
-		<div class="col-sm-7 well">
-			<h4>Ricerca per {$key} {$string}: </h4>
-
-			{if $key eq "Titolo"}
-				{include file="Catalogo.tpl"}
-			{/if}
-		</div>
-
-		<div class="col-sm-3">
-
-		
-
-		</div>
+	<div class="container text-center well">
+		<h3>Vuoi rimuovere {$libro->getTitolo()}?</h3>
+		<form method="post" action="/BiblioLibro/libro/rimuovi/{$libro->getId()}">
+    		<button type="submit" class="btn btn-primary btn-lg active" name="action" value="yes">Si</button>
+    		<button type="submit" class="btn btn-primary btn-lg btn-danger active" name="action" value="no">No</button>
+		</form>
 	</div>
 	{include file="fine.tpl"}
 </body>

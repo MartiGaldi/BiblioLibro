@@ -56,6 +56,6 @@
 
 		</div>
 	</div>
-	{include file="navbar2.tpl"}
+	{include file="fine.tpl"}
 </body>
 </html>
