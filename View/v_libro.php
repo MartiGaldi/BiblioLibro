@@ -24,10 +24,11 @@ class v_libro extends v_oggetto
         
         // l'array è istanziato con indici i campi delle varie form, i cui valori sono di default a false (no errori)
         $this->check = array(
-            'titolo' => true,
-            'n_copie' => true,
             'autore' => true,
-            'isbn' => true,
+            'titolo' => true,
+            'num_copie' => true,
+            'durata' => true,
+            'genere' => true,
         ); 
     }
     
@@ -41,13 +42,14 @@ class v_libro extends v_oggetto
     function creaLibro() : e_libro
     {
         $libro = new e_libro();
-        if (isset($_POST['titolo']) && isset($_POST['n_copie']) && isset($_POST['autore']) && isset($_POST['isbn']))
+        if (isset($_POST['autore']) && isset($_POST['titolo']) && isset($_POST['num_copie']) && isset($_POST['durata'])&& isset($_POST['genere']))
         {
-            // impostazione di titolo,autore,isbn e numero copie
-            $libro->setTitolo(ucfirst($_POST['titolo']));
-            $libro->setNumCopie(ucfirst($_POST['n_copie']));
+            // impostazione di autore,titolo,numero copie, durata e genere
             $libro->setAutore(ucfirst($_POST['autore']));
-            $libro->setIsbn(ucfirst($_POST['isbn']));                
+            $libro->setTitolo(ucfirst($_POST['titolo']));
+            $libro->setNumCopie(ucfirst($_POST['num_copie']));
+            $libro->setDurata(ucfirst($_POST['durata']))
+            $libro->setGenere(ucfirst($_POST['genere']));                
         }        
         return $libro;
         
@@ -56,7 +58,7 @@ class v_libro extends v_oggetto
     
     
     /**
-    * Mostra la pagina che consente l'inserimento di un brano da parte di un bibliootecario
+    * Mostra la pagina che consente l'inserimento di un libro da parte di un bibliootecario
     * @param e_utente $utente l'utente della sessione
     * @param bool $errore facoltativo, da impostare a true se il biblitecario ha inserito
     * un titolo di un testo gia' inserita da lui
@@ -82,7 +84,7 @@ class v_libro extends v_oggetto
     
     * Mostra la pagina che consente la modifica di un testo da parte di un bibliotecario
     * @param e_utente $utente l'utente della sessione
-    * @param e_libro $lirbo il testo da modificare
+    * @param e_libro $libro il testo da modificare
     * @param bool $error facoltativo, da impostare a true se l'utente ha inserito un titolo di una libro
     * gia' inserito
     */
@@ -147,7 +149,7 @@ class v_libro extends v_oggetto
     
     function validazioneCarica(e_libro &$libro) : bool
     {
-        if($this->check['titolo']=$libro->validazioneTitolo() && $this->check['n_copie']=$libro->validazioneNumCopie() && $this->check['autore']=$libro->validazioneAutore() && this->check['isbn']=$libro->validazioneIsbn())
+        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && this->check['genere']=$libro->validazioneGenere())
             return true;
         
             else
@@ -162,7 +164,7 @@ class v_libro extends v_oggetto
     */
     function validazioneModifica(e_libro &$libro) : bool
     {
-        if($this->check['titolo']=$libro->validazioneTitolo() && $this->check['n_copie']=$libro->validazioneNumCopie() && $this->check['autore']=$libro->validazioneAutore() && this->check['isbn']=$libro->validazioneIsbn())
+        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && this->check['genere']=$libro->validazioneGenere())
             return true;
         
         else 

@@ -45,6 +45,18 @@ class f_prenota{
     }
     
     /**
+     * Cancella tutte le entry di una query. Usata a scopo di debug.
+     * @param PDO $db
+     */
+    static function tabellaVuota (PDO &$database)
+    {
+        $database->beginTransaction();                         //inizio transazione
+        $stmt = $database->prepare("TRUNCATE TABLE prenota;");    //prepara lo statement
+        $stmt->execute();
+        $database->commit();
+    }
+    
+    /**
      * Associazione di un oggetto e_prenota ai campi di una query sql per la tabella prenota.
      * @param PDOStatement $stmt lo statement contenente i campi da riempire
      * @param e_prenota $pren la prenotazione da cui prelevare i dati
@@ -60,6 +72,25 @@ class f_prenota{
         $stmt->bindValue('disp', $pren->getDisp(), PDO::PARAM_BOOL);
     }
     
+    /**
+     * Istanzia un oggetto e_prenota a partire dai valori di una tupla ricevuta dal dbms
+     * @param array $ennupla la tupla ricevuta dal dbms
+     * @return prenota l'oggetto e_prenota risultato dell'operazione
+     */
+    static function creaOggettoDaDB($ennupla)
+    {
+        // creazione dell'oggetto e_libro
+        $prenota = new e_prenota();
+        $prenota->setId($ennupla['id']);
+        $prenota->setData($ennupla['data']);
+        $prenota->setNickCliente($ennupla['nick_cliente']);
+        $prenota->setIsbn($ennupla['isbn']);
+        $prenota->setDataFine($ennupla['data_fine']);
+        $prenota->setAcquisito($ennupla['acquisito']);
+        $prenota->setDisp($ennupla['disp']);
+        
+        return $prenota;
+    }
     
     static function contaNumero() : int
     {

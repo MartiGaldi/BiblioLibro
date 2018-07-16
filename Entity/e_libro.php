@@ -45,13 +45,6 @@ class e_libro extends e_oggetto {
         return $this->num_copie;
     }
     
-    function validazioneDurata() : bool {
-        if($this->durata=='consultazione' || durata=='breve' || durata=='lungo')
-            return true;
-        else
-            return false;
-    }
-    
     function setDurata(string $durata){
         $this->durata=$durata;
     }
@@ -104,6 +97,65 @@ class e_libro extends e_oggetto {
         return $this->info_libro;
     }
     
+    /**
+     * Funzione che verifica che il nome dell'autore sia valido. Il nome dell'autore si intende valido se
+     * contiene solamente lettere e spazi
+     * @return bool true se il nome e' corretto, false altrimenti
+     */
+    function validazioneAutore() : bool
+    {
+        if (preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->autore)) // solo lettere e spazi
+            return true;
+        else
+            return false;
+    }
+    
+    /**
+     * Funzione che verifica che il titolo sia valido. Il titolo si intende valido se
+     * contiene solamente lettere, numeri e spazi
+     * @return bool true se il nome e' corretto, false altrimenti
+     */
+    function validazioneTitolo() : bool
+    {
+        if (preg_match("/^[a-zA-Z][a-zA-Z0-9 -]+$/", $this->titolo)) // solo lettere, numeri e spazi
+            return true;
+        else
+            return false;
+    }
+    
+    /**
+     * Funzione che verifica che il numero copie sia valido. Si intende valido se
+     * contiene solamente numeri
+     * @return bool true se il nome e' corretto, false altrimenti
+     */
+    function validazioneNumCopie(): bool
+    {
+        if (preg_match("0|(,[1-9][0-9]*", $this->genre)) // sono consentiti solo numeri
+            return true;
+        else
+            return false;
+    }
+    
+    /**
+     * Funzione che verifica che la durata associata al libro sia corretta. La durata si intende
+     * corretta se è pari a consultazione o breve o lungo
+     * @return bool true se il file e' valido, false altrimenti
+     */
+    function validazioneDurata() : bool 
+    {
+        if($this->durata=='consultazione' || durata=='breve' || durata=='lungo')
+            return true;
+            else
+                return false;
+    }
+    
+    function validazioneGenere() : bool
+    {
+        if (preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->autore)) // solo lettere e spazi
+            return true;
+        else
+            return false;
+    }
 }
 
 ?>

@@ -21,7 +21,6 @@ require_once 'Foundation/f_prestito.php';
 require_once 'Foundation/f_commento.php';
 require_once 'Foundation/f_infoUtente.php';
 require_once 'Foundation/f_infoLibro.php';
-require_once 'Foundation/f_bibliotecario.php';
 require_once 'Foundation/f_copertina.php';
 require_once 'Foundation/f_utente.php';
 require_once 'Foundation/f_target';
@@ -29,11 +28,13 @@ require_once 'Foundation/f_target';
 
 require_once 'Controller/c_amministratore.php';
 require_once 'Controller/c_cerca.php';
+require_once 'Controller/c_infoLibro';
 require_once 'Controller/c_libro.php';
 require_once 'Controller/c_sessione.php';
 require_once 'Controller/c_utente.php';
 require_once 'Controller/c_infoUtente.php';
 require_once 'Controller/FrontController.php';
+require_once 'Controller/c_prenota';
 
 
 require_once 'View/v_amministratore.php';
@@ -42,8 +43,7 @@ require_once 'View/v_infoUtente';
 require_once 'View/v_oggetto';
 require_once 'View/v_libro';
 require_once 'View/v_utente';
-
-
+require_once 'View/v_infoLibro';
 
 
 ?>
