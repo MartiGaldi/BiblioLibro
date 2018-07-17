@@ -12,3 +12,5 @@ class e_visitatore extends e_utente
         $this->nickname='Visitatore';
     }
 }
+
+?>

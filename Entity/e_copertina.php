@@ -3,13 +3,20 @@
 require_once 'inc.php';
 include_once 'Entity/e_oggetto.php';
 
+/**
+ * La classe e_copertina gestisce formato, dimensione e byte immagine relativi 
+ * all'immagine rappresentante la copertina di un libro presente nel catalogo della biblioteca
+ * @author gruppo11
+ * @package Entity
+ */
+
 class e_copertina extends e_oggetto{
     
     private $tipo; //formato
     private $size; //dimensione
     private $immagine; //byte immagine
     
-    //inizializzazione immagine vuota
+    /**inizializzazione immagine vuota*/
     function __constructor(){
         $this->size=0;
         $this->tipo='non definito';
@@ -48,7 +55,7 @@ class e_copertina extends e_oggetto{
         return $this->immagine;
     }
     
-    //imposta l'oggetto con valori statici ricavati da un'immagine nella directory di lavoro
+    /**imposta l'oggetto con valori statici ricavati da un'immagine nella directory di lavoro*/
     function SetStatico()
     {
         $file=dirname(__DIR__)."/def/defProPic.jpg";
@@ -58,4 +65,6 @@ class e_copertina extends e_oggetto{
         $this->size=(int) filesize($file);
     }
        
-    }
+}
+
+?>

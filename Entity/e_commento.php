@@ -1,8 +1,16 @@
 <?php
 
+require_once'inc.php';
+
+/**
+ * La classe e_commento caratterizza i commenti da parte degli utenti 
+ * relativi ai libri da loro presi in prestito presenti nel catalogo della biblioteca
+ * @author gruppo11
+ * @package Entity
+ */
 class e_commento extends e_oggetto {
     
-    private $isbn;  //id libro commentato
+    private $isbn;  //isbn libro commentato
     private $contenuto;  //testo commento 
     private $nick_cliente;  //l'utente che ha commentato
     
@@ -46,3 +54,5 @@ class e_commento extends e_oggetto {
     }
     
 }
+
+?>

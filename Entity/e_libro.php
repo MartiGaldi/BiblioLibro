@@ -3,11 +3,13 @@
 require_once'inc.php';
 
 /**
-* @author gruppo 11
-* @package Entity
-* La classe e_libro caratterizza i testi presenti nel catalogo della biblioteca.
-* Contiene le informazioni principali riguardanti quest'ultimi quali titolo, autore e numero di copie presenti.
-*/
+ * La classe e_libro caratterizza i testi presenti nel catalogo della biblioteca.
+ * Contiene le informazioni principali riguardanti quest'ultimi quali titolo, autore, genere e numero di copie presenti.
+ * Ogni libro può essere preso un prestito per un periodo limitato(disponibile) che può corrispondere
+ * a consultazione, periodo breve o periodo lungo
+ * @author gruppo 11
+ * @package Entity
+ */
 
 class e_libro extends e_oggetto {
     
@@ -130,7 +132,7 @@ class e_libro extends e_oggetto {
      */
     function validazioneNumCopie(): bool
     {
-        if (preg_match("0|(,[1-9][0-9]*", $this->genre)) // sono consentiti solo numeri
+        if (preg_match("[1-9][0-9]*", $this->genre)) // sono consentiti solo numeri
             return true;
         else
             return false;
@@ -155,6 +157,13 @@ class e_libro extends e_oggetto {
             return true;
         else
             return false;
+    }
+        
+    function incrementaNumCopie($num_copie) 
+    {
+        $rientro = f_persistance::getIstance()->carica(e_prestito::class, $this->id)->getRientro();
+        if($rientro==true)
+            $num_copie++;
     }
 }
 

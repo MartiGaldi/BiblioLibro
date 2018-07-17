@@ -71,3 +71,5 @@ class f_prestito{
     }
     
 }
+
+?>

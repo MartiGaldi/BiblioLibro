@@ -4,12 +4,14 @@ require_once "inc.php";
 
 class e_prestito extends e_oggetto {
     
-    private $nick_cliente;
-    private $data_inizio;
-    private $data_fine;
-    private $attesa;
-    private $isbn
-    private $prenotazione;
+    protected $nick_cliente;
+    protected $data_inizio;
+    protected $data_fine;
+    protected $attesa;
+    protected $isbn
+    protected $prenotazione;
+    protected $rientro = false;
+    protected $storico = false;
     
     function __constructor(){}
     
@@ -47,16 +49,38 @@ class e_prestito extends e_oggetto {
         $this->attesa=$attesa;
     }
     
-    function getAttesa(){
+    function getAttesa() : bool{
         return $this->attesa;
     }
     
-    function setIsbn(int $isbn){
+    function setIsbn(string $isbn){
         $this->isbn=$isbn;
     }
     
-    function getIsbn(){
+    function getIsbn() : string{
         return $this->isbn;
+    }
+    
+    function setRientro(DateTime $data_fine)
+    {
+        $data_f=$data_fine->getTimestamp();
+        if(time()>=$data_f)
+            $rientro=true;
+            else
+                $rientro=false;
+    }
+    
+    function getRientro() : bool
+    {
+        return $this->rientro;
+    }
+    
+    function setStorico(bool $storico) {
+        $this->storico=$storico;
+    }
+    
+    function getStorico() : bool {
+        return $this->storico;
     }
     
     /**
@@ -80,10 +104,18 @@ class e_prestito extends e_oggetto {
                 $this->prenotazione = new e_prenota();
         }
        }
-        return $this->prenotazione;
-    } 
+        return $this->prenotazione; 
     else
         echo "Attualmente non sono disponibili copie per il prestito";
+    }
+    
+    function eliminaPrestito()
+    {
+        $storico = f_persistance::getIstance()->carica(e_storicoPrestito::class, $this->id)->getStorico;
+        if($storico==true)
+            rimuoviPrestito();
+    }
+
 }
 
 ?>

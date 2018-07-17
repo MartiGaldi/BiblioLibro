@@ -3,6 +3,14 @@
 require_once'inc.php';
 include_once 'Entity/e_oggetto';
 
+/**
+* La classe e_infoUtente contiene le informazioni dettagliate sull'utente che non
+* sono necessarie in fase di autenticazione. Proprio per questo, estende
+* la classe e_oggetto avendo come id lo stesso identificativo dell'utente a cui appartengono.
+* @author gruppo11
+* @package Entity
+
+*/
 
 class e_infoCliente extends e_oggetto
 {
@@ -109,7 +117,7 @@ class e_infoCliente extends e_oggetto
         
 }
         
-        
+?>       
         
         
         

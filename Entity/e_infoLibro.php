@@ -5,7 +5,6 @@ require_once'inc.php';
 /**
 * La classe e_infoLibro contiene tutte le informazioni più specifiche riguardanti
 * i testi presenti in biblioteca.
-
 * @author gruppo11
 * @package Entity
 */

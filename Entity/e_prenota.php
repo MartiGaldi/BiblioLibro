@@ -59,10 +59,10 @@ class e_prenota extends e_oggetto {
             $numero=contaNumero();
             $num_copie= f_persistance::getIstance()->carica(e_libro::class, $this->id)->getNumCopie();
             
-            if($num_copie<$numero)
+            if($num_copie<=$numero)
                 $disp=false;
-                else
-                    $disp=true;
+            else
+                $disp=true;
         
         $this->disp=$disp;
         }

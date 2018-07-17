@@ -95,8 +95,8 @@ class f_prenota{
     static function contaNumero() : int
     {
         return "SELECT count (*)
-                FROM PRESTITO
-                WHERE isbn = :isbn;";
+                FROM prenota INNER JOIN prestito
+                WHERE isbn = :isbn AND prenota.isbn = prestito.isbn;";
     }
 }
 
