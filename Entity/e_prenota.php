@@ -1,7 +1,14 @@
 <?php
 
 require_once'inc.php';
+include_once 'Entity/e_oggetto';
 
+/**
+ * La classe e_prenota caratterizza le prenotazioni effettuate dall'utente.
+ * Se entro tre giorni da quando viene effettuata la prenotazione per un determinato libro,
+ * l'utente non si reca il biblioteca per prendere il libro,
+ * la prenotazione viene eliminata. 
+ */
 
 class e_prenota extends e_oggetto {
     
@@ -54,6 +61,9 @@ class e_prenota extends e_oggetto {
         return $this->acquisito;
     }
     
+    /**
+     * Metodo che permette di verificare se un testo è presente oppure no nella biblioteca
+     */
     function setDisp(bool $disp)
         {
             $numero=contaNumero();
@@ -73,7 +83,7 @@ class e_prenota extends e_oggetto {
     
    
     /**
-     * metodo che permette il controllo della prenotazione
+     * Metodo che permette il controllo della prenotazione
      */
     function controllaPrenotazione(bool $acquisito)
     {
@@ -82,7 +92,7 @@ class e_prenota extends e_oggetto {
     }  
     
     /**
-     * metodo che elimina la prenotazione se entro tre giorni il libro non viene ritirato
+     * Metodo che elimina la prenotazione se entro tre giorni il libro non viene ritirato
      */
     function eliminaPrenotazione(int $id, DateTime $data_fine){
         $data_odierna=time();

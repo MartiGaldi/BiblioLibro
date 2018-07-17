@@ -76,7 +76,7 @@ class e_utente extends e_oggetto{
     }
     
     
-    /* Metodo che verifica che la password sia corretta ovvero composta da caratteri alfanumerici
+    /** Metodo che verifica che la password sia corretta ovvero composta da caratteri alfanumerici
      *  ed abbia la lunghezza almeno pari a 8 e massimo 20
      *  @return bool true se la password è corretta, false altrimenti
      */
@@ -110,8 +110,6 @@ class e_utente extends e_oggetto{
     {
         return password_verify($this->password, f_persistance::getIstance()->carica(e_cliente::class, $this->id)->getPassword());
     }
-    
-    
     
     /**
      * restituisce le informazioni relative all'utente o null

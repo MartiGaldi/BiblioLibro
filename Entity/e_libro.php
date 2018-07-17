@@ -1,6 +1,7 @@
 <?php 
 
 require_once'inc.php';
+include_once 'Entity/e_oggetto';
 
 /**
  * La classe e_libro caratterizza i testi presenti nel catalogo della biblioteca.
@@ -159,12 +160,6 @@ class e_libro extends e_oggetto {
             return false;
     }
         
-    function incrementaNumCopie($num_copie) 
-    {
-        $rientro = f_persistance::getIstance()->carica(e_prestito::class, $this->id)->getRientro();
-        if($rientro==true)
-            $num_copie++;
-    }
 }
 
 ?>

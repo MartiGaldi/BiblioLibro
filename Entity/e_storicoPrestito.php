@@ -13,10 +13,10 @@ include_once 'Entity/e_prestito.php';
 class e_storicoPrestito extends e_prestito
 {
     private $prestito;
+  
     /**
      * Metodo costruttore che istanzia un oggetto e_storicoPrestito
      */
-    
     function __construct()
     {
         parent::__construct();
@@ -26,6 +26,9 @@ class e_storicoPrestito extends e_prestito
         $this->prestito=$prestito;
     }
     
+    /**
+     * Metodo che sposta le informazioni del prestito in storicoPrestito.
+     */
     function getPrestito(bool $rientro) : bool
     {
         $rientro = f_persistance::getIstance()->carica(e_prestito::class, $this->id)->getRientro;
