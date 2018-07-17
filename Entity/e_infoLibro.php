@@ -1,6 +1,7 @@
 <?php
 
 require_once'inc.php';
+include_once 'Entity/e_oggetto';
 
 /**
 * La classe e_infoLibro contiene tutte le informazioni più specifiche riguardanti
@@ -9,7 +10,7 @@ require_once'inc.php';
 * @package Entity
 */
 
-class e_infoLibro {
+class e_infoLibro extends e_oggetto{
    
     private $isbn;
     private $descrizione;

@@ -1,6 +1,11 @@
 <?php
 
 require_once "inc.php";
+include_once 'Entity/e_oggetto';
+
+/**
+ * La classe e_prestito contiene le informazioni riguardanti i prestiti ancora in corso.
+ */
 
 class e_prestito extends e_oggetto {
     
@@ -31,6 +36,12 @@ class e_prestito extends e_oggetto {
         return $this->data_inizio;
     }
     
+    /**
+     * Metodo che imposta la data fine in base alla durata del prestito per quel determinato libro.
+     * consultazione = lo stesso giorno
+     * periodo brene = dopo 7 giorni
+     * periodo lungo = dopo 30 giorni
+     */
     function setDataFine(DateTime $data_inizio, string $durata){
         if($durata=='consultaione')
             $this->$data_fine = $data_inizio
@@ -66,8 +77,8 @@ class e_prestito extends e_oggetto {
         $data_f=$data_fine->getTimestamp();
         if(time()>=$data_f)
             $rientro=true;
-            else
-                $rientro=false;
+        else
+            $rientro=false;
     }
     
     function getRientro() : bool
@@ -109,6 +120,10 @@ class e_prestito extends e_oggetto {
         echo "Attualmente non sono disponibili copie per il prestito";
     }
     
+    /**
+     * Metodo che elimina il prestito nel caso in cui l'utente ha restituito il libro alla biblioteca.
+     * Il prestito corrispondente viene spostato nella tabella storicoPrestito
+     */
     function eliminaPrestito()
     {
         $storico = f_persistance::getIstance()->carica(e_storicoPrestito::class, $this->id)->getStorico;
