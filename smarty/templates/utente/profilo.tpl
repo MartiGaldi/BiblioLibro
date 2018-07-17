@@ -64,4 +64,4 @@
 	</div>
 	{include file="navbar.tpl"}
 </body>
-</html>
+</html>rimuovi
