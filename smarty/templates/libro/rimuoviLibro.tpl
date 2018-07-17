@@ -24,7 +24,7 @@
 	<div class="container text-center well">
 		<h3>Vuoi rimuovere {$libro->getTitolo()}?</h3>
 		<form method="post" action="/BiblioLibro/libro/rimuovi/{$libro->getId()}">
-    		<button type="submit" class="btn btn-primary btn-lg active" name="action" value="yes">Si</button>
+    		<button type="submit" class="btn btn-primary btn-lg active" name="action" value="si">Si</button>
     		<button type="submit" class="btn btn-primary btn-lg btn-danger active" name="action" value="no">No</button>
 		</form>
 	</div>

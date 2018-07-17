@@ -35,7 +35,7 @@
 
 		<div class="col-sm-7 well">
 
-			{if $error}
+			{if $errore}
 			<div class="alert alert-warning">
 				<strong>Attenzione</strong><br> <br>Riprova.
 			</div>
@@ -52,7 +52,7 @@
       						</div>
       						{if ! $validazione.titolo}
       						<div class="col-sm-3 well">
-        						<small id="nameHelp" class="text-danger">
+        						<small id="titoloHelp" class="text-danger">
           							Solo caratteri alfanumerii
         						</small>      
      						</div>
@@ -67,7 +67,7 @@
 
       						{if ! $validazione.genere}
       						<div class="col-sm-3 well">
-        						<small id="genreHelp" class="text-danger">
+        						<small id="genereHelp" class="text-danger">
           							Solo caratteri.
         						</small>      
      						</div>
@@ -82,7 +82,7 @@
 
       						{if ! $validazione.autore}
       						<div class="col-sm-3 well">
-        						<small id="genreHelp" class="text-danger">
+        						<small id="autoreHelp" class="text-danger">
           							Solo caratteri.
         						</small>      
      						</div>
@@ -97,7 +97,7 @@
 
       						{if ! $validazione.numcopie}
       						<div class="col-sm-3 well">
-        						<small id="genreHelp" class="text-danger">
+        						<small id="numcopieHelp" class="text-danger">
           							Almeno una copia.
         						</small>      
      						</div>
@@ -111,19 +111,19 @@
 					<h4 id="important">Durata prestito:</h4>
 					<div class="form-check">
 						<label class="form-check-label"> <input type="radio"
-							class="form-check-input" name="view" value="all" checked>
+							class="form-check-input" name="view" value="consultazione" checked>
 								Consultazione
 						</label>
 					</div>
 					<div class="form-check">
 						<label class="form-check-label"> <input type="radio"
-								class="form-check-input" name="view" value="registered">
+								class="form-check-input" name="view" value="breve">
 								Prestito Breve 
 						</label>
 					</div>
 					<div class="form-check">
 						<label class="form-check-label"> <input type="radio"
-								class="form-check-input" name="view" value="supporters">
+								class="form-check-input" name="view" value="lungo">
 								Prestito Lungo
 						</label>
 					</div>
