@@ -9,8 +9,8 @@ class f_infoLibro{
      */
     static function salvaInfoLibro():string
     {
-        return "INSERT INTO infoLibro(isbn,descrizione,categoria,copertina)
-                VALUES(:isbn,:descrizione,:categoria,:copertina)";
+        return "INSERT INTO infoLibro(isbn,descrizione,copertina)
+                VALUES(:isbn,:descrizione,:copertina)";
     }
     
     /**
@@ -31,7 +31,7 @@ class f_infoLibro{
     static function aggiornaInfoLibro() : string
     {
         return "UPDATE infoLibro
-                SET descrizione = :descrizione, categoria = :categoria, copertina = :copertina
+                SET descrizione = :descrizione, copertina = :copertina
                 WHERE isbn = :isbn ;";
     }
     
@@ -68,7 +68,6 @@ class f_infoLibro{
     {
         $stmt->bindValue(':isbn', $infl->getIsbn(), PDO::PARAM_STR);
         $stmt->bindValue(':descrizione', $infl->getDescrizione(), PDO::PARAM_STR);
-        $stmt->bindValue(':categoria', $infl->getCategoria(), PDO::PARAM_STR);
         $stmt->bindValue(':copertina', $infl->getCopertina(), PDO::PARAM_STR);
     }
     
@@ -83,7 +82,6 @@ class f_infoLibro{
         $info_libro = new e_infoLibro();
         $info_libro->setIsbn($ennupla['isbn']);
         $info_libro->setDescrizione($ennupla['descrizione']);
-        $info_libro->setCategoria($ennupla['categoria']);
         $info_libro->setCopertina($ennupla['copertina']);
         
         return $info_libro;

@@ -35,6 +35,15 @@ class e_utente extends e_oggetto{
     {
         return $this->nick_name
     }
+        
+    function validazioneNickName() : bool
+    {
+        if ($this->nick_name && preg_match("/^[a-zA-Z][a-zA-Z0-9]+$/", $this->nick_name)) // solo lettere e numeri
+            return true;
+            else
+                return false;
+    }
+    
     
     function setMail (string $mail)
     {

@@ -107,7 +107,7 @@ class e_libro extends e_oggetto {
      */
     function validazioneAutore() : bool
     {
-        if (preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->autore)) // solo lettere e spazi
+        if ($this->autore && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->autore)) // solo lettere e spazi
             return true;
         else
             return false;
@@ -120,7 +120,7 @@ class e_libro extends e_oggetto {
      */
     function validazioneTitolo() : bool
     {
-        if (preg_match("/^[a-zA-Z][a-zA-Z0-9 -]+$/", $this->titolo)) // solo lettere, numeri e spazi
+        if ($this->titolo && preg_match("/^[a-zA-Z][a-zA-Z0-9 -]+$/", $this->titolo)) // solo lettere, numeri e spazi
             return true;
         else
             return false;
@@ -133,7 +133,7 @@ class e_libro extends e_oggetto {
      */
     function validazioneNumCopie(): bool
     {
-        if (preg_match("[1-9][0-9]*", $this->genre)) // sono consentiti solo numeri
+        if ($this->num_copie && preg_match("[1-9][0-9]*", $this->num_copie)) // sono consentiti solo numeri
             return true;
         else
             return false;
@@ -148,13 +148,13 @@ class e_libro extends e_oggetto {
     {
         if($this->durata=='consultazione' || durata=='breve' || durata=='lungo')
             return true;
-            else
-                return false;
+        else
+            return false;
     }
     
     function validazioneGenere() : bool
     {
-        if (preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->autore)) // solo lettere e spazi
+        if ($this->genere && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->genere)) // solo lettere e spazi
             return true;
         else
             return false;

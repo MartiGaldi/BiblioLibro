@@ -14,7 +14,6 @@ class e_infoLibro extends e_oggetto{
    
     private $isbn;
     private $descrizione;
-    private $categoria;
     private $copertina;
     
     function __constructor(){}
@@ -29,6 +28,14 @@ class e_infoLibro extends e_oggetto{
         return $this->isbn;
     }
     
+    function validazioneIsbn() : bool
+    {
+        if($this->isbn && preg_match('/[0-9]{16}/', $this->isbn))
+            return true;
+            else
+                return false;
+    }
+    
     function setDescrizione(string $descrizione)
     {
         $this->descrizione=$descrizione;
@@ -39,14 +46,12 @@ class e_infoLibro extends e_oggetto{
         return $this->descrizione;
     }
     
-    function setCategoria(string $categoria)
+    function validazioneDescrizione() : bool
     {
-        $this->categoria=$categoria;
-    }
-    
-    function getCategoria()
-    {
-        return $this->categoria;
+        if($this->descrizione && preg_match('/^[[:alpha:]]{10,150}$/', $this->descrizione))
+            return true;
+        else
+            return false;
     }
     
     function setCopertina(e_copertina $copertina)

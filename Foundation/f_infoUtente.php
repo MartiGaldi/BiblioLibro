@@ -9,8 +9,8 @@ class f_infoUtente{
      */
     static function salvaInfoUtente() : string
     {
-        return "INSERT INTO info_utente (id, nome, cognome, cod_fisc, telefono, sesso, dt_nascita,luogo_nascita)
-                VALUES(:id, :nome, :cognome, :cod_fisc, :telefono, :sesso, :dt_nascita, :luogo_nascita)";
+        return "INSERT INTO info_utente (id, nome, cognome, cod_fisc, telefono, sesso, dt_nasc,luogo_nascita)
+                VALUES(:id, :nome, :cognome, :cod_fisc, :telefono, :sesso, :dt_nasc, :luogo_nascita)";
     }
     
     /**
@@ -112,6 +112,8 @@ class f_infoUtente{
     static function creaOggettoDaDB($ennupla) : e_infoUtente
     {
         $utente = new e_infoUtente();
+        
+        $utente->setId($ennupla['id']);
         
         if($ennupla['nome']!='NULL')
             $utente->setNome($ennupla['nome']);

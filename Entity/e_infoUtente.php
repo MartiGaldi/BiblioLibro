@@ -71,6 +71,13 @@ class e_infoCliente extends e_oggetto
         return $this->cod_fisc;
     }
     
+    function validazioneCodFisc() : bool
+    {
+        if($this->cod_fisc && preg_match('/^[[:alpha:]]{16}$/', $this->cod_fisc))
+            return true;
+        else
+            return false;
+    }    
     
     function setTelefono (int $telefono)
     {

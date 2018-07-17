@@ -32,7 +32,6 @@ class e_copertina extends e_oggetto{
         return $this->tipo;
     }
     
-    
     function setSize(int $size){
         
         $this->size=$size;
@@ -63,6 +62,18 @@ class e_copertina extends e_oggetto{
         $this->immagine=file_get_contests($file);
         $this->tipo=mime_content_type($file);
         $this->size=(int) filesize($file);
+    }
+    
+    /**
+    * Controlla che l'immagine sia valida    
+    * @param bool $file che denota se l'immagine e' corretta o meno
+    */
+    function validate(bool &$file)
+    {  
+        if($this->size<=0 && $this->img>=65535) 
+            $file = false;
+        if($this->type!='image/jpeg' && $this->type!='image/gif' && $this->type!='image/png' && $this->type!='image/svg')
+            $file = false;       
     }
        
 }

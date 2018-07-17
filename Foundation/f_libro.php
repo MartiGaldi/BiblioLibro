@@ -9,8 +9,8 @@ class f_libro{
     */
     static function salvaLibro() : string
     {
-        return "INSERT INTO libro(id,num_copie,titolo,autore,durata,genere)
-                VALUES(:id,:num_copie,:titolo,:autore,:durata,:genere)";
+        return "INSERT INTO libro(num_copie,titolo,autore,durata,genere)
+                VALUES(:num_copie,:titolo,:autore,:durata,:genere)";
     }
         
     /**
@@ -102,6 +102,7 @@ class f_libro{
         $libro->setTitolo($ennupla['titolo']);
         $libro->setAutore($ennupla['autore']);
         $libro->setDurata($ennupla['durata']);
+        $libro->setGenere($ennupla['genere']);
                     
         return $libro;
     }
