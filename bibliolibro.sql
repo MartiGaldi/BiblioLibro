@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 06, 2018 alle 18:10
+-- Creato il: Lug 18, 2018 alle 17:09
 -- Versione del server: 10.1.30-MariaDB
 -- Versione PHP: 7.2.2
 
@@ -25,25 +25,14 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `cliente`
---
-
-CREATE TABLE `cliente` (
-  `nickname` varchar(20) NOT NULL,
-  `mail` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `copertina`
 --
 
 CREATE TABLE `copertina` (
-  `id` int(10) NOT NULL,
-  `mime_type` varchar(10) NOT NULL,
-  `size` float NOT NULL,
-  `file_cop` blob NOT NULL
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `tipo` varchar(30) NOT NULL,
+  `size` varchar(30) NOT NULL,
+  `immagine` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -53,9 +42,26 @@ CREATE TABLE `copertina` (
 --
 
 CREATE TABLE `info_libro` (
-  `id` varchar(13) NOT NULL COMMENT 'ISBN',
-  `descrizione` varchar(100) NOT NULL,
-  `categoria` varchar(50) NOT NULL
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `isbn` varchar(13) NOT NULL,
+  `descrizione` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `info_utente`
+--
+
+CREATE TABLE `info_utente` (
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `nome` varchar(30) NOT NULL,
+  `cognome` varchar(30) NOT NULL,
+  `cod_fisc` varchar(16) NOT NULL,
+  `telefono` int(10) NOT NULL,
+  `sesso` varchar(10) NOT NULL,
+  `dt_nasc` datetime NOT NULL,
+  `luogo_nasc` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -65,18 +71,20 @@ CREATE TABLE `info_libro` (
 --
 
 CREATE TABLE `libro` (
-  `id` varchar(13) NOT NULL COMMENT 'ISBN',
-  `n_copie` int(3) NOT NULL DEFAULT '0',
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `num_copie` int(3) UNSIGNED NOT NULL DEFAULT '1',
   `titolo` varchar(50) NOT NULL,
-  `autore` varchar(30) NOT NULL
+  `autore` varchar(30) NOT NULL,
+  `durata` set('consultazione','breve','lungo') NOT NULL,
+  `genere` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `libro`
 --
 
-INSERT INTO `libro` (`id`, `n_copie`, `titolo`, `autore`) VALUES
-('1234567891234', 4, 'CIAO', 'MARTINA');
+INSERT INTO `libro` (`id`, `num_copie`, `titolo`, `autore`, `durata`, `genere`) VALUES
+(32767, 4, 'CIAO', 'MARTINA', '', '');
 
 -- --------------------------------------------------------
 
@@ -85,10 +93,12 @@ INSERT INTO `libro` (`id`, `n_copie`, `titolo`, `autore`) VALUES
 --
 
 CREATE TABLE `prenota` (
-  `id` int(10) NOT NULL COMMENT 'codice prenoazione',
-  `priorita` int(4) NOT NULL DEFAULT '0',
-  `nickname_cliente` varchar(20) NOT NULL,
-  `id_libro` int(13) NOT NULL
+  `id` smallint(5) UNSIGNED NOT NULL COMMENT 'codice prenoazione',
+  `data` datetime NOT NULL,
+  `nick_cliente` varchar(20) NOT NULL,
+  `isbn` varchar(13) NOT NULL,
+  `acquisito` tinyint(1) NOT NULL DEFAULT '0',
+  `disp` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -98,23 +108,32 @@ CREATE TABLE `prenota` (
 --
 
 CREATE TABLE `prestito` (
-  `id` int(10) NOT NULL,
+  `id` smallint(5) UNSIGNED NOT NULL COMMENT 'codice prestito',
   `nick_cliente` varchar(20) NOT NULL,
-  `isbn` int(13) NOT NULL,
   `data_inizio` date NOT NULL,
-  `attesa` int(1) NOT NULL DEFAULT '1'
+  `data_fine` date NOT NULL,
+  `isbn` varchar(13) NOT NULL,
+  `rientro` tinyint(1) NOT NULL DEFAULT '0',
+  `storico` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `utente`
+--
+
+CREATE TABLE `utente` (
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `nick_name` varchar(50) NOT NULL,
+  `mail` varchar(70) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `tipo` set('bibliotecario','cliente') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indici per le tabelle scaricate
 --
-
---
--- Indici per le tabelle `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`nickname`),
-  ADD UNIQUE KEY `mail` (`mail`);
 
 --
 -- Indici per le tabelle `copertina`
@@ -123,17 +142,32 @@ ALTER TABLE `copertina`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `info_libro`
+--
+ALTER TABLE `info_libro`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `isbn` (`isbn`);
+
+--
+-- Indici per le tabelle `info_utente`
+--
+ALTER TABLE `info_utente`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cod_fisc` (`cod_fisc`);
+
+--
 -- Indici per le tabelle `libro`
 --
 ALTER TABLE `libro`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `titolo` (`titolo`,`autore`) USING BTREE;
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `prenota`
 --
 ALTER TABLE `prenota`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nick_cliente` (`nick_cliente`),
+  ADD UNIQUE KEY `isbn` (`isbn`);
 
 --
 -- Indici per le tabelle `prestito`
@@ -142,20 +176,40 @@ ALTER TABLE `prestito`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `utente`
+--
+ALTER TABLE `utente`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nick_name` (`nick_name`),
+  ADD UNIQUE KEY `mail` (`mail`);
+
+--
 -- AUTO_INCREMENT per le tabelle scaricate
 --
+
+--
+-- AUTO_INCREMENT per la tabella `libro`
+--
+ALTER TABLE `libro`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32768;
 
 --
 -- AUTO_INCREMENT per la tabella `prenota`
 --
 ALTER TABLE `prenota`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'codice prenoazione';
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'codice prenoazione';
 
 --
 -- AUTO_INCREMENT per la tabella `prestito`
 --
 ALTER TABLE `prestito`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'codice prestito';
+
+--
+-- AUTO_INCREMENT per la tabella `utente`
+--
+ALTER TABLE `utente`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -30,7 +30,7 @@ class e_infoLibro extends e_oggetto{
     
     function validazioneIsbn() : bool
     {
-        if($this->isbn && preg_match('/[0-9]{16}/', $this->isbn))
+        if($this->isbn && preg_match('/[0-9]+{13}/', $this->isbn))
             return true;
             else
                 return false;
@@ -48,7 +48,7 @@ class e_infoLibro extends e_oggetto{
     
     function validazioneDescrizione() : bool
     {
-        if($this->descrizione && preg_match('/^[[:alpha:]]{10,150}$/', $this->descrizione))
+        if($this->descrizione && preg_match('/^[[:alnum:]]{10,150}$/', $this->descrizione))
             return true;
         else
             return false;
@@ -62,24 +62,6 @@ class e_infoLibro extends e_oggetto{
     function getCopertina()
     {
         return $this->copertina;
-    }
-    
-    public $_commento = array();
-    
-    function addCommento(e_commento $commento)
-    {
-        array_push($this->_commento, $commento);
-    }
-    
-    /**
-     * Restituisce un array di commenti relativi al libro
-     * @access public
-     * @return array
-     * @ReturnType array
-     */
-    public function getCommenti() 
-    {
-        return ($this->_commento);
     }
  
 }

@@ -49,7 +49,6 @@ class e_infoCliente extends e_oggetto
         return $this->nome;
     }
     
-    
     function setCognome (string $cognome)
     {
     $this->cognome=$cognome;
@@ -73,7 +72,7 @@ class e_infoCliente extends e_oggetto
     
     function validazioneCodFisc() : bool
     {
-        if($this->cod_fisc && preg_match('/^[[:alpha:]]{16}$/', $this->cod_fisc))
+        if($this->cod_fisc && preg_match('/^[[:alnum:]]{16}$/', $this->cod_fisc))
             return true;
         else
             return false;
@@ -120,6 +119,65 @@ class e_infoCliente extends e_oggetto
      function getLuogoNascita()
      {
             return $this->luogo_nascita;
+     }
+     
+     
+     function validazione(bool &$n, bool &$cog, bool &$cf, bool &$tel, bool &$ses, bool &$data_nasc, bool &$lg_nasc)
+     {
+         if (ctype_alpha($this->nome))
+         {
+             strtolower($this->nome);   
+             ucfirst($this->nome);
+             $n=true;
+         } 
+         else 
+             $n = false;
+         
+         if (ctype_alpha($this->cognome))
+         {
+             strtolower($this->cognome);
+             ucwords($this->cognome);
+             $cog=true;
+         } 
+         else 
+             $cog = false;
+         
+             if (condition) {
+                 ;
+             }
+             
+         if($this->telefono && preg_match('/[0-9]+{13}/', $this->telefono))
+             $tel=true;
+         else
+             $tel = false;
+         
+         if($this->sesso=='maschio' || this->sesso=='femmina')
+             $ses=true;
+         else
+             $ses = false;
+         
+         if(ctype_digit($this->dt_nasc))
+         {
+             date_format($this->dt_nasc, 'DD/MM/YYYY');
+             if($this->dt_nasc <= mktime(0,0,0,1,1,2000))
+             {
+                 $data_nasc = true;
+             } 
+             else 
+                 $data_nasc = false;
+         }
+         else 
+             $data_nasc = false;
+         
+         if (ctype_alpha($this->luogo_nascita))
+         {
+             strtolower($this->luogo_nascita);
+             ucwords($this->luogo_nascita);
+             $lg_nasc=true;
+         }
+         else
+             $lg_nasc = false;
+                 
      }
         
 }

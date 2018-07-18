@@ -12,8 +12,7 @@ class e_prestito extends e_oggetto {
     protected $nick_cliente;
     protected $data_inizio;
     protected $data_fine;
-    protected $attesa;
-    protected $isbn
+    protected $id_libro
     protected $prenotazione;
     protected $rientro = false;
     protected $storico = false;
@@ -56,20 +55,12 @@ class e_prestito extends e_oggetto {
         return $this->data_fine
     }
     
-    function setAttesa(bool $attesa){
-        $this->attesa=$attesa;
+    function setIdLibro(string $id_libro){
+        $this->id_libro=$id_libro;
     }
     
-    function getAttesa() : bool{
-        return $this->attesa;
-    }
-    
-    function setIsbn(string $isbn){
-        $this->isbn=$isbn;
-    }
-    
-    function getIsbn() : string{
-        return $this->isbn;
+    function getIdLibro() : string{
+        return $this->id_libro;
     }
     
     function setRientro(DateTime $data_fine)

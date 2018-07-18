@@ -1,11 +1,11 @@
 <?php
 
 class f_utente {
-    static function nomeEsistente() : string
+    static function nickNameEsistente() : string
     {
         return "SELECT *
                 FROM utente
-                WHERE nome = :value ;";
+                WHERE nickname = :value ;";
     }
     
     static function mailEsistente() : string
