@@ -101,7 +101,6 @@ class f_infoUtente{
             $stmt->bindValue(':luogo_nascita', $infu->getLuogoNascita(), PDO::PARAM_STR);
         else
             $stmt->bindValue(':luogo_nascita', 'NULL', PDO::PARAM_STR);
-        
     }
     
     /**
@@ -111,26 +110,26 @@ class f_infoUtente{
      */
     static function creaOggettoDaDB($ennupla) : e_infoUtente
     {
-        $utente = new e_infoUtente();
+        $info_utente = new e_infoUtente();
         
-        $utente->setId($ennupla['id']);
+        $info_utente->setId($ennupla['id']);
         
         if($ennupla['nome']!='NULL')
-            $utente->setNome($ennupla['nome']);
+            $info_utente->setNome($ennupla['nome']);
         if($ennupla['cognome']!='NULL')
-            $utente->setCognome($ennupla['cognome']);
+            $info_utente->setCognome($ennupla['cognome']);
         if($ennupla['cod_fisc']!='NULL')
-            $utente->setCodFisc($ennupla['cod_fisc']);                    
+            $info_utente->setCodFisc($ennupla['cod_fisc']);                    
         if($ennupla['telefono']!='NULL')
-            $utente->setTelefono($ennupla['telefono']);
+            $info_utente->setTelefono($ennupla['telefono']);
         if($ennupla['sesso']!='NULL')             
-            $utente->setSesso($ennupla['sesso']);
+            $info_utente->setSesso($ennupla['sesso']);
         if($ennupla['dt_nasc']!='NULL')
-            $utente->setDtNasc($ennupla['dt_nasc']);
+            $info_utente->setDtNasc($ennupla['dt_nasc']);
         if($ennupla['luogo_nascita']!='NULL')
-            $utente->setLuogoNascita($ennupla['luogo_nascita']);
+            $info_utente->setLuogoNascita($ennupla['luogo_nascita']);
         
-            return $utente;
+            return $info_utente;
     }
 }
 

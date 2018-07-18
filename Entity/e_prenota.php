@@ -14,7 +14,7 @@ class e_prenota extends e_oggetto {
     
     private $data;
     private $nick_cliente;
-    private $isbn;
+    private $id_libro;
     private $data_fine;
     private $acquisito = false;
     private $disp = false;
@@ -37,12 +37,12 @@ class e_prenota extends e_oggetto {
         return $this->nick_cliente;
     }
     
-    function setIsbn(string $isbn){
-        $this->isbn=$isbn;
+    function setIdLibro(string $id_libro){
+        $this->id_libro=$id_libro;
     }
     
-    function getIsbn() : string {
-        return $this->isbn;
+    function getIdLibro() : string {
+        return $this->id_libro;
     }
     
     function setDataFine() {

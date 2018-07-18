@@ -65,25 +65,20 @@ class e_utente extends e_oggetto{
     {
         if($this->mail && filter_var($this->mail, FILTER_VALIDATE_EMAIL))
             return true;
-        
-            else
-                return false;
+        else
+            return false;
     }
-    
-    
     
     function setPassword (string $password)
     {
         $this->password=$password;
     }
     
-    
-    
     function getPassword() : string
     {
         return $this->password;
     }
-    
+
     
     /** Metodo che verifica che la password sia corretta ovvero composta da caratteri alfanumerici
      *  ed abbia la lunghezza almeno pari a 8 e massimo 20
@@ -91,13 +86,12 @@ class e_utente extends e_oggetto{
      */
     function validazionePassword() : bool
     {
-        if($this->password && preg_match('/^[[:alpha:]]{8,20}$/', $this->password))
+        if($this->password && preg_match('/^[[:alnum:]]{8,20}$/', $this->password))
             return true;
         
         else
             return false;
     }
-    
     
     /**
      * Metodo che cripta la password
@@ -106,8 +100,6 @@ class e_utente extends e_oggetto{
     {
         $this->password=password_hash($this->password, PASSWORD_DEFAULT);
     }
-    
-    
     
     /**
     * Metodo che controlla se la password dell'oggetto sia corrispondente alla entry nel database

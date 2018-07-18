@@ -146,7 +146,7 @@ class e_libro extends e_oggetto {
      */
     function validazioneDurata() : bool 
     {
-        if($this->durata=='consultazione' || durata=='breve' || durata=='lungo')
+        if($this->durata=='consultazione' || $this->durata=='breve' || $this->durata=='lungo')
             return true;
         else
             return false;

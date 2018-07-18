@@ -7,8 +7,8 @@ class f_prenota{
     */
     static function salvaPrenotazione() : string
     {
-        return "INSERT INTO prenota(id,data,nick_cliente,isbn,data_fine,acquisito,disp)
-                VALUES(:id,:data,:nick_cliente,:isbn,:data_fine,:acquisito,:disp)";
+        return "INSERT INTO prenota(id,data,nick_cliente,id_libro,data_fine,acquisito,disp)
+                VALUES(:id,:data,:nick_cliente,:id_libro,:data_fine,:acquisito,:disp)";
     }
 
     /**
@@ -18,7 +18,7 @@ class f_prenota{
     static function aggiornaPrenotazione() : string
     {
         return "UPDATE prenotazione
-                SET data = :data, nick_cliente = :nick_cliente, isbn = :isbn, data_fine = :data_fine, acquisito = :acquisito, disp = :disp
+                SET data = :data, nick_cliente = :nick_cliente, id_libro = :id_libro, data_fine = :data_fine, acquisito = :acquisito, disp = :disp
                 WHERE id = :id;";
     }
     
@@ -66,7 +66,7 @@ class f_prenota{
         $stmt->bindValue('id', $pren->getId(), PDO::PARAM_INT);
         $stmt->bindValue('data', $pren->getData(), PDO::PARAM_STR);
         $stmt->bindValue(':nick_cliente', $pren->getNickCliente(), PDO::PARAM_STR);
-        $stmt->bindValue(':isbn', $pren->getIsbn(), PDO::PARAM_STR);
+        $stmt->bindValue(':id_libro', $pren->getIdLibro(), PDO::PARAM_INT);
         $stmt->bindValue(':data_fine', $pren->getDataFine(), PDO::PARAM_STR);
         $stmt->bindValue('acquisito', $pren->getAcquisito(), PDO::PARAM_BOOL);
         $stmt->bindValue('disp', $pren->getDisp(), PDO::PARAM_BOOL);
@@ -84,7 +84,7 @@ class f_prenota{
         $prenota->setId($ennupla['id']);
         $prenota->setData($ennupla['data']);
         $prenota->setNickCliente($ennupla['nick_cliente']);
-        $prenota->setIsbn($ennupla['isbn']);
+        $prenota->setIdLibro($ennupla['id_libro']);
         $prenota->setDataFine($ennupla['data_fine']);
         $prenota->setAcquisito($ennupla['acquisito']);
         $prenota->setDisp($ennupla['disp']);
@@ -96,7 +96,7 @@ class f_prenota{
     {
         return "SELECT count (*)
                 FROM prenota INNER JOIN prestito
-                WHERE isbn = :isbn AND prenota.isbn = prestito.isbn;";
+                WHERE id_libro = :id_libro AND prenota.id_libro = prestito.id_libro;";
     }
 }
 

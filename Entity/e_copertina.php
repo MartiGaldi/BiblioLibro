@@ -68,7 +68,7 @@ class e_copertina extends e_oggetto{
     * Controlla che l'immagine sia valida    
     * @param bool $file che denota se l'immagine e' corretta o meno
     */
-    function validate(bool &$file)
+    function validazione(bool &$file)
     {  
         if($this->size<=0 && $this->img>=65535) 
             $file = false;

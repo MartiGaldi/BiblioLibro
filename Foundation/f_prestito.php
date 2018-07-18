@@ -6,8 +6,8 @@ class f_prestito{
      */
     static function salvaPrestito():string
     {
-        return "INSERT INTO prestito(id,nick_cliente,data_inizio,data_fine,attesa,isbn,prenotazione)
-                VALUES(:id,:nick_cliente,:data_inizio,:data_fine,:attesa,:isbn,:prenotazione)";
+        return "INSERT INTO prestito(id,nick_cliente,data_inizio,data_fine,id_libro,prenotazione,rientro,storico)
+                VALUES(:id,:nick_cliente,:data_inizio,:data_fine,:id_libro,:prenotazione,:rientro,:storico)";
     }
     
     /**
@@ -17,7 +17,7 @@ class f_prestito{
     static function aggiornaPrestito() : string
     {
         return "UPDATE prestito
-                SET nick_cliente = :nick_cliente, data_inizio = :data_inizio, data_fine = :data_fine, attesa = :attesa, isbn = :isbn, prenotazione = :prenotazione
+                SET nick_cliente = :nick_cliente, data_inizio = :data_inizio, data_fine = :data_fine, id_libro = :id_libro, prenotazione = :prenotazione, rientro = :rientro, storico = :storico
                 WHERE id = :id;";
     }
     
@@ -65,9 +65,10 @@ class f_prestito{
         $stmt->bindValue(':nick_cliente', $pres->getNickCliente(), PDO::PARAM_STR);
         $stmt->bindValue(':data_inizio', $pres->getDataInizio(), PDO::PARAM_STR);
         $stmt->bindValue(':data_fine', $pres->getDataFine(), PDO::PARAM_STR);
-        $stmt->bindValue(':attesa', $pres->getAttesa(), PDO::PARAM_BOOL);
-        $stmt->bindValue(':isbn', $pres->getIsbn(), PDO::PARAM_STR);
+        $stmt->bindValue(':id_libro', $pres->getIdLibro(), PDO::PARAM_INT);
         $stmt->bindValue('prenotazione', pres->getPrenotazione(), PDO::PARAM_STR);
+        $stmt->bindValue(':rientro', $pres->getRientro(), PDO::PARAM_BOOL);
+        $stmt->bindValue(':storico', $pres->getStorico(), PDO::PARAM_BOOL);
     }
     
 }

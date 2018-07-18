@@ -104,9 +104,9 @@ class f_persistance {
             { // per ogni tupla restituita dal database viene istanziato un oggetto
                 if($target == f_target::CARICA_LIBRO || $target == f_target::CARICA_CLIENTE)
                     //inserire qui target che richiedono un array come ritorno
-                    $oggetto[] = f_persistance::creaOggettoDaRiga($classe, $riga);
+                    $oggetto[] = f_persistance::creaOggettoDaDB($classe, $ennupla);
                 else 
-                    $oggetto = f_persistance::creaOggettoDaRiga($classe, $riga);        
+                    $oggetto = f_persistance::creaOggettoDaDB($classe, $ennupla);        
             }
             $this->closeDBConnection(); // chiude la connessione
             return $oggetto;
@@ -163,7 +163,7 @@ class f_persistance {
             
             while($riga = $stmt->fetch())
             { // per ogni tupla restituita dal database...
-                $oggetto[] = f_persistance::createOggettoDaRiga($nomeClasse, $riga); //...istanzio l'oggetto
+                $oggetto[] = f_persistance::creaOggettoDaDB($nomeClasse, $ennupla); //...istanzio l'oggetto
             }
             
             $this->closeDBConnection(); // chiude la connessione
@@ -193,9 +193,9 @@ class f_persistance {
         if(is_a($oggetto, e_bibliotecario::class) || is_a($oggetto, e_cliente::class)) // se l'oggetto e' una tipologia di utente
             $classe = get_parent_class($oggetto); // si considera la classe padre, e_utente
         else
-            $classe = get_class($obj); // restituisce il nome della classe dall'oggetto
+            $classe = get_class($oggetto); // restituisce il nome della classe dall'oggetto
                 
-        $resource = substr($classe,1); // nome della risorsa (Utente, Libro, ...)
+        $risorsa = substr($classe,1); // nome della risorsa (Utente, Libro, ...)
         $classeFound = 'f_'.$risorsa; // nome della rispettiva classe Foundation
                 
         $metodo = 'salva'.$risorsa; // nome del metodo salva+nome_risorsa
@@ -234,7 +234,7 @@ class f_persistance {
             {
                 
                 if (method_exists($oggetto, 'getId') && $oggetto->getId() == 0){ // ...se il valore e' non nullo, si assegna l'id
-                    $oggetto->setId($this->database->ultimaInsertId()); // assegna all'oggetto l'ultimo id dato dal dbms
+                    $oggetto->setId($this->database->lastInsertId()); // assegna all'oggetto l'ultimo id dato dal dbms
                 }
                 
                 $commit = $this->database->commit(); // effettua il commit
@@ -502,9 +502,9 @@ class f_persistance {
         $class = '';
    
         if(is_a($oggetto, e_bibliotecario::class) || is_a($oggetto, e_cliente::class))
-            $classe = get_parent_class($obj);
+            $classe = get_parent_class($oggetto);
         else
-            $classe = get_class($obj); // restituisce il nome della classe dall'oggetto
+            $classe = get_class($oggetto); // restituisce il nome della classe dall'oggetto
 
             $risorsa = substr($classe,1); // nome della risorsa (utente, libro, ...)
             $classeFound = 'f_'.$risorsa; // nome della rispettiva classe Foundation
@@ -513,18 +513,18 @@ class f_persistance {
     
     /**
     * Da una tupla ricevuta da una query istanzia l'oggetto corrispondente
-    * @param string $class il nome della classe (ottenibile tramite EClass::name )
-    * @param $row array la tupla restituita dal dbms
+    * @param string $classe il nome della classe (ottenibile tramite e_classe::name )
+    * @param $ennupla array la tupla restituita dal dbms
     * @return mixed l'oggetto risultato dell'elaborazione
     */
     
-    private function creaOggettoDaRiga(string $classe, $riga)
+    private function creaOggettoDaDB(string $classe, $ennupla)
     {
         $oggetto = NULL; //oggetto che conterra' l'istanza dell'elaborazione
         if ( class_exists( $classe ) )
         {
             $classeFound = 'f_'.substr($classe,1);
-            $oggetto = $classeFound::creaOggettoDaRiga($riga);
+            $oggetto = $classeFound::creaOggettoDaDB($ennupla);
         }
         return $oggetto;
     }

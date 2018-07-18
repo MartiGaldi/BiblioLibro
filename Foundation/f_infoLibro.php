@@ -9,8 +9,8 @@ class f_infoLibro{
      */
     static function salvaInfoLibro():string
     {
-        return "INSERT INTO infoLibro(isbn,descrizione,copertina)
-                VALUES(:isbn,:descrizione,:copertina)";
+        return "INSERT INTO infoLibro(id,isbn,descrizione)
+                VALUES(:id,:isbn,:descrizione)";
     }
     
     /**
@@ -21,7 +21,7 @@ class f_infoLibro{
     {
         return "SELECT *
                 FROM infoLibro
-                where isbn = :isbn;"; //query sql
+                where id = :id;"; //query sql
     }
     
     /**
@@ -31,8 +31,8 @@ class f_infoLibro{
     static function aggiornaInfoLibro() : string
     {
         return "UPDATE infoLibro
-                SET descrizione = :descrizione, copertina = :copertina
-                WHERE isbn = :isbn ;";
+                SET isbn = :isbn, descrizione = :descrizione
+                WHERE id = :id;";
     }
     
     /**
@@ -44,7 +44,7 @@ class f_infoLibro{
     {
         return "DELETE
                 FROM infoLibro
-                WHERE isbn = :isbn ;"; //query sql
+                WHERE id = :id ;"; //query sql
     }
     
     /**
@@ -62,13 +62,19 @@ class f_infoLibro{
     /**
      * Associa ai campi della query i corrispondenti attributi dell'oggetto e_infoLibro.
      * @param PDOStatement $stmt da cui prelevare i campi
-     * @param e_infoLibro $i_lib da cui prelevare gli attributi
+     * @param e_infoLibro $infl da cui prelevare gli attributi
      */
     static function bindValues(PDOStatement &$stmt, e_infoLibro &$infl)
     {
-        $stmt->bindValue(':isbn', $infl->getIsbn(), PDO::PARAM_STR);
-        $stmt->bindValue(':descrizione', $infl->getDescrizione(), PDO::PARAM_STR);
-        $stmt->bindValue(':copertina', $infl->getCopertina(), PDO::PARAM_STR);
+        $stmt->bindValue(':id', $infl->getId(), PDO::PARAM_INT);
+        if($infl->getIsbn())
+            $stmt->bindValue(':isbn', $infl->getIsbn, PDO::PARAM_STR);
+        else
+            $stmt->bindValue(':isbn', 'NULL', PDO::PARAM_STR);
+        if($infl->getDescrizione())
+            $stmt->bindValue(':descrizione', $infl->getDescrizione(), PDO::PARAM_STR);
+        else
+            $stmt->bindValue(':descrizione', 'NULL', PDO::PARAM_STR);
     }
     
     /**
@@ -80,10 +86,14 @@ class f_infoLibro{
     {
         // creazione dell'oggetto e_infoLibro
         $info_libro = new e_infoLibro();
-        $info_libro->setIsbn($ennupla['isbn']);
-        $info_libro->setDescrizione($ennupla['descrizione']);
-        $info_libro->setCopertina($ennupla['copertina']);
         
+        $info_libro->setId($ennupla['id']);
+        
+        if($ennupla['isbn']!='NULL')
+            $info_libro->setIsbn($ennupla['isbn']);
+        if($ennupla['descrizione']!='NULL')
+            $info_libro->setDescrizione($ennupla['descrizione']);
+
         return $info_libro;
     }
     
