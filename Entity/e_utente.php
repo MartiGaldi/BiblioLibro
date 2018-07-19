@@ -26,7 +26,7 @@ class e_utente extends e_oggetto{
         parent::__construct();
     }
     
-    function setNick (string $nick_name)
+    function setNick(string $nick_name)
     {
         $this->nick_name=$nick_name;  
     }

@@ -99,7 +99,7 @@ class e_infoCliente extends e_oggetto
         
     function getDtNasc(bool $mostraFormato = null)
     {
-        if(this->dt_nasc)
+        if($this->dt_nasc)
         {
             $formato="Y-m-d";
             if($mostraFormato)

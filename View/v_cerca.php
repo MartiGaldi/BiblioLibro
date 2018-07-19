@@ -67,7 +67,7 @@ class v_cerca extends v_oggetto
         $this->smarty->assign('value', $value);
         $this->smarty->assign('string', $string);
         
-        $this->smarty->registraOggetto('utente', $utente);
+        $this->smarty->registerObject('utente', $utente);
         $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
         
         $this->smarty->assign('array', $array);
@@ -80,7 +80,7 @@ class v_cerca extends v_oggetto
     
     function mostraRicercaAvanzata(e_utente &$utente)
     {
-        $this->smarty->registraOggetto('utente', $utente);
+        $this->smarty->registerObject('utente', $utente);
         $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
         
         //mostro il contenuto della pagine

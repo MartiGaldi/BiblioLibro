@@ -1,5 +1,8 @@
 <?php 
 
+require_once 'Installazione.php';
+require_once 'SampleUsers.php';
+
 require_once 'Entity/e_cliente.php';
 require_once 'Entity/e_libro.php';
 require_once 'Entity/e_prenota.php';
@@ -44,5 +47,6 @@ require_once 'View/v_libro.php';
 require_once 'View/v_utente.php';
 require_once 'View/v_infoLibro.php';
 
+require_once 'SmartyConfig.php';
 
 ?>

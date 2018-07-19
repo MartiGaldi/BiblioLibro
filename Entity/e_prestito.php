@@ -18,12 +18,12 @@ class e_prestito extends e_oggetto {
     
     function __constructor(){}
     
-    function setNickCliente(string nick_cliente)
+    function setNick(string $nick_cliente)
     {
         $this->nick_cliente=$nick_cliente;
     }
     
-    function getNickCliente() : string {
+    function getNick() : string {
         return $this->nick_cliente;
     }
  
@@ -33,7 +33,7 @@ class e_prestito extends e_oggetto {
     
     function getDataInizio(bool $mostraFormato = null)
     {
-        if(this->data_inizio)
+        if($this->data_inizio)
         {
             $formato="Y-m-d";
             if($mostraFormato)
@@ -64,7 +64,7 @@ class e_prestito extends e_oggetto {
         return $this->data_fine;
     }
     
-    function setIdLibro(string id_libro)
+    function setIdLibro(string $id_libro)
         {
             $this->id_libro=$id_libro;
         }

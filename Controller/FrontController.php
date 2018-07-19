@@ -31,29 +31,28 @@ class FrontController
                 if(isset($resources[4]))
                     $param1 = $resources[4];
                     
-                    if(isset($resources[5])) // se anche un secondo parametro e' definito
-                        $param2 = $resources[5];
+                if(isset($resources[5])) // se anche un secondo parametro e' definito
+                    $param2 = $resources[5];
                         
-                        if(isset($resources[6]))
-                            $param3 = $resources[6];
+                if(isset($resources[6]))
+                    $param3 = $resources[6];
                             
+                if($param3) // se tutti i parametri sono definiti
+                    $controller::$method($param1, $param2, $param3);
                             
-                            if($param3) // se tutti i parametri sono definiti
-                                $controller::$method($param1, $param2, $param3);
-                            
-                                elseif($param2) // se solo due sono definiti
-                                $controller::$method($param1, $param2);
+                elseif($param2) // se solo due sono definiti
+                    $controller::$method($param1, $param2);
                                 
-                                elseif($param1) // se solo uno e' definito
-                                $controller::$method($param1);
-                                
-                                else // se nessun parametro e' definito
-                                    $controller::$method();                         
+                elseif($param1) // se solo uno e' definito
+                    $controller::$method($param1);
+
+                else // se nessun parametro e' definito
+                    $controller::$method();                         
             }
             else // se il metodo non esiste, si viene reindirizzati alla pagina principale
             {
                 $utente = c_sessione::getUtenteDaSessione();
-                $smarty = SmartyConfig::configure();
+                $smarty = SmartyConfig::configura();
                 $smarty->registerObject('utente', $utente);
                 $smarty->assign('uTipo', lcfirst(substr(get_class($utente),2)));
                 $smarty->display('indice.tpl');
@@ -62,10 +61,9 @@ class FrontController
         else // se la classe non esiste, si viene reindirizzati alla pagina principale
         {
             $utente = c_sessione::getUtenteDaSessione();
-            $smarty = SmartyConfig::configure();
+            $smarty = SmartyConfig::configura();
             $smarty->registerObject('utente', $utente);
             $smarty->assign('uTipo', lcfirst(substr(get_class($utente),2)));
-            
             $smarty->display('indice.tpl');
         }
         exit; 

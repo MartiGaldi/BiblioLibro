@@ -11,7 +11,7 @@ a { color: blue-light;}
 	background-color:rgba(0, 0, 0, 0.5);
 	border-style: hidden;
         color: white;
-        font-family: "Lucida Console", Monaco, monospace; 
+        font-family: "Arial", Monaco, monospace; 
 	font-size: 18px;
 }
 
@@ -19,7 +19,7 @@ a { color: blue-light;}
 .well a {  color: #1E90FF; }
 
 
-#importante
+#important
 {
   color: red;
   font-size: 20px;

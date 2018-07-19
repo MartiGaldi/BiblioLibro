@@ -58,7 +58,7 @@ class Installazione
             $pass = $_POST['pwd'];
             $database = $_POST['database'];
             $db = new PDO("mysql:host=$indirizzo;", $admin, $pass); // tentativo di connessione al dbms (default: mysql)
-            $db->iniziaTransazione); // inizia la transazione
+            $db->beginTransaction(); // inizia la transazione
             
             $query = 'DROP DATABASE IF EXISTS ' . $database . ';
                       CREATE DATABASE ' . $database . ' ;

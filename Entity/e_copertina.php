@@ -57,7 +57,7 @@ class e_copertina extends e_oggetto{
     /**imposta l'oggetto con valori statici ricavati da un'immagine nella directory di lavoro*/
     function SetStatico()
     {
-        $file=dirname(__DIR__)."/risorse/static/copertina.jpg";
+        $file=dirname(__DIR__)."/risorse/static/copertina.png";
         
         $this->copertina=file_get_contests($file);
         $this->tipo=mime_content_type($file);

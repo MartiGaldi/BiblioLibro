@@ -1,8 +1,1 @@
-<?php 
-
-$indirizzo='localhost';
-$database='bibliolibro';
-$user='root';
-$password='bibliolibro';
-
-?>
+<?php $indirizzo= 'localhost'; $database= 'bibliolibro'; $admin= 'root';$pass= 'bibliolibro'; ?>

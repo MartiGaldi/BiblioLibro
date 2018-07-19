@@ -36,7 +36,7 @@
 
 	
 
-	{utente->getNick assign='uNome'}
+	{utente->getNick assign='uNick'}
 
 	{utente->getId assign='uId'}
 

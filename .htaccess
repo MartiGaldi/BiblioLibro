@@ -10,6 +10,6 @@ RewriteEngine on
 
 RewriteCond %{REQUEST_FILENAME} !-f
 
-RewriteRule . /BiblioLibro/indice.php [L]
+RewriteRule . /BiblioLibro/index.php [L]
 
 </IfModule>

@@ -149,7 +149,7 @@ class v_libro extends v_oggetto
     
     function validazioneCarica(e_libro &$libro) : bool
     {
-        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && this->check['genere']=$libro->validazioneGenere())
+        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && $this->check['genere']=$libro->validazioneGenere())
             return true;
         else
             return false;  
@@ -163,7 +163,7 @@ class v_libro extends v_oggetto
     */
     function validazioneModifica(e_libro &$libro) : bool
     {
-        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && this->check['genere']=$libro->validazioneGenere())
+        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && $this->check['genere']=$libro->validazioneGenere())
             return true;
         
         else 

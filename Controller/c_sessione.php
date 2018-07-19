@@ -16,7 +16,7 @@ class c_sessione
         
         $_SESSION['id'] =  $utente->getId();
         
-        $_SESSION['nickname'] = $utente->getNickName();
+        $_SESSION['nickname'] = $utente->getNick();
         
         $_SESSION['tipo'] = lcfirst(substr(get_class($utente), 2));
         
@@ -25,31 +25,23 @@ class c_sessione
     
     
     static function getUtenteDaSessione() : e_utente
-    
     {
         
         session_start();
-        
-        
-        
+         
         if(isset($_SESSION['id']))
-        
         {
-            
             $u_tipo= 'e_'.ucfirst($_SESSION['tipo']); 
             
-            
-            
+               
             $utente = new $u_tipo();
             
             $utente->setId($_SESSION['id']);
             
-            $utente->setNickName($_SESSION['nickname']);
-            
+            $utente->setNick($_SESSION['nickname']);
         }
         
         else
-        
         {
             
             $utente = new e_visitatore();
@@ -61,9 +53,6 @@ class c_sessione
         
         
     }
-    
-    
- 
     
     static function trovaPrivilegiAmministratore() : bool
     
@@ -103,20 +92,14 @@ class c_sessione
         
     }
     
-    
-    
     static function terminaSessione()
     
     {
         
         session_start(); // recupera i parametri di sessione
         
-        
-        
         session_unset(); // rimuove le variabili di sessione
-        
-        
-        
+            
         session_destroy(); // distrugge la sessione
         
     }

@@ -27,7 +27,7 @@ class e_prenota extends e_oggetto {
     
     function getData(bool $mostraFormato = null)
     {
-        if(this->data)
+        if($this->data)
         {
             $formato="Y-m-d";
             if($mostraFormato)
@@ -40,7 +40,7 @@ class e_prenota extends e_oggetto {
     
     
     function setNickCliente (string $nick_cliente){
-        $this->nick_cliente=$nickcliente;
+        $this->nick_cliente=$nick_cliente;
     }
     
     function getNickCliente() : string{
