@@ -38,14 +38,17 @@ class v_cerca extends v_oggetto
     * @return array avente come valore la chiave
     */
     
-    function getChiave() : array
+    function getKeyAndValue() : array
     {
         $key="";
+        $value="";
         
-        if($_GET['key'] == 'titolo' || $_GET['key'] == 'genere' ||$_GET['key'] == 'autore' || $_GET['key'] == 'editore'|| $_GET['key'] == 'isbn' )
-                $key = ucfirst($_GET['key']);
-                
-                return array($key);    
+        if($_GET['value'] == 'titolo' || $_GET['value'] == 'autore' ||$_GET['value'] == 'genere')
+            $value=ucfirst($_GET['value']);
+        if($_GET['key'] == 'libro')
+            $key=ucfirst($_GET['key']);
+        
+        return array($key, $value);    
     }
     
     
@@ -58,13 +61,14 @@ class v_cerca extends v_oggetto
     * @param string $string il dato ricercato dall'utente
     */
     
-    function mostraRisultatiRicerca (e_utente &$utente, $array, string $key, string $string)
+    function mostraRisultatoRicerca (e_utente &$utente, $array, string $key, string $value, string $string)
     {
         $this->smarty->assign('key', $key);
+        $this->smarty->assign('value', $value);
         $this->smarty->assign('string', $string);
         
         $this->smarty->registraOggetto('utente', $utente);
-        $this->smarty->assign('uType', lcfirst(substr(get_class($utente), 1)));
+        $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
         
         $this->smarty->assign('array', $array);
         
@@ -77,7 +81,7 @@ class v_cerca extends v_oggetto
     function mostraRicercaAvanzata(e_utente &$utente)
     {
         $this->smarty->registraOggetto('utente', $utente);
-        $this->smarty->assign('uType', lcfirst(substr(get_class($utente), 1)));
+        $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
         
         //mostro il contenuto della pagine
         $this->smarty->display('cerca/ricerca_avanzata.tpl');   

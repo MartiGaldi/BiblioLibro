@@ -28,7 +28,7 @@ class c_utente
                 $v_utente->Errore($utente, 'Sei già connesso.');
             }
             else
-                $v_utente->Accedi();  
+                $v_utente->mostaLogin();  
         }
         else if ($_SERVER['REQUEST_METHOD'] == 'POST')
             c_utente::autenticazione();
@@ -46,7 +46,7 @@ class c_utente
     * riceve i dati forniti dall'utente e procede con la creazione di un nuovo utente. 
     */
     
-    static function registra()
+    static function iscriviti()
     { 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') //se il metodo http utilizzato e' GET...
         
@@ -58,7 +58,7 @@ class c_utente
                 $v_utente->Errore($utente, 'Sei gia connesso');
                 
                 else
-                    $v_utente->Accedi();
+                    $v_utente->mostraIscrizione();
                     
         }
         
@@ -82,7 +82,7 @@ class c_utente
     static function profilo($id, $content = null)
     {
         $v_utente = new v_utente();
-        $Utente= c_sessione::getUtenteDaSessione();
+        $Utente = c_sessione::getUtenteDaSessione();
         
         if($_SERVER['REQUEST_METHOD']=='GET')
         {
@@ -93,22 +93,22 @@ class c_utente
                     // si effettua il caricamento dell'utente
                     $profiloUtente = f_persistance::getInstance()->carica(e_utente::class, $id);
                     
-                    if ($profileUser) // se l'utente esiste...
+                    if ($profiloUtente) // se l'utente esiste...
                     {   
                         $array = NULL; // array contenente i dati dell'utente da visualizzare
                         if ($content == 'libro')  // se il parametro e' libro
                         { // si carica la lista dei libri dell'utente
-                            $array = f_peristance::getInstance()->carica(e_libro::class, $profiloUtente->getId(), f_target::CARICA_LIBRO);
+                            $array = f_peristance::getInstance()->carica(e_libro::class, $profiloUtente->getId(), f_target::CARICA_LIBRI);
                             $content = 'Lista Libri';
                         }
                         else // se il contenuto non e' specificato (e' stato inserito solo l'id) si visualizza la pagina base
                                 $content = 'None';   
                         
                                 
-                        $v_utente->Profilo($profiloUtente, $Utente, $content, $array); // mostra il profilo   
+                        $v_utente->mostraProfilo($profiloUtente, $Utente, $content, $array); // mostra il profilo   
                     }
                     else 
-                        $vUser->Errore($Utente, "L'id non corrisponde a nessun utente");
+                        $v_utente->Errore($Utente, "L'id non corrisponde a nessun utente");
                 }
                 else
                     $v_utente->Errore($Utente, "L'URL non e' valido");  
@@ -129,7 +129,7 @@ class c_utente
     {
         c_sessione::chiudiSessione();
         
-        header('Location: /BiblioLibro/home');
+        header('Location: /BiblioLibro/indice');
     }
     
     
@@ -140,7 +140,7 @@ class c_utente
     * di una richiesta POST.
     * @param int $id l'identificativo del libro, prelevato dall'URL.
     */
-    static function remove($id = null)
+    static function rimuovi($id = null)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET')
         { 
@@ -167,7 +167,7 @@ class c_utente
         $v_utente = new v_utente();
         $Utente = $v_utente->creaUtente();
         
-        if($v_utente->validaAccedi($Utente))
+        if($v_utente->validazioneLogin($Utente))
         {
             $autentificazione = false; // bool per l'autenticazione
             
@@ -178,21 +178,21 @@ class c_utente
             {
                 $Utente->setId($idUtente); // viene assegnato all'utente l'id utente
                 
-                if($Utente->verificaPassword()) // se la password e' corretta
+                if($Utente->validazionePassword()) // se la password e' corretta
                 {
                     unset($Utente); // l'istanza utilizzata per il login viene rimossa
                     $utente = f_persistance::getInstance()->carica(e_utente::class, $idUtente); // viene caricato l'utente
-                    $autenticazuibe = true; // l'utente e' autenticato
-                    c_sessione::iniziaSessione($utente);
-                    header('Location: /BiblioLibro/home2');   
+                    $autenticazione = true; // l'utente e' autenticato
+                    c_sessione::inizioSessione($utente);
+                    header('Location: /BiblioLibro/indice');   
                 } 
             }
             
-            if(!$authenticated)
-                $v_utente->Accedi(true);
+            if(!$autenticazione)
+                $v_utente->mostraLogin(true);
         }
         else
-            $v_utente->Login();      
+            $v_utente->mostraLogin();      
     }
     
     
@@ -205,12 +205,12 @@ class c_utente
         $v_utente = new v_utente();
         $Utente = $v_utente->creaUtente(); // viene creato un utente con i parametri della form
         
-        if($v_utente->validaAccesso($Utente))
+        if($v_utente->validazioneIscrizione($Utente))
         {
-            if(!f_persistance::getInstance()->esiste(e_utente::class, f_target::MAIL_ESISTENTE, $User->getMail()))
+            if(!f_persistance::getInstance()->esiste(e_utente::class, f_target::NICKNAME_ESISTENTE, $Utente->getNickName()) && !f_persistance::getInstance()->esiste(e_utente::class, f_target::MAIL_ESISTENTE, $Utente->getMail()))
             {
                 // se la mail non e stata ancora usata, si puo salvare l'utente
-                $loggedUser->hashPassword(); // si cripta la password
+                $Utente->hashPassword(); // si cripta la password
                 f_peristance::getInstance()->salva($Utente); // si salva l'utente
                 c_sessione::iniziaSessione($Utente);
 
@@ -218,10 +218,10 @@ class c_utente
                 header('Location: /BiblioLibro/infoUtente/modificaInfo/');
             }
             else
-                $v_utente->mostraAccedi(true);
+                $v_utente->mostraIscrizione(true);
         }
         else
-            $v_utente->mostraAccedi();
+            $v_utente->mostraIscrizione();
     }
     
     
@@ -240,13 +240,13 @@ class c_utente
         
         if(is_numeric($id)) // verifica che nell'url sia stato inserito un id
         { // verifica che l'utente che ha richiesto l'url sia un bibliotecario
-            if(is_a($user, e_bibiotecario::class))
+            if(is_a($utente, e_bibiotecario::class))
             {
                 $rimuoviUtente = f_persistance::getInstance()->carica(e_utente::class, $id); // ricava l'utente da rimuovere
                 if($rimuoviUtente)
-                    $v_utente->mostraFormRimuovi($user, $rimuoviUtente);
-                    else
-                        $v_utente->Errore($utente, "L'id non corrisponde a nessun utente");
+                    $v_utente->mostraFormRimuovi($utente, $rimuoviUtente);
+                else
+                    $v_utente->Errore($utente, "L'id non corrisponde a nessun utente");
             }
             else
                 $v_utente->Errore($utente, 'Non puoi eliminare altri utenti'); 
@@ -255,8 +255,8 @@ class c_utente
         {
             if(get_class($utente)!=e_visitatore::class)
                 $v_utente->mostraFormRimuovi($utente);
-                else
-                    $v_utente->Errore($utente, 'Non si può rimuovere un  visitatore');       
+            else
+                $v_utente->Errore($utente, 'Non si può rimuovere un  visitatore');       
         }
     }
     
@@ -288,14 +288,14 @@ class c_utente
                     $v_utente->Errore($utente, "L'id non corrisponde a nessun utente"); 
             }
             else
-                $v_utente->Errore($utente, 'Non puoi eliminare altri utentu');     
+                $v_utente->Errore($utente, 'Non puoi eliminare altri utenti');     
         }
         else
         { // altrimenti e' l'utente della sessione che chiede di essere rimosso
             if(get_class($utente)!=e_visitatore::class)
             {
                 f_peristance::getInstance()->rimuovi(e_utente::class, $utente->getId());
-                c_sessione::destroySession(); // viene rimossa la sessione
+                c_sessione::terminaSessione(); // viene rimossa la sessione
                 header('Location: /BiblioLibro/indice');
             }
             else

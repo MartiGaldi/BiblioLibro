@@ -10,15 +10,15 @@ class c_sessione
     
     {
         
-        session_inizio();
+        session_start();
         
         // i suoi dati sono memorizzati all'interno della sessione
         
-        $_SESSION['id'] =  $user->getId();
+        $_SESSION['id'] =  $utente->getId();
         
-        $_SESSION['name'] = $user->getNickName();
+        $_SESSION['nickname'] = $utente->getNickName();
         
-        $_SESSION['tipo'] = lcfirst(substr(get_classe($utente), 1));
+        $_SESSION['tipo'] = lcfirst(substr(get_class($utente), 2));
         
     }
     
@@ -28,23 +28,23 @@ class c_sessione
     
     {
         
-        inizio_sessione();
+        session_start();
         
         
         
-        if(isset($_SESSIONE['id']))
+        if(isset($_SESSION['id']))
         
         {
             
-            $u_tipo= 'E'.ucfirst($_SESSION['type']); 
+            $u_tipo= 'e_'.ucfirst($_SESSION['tipo']); 
             
             
             
             $utente = new $u_tipo();
             
-            $utente->setId($_SESSIONE['id']);
+            $utente->setId($_SESSION['id']);
             
-            $utente->setNickName($_SESSIONE['nome']);
+            $utente->setNickName($_SESSION['nickname']);
             
         }
         
@@ -69,11 +69,12 @@ class c_sessione
     
     {
         
-        if(isset($_SESSIONE['amministratore']))
+        if(isset($_SESSION['amministratore']))
             
             return true;
             
-            else return false;
+        else 
+            return false;
             
     }
     
@@ -84,7 +85,7 @@ class c_sessione
     
     {
         
-        $_SESSION['admin'] = true;
+        $_SESSION['amministratore'] = true;
         
     }
     
@@ -96,9 +97,9 @@ class c_sessione
     
     {
         
-        inizio_sessione();
+        session_start();
         
-        unset($_SESSIONE['admin']);
+        unset($_SESSION['amministratore']);
         
     }
     
@@ -108,15 +109,15 @@ class c_sessione
     
     {
         
-        inizio_sessione(); // recupera i parametri di sessione
+        session_start(); // recupera i parametri di sessione
         
         
         
-        unset_sessione(); // rimuove le variabili di sessione
+        session_unset(); // rimuove le variabili di sessione
         
         
         
-        termina_sessione(); // distrugge la sessione
+        session_destroy(); // distrugge la sessione
         
     }
     
@@ -140,9 +141,9 @@ class c_sessione
             
             return true;
             
-            else
+        else
                 
-                return false;
+            return false;
                 
     }
     

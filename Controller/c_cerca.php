@@ -5,13 +5,19 @@
 class c_cerca
 
 {
-    //default
-    const KEY_DEFAULT = 'Titolo';
-
-    //avanzata
-    const KEY_ADVANCED = 'Autore';
-    const KEY_ADVANCED = 'Genere';
-    const KEY_ADVANCED = 'Isbn';
+    //chiave di default
+    const KEY_DEFAULT = 'Libro';
+    //valore base: ricerca per titolo
+    const VALUE_DEFAULT = 'Titolo';
+    
+    //chiave avanzata
+    const KEY_ADVANCED = 'Libro';
+    //valore avanzato: ricerca per autore
+    const VALUE_ADVANCED = 'Autore';
+   /** //chiave avanzata
+    const KEY_ADVANCED = 'Libro';
+    //valore avanzato: ricerca per genere
+    const VALUE_ADVANCED = 'Genere';*/
     
     
     
@@ -21,7 +27,7 @@ class c_cerca
     
     {
         
-        $v_ricerca = new v_ricerca();
+        $v_cerca = new v_cerca();
         
         $utente = c_sessione::getUtenteDaSessione();
         
@@ -33,14 +39,14 @@ class c_cerca
         if($string)
         
         {   
-            $oggetto = f_persistance::getInstance()->cerca(c_cerca::KEY_DEFAULT, $string);
+            $oggetto = f_persistance::getInstance()->cerca(c_cerca::KEY_DEFAULT, c_cerca::VALUE_DEFAULT, $string);
             
-            $v_cerca->mostraRisultato($utente, $oggetto, c_cerca::KEY_DEFAULT, $string);
+            $v_cerca->mostraRisultatoRicerca($utente, $oggetto, c_cerca::KEY_DEFAULT, c_cerca::VALUE_DEFAULT, $string);
             
         }
         
         else
-            $v_cerca->Errore($user, 'La ricerca non ha prodotto risultati');
+            header('Location:/BiblioLibro/indice');
     }
     
     
@@ -55,11 +61,11 @@ class c_cerca
         
         $v_cerca = new v_cerca();
         
-        $utente = c_sessione::getUserDaSessione();
+        $utente = c_sessione::getUtenteDaSessione();
         
         
         
-        if (get_classe($utente) != e_visitatore::class)
+        if (get_class($utente) != e_visitatore::class)
         
         {   
             //stringa utente
@@ -71,14 +77,14 @@ class c_cerca
             
             { // si ricavano chiave e valore di ricerca scelti dall'utente
                 
-                list($key)=$v_cerca->getKey();
+                list($key, $value)=$v_cerca->getKeyAndValue();
                 
-                if($key == c_cerca::KEY_DEFAULT || $key == c_cerca::KEY_ADVANCED)
+                if(($key == c_cerca::KEY_DEFAULT || $key == c_cerca::KEY_ADVANCED) && ($value == c_cerca::VALUE_DEFAULT || $value == c_cerca::VALUE_ADVANCED))
                 
                 {   
-                    $oggetto = f_peristance::getInstance()->cerca($key, $string);
+                    $oggetto = f_peristance::getInstance()->cerca($key, $value, $string);
                     
-                    $v_cerca->mostraRisultato ($utente, $oggetto, $key, $string);
+                    $v_cerca->mostraRisultatoRicerca($utente, $oggetto, $key, $value, $string);
                     
                 }
                 

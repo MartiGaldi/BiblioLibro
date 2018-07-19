@@ -22,7 +22,7 @@ if(file_exists('config.inc.php'))
                 
                 $utente = c_sessione::getUtenteDaSessione();
                 
-                if(!c_sessione::verificaPrivilegiAmministratore())
+                if(!c_sessione::trovaPrivilegiAmministratore())
                     
                     $v_amministratore-> mostraLogin();
                     
@@ -34,7 +34,7 @@ if(file_exists('config.inc.php'))
                 c_amministratore::autenticazione();
                 
                 else 
-                    header('Location: HTTP/1.1 Errore');           
+                    header('Location: HTTP/1.1 Invalid HTTP method detected');           
         }
         
 
@@ -50,7 +50,7 @@ if(file_exists('config.inc.php'))
 
                 $utnte = c_sessione::getUtenteDaSessione();
                 
-                if(c_sessione::verificaPrivilegiAmminitratore())
+                if(c_sessione::trovaPrivilegiAmminitratore())
                     
                     $v_amministratore->mostraPannello($utente);
                     
@@ -60,14 +60,14 @@ if(file_exists('config.inc.php'))
             }
             
             else
-                header('Location: HTTP/1.1 Errore');  
+                header('Location: HTTP/1.1 Invalid HTTP method detected');  
         }
         
         
         
        //Metodo che implementa la registrazione.
         
-        static function registrati()
+        static function Iscriviti()
         {
             if ($_SERVER['REQUEST_METHOD'] == 'GET') 
             { 
@@ -76,9 +76,9 @@ if(file_exists('config.inc.php'))
                 $utente = c_sessione::getUtenteDaSessione();
                 
                 
-                if (c_sessione::verificaPrivilegiAmministratore())
+                if (c_sessione::trovaPrivilegiAmministratore())
                     
-                    $v_amministratore->mostraRegistrati();
+                    $v_amministratore->mostraIscrizione();
                     
             }
             
@@ -86,7 +86,7 @@ if(file_exists('config.inc.php'))
                 c_amministratore::registra();
                 
                 else
-                    header('Location: Errore');
+                    header('Location: Invalid HTTP method detected');
                     
         }
         
@@ -95,9 +95,9 @@ if(file_exists('config.inc.php'))
         //Logout dalla sessione di amministrazione.
         static function logout()
         {
-            c_sessione::rimuovoPrivilegiAmministratore();
+            c_sessione::rimuoviPrivilegiAmministratore();
             
-            header('Location: /biblilibro/home');
+            header('Location: /biblilibro/indice');
         }
         
         
@@ -111,7 +111,7 @@ if(file_exists('config.inc.php'))
             
             $utente = c_sessione::getUtenteDaSessione();
             
-            list($amministratoreUtente, $passwordUtente) = $v_amministratore->getUtenteEPassword();
+            list($amministratoreUtente, $passwordUtente) = $v_amministratore->getMailEPassword();
             
             global $amministratore, $pass;
             
@@ -134,27 +134,21 @@ if(file_exists('config.inc.php'))
         {
             $v_amministratore = new v_amministratore();
             
-            $loggedUser = c_sessione::getUtenteDaSessione();
+            $Utente = c_sessione::getUtenteDaSessione();
             
             $creaUtente = $v_amministratore->creaUtente();
             
-            if($v_amministratore->validazioneAccesso($creaUtente))
+            if($v_amministratore->validazioneIscrizione($creaUtente))
             
             {
                 
-                if(!f_persistance::getInstance()->exists(e_utente::class, FTarget::EXISTS_NICKNAME, $creaUtente->getNickName())
-                    && !f_persistance::getInstance()->exists(e_utente::class, FTarget::EXISTS_MAIL, $creaUtente->getMail()))
+                if(!f_persistance::getInstance()->esiste(e_utente::class, f_target::NICKNAME_ESISTENTE, $creaUtente->getNickName())
+                    && !f_persistance::getInstance()->esiste(e_utente::class, f_target::MAIL_ESISTENTE, $creaUtente->getMail()))
                     
                 {
                     
                     $creaUtente->hashPassword();
                     f_persistance::getInstance()->salva($creaUtente);
-                    
-                    if(is_a($creaUtente, e_cliente::class))
-                    
-                    {  
-                        $creaUtente->setInfoCliente();   
-                    }
                     
                     $creaUtente->setInfoUtente();
                     
@@ -162,11 +156,11 @@ if(file_exists('config.inc.php'))
                 }
                 
                 else
-                    $v_amministratore->mostraAccedi(true);    
+                    $v_amministratore->mostraIscrizione(true);    
             }
             
             else
-                $v_amministratore->mostraAccedi();      
+                $v_amministratore->mostraIscrizione();      
         }
         
     }

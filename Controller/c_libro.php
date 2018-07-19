@@ -40,7 +40,7 @@ class c_libro
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET')
             
-            c_libro::mostraFormModifica ($id);
+            c_libro::mostraFormModifica($id);
             
             else if ($_SERVER['REQUEST_METHOD'] == 'POST')
             {
@@ -48,7 +48,7 @@ class c_libro
                     c_libro::modificaLibro($id);
                     
                     else  
-                        header('Location: /BiblioLibro/home');      
+                        header('Location: /BiblioLibro/indice');      
             }
             
             else
@@ -76,13 +76,33 @@ class c_libro
                     c_libro::rimuoviLibro($id);
                     
                     else
-                        header('Location: /BiblioLibro/home');   
+                        header('Location: /BiblioLibro/indice');   
             }
             else 
                 header('Location: HTTP/1.1 405 Invalid HTTP method detected');      
     }
-    
 
+    /**
+     *  la funzione mostra permette la visualizzazione del libro da parte degli utenti
+     */
+    static function mostra($id)
+    {
+        if(is_numeric($id))
+        {
+            $v_libro=new v_libro();
+            $utente=c_sessione::getUtenteDaSessione();
+            $libro=f_persistance::getIstance()->carica(e_libro::class, $id);
+            if($libro)
+            {
+               $v_libro->mostraLibro($utente, $libro);
+            }
+            else
+                $v_libro->Errore($utente, 'id del libro non corrisponde a nessun libro del sistema');
+        }
+        else
+            header('Location: HTTP/1.1 405 Invalid URL detected');
+    }
+    
     
     
     /**
@@ -94,13 +114,12 @@ class c_libro
     
     {
         $v_libro = new v_libro();
-        $utente = c_sessione::getUtenteDaSessione();
+        $Utente = c_sessione::getUtenteDaSessione();
         
-        if(get_classe($utente)!=e_bibliotecario::class) // se l'utente non e' un bibliotecario
-            $v_libro->Errore($utente, 'Devi essere un bibiotecario per accedere a questa funzionalità');
-            
-            else 
-                $v_libro->mostraFormCarica($utente); //mostra form               
+        if(get_class($Utente)!=e_bibliotecario::class) // se l'utente non e' un bibliotecario
+            $v_libro->Errore($Utente, 'Devi essere un bibiotecario per accedere a questa funzionalità');
+        else 
+            $v_libro->mostraFormCarica($Utente); //mostra form               
     }
     
     
@@ -112,7 +131,7 @@ class c_libro
     * @param int $id l'identificativo del libro.
     */
     
-    private function mostraFormModifica ($id)
+    private function mostraFormModifica($id)
     {
         $v_libro = new v_libro();
         $utente = c_sessione::getUtenteDaSessione();
@@ -125,13 +144,13 @@ class c_libro
                   {
                       if(is_a($utente, e_bibliotecario::class))
                     
-                       $v_libro->mostraFormModifica($utente, $libro);
+                           $v_libro->mostraFormModifica($utente, $libro);
                     
-                        else
+                       else
                         
-                          $v_libro->Errore($utente, 'Non hai il permesso per modificare il libro');
+                           $v_libro->Errore($utente, 'Non hai il permesso per modificare il libro');
                         
-                     }
+                    }
             
                   else // altrimenti mostra una pagina d'errore. 
                          $v_libro->Errore($utente, 'ID non valido');  
@@ -170,7 +189,7 @@ class c_libro
                 $v_libro->Errore($utente, "L'id non corrisponde a nessun libro.");   
         }
         else
-            $v_libro->Errore($utente, 'The URL non e valida.');   
+            $v_libro->Errore($utente, 'la URL non e valida.');   
     }
     
     
@@ -242,9 +261,7 @@ class c_libro
         }
         
         else
-        { 
-            $v_libro->Errore($utete, "L'id non corrisponde a nessun libro.");
-        }
+            $v_libro->Errore($utente, "L'id non corrisponde a nessun libro.");
     }
     
     
@@ -278,8 +295,6 @@ class c_libro
         }
         
         else
-        {
             $v_libro->Errore($utente, "L'id non corrisponde a nessun libro."); 
-        }  
     }
 }

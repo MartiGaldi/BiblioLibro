@@ -26,22 +26,22 @@ require_once 'Foundation/f_target.php';
 
 require_once 'Controller/c_amministratore.php';
 require_once 'Controller/c_cerca.php';
-require_once 'Controller/c_infoLibro';
+require_once 'Controller/c_infoLibro.php';
 require_once 'Controller/c_libro.php';
 require_once 'Controller/c_sessione.php';
 require_once 'Controller/c_utente.php';
 require_once 'Controller/c_infoUtente.php';
 require_once 'Controller/FrontController.php';
-require_once 'Controller/c_prenota';
+require_once 'Controller/c_prenota.php';
 
 
 require_once 'View/v_amministratore.php';
-require_once 'View/v_cerca';
-require_once 'View/v_infoUtente';
-require_once 'View/v_oggetto';
-require_once 'View/v_libro';
-require_once 'View/v_utente';
-require_once 'View/v_infoLibro';
+require_once 'View/v_cerca.php';
+require_once 'View/v_infoUtente.php';
+require_once 'View/v_oggetto.php';
+require_once 'View/v_libro.php';
+require_once 'View/v_utente.php';
+require_once 'View/v_infoLibro.php';
 
 
 ?>

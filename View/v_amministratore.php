@@ -14,7 +14,7 @@ class v_amministratore extends v_oggetto
         parent::__construct();
                 
         $this->check = array(
-            'nome' => true,
+            'nickname' => true,
             'mail' => true,
             'password' => true,
             'tipo' => true
@@ -22,14 +22,14 @@ class v_amministratore extends v_oggetto
     }
     
     /**
-    * Ritorna la coppia utente-password inserita dall'amministratore nel login
+    * Ritorna la coppia mail-password inserita dall'amministratore nel login
     * @return array
     */
     
-    function getUtente&Password(): array
+    function getMailEPassword() : array
     {
-        if (isset($_POST['nome']) && isset($_POST['password']))
-            return array($_POST['nome'],$_POST['password']);       
+        if (isset($_POST['mail']) && isset($_POST['password']))
+            return array($_POST['mail'],$_POST['password']);       
     }
     
     /**
@@ -37,12 +37,10 @@ class v_amministratore extends v_oggetto
     * @return true se non si sono commessi errori, false altrimenti
     */
     
-    function loginValidata(e_utente $utente): bool
+    function validazioneIscrizione(e_utente $utente): bool
     {
-        if($this->check['password']=$utente->validazionePassword() && $this->check['mail']=$utente->validazioneMail())
-        {
+        if($this->check['mail']=$utente->validazioneMail() && $this->check['password']=$utente->validazionePassword())
             return true;   
-        }
         else   
             return false;
     }
@@ -61,7 +59,7 @@ class v_amministratore extends v_oggetto
             
             $this->smarty->registerObject('utente', $utente);
             
-            $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 1)));
+            $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
             
             
             $this->smarty->assign('errore', $errore);
@@ -84,7 +82,7 @@ class v_amministratore extends v_oggetto
         if (isset($_POST['tipo'])) {
             $tipo = 'e_' . ucfirst($_POST['tipo']);
             
-            $user = new $tipo();
+            $utente = new $tipo();
         } else
             $utente = new e_utente();
                 
@@ -93,7 +91,7 @@ class v_amministratore extends v_oggetto
                 if (isset($_POST['password']))
                     $utente->setPassword($_POST['password']);
                         
-                return $tente;
+                return $utente;
     }
     
     /**
@@ -101,7 +99,7 @@ class v_amministratore extends v_oggetto
     * @param bool $errore (facoltativo se è stato rilevato un errore)
     */
     
-    function mostraRegistrazione (bool $errore = NULL)
+    function mostraIscrizione (bool $errore = NULL)
     {
         if (! $errore)
             $errore = false;
@@ -110,7 +108,7 @@ class v_amministratore extends v_oggetto
             
             $this->smarty->registerObject('utente', $utente);
             
-            $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 1)));
+            $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
             
             
             $this->smarty->assign('errore', $errore);
@@ -118,7 +116,7 @@ class v_amministratore extends v_oggetto
             $this->smarty->assign('check', $this->check);
             
             
-            $this->smarty->display('amministratore/registrazioneAmministratore.tpl');
+            $this->smarty->display('amministratore/registraAmministratore.tpl');
     }
     
     /**
@@ -130,7 +128,7 @@ class v_amministratore extends v_oggetto
     {
         $this->smarty->registerObject('utente', $utente);
         
-        $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 1)));
+        $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
         
         
         $this->smarty->assign('check', $this->check);
