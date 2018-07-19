@@ -1,0 +1,30 @@
+body
+{
+	background-color: white;
+}
+a { color: blue-light;}
+
+
+.well 
+
+{ 
+	background-color:rgba(0, 0, 0, 0.5);
+	border-style: hidden;
+        color: white;
+        font-family: "Lucida Console", Monaco, monospace; 
+	font-size: 18px;
+}
+
+
+.well a {  color: #1E90FF; }
+
+
+#importante
+{
+  color: red;
+  font-size: 20px;
+  text-decoration: underline;
+  text-decoration-color: white;
+}
+
+.well tr:hover {background-color: #DCDCDC;}
