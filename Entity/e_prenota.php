@@ -22,12 +22,22 @@ class e_prenota extends e_oggetto {
     function __constructor(){}
     
     function setData (DateTime $data){
-        $this->data=$data;
+        $this->data=new DateTime($data);
     }
     
-    function getData() : DateTime {
-        return $this->data;
+    function getData(bool $mostraFormato = null)
+    {
+        if(this->data)
+        {
+            $formato="Y-m-d";
+            if($mostraFormato)
+                $formato= "Y/m/d";
+            return $this->data->format($formato);
+        }
+        else
+            return NULL;
     }
+    
     
     function setNickCliente (string $nick_cliente){
         $this->nick_cliente=$nickcliente;

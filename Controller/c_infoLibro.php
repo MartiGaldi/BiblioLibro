@@ -50,6 +50,12 @@ class c_infoLibro
             $InfoLibro= $v_infoLibro->creaInfoLibro();
             $Libro->setInfoLibro($InfoLibro);
             
+            $copertina=$v_infoLibro->creaCopertina();
+            if($copertina->getSize())
+            {
+                $Libro->setCopertina($copertina);
+            }
+            
             header('Location: /BiblioLibro/catalogo/nuovo/'.$Libro->getId());
         }
         else

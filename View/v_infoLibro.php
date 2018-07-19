@@ -41,6 +41,32 @@ class v_infoLibro extends v_oggetto
                                     return $infoLibro;
     }
     
+    /**
+     * Funzione che permette la creazione della copertina di un libro
+     */
+    function creaCopertina() : e_copertina
+    {
+        $copertina = new e_copertina();
+        if($_FILES['file']['size']!=0)
+        {
+            $copertina->setCopertina(file_get_contents($_FILES['file']['tmp_name']));
+            $copertina->setSize($_FILES['file']['size']);
+            $copertina->setTipo($_FILES['file']['tipo']);
+        }
+        return $copertina;
+    }
+    
+    /**
+     * Funzione che permette la validazione della copertina di un libro
+     */
+    function validazioneCopertina(e_copertina &$copertina)
+    {
+        $copertina->validate($this->check['file']);
+        if($this->check['file'])
+            return true;
+        else
+            return false;
+    }
     
     /**
      * Controlla se l'oggetto e_infoLibro sia valido

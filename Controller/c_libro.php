@@ -208,7 +208,7 @@ class c_libro
         {
             $libro = $v_libro->creaLibro(); // la view restituisce una e_libro costruita a partire dalla form
             
-            if ($v_libro->caricamentoValido($libro)) // se l'oggetto e' valido  
+            if ($v_libro->validazioneCarica($libro)) // se l'oggetto e' valido  
                f_persistane::getInstance()->salva($libro);
                     
             else
@@ -244,7 +244,7 @@ class c_libro
             // verifica che l'utente puo' effettivamente modificarlo
             if(is_a($utente, e_bibliotecario::class))
             {
-                if($v_libro->validaModifica($nuovoLibro)) // verifica che le modifiche siano corrette
+                if($v_libro->validazioneModifica($nuovoLibro)) // verifica che le modifiche siano corrette
                 {
                     $nuovoLibro->setId($vecchioLibro->getId());
                     f_persistance::getInstance()->aggiorna($nuovoLibro);
@@ -282,7 +282,7 @@ class c_libro
         {
             if(is_a($utente, e_bibliotecario::class)) // verifica che l'utente puo' effettivamente rimuoverla
             {
-                if($v_libro->validaRimuovi()) // se il bibliotecario ha deciso di rimuoverla
+                if($v_libro->validazioneRimuovi()) // se il bibliotecario ha deciso di rimuoverla
                 
                     f_persistance::getInstance()->rimuovi(e_libro::class, $libro->getId()); // rimuove il libro
                 

@@ -48,7 +48,7 @@ class v_libro extends v_oggetto
             $libro->setAutore(ucfirst($_POST['autore']));
             $libro->setTitolo(ucfirst($_POST['titolo']));
             $libro->setNumCopie(ucfirst($_POST['num_copie']));
-            $libro->setDurata(ucfirst($_POST['durata']))
+            $libro->setDurata(ucfirst($_POST['durata']));
             $libro->setGenere(ucfirst($_POST['genere']));                
         }        
         return $libro;
@@ -66,8 +66,8 @@ class v_libro extends v_oggetto
     
     function mostraFormCarica (e_utente &$utente, bool $errore = NULL)
     {
-        if (! $error) 
-           $error = false;
+        if (! $errore) 
+           $errore = false;
             
             $this->smarty->registerObject('utente', $utente);
             $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
@@ -91,8 +91,8 @@ class v_libro extends v_oggetto
     
     function mostraFormModifica (e_utente &$utente, e_libro &$libro, bool $errore= NULL)
     {
-        if (! $error)
-        { $error = false;}
+        if (! $errore)
+        { $errore = false;}
             
             $this->smarty->registerObject('utente', $utente);
             $this->smarty->assign('libro', $libro);
@@ -151,9 +151,8 @@ class v_libro extends v_oggetto
     {
         if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && this->check['genere']=$libro->validazioneGenere())
             return true;
-        
-            else
-                return false;  
+        else
+            return false;  
     }
     
     
@@ -181,11 +180,10 @@ class v_libro extends v_oggetto
     {
         if(isset($_POST['action']))
         {
-            if($_POST['action']=='yes')
+            if($_POST['action']=='si')
                 return true;
-                
-                else
-                    return false;       
+            else
+                return false;       
         }
         else
             return false;   

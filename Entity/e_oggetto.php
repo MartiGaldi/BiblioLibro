@@ -11,15 +11,23 @@ require_once 'inc.php';
 
 class e_oggetto
 {
-    
+    /**
+     * id che identifica l'oggetto
+     */
     protected $id;
     
-    
+    /**
+     * costruisce un oggetto vuoto
+     * @param int $id(opzionale) identificativo dell'oggetto Entity
+     */
     protected function __construct (int $id=null)
     {
         $this->id= $id;
     }
     
+    /**
+     * @return int l'identificativo dell'oggetto
+     */
     function getId() : int
     {
         if(!$this->id)
@@ -27,6 +35,9 @@ class e_oggetto
         else return $this->id;
     }
     
+    /**
+     * @param int $id l'identificativo dell'oggetto Entity
+     */
     function setId(int $id)
     {
         $this->id=$id;

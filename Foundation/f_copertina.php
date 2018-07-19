@@ -7,8 +7,8 @@ class f_copertina{
      */
     static function salvaCopertina() : string
     {
-        return "INSERT INTO copertina(id,tipo,size,immagine)
-                VALUES(:id,:tipo,:size,:immagine)";
+        return "INSERT INTO copertina(id,tipo,size,copertina)
+                VALUES(:id,:tipo,:size,:copertina)";
     }
     
     /**
@@ -29,7 +29,7 @@ class f_copertina{
     static function aggiornaCopertina() : string
     {
         return "UPDATE copertina
-                SET tipo = :tipo, size = :size, immagine = :immagine
+                SET tipo = :tipo, size = :size, copertina = :copertina
                 WHERE id = :id;";
     }
     
@@ -66,7 +66,7 @@ class f_copertina{
         $stmt->bindValue(':id', $cop->getId(), PDO::PARAM_INT);
         $stmt->bindValue(':tipo', $cop->getTipo(), PDO::PARAM_STR);
         $stmt->bindValue(':size', $cop->getSize(), PDO::PARAM_INT);
-        $stmt->bindParam(':immagine', $cop->getImmagine(), PDO::PARAM_STR);
+        $stmt->bindParam(':copertina', $cop->getCopertina(), PDO::PARAM_STR);
     }
     
     /**
@@ -80,7 +80,7 @@ class f_copertina{
         $copertina->setId($ennupla['id']);
         $copertina->setTipo($ennupla['tipo']);
         $copertina->setSize($ennupla['size']);
-        $copertina->setImmagine($ennupla['immagine']);
+        $copertina->setCopertina($ennupla['copertina']);
         
         return $copertina;
     }

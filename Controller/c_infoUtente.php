@@ -54,7 +54,7 @@ class c_infoUtente
             header('Location: /BiblioLibro/utente/profilo/'.$Utente->getId());
         }
         else
-            $v_infoUser->Errore ($utente, 'Sei un visitatore, non puoi registrare informazioni riservate agli utenti');    
+            $v_infoUtente->Errore ($utente, 'Sei un visitatore, non puoi registrare informazioni riservate agli utenti');    
     }
     
     
@@ -75,7 +75,7 @@ class c_infoUtente
         }
         
         else
-            $v_infoUtente->Error($Utente, 'Devi essere un utente per modificare le tue informazioni');        
+            $v_infoUtente->Errore($Utente, 'Devi essere un utente per modificare le tue informazioni');        
     }
 }
 ?>

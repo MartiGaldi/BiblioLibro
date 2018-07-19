@@ -153,7 +153,7 @@ class e_utente extends e_oggetto{
     
     function __toString()
     {
-        return "Nome: ".$this->nickname."\nId: ".$this->id;
+        return "nickName: ".$this->nickname."\nId: ".$this->id;
     }
     
 }

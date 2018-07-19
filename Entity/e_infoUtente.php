@@ -68,15 +68,7 @@ class e_infoCliente extends e_oggetto
     function getCodFisc () : string
     {
         return $this->cod_fisc;
-    }
-    
-    function validazioneCodFisc() : bool
-    {
-        if($this->cod_fisc && preg_match('/^[[:alnum:]]{16}$/', $this->cod_fisc))
-            return true;
-        else
-            return false;
-    }    
+    } 
     
     function setTelefono (int $telefono)
     {
@@ -102,15 +94,22 @@ class e_infoCliente extends e_oggetto
     
     function setDtNasc(string $dt_nasc)
     {
-            $this->dt_nasc=new DateTime($dt_nasc);
+        $this->dt_nasc=new DateTime($dt_nasc);
     }
         
-     function getDtNasc() : DateTime
+    function getDtNasc(bool $mostraFormato = null)
     {
-            return $this->dt_nasc;
+        if(this->dt_nasc)
+        {
+            $formato="Y-m-d";
+            if($mostraFormato)
+                $formato= "Y/m/d";
+            return $this->dt_nasc->format($formato);
+        }
+        else
+            return NULL;
     }
 
-    
      function setLuogoNascita(DateTime $luogo_nascita)
      {
             $this->luogo_nascita=$luogo_nascita;
@@ -141,10 +140,11 @@ class e_infoCliente extends e_oggetto
          } 
          else 
              $cog = false;
-         
-             if (condition) {
-                 ;
-             }
+             
+         if($this->cod_fisc && preg_match('/^[[:alnum:]]{16}$/', $this->cod_fisc))
+             $cf=true;
+         else
+             $cf = false;
              
          if($this->telefono && preg_match('/[0-9]+{13}/', $this->telefono))
              $tel=true;

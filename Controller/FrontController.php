@@ -54,8 +54,8 @@ class FrontController
             {
                 $utente = c_sessione::getUtenteDaSessione();
                 $smarty = SmartyConfig::configure();
-                $smarty->registerObject('user', $utente);
-                $smarty->assign('uType', lcfirst(substr(get_class($utente),1)));
+                $smarty->registerObject('utente', $utente);
+                $smarty->assign('uTipo', lcfirst(substr(get_class($utente),2)));
                 $smarty->display('indice.tpl');
             } 
         }
@@ -63,8 +63,8 @@ class FrontController
         {
             $utente = c_sessione::getUtenteDaSessione();
             $smarty = SmartyConfig::configure();
-            $smarty->registerObject('user', $utente);
-            $smarty->assign('uType', lcfirst(substr(get_class($utente),1)));
+            $smarty->registerObject('utente', $utente);
+            $smarty->assign('uTipo', lcfirst(substr(get_class($utente),2)));
             
             $smarty->display('indice.tpl');
         }

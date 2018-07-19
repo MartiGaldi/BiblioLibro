@@ -21,7 +21,9 @@ class e_libro extends e_oggetto {
     private $genere;
     private $info_libro;
     
-    
+    /**
+     * istanzia un oggetto e_libro vuoto
+     */
     function __constructor(){}
     
     function setAutore(string $autore){

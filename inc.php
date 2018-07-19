@@ -11,6 +11,7 @@ require_once 'Entity/e_oggetto.php';
 require_once 'Entity/e_utente.php';
 require_once 'Entity/e_visitatore.php';
 require_once 'Entity/e_bibliotecario.php';
+require_once 'Entity/e_storicoPrestito.php';
 
 
 require_once 'Foundation/f_persistance.php';
@@ -22,6 +23,7 @@ require_once 'Foundation/f_infoLibro.php';
 require_once 'Foundation/f_copertina.php';
 require_once 'Foundation/f_utente.php';
 require_once 'Foundation/f_target.php';
+require_once 'Foundation/f_storicoPrestito.php';
 
 
 require_once 'Controller/c_amministratore.php';
@@ -32,7 +34,6 @@ require_once 'Controller/c_sessione.php';
 require_once 'Controller/c_utente.php';
 require_once 'Controller/c_infoUtente.php';
 require_once 'Controller/FrontController.php';
-require_once 'Controller/c_prenota.php';
 
 
 require_once 'View/v_amministratore.php';

@@ -13,13 +13,13 @@ class e_prestito extends e_oggetto {
     protected $data_inizio;
     protected $data_fine;
     protected $id_libro;
-    protected $prenotazione;
     protected $rientro = false;
     protected $storico = false;
     
     function __constructor(){}
     
-    function setNickCliente(string $nick_cliente){
+    function setNickCliente(string nick_cliente)
+    {
         $this->nick_cliente=$nick_cliente;
     }
     
@@ -28,11 +28,20 @@ class e_prestito extends e_oggetto {
     }
  
     function setDataInizio(DateTime $data_inizio){
-        $this->data_inizio=$data_inizio;
+        $this->data_inizio=new DateTime($data_inizio);
     }
     
-    function getDataInizio() : DateTime{
-        return $this->data_inizio;
+    function getDataInizio(bool $mostraFormato = null)
+    {
+        if(this->data_inizio)
+        {
+            $formato="Y-m-d";
+            if($mostraFormato)
+                $formato= "Y/m/d";
+                return $this->data_inizio->format($formato);
+        }
+        else
+            return NULL;
     }
     
     /**
@@ -55,10 +64,11 @@ class e_prestito extends e_oggetto {
         return $this->data_fine;
     }
     
-    function setIdLibro(string $id_libro){
-        $this->id_libro=$id_libro;
-    }
-    
+    function setIdLibro(string id_libro)
+        {
+            $this->id_libro=$id_libro;
+        }
+            
     function getIdLibro() : string{
         return $this->id_libro;
     }
@@ -89,7 +99,7 @@ class e_prestito extends e_oggetto {
      * Restituisce le informazioni relative alla prenotazione
      */
     
-    function getPrenotazione()
+    function recuperaPrenotazione()
     {
        $disp= f_persistance::getIstance()->carica(e_prenota::class, $this->id)->getDisp();
        
@@ -99,13 +109,10 @@ class e_prestito extends e_oggetto {
         
         if($acquisito==true)
         {
-            $prenotazione = f_persistance::getIstance()->carica(e_prenota::class, $this->id);
-            if($prenotazione)
-                $this->prenotazione = $prenotazione;
-            else
-                $this->prenotazione = new e_prenota();
+            $nick_cliente= f_persistance::getIstance()->carica(e_prenota::class, $this->id)->getNickCliente();
+            $id_libro= f_persistance::getIstance()->carica(e_prenota::class, $this->id)->getIdLibro();
+            rimuoviPrenotazione();
         }
-        return $this->prenotazione;
        } 
     else
         echo "Attualmente non sono disponibili copie per il prestito";

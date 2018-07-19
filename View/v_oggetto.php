@@ -1,7 +1,5 @@
 <?php
 
-<?php
-
 /**
 * La classe v_oggetto contiene gli attributi e le funzioni base adoperati in tutto il package View.
 * Metodo per la visualizzazione di una pagina di errore
@@ -33,15 +31,15 @@ class v_oggetto
     * @param string $errore il messaggio di errore da visualizzare
     */
     
-    function mostraPaginaErrore(e_utente &$utente, string $errore)
+    function Errore(e_utente &$utente, string $errore)
     {
         $this->smarty->registerObject('utente', $utente);
         
-        $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 1)));
+        $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
         
         $this->smarty->assign('errore', $errore);
         
-        $this->smarty->display('paginaErrore.tpl');
+        $this->smarty->display('Errore.tpl');
     }
 }
 

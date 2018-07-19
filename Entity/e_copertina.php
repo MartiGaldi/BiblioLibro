@@ -14,7 +14,7 @@ class e_copertina extends e_oggetto{
     
     private $tipo; //formato
     private $size; //dimensione
-    private $immagine; //byte immagine
+    private $copertina; //byte immagine
     
     /**inizializzazione immagine vuota*/
     function __constructor(){
@@ -42,24 +42,24 @@ class e_copertina extends e_oggetto{
         return $this->size;
     }
     
-    function setImmagine($immagine){
+    function setCopertina($copertina){
         
-        $this->immagine=$immagine;
+        $this->copertina=$copertina;
     }
     
-    function getImmagine(bool $encode=null){
+    function getCopertina(bool $encode=null){
         
         if($enconde)
-            $this->immagine=base64_encode($this->immagine);
-        return $this->immagine;
+            $this->copertina=base64_encode($this->copertina);
+        return $this->copertina;
     }
     
     /**imposta l'oggetto con valori statici ricavati da un'immagine nella directory di lavoro*/
     function SetStatico()
     {
-        $file=dirname(__DIR__)."/def/defProPic.jpg";
+        $file=dirname(__DIR__)."/risorse/static/copertina.jpg";
         
-        $this->immagine=file_get_contests($file);
+        $this->copertina=file_get_contests($file);
         $this->tipo=mime_content_type($file);
         $this->size=(int) filesize($file);
     }
@@ -70,9 +70,9 @@ class e_copertina extends e_oggetto{
     */
     function validazione(bool &$file)
     {  
-        if($this->size<=0 && $this->img>=65535) 
+        if($this->size<=0 && $this->copertina>=65535) 
             $file = false;
-        if($this->type!='image/jpeg' && $this->type!='image/gif' && $this->type!='image/png' && $this->type!='image/svg')
+        if($this->tipo!='image/jpeg' && $this->tipo!='image/gif' && $this->tipo!='image/png' && $this->tipo!='image/svg')
             $file = false;       
     }
        

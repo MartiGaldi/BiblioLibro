@@ -47,8 +47,8 @@ class v_infoUtente extends v_oggetto
         if(isset($_POST['dt_nasc']))
             $infoUtente->setDtNasc($_POST['dt_nasc']);
                             
-        if(isset($_POST['dt_nasc']))
-            $infoUtente->setLuogoNascita($_POST['dt_nasc']);
+        if(isset($_POST['luogo_nascista']))
+            $infoUtente->setLuogoNascita($_POST['luogo_nascita']);
                                 
         return $infoUtente;   
     }
@@ -88,7 +88,7 @@ class v_infoUtente extends v_oggetto
             $this->smarty->assign('info', $infoUtente);
             
             
-            $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 1)));
+            $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
             
             
             $this->smarty->assign('errore', $errore);
@@ -96,7 +96,7 @@ class v_infoUtente extends v_oggetto
             $this->smarty->assign('check', $this->check);
             
             
-            $this->smarty->display('user/registrazioneInfoUtente.tpl');       
+            $this->smarty->display('utente/registrazioneInfoUtente.tpl');       
     }    
 }
 
