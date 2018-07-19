@@ -66,7 +66,7 @@ class f_prestito{
         $stmt->bindValue(':data_inizio', $pres->getDataInizio(), PDO::PARAM_STR);
         $stmt->bindValue(':data_fine', $pres->getDataFine(), PDO::PARAM_STR);
         $stmt->bindValue(':id_libro', $pres->getIdLibro(), PDO::PARAM_INT);
-        $stmt->bindValue('prenotazione', pres->getPrenotazione(), PDO::PARAM_STR);
+        $stmt->bindValue('prenotazione', $pres->getPrenotazione(), PDO::PARAM_STR);
         $stmt->bindValue(':rientro', $pres->getRientro(), PDO::PARAM_BOOL);
         $stmt->bindValue(':storico', $pres->getStorico(), PDO::PARAM_BOOL);
     }

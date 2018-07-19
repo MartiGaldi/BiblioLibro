@@ -73,12 +73,12 @@ class c_cerca
                 
                 list($key)=$v_cerca->getKey();
                 
-                if(($key == c_cerca::KEY_DEFAULT || $key == c_cerca::KEY_ADVANCED)
+                if($key == c_cerca::KEY_DEFAULT || $key == c_cerca::KEY_ADVANCED)
                 
                 {   
-                    $oggetti = f_peristance::getInstance()->cerca($key, $string);
+                    $oggetto = f_peristance::getInstance()->cerca($key, $string);
                     
-                    $v_cerca->mostraRisultato ($utente, $oggetti, $key, $string);
+                    $v_cerca->mostraRisultato ($utente, $oggetto, $key, $string);
                     
                 }
                 

@@ -506,7 +506,7 @@ class f_persistance {
         else
             $classe = get_class($oggetto); // restituisce il nome della classe dall'oggetto
 
-            $risorsa = substr($classe,1); // nome della risorsa (utente, libro, ...)
+            $risorsa = substr($classe,2); // nome della risorsa (utente, libro, ...)
             $classeFound = 'f_'.$risorsa; // nome della rispettiva classe Foundation
             $classeFound::bindValues($stmt, $oggetto); // associazione statement - e_oggetto
     }
@@ -523,12 +523,14 @@ class f_persistance {
         $oggetto = NULL; //oggetto che conterra' l'istanza dell'elaborazione
         if ( class_exists( $classe ) )
         {
-            $classeFound = 'f_'.substr($classe,1);
+            $classeFound = 'f_'.substr($classe,2);
             $oggetto = $classeFound::creaOggettoDaDB($ennupla);
         }
         return $oggetto;
     }
     
+  /**
+  
     function contaRighe (&$oggetto) : bool 
     {
         $risultato=false;
@@ -537,10 +539,13 @@ class f_persistance {
             case(is_a($oggetto, e_prestito::class)):
                // $sql =  f_prestito::      
         }
-    }
+    } 
     
-    function salva (&$oggetto) : bool {
+    function salva(&$oggetto) : bool 
+    {
         $risultato=false;
+        $sql='';
+        $classe='';
         switch ($oggetto) {
             case (is_a($oggetto, e_libro::class)):
                 $sql=f_libro::salvaLibro();
@@ -587,7 +592,7 @@ class f_persistance {
             default:
                 break;
         }
-    }
+    }*/
     
     
 }

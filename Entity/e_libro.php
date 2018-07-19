@@ -1,7 +1,7 @@
 <?php 
 
 require_once'inc.php';
-include_once 'Entity/e_oggetto';
+include_once 'Entity/e_oggetto.php';
 
 /**
  * La classe e_libro caratterizza i testi presenti nel catalogo della biblioteca.

@@ -21,7 +21,7 @@ require_once 'Foundation/f_infoUtente.php';
 require_once 'Foundation/f_infoLibro.php';
 require_once 'Foundation/f_copertina.php';
 require_once 'Foundation/f_utente.php';
-require_once 'Foundation/f_target';
+require_once 'Foundation/f_target.php';
 
 
 require_once 'Controller/c_amministratore.php';

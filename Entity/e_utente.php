@@ -17,10 +17,10 @@ include_once 'Entity/e_oggetto.php';
 
 class e_utente extends e_oggetto{
     
-    protected $nick_name
+    protected $nick_name;
     protected $mail;
     protected $password;
-    protected $info_utente
+    protected $info_utente;
     
     function __construct(){
         parent::__construct();
@@ -28,20 +28,20 @@ class e_utente extends e_oggetto{
     
     function setNick (string $nick_name)
     {
-        $this->nick_name=$nick_name   
+        $this->nick_name=$nick_name;  
     }
         
     function getNick() : string
     {
-        return $this->nick_name
+        return $this->nick_name;
     }
         
     function validazioneNickName() : bool
     {
         if ($this->nick_name && preg_match("/^[a-zA-Z][a-zA-Z0-9]+$/", $this->nick_name)) // solo lettere e numeri
             return true;
-            else
-                return false;
+        else
+            return false;
     }
     
     
@@ -153,8 +153,9 @@ class e_utente extends e_oggetto{
     
     function __toString()
     {
-        return "Nome: ".$this->nickname."\nId: ":$this->id;
+        return "Nome: ".$this->nickname."\nId: ".$this->id;
     }
+    
 }
 
    

@@ -1,7 +1,7 @@
 <?php
 
 require_once'inc.php';
-include_once 'Entity/e_oggetto';
+include_once 'Entity/e_oggetto.php';
 
 /**
 * La classe e_infoUtente contiene le informazioni dettagliate sull'utente che non
@@ -151,7 +151,7 @@ class e_infoCliente extends e_oggetto
          else
              $tel = false;
          
-         if($this->sesso=='maschio' || this->sesso=='femmina')
+         if($this->sesso=='maschio' || sesso=='femmina')
              $ses=true;
          else
              $ses = false;

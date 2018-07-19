@@ -1,7 +1,7 @@
 <?php
 
 require_once "inc.php";
-include_once 'Entity/e_oggetto';
+include_once 'Entity/e_oggetto.php';
 
 /**
  * La classe e_prestito contiene le informazioni riguardanti i prestiti ancora in corso.
@@ -12,7 +12,7 @@ class e_prestito extends e_oggetto {
     protected $nick_cliente;
     protected $data_inizio;
     protected $data_fine;
-    protected $id_libro
+    protected $id_libro;
     protected $prenotazione;
     protected $rientro = false;
     protected $storico = false;
@@ -43,7 +43,7 @@ class e_prestito extends e_oggetto {
      */
     function setDataFine(DateTime $data_inizio, string $durata){
         if($durata=='consultaione')
-            $this->$data_fine = $data_inizio
+            $this->$data_fine = $data_inizio;
         else
             if($durata=='breve')
                 $data_fine = $data_inizio->add(new DateInterval('P7D'));
@@ -52,7 +52,7 @@ class e_prestito extends e_oggetto {
     }
     
     function getDataFine() : DataTime {
-        return $this->data_fine
+        return $this->data_fine;
     }
     
     function setIdLibro(string $id_libro){
@@ -105,8 +105,8 @@ class e_prestito extends e_oggetto {
             else
                 $this->prenotazione = new e_prenota();
         }
-       }
-        return $this->prenotazione; 
+        return $this->prenotazione;
+       } 
     else
         echo "Attualmente non sono disponibili copie per il prestito";
     }
