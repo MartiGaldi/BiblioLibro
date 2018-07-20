@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Lug 18, 2018 alle 17:09
+-- Creato il: Lug 20, 2018 alle 19:18
 -- Versione del server: 10.1.30-MariaDB
 -- Versione PHP: 7.2.2
 
@@ -61,7 +61,7 @@ CREATE TABLE `info_utente` (
   `telefono` int(10) NOT NULL,
   `sesso` varchar(10) NOT NULL,
   `dt_nasc` datetime NOT NULL,
-  `luogo_nasc` varchar(30) NOT NULL
+  `luogo_nascita` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -93,10 +93,10 @@ INSERT INTO `libro` (`id`, `num_copie`, `titolo`, `autore`, `durata`, `genere`) 
 --
 
 CREATE TABLE `prenota` (
-  `id` smallint(5) UNSIGNED NOT NULL COMMENT 'codice prenoazione',
+  `id` smallint(5) UNSIGNED NOT NULL COMMENT 'codice prenotazione',
   `data` datetime NOT NULL,
   `nick_cliente` varchar(20) NOT NULL,
-  `isbn` varchar(13) NOT NULL,
+  `id_libro` smallint(5) UNSIGNED NOT NULL,
   `acquisito` tinyint(1) NOT NULL DEFAULT '0',
   `disp` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -112,7 +112,7 @@ CREATE TABLE `prestito` (
   `nick_cliente` varchar(20) NOT NULL,
   `data_inizio` date NOT NULL,
   `data_fine` date NOT NULL,
-  `isbn` varchar(13) NOT NULL,
+  `id_libro` smallint(5) UNSIGNED NOT NULL,
   `rientro` tinyint(1) NOT NULL DEFAULT '0',
   `storico` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -125,7 +125,7 @@ CREATE TABLE `prestito` (
 
 CREATE TABLE `utente` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `nick_name` varchar(50) NOT NULL,
+  `nick_name` varchar(20) NOT NULL,
   `mail` varchar(70) NOT NULL,
   `password` varchar(20) NOT NULL,
   `tipo` set('bibliotecario','cliente') NOT NULL
@@ -167,13 +167,15 @@ ALTER TABLE `libro`
 ALTER TABLE `prenota`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nick_cliente` (`nick_cliente`),
-  ADD UNIQUE KEY `isbn` (`isbn`);
+  ADD UNIQUE KEY `id_libro` (`id_libro`);
 
 --
 -- Indici per le tabelle `prestito`
 --
 ALTER TABLE `prestito`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nick_cliente` (`nick_cliente`),
+  ADD UNIQUE KEY `id_libro` (`id_libro`);
 
 --
 -- Indici per le tabelle `utente`
@@ -197,7 +199,7 @@ ALTER TABLE `libro`
 -- AUTO_INCREMENT per la tabella `prenota`
 --
 ALTER TABLE `prenota`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'codice prenoazione';
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'codice prenotazione';
 
 --
 -- AUTO_INCREMENT per la tabella `prestito`
@@ -210,6 +212,42 @@ ALTER TABLE `prestito`
 --
 ALTER TABLE `utente`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `copertina`
+--
+ALTER TABLE `copertina`
+  ADD CONSTRAINT `copertina_ibfk_1` FOREIGN KEY (`id`) REFERENCES `info_libro` (`id`);
+
+--
+-- Limiti per la tabella `info_libro`
+--
+ALTER TABLE `info_libro`
+  ADD CONSTRAINT `info_libro_ibfk_1` FOREIGN KEY (`id`) REFERENCES `libro` (`id`);
+
+--
+-- Limiti per la tabella `info_utente`
+--
+ALTER TABLE `info_utente`
+  ADD CONSTRAINT `info_utente_ibfk_1` FOREIGN KEY (`id`) REFERENCES `utente` (`id`);
+
+--
+-- Limiti per la tabella `prenota`
+--
+ALTER TABLE `prenota`
+  ADD CONSTRAINT `prenota_ibfk_1` FOREIGN KEY (`nick_cliente`) REFERENCES `utente` (`nick_name`),
+  ADD CONSTRAINT `prenota_ibfk_2` FOREIGN KEY (`id_libro`) REFERENCES `libro` (`id`);
+
+--
+-- Limiti per la tabella `prestito`
+--
+ALTER TABLE `prestito`
+  ADD CONSTRAINT `prestito_ibfk_1` FOREIGN KEY (`id_libro`) REFERENCES `libro` (`id`),
+  ADD CONSTRAINT `prestito_ibfk_2` FOREIGN KEY (`nick_cliente`) REFERENCES `utente` (`nick_name`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
