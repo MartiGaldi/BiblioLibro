@@ -34,11 +34,12 @@
 			<form method="post" enctype="multipart/form-data" action="signup">
 			
 				<div class="form-group row">
-					<label for="utente" class="col-sm-2 col-form-label {if !$check.nick_name} text-danger{/if}">Nickname: </label>
+					<label for="utente" class="col-sm-2 col-form-label {if ! $check.nickname} text-danger{/if}">
+					Nickname: </label>
 					<div class="col-sm-7">
 						<input type="text" class="form-control is-invalid" id="utente" name="nick_name" placeholder="Inserisci nickname...">
 					</div>
-					{if ! $check.nick_name}
+					{if !  $check.nickname}
 					<div class="col-sm-3 well">
 						<small id="nickHelp" class="text-danger">
   							Solo caratteri alfanumerici.

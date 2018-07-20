@@ -28,7 +28,7 @@
       					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ACCEDI</a>
 					</li>
 					<li>
-          				<a href="/BiblioLibro/utente/registra">REGISTRATI</a>
+          				<a href="/BiblioLibro/utente/iscriviti">REGISTRATI</a>
           			</li>
           			{else}
           			<!-- se loggato -->

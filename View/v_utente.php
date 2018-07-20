@@ -19,6 +19,7 @@ class v_utente extends v_oggetto
 
         
         $this->check = array(
+            'nickname' => true,
             'mail' => true,
             'password' => true,
             'tipo' => true 
@@ -62,7 +63,8 @@ class v_utente extends v_oggetto
     */
     function validazioneLogin(e_utente $utente): bool
     {
-        if($this->check['mail']=$utente->validazioneMail() && $this->check['password']=$utente->validazionePassword())
+        if($this->check['mail']=$utente->validazioneMail() && 
+                $this->check['password']=$utente->validazionePassword())
             return true;
         
         else
@@ -72,7 +74,9 @@ class v_utente extends v_oggetto
     
     function validazioneIscrizione(e_utente $utente): bool
     {
-        if($this->check['nickname']=$utente->validazioneNickName() && $this->check['mail']=$utente->validazioneMail() && $this->check['password']=$utente->validazionePassword())
+        if($this->check['nickname']=$utente->validazioneNickName() && 
+            $this->check['mail']=$utente->validazioneMail() && 
+            $this->check['password']=$utente->validazionePassword())
             return true;
         else
             return false;
@@ -139,7 +143,7 @@ class v_utente extends v_oggetto
             $utente = new e_visitatore(); 
             $this->smarty->registerObject('utente', $utente);
             $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
-            
+
             $this->smarty->assign('errore', $errore);
             $this->smarty->assign('check', $this->check);
 
@@ -159,7 +163,7 @@ class v_utente extends v_oggetto
         $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
         
         if($rimuovi)
-        {
+        {  
             $setRimuoviUtente = true;
             $this->smarty->assign('rName', $removed->getNickName());
             $this->smarty->assign('rId', $removed->getId());
