@@ -212,7 +212,7 @@ class c_utente
                 // se la mail non e stata ancora usata, si puo salvare l'utente
                 $Utente->hashPassword(); // si cripta la password
                 f_peristance::getInstance()->salva($Utente); // si salva l'utente
-                c_sessione::iniziaSessione($Utente);
+                c_sessione::inizioSessione($Utente);
 
                 $Utente->setInfoUtente();
                 header('Location: /BiblioLibro/infoUtente/modificaInfo/');

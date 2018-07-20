@@ -7,7 +7,7 @@ if(file_exists('config.inc.php'))
     
     require_once 'inc.php';
     
-    //La classe CAdmin fornisceaccesso all'amministratore per effettuare alcune operazioni basiche attraverso l'applicazione
+    //La classe c_amministratore fornisce accesso all'amministratore per effettuare alcune operazioni basiche attraverso l'applicazione
     
     class c_amministratore
     
@@ -48,7 +48,7 @@ if(file_exists('config.inc.php'))
             {
                 $v_amministratore = new v_amministratore();
 
-                $utnte = c_sessione::getUtenteDaSessione();
+                $utente = c_sessione::getUtenteDaSessione();
                 
                 if(c_sessione::trovaPrivilegiAmminitratore())
                     

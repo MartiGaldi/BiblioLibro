@@ -100,6 +100,6 @@
 	<div class="col-sm-3">
 		
 	</div>
-	{include file="navbar.tpl"}
+	{include file="fine.tpl"}
 </body>
 </html>

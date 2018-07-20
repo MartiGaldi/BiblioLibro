@@ -18,7 +18,7 @@ class FrontController
     function run()
     {
         $resources = preg_split("#[][&?/]#", $_SERVER['REQUEST_URI']); // individua le componenti dell'url
-        $controller = 'c_' . ucfirst($resources[2]); // costruisce il nome della classe del Controller
+        $controller = 'c_' . lcfirst($resources[2]); // costruisce il nome della classe del Controller
         
         if (class_exists($controller)) // se la classe esiste
         { // verifica che il metodo sia valido
