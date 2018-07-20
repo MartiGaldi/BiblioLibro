@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	{utente->getNick assign='uNome'}
+	{utente->getNick assign='uNick'}
 	{utente->getId assign='uId'} 
 
 	{include file="navbar.tpl"}
@@ -37,11 +37,11 @@
 				<fieldset class="form-group">
 					<legend></legend>
 					<div class="form-group row">
-						<label for="TitoloLibro" class="col-sm-2 col-form-label {if !$validazione.titolo} text-danger{/if}">Titolo: *</label>
+						<label for="TitoloLibro" class="col-sm-2 col-form-label {if !$check.titolo} text-danger{/if}">Titolo: *</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control is-invalid" id="TitoloLibro" name="titolo" value="{$libro->getTitolo()}" placeholder="Inserisci titolo...">
 						</div>
-						{if ! $validazione.titolo}
+						{if ! $check.titolo}
 						<div class="col-sm-3 well">
 							<small id="titoloHelp" class="text-danger">
   							Solo caratteri alfanumerici
@@ -51,11 +51,11 @@
 					</div>
 					
 					<div class="form-group row">
-						<label for="GenereLibro" class="col-sm-2 col-form-label {if !$validazione.genere} text-danger{/if}">Genere: *</label>
+						<label for="GenereLibro" class="col-sm-2 col-form-label {if !$check.genere} text-danger{/if}">Genere: *</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control is-invalid" id="GenereLibro" name="genere" value ="{$libro->getGenere()}" placeholder="Inserisci genere...">
 						</div>
-						{if ! $validazione.genere}
+						{if ! $check.genere}
 						<div class="col-sm-3 well">
 							<small id="genereHelp" class="text-danger">
   								Solo caratteri alfabetici.
@@ -65,11 +65,11 @@
 					</div>
 					
 					<div class="form-group row">
-						<label for="AutoreLibro" class="col-sm-2 col-form-label {if !$validazione.autore} text-danger{/if}">Autore: *</label>
+						<label for="AutoreLibro" class="col-sm-2 col-form-label {if !$check.autore} text-danger{/if}">Autore: *</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control is-invalid" id="AutoreLibro" name="autore" value ="{$libro->getAutoree()}" placeholder="Inserisci autore...">
+							<input type="text" class="form-control is-invalid" id="AutoreLibro" name="autore" value ="{$libro->getAutore()}" placeholder="Inserisci autore...">
 						</div>
-						{if ! $validazione.autore}
+						{if ! $check.autore}
 						<div class="col-sm-3 well">
 							<small id="autoreHelp" class="text-danger">
   								Solo caratteri alfabetici.
@@ -79,11 +79,11 @@
 					</div>
 					
 					<div class="form-group row">
-						<label for="NumCopieLibro" class="col-sm-2 col-form-label {if !$validazione.numcopie} text-danger{/if}">Numero copie: *</label>
+						<label for="NumCopieLibro" class="col-sm-2 col-form-label {if !$check.numcopie} text-danger{/if}">Numero copie: *</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control is-invalid" id="NumCopieLibro" name="numcopie" value ="{$libro->getNumCopie()}" placeholder="Inserisci numero copie...">
 						</div>
-						{if ! $validazione.numcopie}
+						{if ! $check.numcopie}
 						<div class="col-sm-3 well">
 							<small id="numcopieHelp" class="text-danger">
   								Solo caratteri numerici; Almeno una copia.

@@ -1,6 +1,9 @@
 {profilo->getInfoUtente assign='pInfo'}
 
 <div class="well">
+<p id="important">{pNick}</p>
+</div>
+<div class="well">
 {if $pTipo eq 'cliente' or 'bibliotecario'}
 	<p id="important"> Nome: </p> <span>{if $pInfo->getNome()} {$pInfo->getNome()}{/if}</span>
 	<p id="important"> Cognome: </p> <span> {if $pInfo->getCognome()} {$pInfo->getCognome()}{/if} </span>
@@ -12,7 +15,7 @@
 	{/if}
 </div>
 
-{if $uNome == $pNome}
+{if $uNick == $pNick}
 <div class="well">
 	<p> <a href="/BiblioLibro/infoUtente/modificaInfo">Modifica profilo </a> </p>
 </div>

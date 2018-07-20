@@ -9,7 +9,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="/BiblioLibro/resorse/css/style.css">
+	href="/BiblioLibro/risorse/css/style.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -17,7 +17,8 @@
 </head>
 
 <body>
-
+	{utente->getNick assign='uNick'}
+	
 	{include file="navbar.tpl"}
 	
 	<div class="container text-center">
@@ -27,10 +28,10 @@
 		<div class="col-sm-7 well">
 			<h2>Login Amministratore</h2>
 			<hr>
-			{if $error}
+			{if $errore}
 
 			<div class="alert alert-warning">
-				<strong>Attenzione!</strong><br>Combinazione errara di mail e password. <br>Please retry.
+				<strong>Attenzione!</strong><br>Combinazione errata di mail e password. <br>Please retry.
 			</div>
 			{/if}
 
@@ -38,14 +39,14 @@
 
 					<form class="form-horizontal" method="post" action="login">
 						<div class="form-group row">
-      						<label for="user" class="col-sm-2 col-form-label {if !$validazione.mail} text-danger{/if}">Mail:</label>
+      						<label for="utente" class="col-sm-2 col-form-label {if !$check.mail} text-danger{/if}">Mail:</label>
       						<div class="col-sm-7">
-        						<input type="text" class="form-control is-invalid" id="inputPassword" name="mail" placeholder="Inserisci mail...">
+        						<input type="text" class="form-control is-invalid" id="utente" name="mail" placeholder="Inserisci mail...">
       						</div>
 
-      						{if ! $validazione.mail}
+      						{if ! $check.mail}
       						<div class="col-sm-3">
-        						<small id="passwordHelp" class="text-danger">
+        						<small id="mailHelp" class="text-danger">
           							La struttura della mail non è valida.
         						</small>      
      						</div>
@@ -55,12 +56,12 @@
     					
 
     					<div class="form-group row">
-      						<label for="password" class="col-sm-2 col-form-label {if !$validazione.password} text-danger{/if}">Password:</label>
+      						<label for="inputPassword" class="col-sm-2 col-form-label {if !$check.password} text-danger{/if}">Password:</label>
       						<div class="col-sm-7">
         						<input type="password" class="form-control is-invalid" id="inputPassword" name="password" placeholder="Password">
       						</div>
 
-      						{if ! $validazione.password}
+      						{if ! $check.password}
       						<div class="col-sm-3">
         						<small id="passwordHelp" class="text-danger">
           							La password deve contenere dagli 8 ai 20 charatteri.

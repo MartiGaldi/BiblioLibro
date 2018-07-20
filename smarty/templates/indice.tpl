@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
 
 <head>
 
@@ -53,7 +53,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <form class="navbar-form navbar-left" role="search" action="/BiblioLibro/ricerca/semplice>
+          <form class="form-inline" role="search" action="/BiblioLibro/ricerca/semplice>
           <div class="form-group input-group">
             <input class="form-control mr-2" name="str" type="text" placeholder="Fai la tua ricerca...">
             <span class="input-group-btn">
@@ -62,14 +62,22 @@
             </button>
             </span>
           </div>
+			</form>
           {if $uTipo != "visitatore"}
             <a class="nav-link" href="/BiblioLibro/ricerca/avanzata"> ricerca avanzata </a>
           {/if}
-          </form>
         </div>
       </div>
     </div>
-
+	
+	<div class="container text-center well">
+		<div class="row">
+			<div class="col-sm-4">
+				<img src="BiblioLibro/risorse/statics/libri.png/">
+			</div>
+		</div>
+	</div>
+	
 
 	<footer class="container-fluid text-center">
 

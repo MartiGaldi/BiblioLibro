@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
 
 <head>
 
@@ -34,7 +34,7 @@
 
 
 
-	{user->getNickName assign='uName'}
+	{user->getNickName assign='uNick'}
 
 	{user->getId assign='uId'}
 
@@ -46,9 +46,9 @@
 
 	<div class="container text-center well">
 
-		<h3>Ooooops! Something went wrong!</h3>
+		<h3>ERRORE</h3>
 
-		<p>{$error} Please go back to <a href="/deepmusic/">home</a>
+		<p>{$errore} Torna alla <a href="/BiblioLibro/">home</a>
 
 		</p>
 
@@ -56,6 +56,7 @@
 
 	</div>
 
+	{include file="fine.tpl"}
 
 
 </body>

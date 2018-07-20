@@ -18,7 +18,7 @@
 
 <body>
 
-	{utente->getNick assign='uNome'}
+	{utente->getNick assign='uNick'}
 
 	{utente->getId assign='uId'} 
 	
@@ -46,26 +46,26 @@
 				<legend></legend>
 					<form method="post" enctype="multipart/form-data" action="/BiblioLibro/libro/carica">
 						<div class="form-group row">
-      						<label for="Titolo" class="col-sm-2 col-form-label {if !$validazione.titolo} text-danger{/if}">Titolo: *</label>
+      						<label for="Titolo" class="col-sm-2 col-form-label {if !$check.titolo} text-danger{/if}">Titolo: *</label>
       						<div class="col-sm-7">
         						<input type="text" class="form-control is-invalid" id="TitoloLibro" name="titolo" placeholder="Inserisci titolo...">
       						</div>
-      						{if ! $validazione.titolo}
+      						{if ! $check.titolo}
       						<div class="col-sm-3 well">
         						<small id="titoloHelp" class="text-danger">
-          							Solo caratteri alfanumerii
+          							Solo caratteri alfanumerici
         						</small>      
      						</div>
      						{/if}
     					</div>
 
 						<div class="form-group row">
-      						<label for="Genere" class="col-sm-2 col-form-label {if !$validazione.genere} text-danger{/if}">Genere: *</label>
+      						<label for="Genere" class="col-sm-2 col-form-label {if !$check.genere} text-danger{/if}">Genere: *</label>
       						<div class="col-sm-7">
         						<input type="text" class="form-control is-invalid" id="GenereLibro" name="genere" placeholder="Inserisci genere...">
       						</div>
 
-      						{if ! $validazione.genere}
+      						{if ! $check.genere}
       						<div class="col-sm-3 well">
         						<small id="genereHelp" class="text-danger">
           							Solo caratteri.
@@ -75,12 +75,12 @@
     					</div>
 
     				<div class="form-group row">
-      						<label for="AutoreLibro" class="col-sm-2 col-form-label {if !$validazione.genere} text-danger{/if}">Autore: *</label>
+      						<label for="AutoreLibro" class="col-sm-2 col-form-label {if !$check.autore} text-danger{/if}">Autore: *</label>
       						<div class="col-sm-7">
         						<input type="text" class="form-control is-invalid" id="AutoreLibro" name="autore" placeholder="Inserisci autore...">
       						</div>
 
-      						{if ! $validazione.autore}
+      						{if ! $check.autore}
       						<div class="col-sm-3 well">
         						<small id="autoreHelp" class="text-danger">
           							Solo caratteri.
@@ -90,12 +90,12 @@
     					</div>
 						
 						<div class="form-group row">
-      						<label for="NumCopieLibro" class="col-sm-2 col-form-label {if !$validazione.numcopie} text-danger{/if}">Numero copie: *</label>
+      						<label for="NumCopieLibro" class="col-sm-2 col-form-label {if !$check.numcopie} text-danger{/if}">Numero copie: *</label>
       						<div class="col-sm-7">
         						<input type="text" class="form-control is-invalid" id="NumCopieLibro" name="numcopie" placeholder="Inserisci numero di copie...">
       						</div>
 
-      						{if ! $validazione.numcopie}
+      						{if ! $check.numcopie}
       						<div class="col-sm-3 well">
         						<small id="numcopieHelp" class="text-danger">
           							Almeno una copia.

@@ -4,7 +4,7 @@
 	<tbody>					
 	{foreach $array as $libro}
 		<tr>
-			<td><a href="/BiblioLibro/catalogo/{$libro->getAutore()}">{$song->getTitolo()}{$song->getNumCopie()}</a></td>
+			<td><a href="/BiblioLibro/libro/libro{$libro->getId()}">{$libro->getTitolo()}</a></td>
 		</tr>
 	{/foreach}
 	</tbody>

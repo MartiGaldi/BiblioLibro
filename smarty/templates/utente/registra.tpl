@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>Registrazione</title>
+<title>Registra Utente</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	{utente->getNick assign='uNome'}
+	{utente->getNick assign='uNick'}
 	{include file="navbar.tpl"}
 	
 	<div class="container text-center">
@@ -26,7 +26,7 @@
 		<div class="col-sm-7 well">
 			{if $errore}
 			<div class="alert alert-warning">
-				<strong>Attenzione</strong><br>Combinazione errata di utente e password. <br>Riprova
+				<strong>Attenzione</strong><br>Combinazione errata di mail e password. <br>Riprova
 			</div>
 			{/if}
 			<h2>Registrati</h2>
@@ -34,11 +34,11 @@
 			<form method="post" enctype="multipart/form-data" action="signup">
 			
 				<div class="form-group row">
-					<label for="utente" class="col-sm-2 col-form-label {if !$check.nick} text-danger{/if}">Nickname: </label>
+					<label for="utente" class="col-sm-2 col-form-label {if !$check.nick_name} text-danger{/if}">Nickname: </label>
 					<div class="col-sm-7">
-						<input type="text" class="form-control is-invalid" id="user" name="nick" placeholder="Inserisci nickname...">
+						<input type="text" class="form-control is-invalid" id="utente" name="nick_name" placeholder="Inserisci nickname...">
 					</div>
-					{if ! $check.nick}
+					{if ! $check.nick_name}
 					<div class="col-sm-3 well">
 						<small id="nickHelp" class="text-danger">
   							Solo caratteri alfanumerici.

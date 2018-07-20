@@ -17,6 +17,7 @@
 </head>
 
 <body>
+	{utente->getNick assign='uNick'}
 	{utente->getId assign='uId'} 
 	
 	{include file="navbar.tpl"}
@@ -31,10 +32,12 @@
         </div>
 
 		<div class="col-sm-7 well">
-			<h4>Ricerca per {$key} {$string}: </h4>
+			<h4>Ricerca per {$value} {$key} {$string}: </h4>
 
-			{if $key eq "Titolo"}
+			{if $key eq "Libro"}
 				{include file="Catalogo.tpl"}
+			{elseif $key eq "Utente"}
+				{include file="Utenti.tpl"}
 			{/if}
 		</div>
 

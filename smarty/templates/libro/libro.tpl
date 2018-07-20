@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+{utente->getNick assign='uNick'}
 {utente->getId assign='uId'}
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>{$libro->getTitolo()}</title>
@@ -26,14 +27,14 @@
         </div>
 		<div class="col-sm-7 ">
 			<div class="well">
-			<h4><a href="/BiblioLibro/libro/{$libro->getTitolo()}">{$libro->getTitolo()}</a> : {$lbro->getAutore()} ({$libro->getGenere()}) ({$libro->getDurata()}) ({$libro->getInfoLibro()})</h4>
+			<h4><a href="/BiblioLibro/libro/{$libro->getTitolo()}">{$libro->getTitolo()}</a> : {$libro->getAutore()} ({$libro->getGenere()}) ({$libro->getDurata()}) ({$libro->getInfoLibro()})</h4>
 			<br>
 			<br>
 			{if $prenota}
 				<a href="/BiblioLbro/libro/prenota/{$libro->getId()}" 
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">PRENOTA</a>
 			{/if}
-			{if $uType eq 'bibliotecario'}
+			{if $uTipo eq 'bibliotecario'}
 			<a href="/BiblioLibro/libro/modifica/{$libro->getId()}" 
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Modifica</a>
 	

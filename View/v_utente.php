@@ -49,7 +49,7 @@ class v_utente extends v_oggetto
                     $utente->setMail($_POST['mail']);
                     
                     if(isset($_POST['password']))
-                        $utente->setPassword($_POST['pwd']);
+                        $utente->setPassword($_POST['password']);
                         
                         return $utente;                
     }
@@ -116,12 +116,12 @@ class v_utente extends v_oggetto
             $utente = new e_visitatore();
             
             $this->smarty->registerObject('utente', $utente);
-            $this->smarty->assign('uTipo', lcfirst(substr(get_class($uteente), 2)));
+            $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
             
             $this->smarty->assign('errore', $errore);
             $this->smarty->assign('check', $this->check);
             
-            $this->smarty->display('utente/login.tpl');     
+            $this->smarty->display('utente/login.tpl');
     }
     
     
@@ -143,9 +143,8 @@ class v_utente extends v_oggetto
             $this->smarty->assign('errore', $errore);
             $this->smarty->assign('check', $this->check);
 
-            $this->smarty->display('utente/registrati.tpl'); 
+            $this->smarty->display('utente/registra.tpl'); 
     }
-    
     
     
     /**
@@ -171,6 +170,6 @@ class v_utente extends v_oggetto
             $this->smarty->assign('rId', NULL);
         }
         
-        $this->smarty->display('utente/remuoviUtente.tpl');
+        $this->smarty->display('utente/rimuoviUtente.tpl');
     }  
 }

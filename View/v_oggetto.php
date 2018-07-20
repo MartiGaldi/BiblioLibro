@@ -20,7 +20,7 @@ class v_oggetto
     
     protected function __construct()
     {
-        $this->smarty = SmartyConfig::configure();
+        $this->smarty = SmartyConfig::configura();
         // l'array è istanziato con indici i campi delle varie form
     }
     

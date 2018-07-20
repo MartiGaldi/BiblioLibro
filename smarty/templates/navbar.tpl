@@ -14,7 +14,7 @@
         		<ul class="navbar-nav">
         		
         			{if $uTipo eq 'visitatore'}
-
+        			
 					<!-- Login (se visitatore) -->
 					
 					<li class="nav-item">
@@ -35,6 +35,8 @@
         
       			<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/login">
           		<i class="fa d-inline fa-lg fa-user-circle-o"></i> ACCEDI </a>
+          		<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/registra">
+          		<i class="fa d-inline fa-lg fa-user-circle-o"></i> REGISTRATI </a>
           			
           			{/if}
           			

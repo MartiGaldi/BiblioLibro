@@ -1,8 +1,8 @@
 body
 {
-	background-color: white;
+	background-color: black;
 }
-a { color: blue-light;}
+a { color: blue;}
 
 
 .well 
@@ -11,7 +11,7 @@ a { color: blue-light;}
 	background-color:rgba(0, 0, 0, 0.5);
 	border-style: hidden;
         color: white;
-        font-family: "Arial", Monaco, monospace; 
+        font-family: "Lucida Console", Monaco, monospace; 
 	font-size: 18px;
 }
 
@@ -21,7 +21,7 @@ a { color: blue-light;}
 
 #important
 {
-  color: red;
+  color: white;
   font-size: 20px;
   text-decoration: underline;
   text-decoration-color: white;

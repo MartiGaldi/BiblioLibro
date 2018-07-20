@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-{utente->getNick assign='uNome'}
+{utente->getNick assign='uNick'}
 {utente->getId assign='uId'}
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>Cancella Utente {if isset($rNome) && isset($rId)}{$rNome}{else}{$uNome}{/if}</title>
+<title>Cancella Utente {if isset($rNick) && isset($rId)}{$rNick}{else}{$uNick}{/if}</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -22,8 +22,9 @@
 
 	<div class="container text-center well">
 		<h3>Eliminare profilo? Tutti i dati verrano persi.</h3>
-		{if isset($rNome) && isset($rId)}{$rNome}{else}{/if}
-		<form method="post" {if $uTipo eq 'bibliotecario' && isset($rNome) && isset($rId)}{if $rId!=$uId} action="/BiblioLibro/utente/rimuvi/{$rId}" {/if}{/if}>
+		{if isset($rNick) && isset($rId)}{$rNick}{else}{/if}
+		<form method="post" {if $uTipo eq 'bibliotecario' && isset($rNick) && isset($rId)}{if $rId!=$uId} action="/BiblioLibro/utente/rimuvi/{$rId}" {else}
+				action="/BiblioLibro/utente/rimuovi/{$pId}"{/if}{/if}>
     		<button type="submit" class="btn btn-primary btn-lg active" name="action" value="si">Si</button>
     		<button type="submit" class="btn btn-primary btn-lg btn-danger active" name="action" value="no">No</button>
 		</form>

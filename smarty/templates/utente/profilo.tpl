@@ -1,15 +1,15 @@
 <!DOCTYPE html>
  
-{utente->getNick assign='uNome'}
+{utente->getNick assign='uNick'}
 {utente->getId assign='uId'}
  
-{profilo->getNick assign='pNome'}
+{profilo->getNick assign='pNick'}
 {profilo->getId assign='pId'}
 
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>Profilo {$pNome}</title>
+<title>Profilo {$pNick}</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -45,23 +45,23 @@
         </div>
 			<div class="col-sm-7 well">
 			<!-- Contenuto principale -->
-				{if $contenuto eq 'Catalogo'}
+				{if $content eq 'Catalogo'}
 				<!--lista libri-->
 				<h4 id="important">Catalogo</h4>
 				{include file="Catalogo.tpl"}
 				
-				{elseif $contenuto eq 'Utenti'}
+				{elseif $uTipo eq 'bibliotecario' && $content eq 'Utenti'}
 				<!--lista utenti-->
 				<h4 id="important">Lista Utenti</h4>
-				<a href="/BiblioLibro/utente/profilo/{$pId}">Torna al Profilo>
+				<a href="/BiblioLibro/utente/profilo/{$pId}">Torna al Profilo
 				{include file="Utenti.tpl"}
 				
-				{elseif $contenuto eq 'None'}
+				{elseif $content eq 'None'}
 				<!-- Introduzione semplice-->
-				<h3>Ciao! Sono {ucfirst($pTipo)}!</h3>
+				<h3>Il mio profilo {ucfirst($pTipo)}!</h3>
 				{/if}
 			</div>
 	</div>
-	{include file="navbar.tpl"}
+	{include file="fine.tpl"}
 </body>
-</html>rimuovi
+</html>

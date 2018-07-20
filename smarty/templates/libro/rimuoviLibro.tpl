@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	{utente->getNick assign='uNome'}
+	{utente->getNick assign='uNick'}
 	{utente->getId assign='uId'}
 
 	{include file="navbar.tpl"}

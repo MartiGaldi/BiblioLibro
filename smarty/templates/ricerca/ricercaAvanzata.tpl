@@ -17,6 +17,7 @@
 </head>
 
 <body>
+	{utente->getNick assign='uNick'}
 	{utente->getId assign='uId'} 
 
 	{include file="navbar.tpl"}
@@ -39,9 +40,15 @@
 
 					<div class="form-group col-md-3">
 						<select id="inputKey" class="form-control" name="key">
+							<option value="libro" selected>Libro</option>
+							<option value="utente">Utente</option>
+						</select>
+					</div>
+					
+					<div class="form-group col-md-3">
+						<select id="inputKey" class="form-control" name="value">
 							<option value="autore" selected>Autore</option>
-							<option value="genere">Genere</option>
-							<option value="isbn">Isbn</option>
+							<option value="nome">Nome</option>
 						</select>
 					</div>
 

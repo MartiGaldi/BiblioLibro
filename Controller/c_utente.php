@@ -28,7 +28,7 @@ class c_utente
                 $v_utente->Errore($utente, 'Sei già connesso.');
             }
             else
-                $v_utente->mostaLogin();  
+                $v_utente->mostraLogin();  
         }
         else if ($_SERVER['REQUEST_METHOD'] == 'POST')
             c_utente::autenticazione();

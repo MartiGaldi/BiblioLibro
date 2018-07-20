@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	{utente->getNick assign='uNome'}
+	{utente->getNick assign='uNick'}
 	{user->getId assign='uId'} 
 	
 	{include file="navbar.tpl"}
@@ -37,7 +37,7 @@
 				<form method="post" id="info" enctype="multipart/form-data" action="inserisciInfo">
   					<fieldset class="form-group">
   						<legend></legend>
-						{if $uTipo=='cliente'}
+						{if $uTipo=='cliente' or $uTipo=='bibliotecario'}
 							
 						<div class="form-group row">
 							<label for="Nome" class="col-sm-2 col-form-label {if !$check.nome} text-danger{/if}">
@@ -115,7 +115,7 @@
 							{if !$check.dtNasc}
 							<div class="col-sm-3 well">
 	        					<small id="dataHelp" class="text-danger">
-	          						Il formato deve essere dd/mm/yyyy.
+	          						Il formato deve essere yyyy/mm/dd.
 	        					</small>      
 	     					</div>
 	     					{/if}
@@ -128,7 +128,7 @@
 							<div class="col-sm-7">
 								<input type="text" class="form-control" name="CodFisc" 
 									{if $uInfo->getCodFisc(true)}
-										value="{$uInfo->getDtNasc(true)}"
+										value="{$uInfo->getCodFisc(true)}"
 									{/if}
 									placeholder="Inserisci codice fiscale...">
 							</div>

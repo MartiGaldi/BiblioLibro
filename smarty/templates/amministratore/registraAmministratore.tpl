@@ -9,7 +9,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="/deepmusic/resources/css/style.css">
+	href="/BiblioLibro/risorse/css/style.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-
+	{utente->getNick assign='uNick'}
 	{include file="navbar.tpl"}
 
 	
@@ -26,7 +26,7 @@
         </div>
 
 		<div class="col-sm-7 well">
-			{if $error}
+			{if $errore}
 			<div class="alert alert-warning">
 				<strong>Attenzione!</strong><br>Combinazione sbagliata di mail e password <br>Riprova
 			</div>
@@ -35,14 +35,14 @@
 			<h2>Registra</h2>
 					<form method="post" enctype="multipart/form-data" action="/BiblioLibro/amministratore/registra">
 						<div class="form-group row">
-      						<label for="inputMail" class="col-sm-2 col-form-label {if !$validazione.mail} text-danger{/if}">Mail:</label>
+      						<label for="inputMail" class="col-sm-2 col-form-label {if !$check.mail} text-danger{/if}">Mail:</label>
       						<div class="col-sm-7">
-        						<input type="text" class="form-control is-invalid" id="user" name="name" placeholder="Insert username...">
+        						<input type="text" class="form-control is-invalid" id="utente" name="mail" placeholder="Inserisci mail...">
       						</div>
 
-      						{if ! $validazione.mail}
+      						{if ! $check.mail}
       						<div class="col-sm-3">
-        						<small id="userHelp" class="text-danger">
+        						<small id="mailHelp" class="text-danger">
           							La struttura della mail non è corretta.
         						</small>      
      						</div>
@@ -52,14 +52,30 @@
     					
 
 						<div class="form-group row">
-      						<label for="inputPassword" class="col-sm-2 col-form-label {if !$validazione.password} text-danger{/if}">Password:</label>
+      						<label for="inputPassword" class="col-sm-2 col-form-label {if !$check.password} text-danger{/if}">Password:</label>
       						<div class="col-sm-7">
-        						<input type="password" class="form-control is-invalid" id="password" name="password" placeholder="Password">
+        						<input type="password" class="form-control is-invalid" id="inputPassword" name="password" placeholder="Password">
       						</div>
 
-      						{if ! $validazione.password}
+      						{if ! $check.password}
       						<div class="col-sm-3">
         						<small id="passwordHelp" class="text-danger">
+          							Deve avere una lunghezza compresa fra 8-20 caratteri.
+        						</small>      
+     						</div>
+     						{/if}
+    					</div>
+    					
+    					
+    					<div class="form-group row">
+      						<label for="inputNickName" class="col-sm-2 col-form-label {if !$check.nick_name} text-danger{/if}">NickName:</label>
+      						<div class="col-sm-7">
+        						<input type="nickName" class="form-control is-invalid" id="inputNickName" name="nick_name" placeholder="Inserisci NickName">
+      						</div>
+
+      						{if ! $check.nick_name}
+      						<div class="col-sm-3">
+        						<small id="nickHelp" class="text-danger">
           							Deve avere una lunghezza compresa fra 8-20 caratteri.
         						</small>      
      						</div>
@@ -72,14 +88,14 @@
 							<legend>Tipo Utente:</legend>
 							<div class="form-check">
 								<label class="form-check-label"> <input type="radio"
-									class="form-check-input" name="type" value="listener" checked>
+									class="form-check-input" name="tipo" value="cliente" checked>
 									Cliente
 								</label>
 							</div>
 
 							<div class="form-check">
 								<label class="form-check-label"> <input type="radio"
-									class="form-check-input" name="type" value="musician">
+									class="form-check-input" name="tipo" value="bibliotecario">
 									Bibliotecario
 								</label>
 							</div>
