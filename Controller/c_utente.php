@@ -200,11 +200,11 @@ class c_utente
     /**
     * La funzione Registra permette di creare un nuovo utente se non sono presenti utenti con stessa mail inseriti nella form
     */
-    private function registra()
+    function registra()
     {
         $v_utente = new v_utente();
         $Utente = $v_utente->creaUtente(); // viene creato un utente con i parametri della form
-        
+        var_dump("eccomi");
         if($v_utente->validazioneIscrizione($Utente))
         {
             if(!f_persistance::getInstance()->esiste(e_utente::class, f_target::NICKNAME_ESISTENTE, $Utente->getNickName()) && !f_persistance::getInstance()->esiste(e_utente::class, f_target::MAIL_ESISTENTE, $Utente->getMail()))
