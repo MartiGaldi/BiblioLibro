@@ -20,6 +20,7 @@ class FrontController
         $resources = preg_split("#[][&?/]#", $_SERVER['REQUEST_URI']); // individua le componenti dell'url
         $controller = 'c_' . lcfirst($resources[2]); // costruisce il nome della classe del Controller
         
+        
         if (class_exists($controller)) // se la classe esiste
         { // verifica che il metodo sia valido
             $method = $resources[3];
@@ -57,8 +58,7 @@ class FrontController
                 $smarty->assign('uTipo', lcfirst(substr(get_class($utente),2)));
                 $smarty->display('indice.tpl');
             } 
-        }
-        else // se la classe non esiste, si viene reindirizzati alla pagina principale
+        }else // se la classe non esiste, si viene reindirizzati alla pagina principale
         {
             $utente = c_sessione::getUtenteDaSessione();
             $smarty = SmartyConfig::configura();

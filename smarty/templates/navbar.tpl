@@ -16,11 +16,11 @@
               <i class="fa fa-home fa-home"></i>&nbsp;Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/BiblioLibro/chiSiamo">Chi siamo?</a>
+            <a class="nav-link" href="/BiblioLibro/">Chi siamo?</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/BiblioLibro/contattaci">
-              <i class="fa d-inline fa-lg fa-envelope-o"></i>Contattaci</a>
+              <i class="fa d-inline fa-lg fa-envelope-o"></i>Contattaci<chiSiamo/a>
           </li>
         </ul>
         <a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/login">
