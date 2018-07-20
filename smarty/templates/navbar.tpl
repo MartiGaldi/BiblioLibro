@@ -1,101 +1,66 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
 
-	<div class="container">
-
+	<div class="container-fluid">
+	<div class="navbar-header">
 		<a class="navbar-brand">
-			<b>BiblioLibro</b>
+		<h1>BiblioLibro</h1>
 		</a>
-
-			<button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navabar2SupportedContent">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			
+ 	</div>
+			<br>
+			<br>
 			<div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
-        		<ul class="navbar-nav">
+        		<ul class="nav navbar-nav">
         		
         			{if $uTipo eq 'visitatore'}
-        			
-					<!-- Login (se visitatore) -->
-					
-					<li class="nav-item">
-           				<a class="active nav-link" href="/BiblioLibro/">
-              			<i class="fa fa-home fa-home"></i>&nbsp;Home</a>
+        			<!-- se visitatore -->
+					<li>
+           				<a href="/BiblioLibro/">Home</a>
           			</li>
-          			
+          			<li>
+            			<a href="/BiblioLibro/chi_siamo/">Chi siamo?</a>
+          			</li>
           			<li class="nav-item">
-            			<a class="nav-link" href="/BiblioLibro/chi_siamo/">Chi siamo?</a>
+            			<a href="/BiblioLibro/contattaci/">Contattaci</a>
           			</li>
-          		
-          			<li class="nav-item">
-            			<a class="nav-link" href="/BiblioLibro/contattaci/">
-              			<i class="fa d-inline fa-lg fa-envelope-o"></i> Contattaci </a>
+          			<li>	
+      					<a href="/BiblioLibro/utente/login">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+      					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+      					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ACCEDI</a>
+					</li>
+					<li>
+          				<a href="/BiblioLibro/utente/registra">REGISTRATI</a>
           			</li>
-          			
-          		</ul>
-        
-      			<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/login">
-          		<i class="fa d-inline fa-lg fa-user-circle-o"></i> ACCEDI </a>
-          		<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/registra">
-          		<i class="fa d-inline fa-lg fa-user-circle-o"></i> REGISTRATI </a>
-          			
-          			{/if}
-          			
+          			{else}
           			<!-- se loggato -->
+					<li>
+           				<a href="/BiblioLibro/utente/profilo/{$uId}">{$uName} Profilo</a>
+          			</li>
+          			
+          			<li>
+           				<a href="/BiblioLibro/catalogo"> Catalogo </a>
+          			</li>
+          			
+          			<li>
+           				<a href="/BiblioLibro/utente/prestito"> Prestiti </a>
+          			</li>
           			
           			{if $uTipo eq 'bibliotecario'}
-					
-					<li class="nav-item">
-           				<a class="active nav-link" href="/BiblioLibro/">
-              			<i class="fa fa-home fa-home"></i>&nbsp;Home</a>
+        			 <li>
+           				<a href="/BiblioLibro/utente/Utenti"> Utenti </a>
           			</li>
-          			
-          			<li class="nav-item">
-            			<a class="nav-link" href="/BiblioLibro/utente/profilo/">Profilo</a>
+          			 <li>
+           				<a href="/BiblioLibro/libro/carica"> + Libro </a>
           			</li>
-          		
-          			<li class="nav-item">
-            			<a class="nav-link" href="/BiblioLibro/catalogo/"> Catalogo </a>
-          			</li>
-          			
-          			<li class="nav-item">
-            			<a class="nav-link" href="/BiblioLibro/utente/utenti/"> Utenti </a>
-          			</li>
-          			          			
-          			<li class="nav-item">
-            			<a class="nav-link" href="/BiblioLibro/utente/prestiti/"> Prestiti </a>
-          			</li>
-          			
-          		</ul>
-        		<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/logout/">
-          		<i class="fa d-inline fa-lg fa-user-circle-o"></i> ESCI </a>
-          
           			{/if}
           			
-          			{if $uTipo eq 'cliente'}
-					
-					<li class="nav-item">
-           				<a class="active nav-link" href="/BiblioLibro/">
-              			<i class="fa fa-home fa-home"></i>&nbsp;Home</a>
+          			<!-- Log Out -->
+          			<li>
+        				<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/logout/">
+          				<i class="fa d-inline fa-lg fa-user-circle-o"></i> ESCI </a>
           			</li>
           			
-          			<li class="nav-item">
-            			<a class="nav-link" href="/BiblioLibro/chi_siamo/">Chi siamo?</a>
-          			</li>
-          		
-          			<li class="nav-item">
-            			<a class="nav-link" href="/BiblioLibro/contattaci/">
-              			<i class="fa d-inline fa-lg fa-envelope-o"></i> Contattaci </a>
-          			</li>
-          			
-          			<li class="nav-item">
-            			<a class="nav-link" href="/BiblioLibro/utente/profilo/">Profilo</a>
-          			</li>
-          			
-          			</ul>
-        			<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/logout/">
-          			<i class="fa d-inline fa-lg fa-user-circle-o"></i> ESCI </a>
-          			
-          			{/if}
+          	{/if}	
+    	 </ul>
           
       </div>
     </div>
