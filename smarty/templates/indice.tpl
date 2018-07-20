@@ -1,90 +1,114 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
+	<title>Benvenuti!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> </head>
 
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<body class="bg-dark" >
 
-<title>Benvenuti!</title>
-
-<meta charset="utf-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet"
-
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<link rel="stylesheet"
-
-	href="/BiblioLibro/risorse/css/style.css">
-
-<script
-
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script
-
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-
-</head>
-
-<body>
-
-	
-
-	{utente->getNick assign='uNick'}
-
+{utente->getNick assign='uNick'}
 	{utente->getId assign='uId'}
-
-	<!-- Navbar -->
-
-	{include file="navbar.tpl"}
-
-	<br>
 	
-
-	<!-- Riquadro centrale -->
-
-	<div class="py-5">
+  <div class="py-5">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <form class="form-inline" role="search" action="/BiblioLibro/ricerca/semplice>
-          <div class="form-group input-group">
-            <input class="form-control mr-2" name="str" type="text" placeholder="Fai la tua ricerca...">
-            <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">
-            <span class="glyphicon glyphicon-search"></span>
-            </button>
-            </span>
-          </div>
-			</form>
-          {if $uTipo != "visitatore"}
-            <a class="nav-link" href="/BiblioLibro/ricerca/avanzata"> ricerca avanzata </a>
-          {/if}
+          <h1 class="display-1">
+            <i>
+              <b>BiblioLibro</b>
+            </i>
+          </h1>
         </div>
       </div>
     </div>
-	
-	<div class="container text-center well">
-		<div class="row">
-			<div class="col-sm-4">
-				<img src="BiblioLibro/risorse/statics/libri.png/">
-			</div>
-		</div>
-	</div>
-	
+  </div>
 
-	<footer class="container-fluid text-center">
+  {include file="navbar.tpl"}
+  
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form class="form-inline m-0 role="search" action="/BiblioLibro/ricerca/semplice ">
+            <input class="form-control mr-2" type="text" placeholder="Fai la tua ricerca...">
+            <button class="btn btn-primary" type="submit">CERCA</button>
+			{if $uTipo != "visitatore"}
+            <a class="nav-link" href="/BiblioLibro/ricerca/ricercaAvanzata"> ricerca avanzata </a>
+			{/if}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item">
+                <img class="d-block img-fluid w-100" src="/BiblioLibro/risorse/statics/biblioteca.jpg"> </div>
+              <div class="carousel-item active">
+                <img class="d-block img-fluid w-100" src="/BiblioLibro/risorse/statics/libri.png"> </div>
+              <div class="carousel-item">
+                <img class="d-block img-fluid w-100" src="/BiblioLibro/risorse/statics/libri2.png"> </div>
+            </div>
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-dark text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mt-3"> </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5 bg-dark text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center align-self-center">
+          <p class="mb-5">
+            <strong>BiblioLibro</strong>
+            <br>000 Via Vetoio
+            <br>L'Aquila, AQ 67100
+            <br>
+            <abbr title="Telefono">T:</abbr> (+39) 000-00000 </p>
+        </div>
+        <div class="col-md-6 p-0">
+          <img class="img-fluid" src="/BiblioLibro/risorse/statics/mappa.ipg"> </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="container-fluid text-center">
 
   		<a href="/BiblioLibro/amministratore/login">Pannello Amministratore</a>
 
 	</footer>
-
+	
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="text-center text-white">© Copyright 2018 BiblioLibro - All rights reserved. </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
