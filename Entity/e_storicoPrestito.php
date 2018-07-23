@@ -1,16 +1,16 @@
 <?php
 
 require_once 'inc.php';
-include_once 'Entity/e_prestito.php';
+include_once 'Entity/e_oggetto.php';
 
 /**
- * La classe e_storicoPrestito estende la classe e_prestito e rappresenta
- * i prestiti storici(conclusi) associati ad un determinato libro.
+ * La classe e_storicoPrestito estende la classe e_oggetto e rappresenta
+ * i prestiti storici (conclusi) associati ad un determinato libro.
  * @package Entity
  * @author gruppo 11
  */
 
-class e_storicoPrestito extends e_prestito
+class e_storicoPrestito extends e_oggetto
 {
     private $prestito;
   

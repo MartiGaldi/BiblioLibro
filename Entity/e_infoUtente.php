@@ -12,7 +12,7 @@ include_once 'Entity/e_oggetto.php';
 
 */
 
-class e_infoCliente extends e_oggetto
+class e_infoUtente extends e_oggetto
 {
     
    private $nome;
