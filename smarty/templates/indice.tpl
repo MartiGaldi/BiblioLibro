@@ -9,7 +9,7 @@
 
 <body class="bg-dark" >
 
-{utente->getNick assign='uNick'}
+	{utente->getNick assign='uNick'}
 	{utente->getId assign='uId'}
 	
   <div class="py-5">

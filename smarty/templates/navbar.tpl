@@ -1,74 +1,76 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-
-	<div class="container-fluid">
-	<div class="navbar-header">
+	<div class="container">
 		<a class="navbar-brand">
-		<h1>BiblioLibro</h1>
+			<b>BiblioLibro</b>
 		</a>
- 	</div>
-			<br>
-			<br>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 			<div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
-        		<ul class="nav navbar-nav">
+        		<ul class="navbar-nav">
         		
         			{if $uTipo eq 'visitatore'}
         			<!-- se visitatore -->
-					<li>
-           				<a href="/BiblioLibro/">Home</a>
-          			</li>
-          			<li>
-            			<a href="/BiblioLibro/chi_siamo/">Chi siamo?</a>
+					<li class="nav-item">
+           				<a class="active nav-link" href="/BiblioLibro">Home</a>
           			</li>
           			<li class="nav-item">
-            			<a href="/BiblioLibro/contattaci/">Contattaci</a>
+            			<a class="nav-link" href="/BiblioLibro/chiSiamo">Chi siamo?</a>
+          			</li>
+          			<li class="nav-item">
+            			<a class="nav-link" href="/BiblioLibro/contattaci">Contattaci</a>
           			</li>
 					</ul>
-					<ul class="nav navbar-nav">
-          			<li float:right>	
-      					<a href="/BiblioLibro/utente/login">ACCEDI</a>
+					<ul class="navbar-nav">
+          			<li class="nav-item" float:right>	
+      					<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/login">
+							<i class="fa d-inline fa-lg fa-user-circle-o"></i>ACCEDI</a>
 					</li>
-					<li float:right>
-          				<a href="/BiblioLibro/utente/registra">REGISTRATI</a>
+					<li class="nav-item" float:right>
+          				<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/registra">REGISTRATI</a>
           			</li>
 					</ul>
           			{else}
           			<!-- se loggato -->
-					<li>
-           				<a href="/BiblioLibro/utente/profilo/{$uId}">{$uName} Profilo</a>
+					<li class="nav-item">
+           				<a class="nav-link" href="/BiblioLibro/utente/profilo/{$uId}">{$uName} Profilo</a>
           			</li>
           			
-          			<li>
-           				<a href="/BiblioLibro/utente/prestito"> Prestiti </a>
+          			<li class="nav-item">
+           				<a class="nav-link" href="/BiblioLibro/utente/prestito"> Prestiti </a>
           			</li>
           			
           			{if $uTipo eq 'cliente'}
-          			<li>
-           				<a href="/BiblioLibro/Catalogo"> Catalogo </a>
+          			<li class="nav-item">
+           				<a class="nav-link" href="/BiblioLibro/Catalogo"> Catalogo </a>
           			</li>
           			{/if}
           			
           			{if $uTipo eq 'bibliotecario'}
-        			 <li>
-           				<a href="/BiblioLibro/Utenti"> Utenti </a>
+        			 <li class="nav-item">
+           				<a class="nav-link" href="/BiblioLibro/Utenti"> Utenti </a>
           			</li>
-          			 <li>
-           				<a href="/BiblioLibro/libro/caricaLibro"> + Libro </a>
+          			 <li class="nav-item">
+           				<a class="nav-link" href="/BiblioLibro/libro/caricaLibro"> + Libro </a>
           			</li>
-          			<li>
-           				<a href="/BiblioLibro/libro/rimuoviLibro"> - Libro </a>
+          			<li class="nav-item">
+           				<a class="nav-link" href="/BiblioLibro/libro/rimuoviLibro"> - Libro </a>
           			</li>
-          			<li>
-           				<a href="/BiblioLibro/libro/modificaLibro"> Modifica Libro </a>
+          			<li class="nav-item">
+           				<a class="nav-link" href="/BiblioLibro/libro/modificaLibro"> Modifica Libro </a>
           			</li>
           			{/if}
           			
           			
           			<!-- Log Out -->
-          			<li>
-        				<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/logout/">
+					<ul class="navbar-nav">
+          			<li class="nav-item" float:right>
+        				<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/logout">
           				<i class="fa d-inline fa-lg fa-user-circle-o"></i> ESCI </a>
           			</li>
+					</ul>
           			
+					
           	{/if}	
     	 </ul>
           

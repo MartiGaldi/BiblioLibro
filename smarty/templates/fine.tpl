@@ -17,7 +17,7 @@
             <abbr title="Telefono">T:</abbr> (+39) 000-00000 </p>
         </div>
         <div class="col-md-6 p-0">
-          <img class="img-fluid" src="/BiblioLibro/risorse/statics/mappa.ipg"> </div>
+          <img class="img-fluid" src="/BiblioLibro/risorse/statics/mappa.jpg"> </div>
       </div>
     </div>
   </div>
