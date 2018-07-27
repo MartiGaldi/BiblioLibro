@@ -3,8 +3,10 @@ require_once 'inc.php';
 include_once 'View/v_oggetto.php';
 
 /**
-* La classe v_cerca si occupa dell'input-output per quanto riguarda la funzionalità 'Ricerca'.
+* La classe v_cerca si occupa dell'input-output per quanto riguarda la funzionalità di ricerca
+* all'interno del catalogo.
 * @package View
+* @author gruppo11
 */
 
 class v_cerca extends v_oggetto
@@ -24,9 +26,9 @@ class v_cerca extends v_oggetto
     function getValoreRicerca() : string
     {
         $string = "";
-        
         if(isset($_GET['str']))
-        { // se l'utente ha inviato tramite GET un valore di ricerca, si ricava la stringa
+        { 
+			// se l'utente ha inviato tramite GET un valore di ricerca, si ricava la stringa
             $string = $_GET['str'];
         }
         return $string;  
@@ -35,7 +37,7 @@ class v_cerca extends v_oggetto
     
     /**
     * Ritorna la chiave scelta dall'utente nella ricerca avanzata, contenuta nell'array globale $_GET.
-    * @return array avente come valore la chiave
+    * @return array avente come valore la chiave e il valore
     */
     
     function getKeyAndValue() : array
@@ -43,8 +45,8 @@ class v_cerca extends v_oggetto
         $key="";
         $value="";
         
-        if($_GET['value'] == 'titolo' || $_GET['value'] == 'autore' ||$_GET['value'] == 'genere')
-            $value=ucfirst($_GET['value']);
+        if($_GET['value'] == 'titolo' || $_GET['value'] == 'autore')
+			$value = ucfirst($_GET['value']);
         if($_GET['key'] == 'libro')
             $key=ucfirst($_GET['key']);
         
@@ -73,8 +75,7 @@ class v_cerca extends v_oggetto
         $this->smarty->assign('array', $array);
         
         //mostro il contenuto della pagine
-        $this->smarty->display('cerca/cerca.tpl');
-        
+        $this->smarty->display('ricerca/cerca.tpl');  
     }
     
     
@@ -84,6 +85,6 @@ class v_cerca extends v_oggetto
         $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
         
         //mostro il contenuto della pagine
-        $this->smarty->display('cerca/ricerca_avanzata.tpl');   
+        $this->smarty->display('ricerca/ricercaAvanzata.tpl');   
     } 
 }

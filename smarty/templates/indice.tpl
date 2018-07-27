@@ -36,7 +36,7 @@
             <input class="form-control mr-2" type="text" placeholder="Fai la tua ricerca...">
             <button class="btn btn-primary" type="submit">CERCA</button>
 			{if $uTipo != "visitatore"}
-            <a class="nav-link" href="/BiblioLibro/ricerca/ricercaAvanzata"> ricerca avanzata </a>
+            <a class="nav-link" href="/BiblioLibro/ricerca/ricercaAvanzata.tpl"> ricerca avanzata </a>
 			{/if}
           </form>
         </div>

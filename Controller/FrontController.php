@@ -21,6 +21,9 @@ class FrontController
         $controller = 'c_' . lcfirst($resources[2]); // costruisce il nome della classe del Controller
         
         
+		 
+		
+		
         if (class_exists($controller)) // se la classe esiste
         { // verifica che il metodo sia valido
             $method = $resources[3];

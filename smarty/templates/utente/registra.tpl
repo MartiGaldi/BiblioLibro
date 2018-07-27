@@ -28,6 +28,7 @@
   
   {include file="navbar.tpl"}
   
+  
   <div class="py-5 bg-dark">
     <div class="container">
       <div class="row bg-light">
@@ -35,17 +36,22 @@
         <div class="col-md-6">
           <div class="card text-white p-5 bg-primary">
             <div class="card-body">
+			{if $errore}
+			<div class="alert alert-warning">
+				<strong>Attenzione!</strong><br>Combinazione errata di mail e password.<br>Riprova.
+			</div>
+			{/if}
               <h1 class="mb-4"> Registrati </h1>
               <form action="signup" method="post" enctype="multipart/form-data">
 			  
                 <div class="form-group">
-                  <label for="utente" class="{if ! $check.nickname} text-danger{/if}"> NickName: *</label>
+                  <label for="utente" class=" {if !$check.nickname} text-danger{/if}"> NickName: *</label>
 				  <input type="text" class="form-control" id="utente" name="nick_name" placeholder="Inserisci NickName...">
                 
 					{if !  $check.nickname}
 					<div class="col-sm-8 well">
 						<small id="nickHelp" class="text-danger">
-  							Solo caratteri alfanumerici.
+  							Deve comprendere dagli 8 ai 20 caratteri.
 						</small>      
 					</div>
 					{/if}
