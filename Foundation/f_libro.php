@@ -60,20 +60,20 @@ class f_libro{
         $database->commit();
     }
         
-    static function ricercaLibroDaTitolo() : string
+    static function cercaLibroDaTitolo() : string
     {
-        return "SELECT libro.*
-                FROM libro
+        return "SELECT libro.*, utenti.nickname
+                FROM libro, utenti
                 WHERE LOCATE( :titolo , libro.titolo) > 0;";
     }
         
         
-    static function ricercaLibroDaAutore() : string
+    /**static function ricercaLibroDaAutore() : string
     {
         return "SELECT libro.*
                 FROM libro
                 WHERE LOCATE( :autore , libro.autore) > 0;";
-    }
+    }*/
     
     /**
     * Associa ai campi della query i corrispondenti attributi dell'oggetto e_libro.

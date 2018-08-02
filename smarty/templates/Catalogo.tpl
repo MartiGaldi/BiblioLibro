@@ -4,13 +4,10 @@
 	<tbody>					
 	{foreach $array as $libro}
 		<tr>
-			{if !$libro->isHidden()} 
 			<!-- Titolo libro -->
 			<td><a href="/BiblioLibro/libro/show/{$libro->getId()}">{$libro->getTitolo()}</a></td>
-			{if isset($key)}
 			<!-- Autore libro -->
 			<td>{$libro->getAutore()}</td>
-			{/if} 
 			<!-- Genere del libro -->
 			<td>{$libro->getGenere()}</td>
 			<!-- Durata del prestito -->
@@ -20,5 +17,5 @@
 	</tbody>
 </table>
 {else}
-<p>Il testo ricercato non Ã¨ presente nel catalogo</p>
+<p>Il testo ricercato non è presente nel catalogo</p>
 {/if}

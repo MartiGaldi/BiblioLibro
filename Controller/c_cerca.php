@@ -9,6 +9,7 @@
  */
 
 class c_cerca
+
 {
     //chiave di default
     const KEY_DEFAULT = 'Libro';
@@ -41,7 +42,7 @@ class c_cerca
             $v_cerca->mostraRisultatoRicerca($utente, $oggetti, c_cerca::KEY_DEFAULT, c_cerca::VALUE_DEFAULT, $string);
         }
         else
-            header('Location:/BiblioLibro/index');
+            header('Location: /BiblioLibro/index');
     }
     
     
@@ -87,6 +88,6 @@ class c_cerca
             $v_cerca->Errore($utente, 'Devi essere registrato per accedere a questa funzionalità');
             
     }
-    
 }
 
+?>

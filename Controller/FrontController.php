@@ -20,9 +20,25 @@ class FrontController
         $resources = preg_split("#[][&?/]#", $_SERVER['REQUEST_URI']); // individua le componenti dell'url
         $controller = 'c_' . lcfirst($resources[2]); // costruisce il nome della classe del Controller
         
-        
+        if(lcfirst($resources[2]) == "chiSiamo")
+        {
+            $utente = c_sessione::getUtenteDaSessione();
+            $smarty = SmartyConfig::configura();
+            $smarty->registerObject('utente', $utente);
+            $smarty->assign('uTipo', lcfirst(substr(get_class($utente),2)));
+            $smarty->display('chiSiamo.tpl');
+            exit;
+        }
 		 
-		
+        if(lcfirst($resources[2]) == "contattaci")
+        {
+            $utente = c_sessione::getUtenteDaSessione();
+            $smarty = SmartyConfig::configura();
+            $smarty->registerObject('utente', $utente);
+            $smarty->assign('uTipo', lcfirst(substr(get_class($utente),2)));
+            $smarty->display('contattaci.tpl');
+            exit;
+        }
 		
         if (class_exists($controller)) // se la classe esiste
         { // verifica che il metodo sia valido

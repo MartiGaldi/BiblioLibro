@@ -45,7 +45,7 @@ class v_cerca extends v_oggetto
         $key="";
         $value="";
         
-        if($_GET['value'] == 'titolo' || $_GET['value'] == 'autore')
+        if($_GET['value'] == 'titolo' /*|| $_GET['value'] == 'autore'*/)
 			$value = ucfirst($_GET['value']);
         if($_GET['key'] == 'libro')
             $key=ucfirst($_GET['key']);
@@ -79,12 +79,13 @@ class v_cerca extends v_oggetto
     }
     
     
-    function mostraRicercaAvanzata(e_utente &$utente)
+   function mostraRicercaAvanzata(e_utente &$utente)
     {
         $this->smarty->registerObject('utente', $utente);
         $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
         
         //mostro il contenuto della pagine
         $this->smarty->display('ricerca/ricercaAvanzata.tpl');   
-    } 
+    }
 }
+?>

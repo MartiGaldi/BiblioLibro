@@ -5,7 +5,8 @@ require_once 'inc.php';
 if(c_sessione::checkPopulateApplication())
 {
     c_sessione::unsetCookie();
-    header('Location: /BiblioLibro/indice');
+    header('Location: /BiblioLibro/index');
+	SampleUsers::generateUserPool(3, 3, 3);
 }
 
 elseif(file_exists('config.inc.php'))
@@ -16,7 +17,7 @@ elseif(file_exists('config.inc.php'))
 
 elseif(Installazione::effettuaInstallazione()){
     c_sessione::populateApplication();
-    header('Location: /BiblioLibro/indice'); // redirect verso l'applicazione  
+    header('Location: /BiblioLibro/index'); // redirect verso l'applicazione  
 }
 
 ?>

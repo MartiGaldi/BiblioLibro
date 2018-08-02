@@ -32,7 +32,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <form class="form-inline m-0 role="search" action="/BiblioLibro/ricerca/semplice ">
+          <form class="form-inline m-0 role="search" action="/BiblioLibro/cerca/semplice ">
             <input class="form-control mr-2" type="text" placeholder="Fai la tua ricerca...">
             <button class="btn btn-primary" type="submit">CERCA</button>
 			{if $uTipo != "visitatore"}
