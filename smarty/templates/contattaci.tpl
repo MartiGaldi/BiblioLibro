@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contattaci!</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> </head>
 
@@ -27,9 +28,8 @@
   <div class="py-5 text-white bg-light">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <img class="d-block img-fluid my-3" src="/BiblioLibro/risorse/statics/mappa.jpg"> </div>
-        <div class="col-md-6">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
           <h1 class="bg-primary">Contattaci</h1>
           <p class="text-dark">Ci piacerebbe soddisfare le tue richieste!</p>
           <form>
@@ -46,6 +46,7 @@
             <button type="submit" class="btn btn-secondary">Invia</button>
           </form>
         </div>
+        <div class="col-md-4" ></div>
       </div>
     </div>
   </div>

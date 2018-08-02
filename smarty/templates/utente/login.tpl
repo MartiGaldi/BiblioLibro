@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
 
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Log In</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> </head>
-
+  <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
+</head>
 <body >
 
 	{utente->getNick assign='uNick'}
@@ -46,7 +46,7 @@
 			
               <form action="login" method="post">
                 <div class="form-group">
-                  <label for="utente" class="{if !$check.mail} text-danger{/if}">Indirizzo email</label>
+                  <label for="utente" class="{if !$check.mail} text-danger{/if}">Indirizzo email:</label>
 				  <input type="text" class="form-control" id="utente" name="mail" placeholder="Inserisci email..."> </div>
 				  {if ! $check.mail}
 				  <div class="col-sm-8 well">
@@ -57,7 +57,7 @@
 					{/if}
 					
                 <div class="form-group">
-                  <label for="inputPassword" class="{if !$check.password} text-danger{/if}">Password</label>
+                  <label for="inputPassword" class="{if !$check.password} text-danger{/if}">Password:</label>
 				  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password"> </div>
 					
 					{if ! $check.password}
@@ -77,6 +77,8 @@
       </div>
     </div>
   </div>
-  {include file="fine.tpl"}
+  <div class="py-5 bg-dark">
+    {include file="fine.tpl"}
+  </div>
 </body>
 </html>

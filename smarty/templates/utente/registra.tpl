@@ -59,7 +59,7 @@
 				
 				
 				<div class="form-group">
-				<label for="mail" class="{if !$check.mail} text-danger{/if}"> Mail: * </label>
+				<label for="mail" class="{if !$check.mail} text-danger{/if}">Indirizzo email: * </label>
                   <input type="text" class="form-control" id="mail" name="mail" placeholder="Iserisci mail...">
                 
 					{if ! $check.mail}

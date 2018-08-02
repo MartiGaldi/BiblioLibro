@@ -7,13 +7,13 @@
   <title>Login Amministratore</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> </head>
-
 </head>
 
 <body>
+
 	{utente->getNick assign='uNick'}
 	
-	<div class="py-5">
+	<div class="py-5 bg-dark">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -29,45 +29,40 @@
   
 	{include file="navbar.tpl"}
 	
-	<div class="container text-center">
-		<div class="col-sm-3">
-        </div>
-
-		<div class="col-sm-7 well">
-			<h2>Login Amministratore</h2>
-			<hr>
+	
+<div class="py-5 bg-light">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"> </div>
+				<div class="col-md-6">
+					<div class="card text-white p-5 bg-primary">
+						<div class="card-body">
+							<h1 class="mb-4"> Login Amministratore</h1>
+								
 			{if $errore}
-
 			<div class="alert alert-warning">
 				<strong>Attenzione!</strong><br>Combinazione errata di mail e password. <br>Riprova.
 			</div>
 			{/if}
 
-			<br>
-
-					<form class="form-horizontal" method="post" action="login">
-						<div class="form-group row">
-      						<label for="utente" class="col-sm-2 col-form-label {if !$check.mail} text-danger{/if}">Mail:</label>
-      						<div class="col-sm-7">
-        						<input type="text" class="form-control is-invalid" id="utente" name="mail" placeholder="Inserisci mail...">
-      						</div>
+			
+					<form action="login" method="post">
+						<div class="form-group">
+      						<label for="utente" class="{if !$check.mail} text-danger{/if}">Indirizzo mail:</label>
+							<input type="text" class="form-control is-invalid" id="utente" name="mail" placeholder="Inserisci mail..."></div>
 
       						{if ! $check.mail}
-      						<div class="col-sm-3">
+      						<div class="col-sm-8">
         						<small id="mailHelp" class="text-danger">
           							La struttura della mail non è valida.
         						</small>      
      						</div>
      						{/if}
-    					</div>
+							
 
-    					
-
-    					<div class="form-group row">
-      						<label for="inputPassword" class="col-sm-2 col-form-label {if !$check.password} text-danger{/if}">Password:</label>
-      						<div class="col-sm-7">
-        						<input type="password" class="form-control is-invalid" id="inputPassword" name="password" placeholder="Inserisci password...">
-      						</div>
+    					<div class="form-group">
+      						<label for="inputPassword" class="{if !$check.password} text-danger{/if}">Password:</label>
+        						<input type="password" class="form-control is-invalid" id="inputPassword" name="password" placeholder="Inserisci password..."></div>
 
       						{if ! $check.password}
       						<div class="col-sm-3">
@@ -76,20 +71,17 @@
         						</small>      
      						</div>
      						{/if}
-    					</div>
-
     					
-
-						<div class="form-group">
-							<button type="submit" class="btn btn-default">ACCEDI</button>
-						</div>
+							<button type="submit" class="btn btn-secondary">ACCEDI</button>
 					</form>
-		</div>
-
-	<div class="col-sm-3">
-
-		
-
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
+ </div>
+	<div class="py-5 bg-dark">
+	{include file="fine.tpl"}
 	</div>
 </body>
 </html>
