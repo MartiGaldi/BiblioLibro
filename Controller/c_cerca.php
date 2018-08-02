@@ -9,7 +9,6 @@
  */
 
 class c_cerca
-
 {
     //chiave di default
     const KEY_DEFAULT = 'Libro';
@@ -85,9 +84,7 @@ class c_cerca
         }
         else
         // se l'utente e' un visitatore, si reindirizza ad una pagina di errore
-            $v_cerca->Errore($utente, 'Devi essere registrato per accedere a questa funzionalità');
-            
+            $v_cerca->Errore($utente, 'Devi essere registrato per accedere a questa funzionalità');   
     }
 }
-
 ?>
