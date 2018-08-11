@@ -98,7 +98,8 @@ class v_libro extends v_oggetto
             $this->smarty->assign('libro', $libro);
                     
             $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
-            $this->smarty->assign('errore', $errore);  
+            $this->smarty->assign('errore', $errore);
+			$this->smarty->assign('check', $this->check);
                      
             $this->smarty->display('libro/modificaLibro.tpl');      
     }
@@ -136,7 +137,7 @@ class v_libro extends v_oggetto
         $this->smarty->assign('libro', $libro);
 
         $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
-        
+		 
         $this->smarty->display('libro/libro.tpl');  
     }
     

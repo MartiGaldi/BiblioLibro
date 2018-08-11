@@ -1,14 +1,14 @@
 <?php
 
 require_once "inc.php";
-include_once 'Entity/e_oggetto.php';
 
 /**
  * La classe e_prestito contiene le informazioni riguardanti i prestiti ancora in corso.
  */
 
-class e_prestito extends e_oggetto {
-    
+class e_prestito 
+{
+    protected $id;
     protected $nick_cliente;
     protected $data_inizio;
     protected $data_fine;
@@ -18,6 +18,21 @@ class e_prestito extends e_oggetto {
     
     function __constructor(){}
     
+	function getId() : int
+    {
+        if(!$this->id)
+            return 0;
+        else return $this->id;
+    }
+    
+    /**
+     * @param int $id l'identificativo dell'oggetto Entity
+     */
+    function setId(int $id)
+    {
+        $this->id=$id;
+    }
+	
     function setNick(string $nick_cliente)
     {
         $this->nick_cliente=$nick_cliente;

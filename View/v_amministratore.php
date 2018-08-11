@@ -14,7 +14,7 @@ class v_amministratore extends v_oggetto
         parent::__construct();
                 
         $this->check = array(
-            'nickname' => true,
+            'nick' => true,
             'mail' => true,
             'password' => true,
             'tipo' => true
@@ -47,7 +47,6 @@ class v_amministratore extends v_oggetto
     
     /**
     * Mostra la pagina di login
-    * @param bool $errore (facoltativo se è stato rilevato un errore)
     */
     
     function mostraLogin(bool $errore = NULL)
@@ -58,12 +57,8 @@ class v_amministratore extends v_oggetto
             $utente = new e_visitatore();
             
             $this->smarty->registerObject('utente', $utente);
-            
             $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
-            
-            
             $this->smarty->assign('errore', $errore);
-            
             $this->smarty->assign('check', $this->check);
             
             
@@ -79,13 +74,16 @@ class v_amministratore extends v_oggetto
     {
         $utente;
         
-        if (isset($_POST['tipo'])) {
+        if (isset($_POST['tipo']))
+		{
             $tipo = 'e_' . ucfirst($_POST['tipo']);
-            
             $utente = new $tipo();
-        } else
+        } 
+		else
             $utente = new e_utente();
                 
+				if (isset($_POST['nick']))
+					$utente->setNick($_POST['nick']);
                 if (isset($_POST['mail']))
                     $utente->setMail($_POST['mail']);
                 if (isset($_POST['password']))
@@ -107,15 +105,9 @@ class v_amministratore extends v_oggetto
             $utente = new e_visitatore();
             
             $this->smarty->registerObject('utente', $utente);
-            
             $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
-            
-            
             $this->smarty->assign('errore', $errore);
-            
             $this->smarty->assign('check', $this->check);
-            
-            
             $this->smarty->display('amministratore/registraAmministratore.tpl');
     }
     
@@ -127,13 +119,8 @@ class v_amministratore extends v_oggetto
     function mostraPannello(e_utente &$utente)
     {
         $this->smarty->registerObject('utente', $utente);
-        
         $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
-        
-        
         $this->smarty->assign('check', $this->check);
-        
-        
         $this->smarty->display('amministratore/pannello.tpl');
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
 /**
-* La classe v_oggetto contiene gli attributi e le funzioni base adoperati in tutto il package View.
-* Metodo per la visualizzazione di una pagina di errore
-* Istanzia l'oggetto Smarty adoperato alla visualizzazione dei template .tpl.
+* La classe v_oggetto contiene gli attributi e le funzioni base adoperati in tutto il package View:
+* -Metodo per la visualizzazione di una pagina di errore
+* -Istanzia l'oggetto Smarty adoperato alla visualizzazione dei template .tpl.
 */
 
 class v_oggetto
@@ -34,11 +34,8 @@ class v_oggetto
     function Errore(e_utente &$utente, string $errore)
     {
         $this->smarty->registerObject('utente', $utente);
-        
         $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
-        
         $this->smarty->assign('errore', $errore);
-        
         $this->smarty->display('Errore.tpl');
     }
 }

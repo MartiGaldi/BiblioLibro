@@ -58,10 +58,8 @@ class c_utente
                 $v_utente->Errore($utente, 'Sei gia connesso');
                 
                 else
-                    $v_utente->mostraIscrizione();
-                    
+                    $v_utente->mostraIscrizione();         
         }
-        
         else if ($_SERVER['REQUEST_METHOD'] == 'POST')
             c_utente::registra();
         
@@ -169,10 +167,10 @@ class c_utente
         
         if($v_utente->validazioneLogin($Utente))
         {
-            $autentificazione = false; // bool per l'autenticazione
+            $autent = false; // bool per l'autenticazione
             
             // si verifica che l'utente inserito matchi una entry nel db
-            $idUtente = f_persistance::getInstance()->esiste(e_utente::class, f_target::NICKNAME_ESISTENTE, $Utente->getNick()); 
+            $idUtente = f_persistance::getInstance()->exists(e_utente::class, f_target::NICKNAME_ESISTENTE, $Utente->getNick()); 
             
             if($idUtente) // se e' stato prelevato un id...
             {
@@ -182,13 +180,13 @@ class c_utente
                 {
                     unset($Utente); // l'istanza utilizzata per il login viene rimossa
                     $utente = f_persistance::getInstance()->carica(e_utente::class, $idUtente); // viene caricato l'utente
-                    $autenticazione = true; // l'utente e' autenticato
+                    $autent = true; // l'utente e' autenticato
                     c_sessione::inizioSessione($utente);
-                    header('Location: /BiblioLibro/indice');   
+                    header('Location: /BiblioLibro/index');   
                 } 
             }
             
-            if(!$autenticazione)
+            if(!$autent)
                 $v_utente->mostraLogin(true);
         }
         else
@@ -204,10 +202,9 @@ class c_utente
     {
         $v_utente = new v_utente();
         $Utente = $v_utente->creaUtente(); // viene creato un utente con i parametri della form
-        var_dump("eccomi");
         if($v_utente->validazioneIscrizione($Utente))
         {
-            if(!f_persistance::getInstance()->esiste(e_utente::class, f_target::NICKNAME_ESISTENTE, $Utente->getNickName()) && !f_persistance::getInstance()->esiste(e_utente::class, f_target::MAIL_ESISTENTE, $Utente->getMail()))
+            if(!f_persistance::getInstance()->exists(e_utente::class, f_target::NICKNAME_ESISTENTE, $Utente->getNick()) && !f_persistance::getInstance()->exists(e_utente::class, f_target::MAIL_ESISTENTE, $Utente->getMail()))
             {
                 // se la mail non e stata ancora usata, si puo salvare l'utente
                 $Utente->hashPassword(); // si cripta la password

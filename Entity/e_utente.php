@@ -1,7 +1,6 @@
 <?php 
 
 require_once'inc.php';
-include_once 'Entity/e_oggetto.php';
 
 
 /**
@@ -15,17 +14,31 @@ include_once 'Entity/e_oggetto.php';
 * @package Entity
 */
 
-class e_utente extends e_oggetto{
-    
+class e_utente
+{
+    protected $id;
     protected $nick_name;
     protected $mail;
     protected $password;
     protected $info_utente;
     
-    function __construct(){
-        parent::__construct();
+    function __construct(){}
+    
+	function getId() : int
+    {
+        if(!$this->id)
+            return 0;
+        else return $this->id;
     }
     
+    /**
+     * @param int $id l'identificativo dell'oggetto Entity
+     */
+    function setId(int $id)
+    {
+        $this->id=$id;
+    }
+	
     function setNick(string $nick_name)
     {
         $this->nick_name=$nick_name;  
@@ -36,7 +49,7 @@ class e_utente extends e_oggetto{
         return $this->nick_name;
     }
         
-    function validazioneNickName() : bool
+    function validazioneNick() : bool
     {
         if ($this->nick_name && preg_match("/^[a-zA-Z][a-zA-Z0-9]+$/", $this->nick_name)) // solo lettere e numeri
             return true;

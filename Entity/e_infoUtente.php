@@ -1,7 +1,6 @@
 <?php
 
 require_once'inc.php';
-include_once 'Entity/e_oggetto.php';
 
 /**
 * La classe e_infoUtente contiene le informazioni dettagliate sull'utente che non
@@ -12,9 +11,9 @@ include_once 'Entity/e_oggetto.php';
 
 */
 
-class e_infoUtente extends e_oggetto
+class e_infoUtente
 {
-    
+   private $id;
    private $nome;
    private $cognome;
    private $cod_fisc;
@@ -27,8 +26,8 @@ class e_infoUtente extends e_oggetto
     
     function __construct()
     {
-        parent::__construct();
         
+        $this->id=null;
         $this->nome='';
         $this->cognome='';
         $this->cod_fisc='';

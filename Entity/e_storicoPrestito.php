@@ -1,7 +1,6 @@
 <?php
 
 require_once 'inc.php';
-include_once 'Entity/e_oggetto.php';
 
 /**
  * La classe e_storicoPrestito estende la classe e_oggetto e rappresenta
@@ -10,18 +9,30 @@ include_once 'Entity/e_oggetto.php';
  * @author gruppo 11
  */
 
-class e_storicoPrestito extends e_oggetto
+class e_storicoPrestito
 {
     private $prestito;
   
     /**
      * Metodo costruttore che istanzia un oggetto e_storicoPrestito
      */
-    function __construct()
+    function __construct(){}
+    
+	function getId() : int
     {
-        parent::__construct();
+        if(!$this->id)
+            return 0;
+        else return $this->id;
     }
     
+    /**
+     * @param int $id l'identificativo dell'oggetto Entity
+     */
+    function setId(int $id)
+    {
+        $this->id=$id;
+    }
+	
     function setPrestito () {
         $this->prestito=$prestito;
     }

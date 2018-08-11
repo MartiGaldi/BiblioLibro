@@ -1,7 +1,6 @@
 <?php
 
 require_once'inc.php';
-include_once 'Entity/e_oggetto.php';
 
 /**
  * La classe e_prenota caratterizza le prenotazioni effettuate dall'utente.
@@ -10,8 +9,9 @@ include_once 'Entity/e_oggetto.php';
  * la prenotazione viene eliminata. 
  */
 
-class e_prenota extends e_oggetto {
-    
+class e_prenota
+{
+    private $id;
     private $data;
     private $nick_cliente;
     private $id_libro;
@@ -21,6 +21,21 @@ class e_prenota extends e_oggetto {
     
     function __constructor(){}
     
+	function getId() : int
+    {
+        if(!$this->id)
+            return 0;
+        else return $this->id;
+    }
+    
+    /**
+     * @param int $id l'identificativo dell'oggetto Entity
+     */
+    function setId(int $id)
+    {
+        $this->id=$id;
+    }
+	
     function setData (DateTime $data){
         $this->data=new DateTime($data);
     }

@@ -9,13 +9,17 @@ include_once 'Entity/e_utente.php';
  * @package Entity
  */
 
-class e_bibliotecario extends e_utente {
-    
+class e_bibliotecario extends e_utente
+{
+    /**
+	
+	*/
+	
     function __construct()
     {
        parent::__construct(); 
     }
-    
-
+	
 }
+
 ?>

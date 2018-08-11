@@ -1,7 +1,6 @@
 <?php
 
 require_once 'inc.php';
-include_once 'Entity/e_oggetto.php';
 
 /**
  * La classe e_copertina gestisce formato, dimensione e byte immagine relativi 
@@ -10,8 +9,9 @@ include_once 'Entity/e_oggetto.php';
  * @package Entity
  */
 
-class e_copertina extends e_oggetto{
-    
+class e_copertina
+{
+    private $id;
     private $tipo; //formato
     private $size; //dimensione
     private $copertina; //byte immagine
@@ -22,6 +22,21 @@ class e_copertina extends e_oggetto{
         $this->tipo='non definito';
     }
     
+	function getId() : int
+    {
+        if(!$this->id)
+            return 0;
+        else return $this->id;
+    }
+    
+    /**
+     * @param int $id l'identificativo dell'oggetto Entity
+     */
+    function setId(int $id)
+    {
+        $this->id=$id;
+    }
+	
     function setTipo(string $tipo) {
         
         $this->tipo=$tipo;

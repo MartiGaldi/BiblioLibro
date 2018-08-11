@@ -45,10 +45,10 @@
               <form action="signup" method="post" enctype="multipart/form-data">
 			  
                 <div class="form-group">
-                  <label for="utente" class=" {if !$check.nickname} text-danger{/if}"> NickName: *</label>
-				  <input type="text" class="form-control" id="utente" name="nick_name" placeholder="Inserisci NickName...">
+                  <label for="utente" class=" {if !$check.nick} text-danger{/if}"> NickName: *</label>
+				  <input type="text" class="form-control" id="utente" name="nick" placeholder="Inserisci NickName...">
                 
-					{if !  $check.nickname}
+					{if !  $check.nick}
 					<div class="col-sm-8 well">
 						<small id="nickHelp" class="text-danger">
   							Deve comprendere dagli 8 ai 20 caratteri.

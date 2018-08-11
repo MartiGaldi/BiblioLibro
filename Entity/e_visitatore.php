@@ -1,7 +1,7 @@
 <?php
 
 require_once 'inc.php';
-include_once 'Entity/e_oggetto.php';
+include_once 'Entity/e_utente.php';
 
 /**
  * La classe e_visitatore estende la classe padre e_utente e implementa la tipologia di utente Visitatore.
