@@ -4,8 +4,9 @@
 	<tbody>					
 	{foreach $array as $libro}
 		<tr>
+		    {if isset($key)}
 			<!-- Titolo libro -->
-			<td><a href="/BiblioLibro/libro/show/{$libro->getId()}">{$libro->getTitolo()}</a></td>
+			<td><a href="/BiblioLibro/libro/mostra/{$libro->getId()}">{$libro->getTitolo()}</a></td>
 			<!-- Autore libro -->
 			<td>{$libro->getAutore()}</td>
 			<!-- Genere del libro -->
@@ -17,5 +18,5 @@
 	</tbody>
 </table>
 {else}
-<p>Il testo ricercato non è presente nel catalogo</p>
+<p>Il testo ricercato non è presente nel catalogo.</p>
 {/if}

@@ -9,7 +9,7 @@ include_once 'View/v_oggetto.php';
 * @author gruppo11
 */
 
-class v_cerca extends v_oggetto
+class v_ricerca extends v_oggetto
 {
     
     function __construct()
@@ -75,7 +75,7 @@ class v_cerca extends v_oggetto
         $this->smarty->assign('array', $array);
         
         //mostro il contenuto della pagine
-        $this->smarty->display('ricerca/cerca.tpl');  
+        $this->smarty->display('ricerca/ricerca.tpl');  
     }
     
     

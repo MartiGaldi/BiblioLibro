@@ -1,13 +1,22 @@
 <?php
 
+/**
+ * Lo scopo di questa classe e' quello di fornire un accesso unico al DBMS, incapsulando
+ * al proprio interno i metodi statici di tutte le altre classi Foundation, cosi che l'accesso
+ * ai dati persistenti da parte degli strati superiore dell'applicazione sia piu' intuitivo.
+ * @author gruppo11
+ * @package Foundation
+ */
+ 
 if(file_exists('config.inc.php'))
     require_once'config.inc.php';
 
 require_once'inc.php';
 
-class f_persistance {
+class f_persistance
+{
     private static $instance = null;  //maniglia della classe
-    private $database;                //oggetto che instanza la connessione
+    private $db;                //oggetto che instanza la connessione
     
     /**
     * Inizializza un oggetto f_persisatnce. Metodo privato per evitare duplicazioni dell'oggetto.
@@ -17,27 +26,36 @@ class f_persistance {
     {
         try
         {
-            global $address,$user,$password,$database;
-            $this->database = new PDO ("mysql:host=$address;dbname=$database", $user,$password);
+            global $address,$admin,$pass,$database;
+            $this->db = new PDO ("mysql:host=$address;dbname=$database", $admin, $pass);
         }
         catch (PDOException $e){
             echo "Errore : ". $e->getMessage();
             die;
         }
     }
-    /**
-     * chiusura della connessione al database 
+	
+	
+	
+	/**
+     * Metodo che chiude la connessione al dbms.
      */
-    function closeDBConnection()
+    function __destruct()
     {
-        $this->database = null;
+        $this->db = null;
+        static::$instance = null;
     }
-
+	
+	
     /**
-     * metodo privato e vuoto per evitare la clonazione dell'oggetto
+     * metodo privato per evitare la clonazione dell'oggetto
      */ 
     private function __clone(){}
     
+	/**
+     * Metodo che restituisce l'unica istanza dell'oggetto.
+     * @return f_persistance l'istanza dell'oggetto.
+     */
     static function getInstance() : f_persistance
     {
         if(static::$instance == null)
@@ -47,6 +65,9 @@ class f_persistance {
         return static::$instance;
     }
     
+	
+	
+	
     /**
     * Metodo che carica dal dbms informazioni in un corrispettivo oggetto Entity.
     * @param string $classe il nome della classe (ottenibile tramite e_class::name )
@@ -63,16 +84,16 @@ class f_persistance {
           
         if ( class_exists( $classe ) ) // si verifica che l'oggetto Entity esista
         {
-            $risorsa = substr($classe,1); // si ricava il nome della risorsa corrispondente all'oggetto Entity
-            $classeFound = 'f_'.$risorsa; // si ricava il nome della corrispettiva classe Foundation
+            $risorsa = substr($classe,2); // si ricava il nome della risorsa corrispondente all'oggetto Entity
+            $foundClass = 'f_'.$risorsa; // si ricava il nome della corrispettiva classe Foundation
             
             if($target) // se il target e' specificato
-                $metodo = 'carica'.$target; // i
+                $method = 'carica'.$target; // i
             else
-                $metodo = 'carica'.$risorsa;
+                $method = 'carica'.$risorsa;
                     
-            if(method_exists($classeFound, $metodo))
-                $sql = $classeFound::$metodo();      
+            if(method_exists($foundClass, $method))
+                $sql = $classeFound::$method();      
         }
         
         if($sql)     
@@ -104,17 +125,17 @@ class f_persistance {
             { // per ogni tupla restituita dal database viene istanziato un oggetto
                 if($target == f_target::CARICA_LIBRO || $target == f_target::CARICA_CLIENTE)
                     //inserire qui target che richiedono un array come ritorno
-                    $oggetto[] = f_persistance::creaOggettoDaDB($classe, $ennupla);
+                    $oggetto[] = f_persistance::creaOggettoDaRiga($classe, $riga);
                 else 
-                    $oggetto = f_persistance::creaOggettoDaDB($classe, $ennupla);        
+                    $oggetto = f_persistance::creaOggettoDaRiga($classe, $riga);        
             }
-            $this->closeDBConnection(); // chiude la connessione
+            $this->__destruct(); // chiude la connessione
             return $oggetto;
         }
         
         catch (PDOException $e)
         {
-            $this->closeDBConnection(); // chiude la connessione   
+            $this->__destruct(); // chiude la connessione   
             return null; //ritorna null se ci sono errori
         }
     }
@@ -122,39 +143,40 @@ class f_persistance {
     /**
     * Effettua una ricerca sul database secondo vari parametri. Tale metodo e' scaturito a seguito
     * di una ricerca da parte del cliente, puo' essere relativa ai libri secondo diversi
-    * parametri, come titolo, autore o casa editrice.
-    * @param string $chiave la tabella da cui prelevare i dati
-    * @param string $valore il valore per cui cercare i valori
-    * @param string $stringa il dato richiesto dall'utente
+    * parametri come titolo e autore.
+    * @param string $key la tabella da cui prelevare i dati
+    * @param string $value il valore per cui cercare i valori
+    * @param string $string il dato richiesto dall'utente
     * @return array|NULL i risultati ottenuti dalla ricerca. Se la richiesta non ha match, ritorna NULL.
     */
     
-    function ricerca(string $chiave, string $valore, string $stringa)
+    function ricerca(string $key, string $value, string $str)
     {
         $sql = '';   
-        $nomeClasse = 'f_'.$chiave;
+        $nomeClasse = 'f_'.$key;
         
         if(class_exists($nomeClasse))
         {
-            $metodo = 'ricerca'.$chiave.'Da'.$valore;
+            $method = 'ricerca'.$key.'Da'.$value;
             
-            if(method_exists($nomeClasse, $metodo))
-                $sql = $nomeClasse::$metodo();     
+            if(method_exists($nomeClasse, $method))
+                $sql = $nomeClasse::$method();     
         }
         
         if($sql)
-            return $this->eseguiRicerca('f_'.$chiave, $valore, $stringa, $sql);
+            return $this->eseguiRicerca('f_'.$key, $value, $str, $sql);
         else 
             return NULL;
             
     }
     
-    private function eseguiRicerca(string $nomeClasse, string $valore, string $stringa, string $sql)
+	
+    private function eseguiRicerca(string $nomeClasse, string $value, string $str, string $sql)
     {
         try   
         {
             
-            $stmt = $this->database->prepare($sql); // creo PDOStatement 
+            $stmt = $this->db->prepare($sql); // creo PDOStatement 
             $stmt->bindValue(":".$value, $str, PDO::PARAM_STR); //si associa l'id al campo della query
             $stmt->execute();   //viene eseguita la query
             $stmt->setFetchMode(PDO::FETCH_ASSOC); // i risultati del database verranno salvati in un array con indici le colonne della table
@@ -163,17 +185,17 @@ class f_persistance {
             
             while($riga = $stmt->fetch())
             { // per ogni tupla restituita dal database...
-                $oggetto[] = f_persistance::creaOggettoDaDB($nomeClasse, $ennupla); //...istanzio l'oggetto
+                $oggetto[] = f_persistance::creaOggettoDaRiga($nomeClasse, $riga); //...istanzio l'oggetto
             }
             
-            $this->closeDBConnection(); // chiude la connessione
+            $this->__destruct(); // chiude la connessione
              
             return $oggetto;
         }
         
         catch (PDOException $e)
         {
-            $this->closeDBConnection(); // chiude la connessione
+            $this->__destruct(); // chiude la connessione
             return null; // ritorna null se ci sono errori
         }
     }
@@ -195,13 +217,13 @@ class f_persistance {
         else
             $classe = get_class($oggetto); // restituisce il nome della classe dall'oggetto
                 
-        $risorsa = substr($classe,1); // nome della risorsa (Utente, Libro, ...)
-        $classeFound = 'f_'.$risorsa; // nome della rispettiva classe Foundation
+        $risorsa = substr($classe,2); // nome della risorsa (Utente, Libro, ...)
+        $foundClass = 'f_'.$risorsa; // nome della rispettiva classe Foundation
                 
-        $metodo = 'salva'.$risorsa; // nome del metodo salva+nome_risorsa
+        $method = 'salva'.$risorsa; // nome del metodo salva+nome_risorsa
                 
-        if(class_exists($classeFound) && method_exists($classeFound, $metodo))  // se la classe esiste e il metodo pure...
-            $sql = $classeFound::$metodo(); //ottieni la stringa sql
+        if(class_exists($foundClass) && method_exists($foundC, $method))  // se la classe esiste e il metodo pure...
+            $sql = $foundClass::$method(); //ottieni la stringa sql
         
         if($sql) //se la stringa sql esiste...
             $risultato = $this->eseguiSalva($oggetto, $sql); // ... esegui la query
@@ -218,9 +240,9 @@ class f_persistance {
     
     private function eseguiSalva(&$oggetto, string $sql)
     {
-        $this->database->beginTransaction(); // inizio della transazione
+        $this->db->beginTransaction(); // inizio della transazione
            
-        $stmt = $this->database->prepare($sql);
+        $stmt = $this->db>prepare($sql);
         
         // si prepara la query facendo un bind tra parametri e variabili dell'oggetto
         
@@ -234,20 +256,20 @@ class f_persistance {
             {
                 
                 if (method_exists($oggetto, 'getId') && $oggetto->getId() == 0){ // ...se il valore e' non nullo, si assegna l'id
-                    $oggetto->setId($this->database->lastInsertId()); // assegna all'oggetto l'ultimo id dato dal dbms
+                    $oggetto->setId($this->db->lastInsertId()); // assegna all'oggetto l'ultimo id dato dal dbms
                 }
                 
-                $commit = $this->database->commit(); // effettua il commit
+                $commit = $this->db->commit(); // effettua il commit
                 
-                $this->closeDBConnection(); // chiude la connessione
+                $this->__destruct(); // chiude la connessione
                 
                 return $commit; // ritorna il risultato del commit
             }
             else
             {
                 // ...altrimenti si effettua il rollback e si ritorna false   
-                $this->database->rollBack();
-                $this->closeDBConnection(); // chiude la connessione
+                $this->db->rollBack();
+                $this->__destruct(); // chiude la connessione
                 
                 return false;
             }
@@ -256,8 +278,8 @@ class f_persistance {
         catch (PDOException $e)
         {  // errore: rollback e return false
             
-            $this->database->rollBack();
-            $this->closeDBConnection(); // chiude la connessione
+            $this->db->rollBack();
+            $this->__destruct(); // chiude la connessione
             
             return false;
         }
@@ -279,12 +301,12 @@ class f_persistance {
         else
             $classe = get_class($oggetto); // restituisce il nome della classe dall'oggetto
                 
-        $risorsa = substr($classe,1); // nome della risorsa (User, Song, UserInfo, ...)
+        $risorsa = substr($classe,2); // nome della risorsa (User, Song, UserInfo, ...)
         $classeFound = 'f_'.$risorsa; // nome della rispettiva classe Foundation
         
         $metodo = 'aggiorna'.$risorsa; // nome del metodo aggiorna+nome_risorsa
 
-        $sql = $classeFound::$metodo();
+        $sql = $classeFound::$method();
                 
         $risultato = $this->eseguiAggiorna($oggetto, $sql); // ... esegui la query
                 
@@ -300,9 +322,9 @@ class f_persistance {
     
     private function eseguiAggiorna(&$oggetto, string $sql) : bool
     {
-        $this->database->beginTransaction(); //inizio della transazione
+        $this->db->beginTransaction(); //inizio della transazione
         
-        $stmt = $this->database->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         
         //si prepara la query facendo un bind tra parametri e variabili dell'oggetto
         
@@ -313,16 +335,16 @@ class f_persistance {
             
             if($stmt->execute()) //se la tupla e' alterata...
             {
-                $commit = $this->database->commit(); // effettua il commit
+                $commit = $this->db->commit(); // effettua il commit
 
-                $this->closeDBConnection(); // chiude la connessione
+                $this->__destruct(); // chiude la connessione
                 
                 return $commit; //...ritorna il risultato del commit
             }
             else //altrimenti l'update non ha avuto successo...
             {   
-                $this->database->rollBack();
-                $this->closeDBConnection(); // chiude la connessione
+                $this->db->rollBack();
+                $this->__destruct(); // chiude la connessione
                 
                 return false; //...annulla la transazione e ritorna false
             }
@@ -331,9 +353,9 @@ class f_persistance {
         {
             echo('Errore: '.$e->getMessage());
                
-            $this->database->rollBack();
+            $this->db->rollBack();
             
-            $this->closeDBConnection(); // chiude la connessione
+            $this->__destruct(); // chiude la connessione
             
             return false;
         }
@@ -353,12 +375,12 @@ class f_persistance {
         
         if (class_exists($classe))
         {
-            $risorsa = substr($classe, 1);
-            $classeFound = 'f_' . $risorsa;
+            $risorsa = substr($classe, 2);
+            $foundClass = 'f_' . $risorsa;
             
-            $metodo = 'rimuovi' . $risorsa;
+            $method	= 'rimuovi' . $risorsa;
             
-            $sql = $classeFound::$metodo();
+            $sql = $foundClass::$method();
         }
         
         if ($sql)
@@ -383,7 +405,7 @@ class f_persistance {
     {
         try
         {
-            $stmt = $this->database->prepare($sql); //a partire dalla stringa sql viene creato uno statement
+            $stmt = $this->db->prepare($sql); //a partire dalla stringa sql viene creato uno statement
             $stmt->bindValue(":id", $id, PDO::PARAM_INT); //si associa l'id al campo della query
             
             if($id2) // se id2 e' stato inserito...
@@ -391,13 +413,13 @@ class f_persistance {
                 
                 $risultato = $stmt->execute(); //esegue lo statement
                 
-                $this->closeDBConnection(); // chiude la connessione
+                $this->__destruct(); // chiude la connessione
                 
                 return $risultato; //ritorna il risultato   
         }
         catch (PDOException $e)
         {
-            $this->closeDBConnection(); // chiude la connessione
+            $this->__destruct(); // chiude la connessione
             
             return FALSE; //ritorna false se ci sono errori
         }
@@ -414,28 +436,28 @@ class f_persistance {
     * @return bool | int true se il dato esiste, false altrimenti. un int se si richiede l'esistenza di un utente.
     */
     
-    function esiste(string $classe, string $target, $valore, $valore2 = null)
+    function esiste(string $classe, string $target, $value, $value2 = null)
     {
         $sql = '';   
         
         if (class_exists($classe))
         {
-            $risorsa = substr($classe, 1);
-            $classeFound = 'f_' . $risorsa;
+            $risorsa = substr($classe, 2);
+            $foundClass = 'f_' . $risorsa;
             
-            $metodo = 'esiste' . $target;
+            $method = 'esiste' . $target;
             
-            if(method_exists($classeFound, $metodo))
-                $sql = $classeFound::$metodo();
+            if(method_exists($foundClass, $method))
+                $sql = $foundClass::$method();
         }
         if ($sql)
         {
-            if($valore2 && ($target==f_target::MAIL_ESISTENTE))
+            if($value2 && ($target==f_target::EXISTS_USER))
             {
-                return $this->eseguiEsiste($sql, $valore, $valore2);
+                return $this->eseguiEsiste($sql, $value, $value2);
             }
             else
-                return $this->eseguiEsiste($sql, $valore);
+                return $this->eseguiEsiste($sql, $value);
         }
         else   
             return NULL;
@@ -449,21 +471,21 @@ class f_persistance {
     * @return bool | id true se la entry esiste, false altrimenti
     */
     
-    private function eseguiEsiste(string $sql, $valore, $valore2 = NULL)
+    private function eseguiEsiste(string $sql, $value, $value2 = NULL)
     {
         try   
         { 
-            $stmt = $this->database->prepare($sql); // a partire dalla stringa sql viene creato uno statement
+            $stmt = $this->db->prepare($sql); // a partire dalla stringa sql viene creato uno statement
             if (is_int($value))
-                $stmt->bindValue(":valore", (int) $valore, PDO::PARAM_INT); // si associa l'intero al campo della query
+                $stmt->bindValue(":valore", (int) $value, PDO::PARAM_INT); // si associa l'intero al campo della query
             if (is_string($value))
-                $stmt->bindValue(":valore", $valore, PDO::PARAM_STR); // si associa la stringa al campo della query
-            if ($valore2) // se il secondo valore e' stato inserito
+                $stmt->bindValue(":valore", $value, PDO::PARAM_STR); // si associa la stringa al campo della query
+            if ($value2) // se il secondo valore e' stato inserito
             {            
                 if (is_int($value2))
-                    $stmt->bindValue(":valore2", (int) $valore2, PDO::PARAM_INT); // si associa l'intero al campo della query
+                    $stmt->bindValue(":valore2", (int) $value2, PDO::PARAM_INT); // si associa l'intero al campo della query
                 if (is_string($value2))
-                    $stmt->bindValue(":valore2", $valore2, PDO::PARAM_STR); // si associa la stringa al campo della query
+                    $stmt->bindValue(":valore2", $value2, PDO::PARAM_STR); // si associa la stringa al campo della query
             }
             $risultato = $stmt->execute(); // esegue lo statement
                     
@@ -473,20 +495,20 @@ class f_persistance {
             {
                 $riga = $stmt->fetch();
                 
-                $this->closeDBConnection(); // chiude la connessione
+                $this->__destruct(); // chiude la connessione
                         
                 return $riga['id'];
             }
             else
             {
-                $this->closeDBConnection(); // chiude la connessione
+                $this->__destruct(); // chiude la connessione
                 
                 return false;
             }        
         }
         catch (PDOException $e)
         {
-            $this->closeDBConnection(); // chiude la connessione
+            $this->__destruct(); // chiude la connessione
             
             return FALSE; // ritorna false se ci sono errori
         }
@@ -507,8 +529,8 @@ class f_persistance {
             $classe = get_class($oggetto); // restituisce il nome della classe dall'oggetto
 
             $risorsa = substr($classe,2); // nome della risorsa (utente, libro, ...)
-            $classeFound = 'f_'.$risorsa; // nome della rispettiva classe Foundation
-            $classeFound::bindValues($stmt, $oggetto); // associazione statement - e_oggetto
+            $foundClass = 'f_'.$risorsa; // nome della rispettiva classe Foundation
+            $foundClass::bindValues($stmt, $oggetto); // associazione statement - e_oggetto
     }
     
     /**
@@ -518,13 +540,13 @@ class f_persistance {
     * @return mixed l'oggetto risultato dell'elaborazione
     */
     
-    private function creaOggettoDaDB(string $classe, $ennupla)
+    private function creaOggettoDaRiga(string $classe, $riga)
     {
         $oggetto = NULL; //oggetto che conterra' l'istanza dell'elaborazione
         if ( class_exists( $classe ) )
         {
-            $classeFound = 'f_'.substr($classe,2);
-            $oggetto = $classeFound::creaOggettoDaDB($ennupla);
+            $foundClass = 'f_'.substr($classe,2);
+            $oggetto = $classeFound::creaOggettoDaRiga($riga);
         }
         return $oggetto;
     }

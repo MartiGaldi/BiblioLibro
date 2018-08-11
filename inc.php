@@ -30,7 +30,7 @@ require_once 'Foundation/f_storicoPrestito.php';
 
 
 require_once 'Controller/c_amministratore.php';
-require_once 'Controller/c_cerca.php';
+require_once 'Controller/c_ricerca.php';
 require_once 'Controller/c_infoLibro.php';
 require_once 'Controller/c_libro.php';
 require_once 'Controller/c_sessione.php';
@@ -40,7 +40,7 @@ require_once 'Controller/FrontController.php';
 
 
 require_once 'View/v_amministratore.php';
-require_once 'View/v_cerca.php';
+require_once 'View/v_ricerca.php';
 require_once 'View/v_infoUtente.php';
 require_once 'View/v_oggetto.php';
 require_once 'View/v_libro.php';
