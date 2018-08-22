@@ -114,7 +114,7 @@ class f_persistance
     {    
         try   
         {
-            $stmt = $this->database->prepare($sql); // creo PDOStatement
+            $stmt = $this->db->prepare($sql); // creo PDOStatement
             $stmt->bindValue(":id", $id, PDO::PARAM_INT); //si associa l'id al campo della query
             $stmt->execute();   //viene eseguita la query
             $stmt->setFetchMode(PDO::FETCH_ASSOC); // i risultati del database verranno salvati in un array con indici le colonne della table
@@ -175,7 +175,6 @@ class f_persistance
     {
         try   
         {
-            
             $stmt = $this->db->prepare($sql); // creo PDOStatement 
             $stmt->bindValue(":".$value, $str, PDO::PARAM_STR); //si associa l'id al campo della query
             $stmt->execute();   //viene eseguita la query
@@ -222,7 +221,7 @@ class f_persistance
                 
         $method = 'salva'.$risorsa; // nome del metodo salva+nome_risorsa
                 
-        if(class_exists($foundClass) && method_exists($foundC, $method))  // se la classe esiste e il metodo pure...
+        if(class_exists($foundClass) && method_exists($foundClass, $method))  // se la classe esiste e il metodo pure...
             $sql = $foundClass::$method(); //ottieni la stringa sql
         
         if($sql) //se la stringa sql esiste...
@@ -249,7 +248,6 @@ class f_persistance
         try
         { 
             f_persistance::bindValues($stmt, $oggetto); // si associano i valori dell'oggetto alle entry della query
-            
             $stmt->execute();
             
             if ($stmt->rowCount()) // si esegue la query

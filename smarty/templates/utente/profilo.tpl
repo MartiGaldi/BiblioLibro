@@ -17,6 +17,20 @@
 	{profilo->getNick assign='pNick'}
 	{profilo->getId assign='pId'}
 	
+	<div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-1">
+            <i>
+              <b>BiblioLibro</b>
+            </i>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 	{include file="navbar.tpl"}
 	
 	<div class="container text-center">
@@ -41,19 +55,7 @@
         </div>
 			<div class="col-sm-7">
 			<!-- Contenuto principale -->
-				{if $content eq 'Catalogo'}
-				<!--lista libri-->
-				<h4 id="important">Catalogo</h4>
-				{include file="Catalogo.tpl"}
-				
-				{elseif $uTipo eq 'bibliotecario' && $content eq 'Utenti'}
-				<!--lista utenti-->
-				<h4 id="important">Lista Utenti</h4>
-				<a href="/BiblioLibro/utente/profilo/{$pId}">Torna al Profilo
-				{include file="Utenti.tpl"}
-				
-				{elseif $content eq 'None'}
-				<!-- Introduzione semplice-->
+				{if $content eq 'None'}
 				<h3>Il mio profilo {ucfirst($pTipo)}!</h3>
 				{/if}
 			</div>

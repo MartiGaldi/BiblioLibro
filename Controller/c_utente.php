@@ -50,12 +50,13 @@ class c_utente
     { 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') //se il metodo http utilizzato e' GET...
         
-        { //...visualizza la pagina Registra, controllando che l'utente sia effettivamente un guest
+        { 
+		//visualizza la pagina Registra, controllando che l'utente sia effettivamente un guest
             $v_utente = new v_utente();
             $utente = c_sessione::getUtenteDaSessione();
             
             if (get_class($utente)!=e_visitatore::class) // se l'utente non è guest, non puo accedere al login
-                $v_utente->Errore($utente, 'Sei gia connesso');
+                $v_utente->Errore($utente, 'Sei gia connesso.');
                 
                 else
                     $v_utente->mostraIscrizione();         

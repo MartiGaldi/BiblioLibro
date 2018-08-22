@@ -60,20 +60,20 @@ class f_libro{
         $database->commit();
     }
         
-    static function cercaLibroDaTitolo() : string
+    static function ricercaLibroDaTitolo() : string
     {
-        return "SELECT libro.*, utenti.nickname
+        return "SELECT libro.*, utenti.nick
                 FROM libro, utenti
                 WHERE LOCATE( :titolo , libro.titolo) > 0;";
     }
         
         
-    /**static function ricercaLibroDaAutore() : string
+    static function ricercaLibroDaAutore() : string
     {
-        return "SELECT libro.*
-                FROM libro
+        return "SELECT libro.* , utenti.nick
+                FROM libro, utenti
                 WHERE LOCATE( :autore , libro.autore) > 0;";
-    }*/
+    }
     
     /**
     * Associa ai campi della query i corrispondenti attributi dell'oggetto e_libro.
@@ -93,16 +93,16 @@ class f_libro{
     * @param array $ennupla la tupla ricevuta dal dbms
     * @return libro l'oggetto e_libro risultato dell'operazione
     */
-    static function creaOggettoDaDB($ennupla)
+    static function creaOggettoDaRiga($riga)
     {
         // creazione dell'oggetto e_libro
         $libro = new e_libro();
-        $libro->setId($ennupla['id']);
-        $libro->setNumCopie($ennupla['num_copie']);
-        $libro->setTitolo($ennupla['titolo']);
-        $libro->setAutore($ennupla['autore']);
-        $libro->setDurata($ennupla['durata']);
-        $libro->setGenere($ennupla['genere']);
+        $libro->setId($riga['id']);
+        $libro->setNumCopie($riga['num_copie']);
+        $libro->setTitolo($riga['titolo']);
+        $libro->setAutore($riga['autore']);
+        $libro->setDurata($riga['durata']);
+        $libro->setGenere($riga['genere']);
                     
         return $libro;
     }

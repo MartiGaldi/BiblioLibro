@@ -42,7 +42,7 @@
 			</div>
 			{/if}
               <h1 class="mb-4"> Registrati </h1>
-              <form action="signup" method="post" enctype="multipart/form-data">
+              <form action="iscriviti" method="post" enctype="multipart/form-data">
 			  
                 <div class="form-group">
                   <label for="utente" class=" {if !$check.nick} text-danger{/if}"> NickName: *</label>
