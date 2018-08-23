@@ -1,11 +1,20 @@
 <?php
-
-class f_utente {
+/**
+ * La classe f_utente fornisce query per gli oggetti e_utente
+ * @author gruppo11
+ * @package Foundation
+ */
+class f_utente 
+{
+	/**
+     * Query che verifica l'esistenza di un nickname nella table utente
+     * @return string contenente la query sql
+     */
     static function nickNameEsistente() : string
     {
         return "SELECT *
                 FROM utente
-                WHERE nickname = :value ;";
+                WHERE nick_name = :value ;";
     }
     
     static function mailEsistente() : string
@@ -19,10 +28,10 @@ class f_utente {
      * Query che effettua il salvataggio di un utente nella tabella utente
      * @return string contenente la query sql
      */
-    static function salvataggioUtente() : string
+    static function salvaUtente() : string
     {
-        return "INSERT INTO utente(nickname,mail,password,tipo)
-                VALUES (:nickname,:mail,:password,:tipo);";
+        return "INSERT INTO utente(nick_name, mail, password, tipo)
+                VALUES (:nick_name, :mail, :password, :tipo);";
     }
     
     /**
@@ -32,7 +41,7 @@ class f_utente {
     static function aggiornaUtente() : string
     {
         return "UPDATE utente
-                SET nickname = :nickname, mail = :mail, password = :password, tipo = :tipo
+                SET nick_name = :nick_name, mail = :mail, password = :password, tipo = :tipo
                 WHERE id = :id;";
     }
     
@@ -51,6 +60,22 @@ class f_utente {
      * Query che rimuove un utente dalla tabella utente.
      * @return string contenente la query sql
      */
+	 
+	 static function caricaPrestito() : string
+    {
+        return "SELECT *
+                FROM prestito
+                WHERE prestito.id = :id";
+    }
+	
+	 static function caricaStorico() : string
+    {
+        return "SELECT *
+                FROM storico
+                WHERE storico.id = :id";
+    }
+	
+	
     static function rimuoviUtente() : string
     {
         return "DELETE
@@ -58,17 +83,7 @@ class f_utente {
                 WHERE id = :id;";
     }
     
-    /**
-     * Cancella tutte le entry di una query. Usata a scopo di debug.
-     * @param PDO $db
-     */
-    static function tabellaVuota (PDO &$database)
-    {
-        $database->beginTransaction();                         //inizio transazione
-        $stmt = $database->prepare("TRUNCATE TABLE utente;");    //prepara lo statement
-        $stmt->execute();
-        $database->commit();
-    }
+    
     
     /**
      * Associazione di un oggetto e_utente ai campi di una query sql per la tabella prenota.
@@ -77,10 +92,10 @@ class f_utente {
      */
     static function bindValues(PDOStatement &$stmt, e_utente &$utente)
     {
-        $stmt->bindValue(':nickname', $utente->getNickname(), PDO::PARAM_STR);
+        $stmt->bindValue(':nick_name', $utente->getNick(), PDO::PARAM_STR);
         $stmt->bindValue(':mail', $utente->getMail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR);
-        $stmt->bindValue(':tipo', lcfirst(substr(get_class($utente),1)), PDO::PARAM_STR);
+        $stmt->bindValue(':tipo', lcfirst(substr(get_class($utente),2)), PDO::PARAM_STR);
     }
     
     /**
@@ -88,16 +103,16 @@ class f_utente {
      * @param array $ennupla la tupla ricevuta dal dbms
      * @return utente l'oggetto e_utente risultato dell'operazione
      */
-    static function creaOggettoDaDB($ennupla) : e_Utente
+    static function creaOggettoDaRiga($riga)
     {
-        $tipoUtente = 'e_'.ucfirst($ennupla['tipo']);
+        $uTipo = 'e_'.ucfirst($riga['tipo']);
         
-        $utente = new $tipoUtente();
+        $utente = new $uTipo();
         
-        $utente->setId($ennupla['id']);
-        $utente->setNickname($ennupla['nickname']);
-        $utente->setMail($ennupla['mail']);
-        $utente->setPassword($ennupla['password']);
+        $utente->setId($riga['id']);
+        $utente->setNick($riga['nick_name']);
+        $utente->setMail($riga['mail']);
+        $utente->setPassword($riga['password']);
                                     
         return $utente;
     }

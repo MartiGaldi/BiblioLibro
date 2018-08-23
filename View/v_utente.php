@@ -74,7 +74,7 @@ class v_utente extends v_oggetto
     
     function validazioneIscrizione(e_utente $utente): bool
     {
-        if($this->check['nickname']=$utente->validazioneNick() && 
+        if($this->check['nick_name']=$utente->validazioneNick() && 
             $this->check['mail']=$utente->validazioneMail() && 
             $this->check['password']=$utente->validazionePassword())
             return true;

@@ -32,20 +32,26 @@
   <div class="py-5 bg-dark">
     <div class="container">
       <div class="row bg-light">
-        <div class="col-md-3"> </div>
+        <div class="col-md-3"> 
+		
+		</div>
         <div class="col-md-6">
           <div class="card text-white p-5 bg-primary">
             <div class="card-body">
 			{if $errore}
 			<div class="alert alert-warning">
-				<strong>Attenzione!</strong><br>Combinazione errata di mail e password.<br>Riprova.
+				<strong>Attenzione!</strong>
+				<br>
+				Combinazione errata di mail e password.
+				<br>
+				Riprova.
 			</div>
 			{/if}
               <h1 class="mb-4"> Registrati </h1>
-              <form action="iscriviti" method="post" enctype="multipart/form-data">
+              <form action="iscrizione" method="post" enctype="multipart/form-data">
 			  
-                <div class="form-group">
-                  <label for="utente" class=" {if !$check.nick} text-danger{/if}"> NickName: *</label>
+                <div class="form-group row">
+                  <label for="utente" class="col-sm-6 col-form-label {if !$check.nick} text-danger{/if}"> NickName: *</label>
 				  <input type="text" class="form-control" id="utente" name="nick" placeholder="Inserisci NickName...">
                 
 					{if !  $check.nick}
@@ -58,8 +64,8 @@
 					</div>
 				
 				
-				<div class="form-group">
-				<label for="mail" class="{if !$check.mail} text-danger{/if}">Indirizzo email: * </label>
+				<div class="form-group row">
+				<label for="mail" class="col-sm-6 col-form-label{if !$check.mail} text-danger{/if}">Indirizzo email: * </label>
                   <input type="text" class="form-control" id="mail" name="mail" placeholder="Iserisci mail...">
                 
 					{if ! $check.mail}
@@ -71,9 +77,9 @@
 					{/if}
 				</div>
 				
-				<div class="form-group">
-                  <label for="inputPassword" class="{if !$check.password} text-danger{/if}">Password: *</label>
-				  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Inserisci password...">
+				<div class="form-group row">
+                  <label for="inputPassword" class="col-sm-6 col-form-label{if !$check.password} text-danger{/if}">Password: *</label>
+				  <input type="password" class="form-control" id="inputPassword" name="pwd" placeholder="Inserisci password...">
                 
 					{if ! $check.password}
 					<div class="col-sm-8 well">
@@ -89,11 +95,11 @@
                 <br>
                 <div class="form-check form-check-inline">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="radio" value="cliente" id="inlineRadio1" name="tipo" checked> Cliente </label>
+                    <input class="form-check-input" type="radio" value="cliente" name="tipo" checked> Cliente </label>
                 </div>
                 <div class="form-check form-check-inline">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="radio" value="bibliotecario" id="inlineRadio2" name="tipo"> Bibliotecario </label>
+                    <input class="form-check-input" type="radio" value="bibliotecario" name="tipo"> Bibliotecario </label>
                 </div>
                 <br>
                 <br>

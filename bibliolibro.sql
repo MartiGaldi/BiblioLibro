@@ -84,7 +84,7 @@ CREATE TABLE `libro` (
 --
 
 INSERT INTO `libro` (`id`, `num_copie`, `titolo`, `autore`, `durata`, `genere`) VALUES
-(32767, 4, 'CIAO', 'MARTINA', '', '');
+(32767, 4, 'prova', 'martina', 'breve', 'giallo');
 
 -- --------------------------------------------------------
 

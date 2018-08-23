@@ -3,30 +3,20 @@
 require_once 'inc.php';
 
 class c_sessione
-
 {
-    
     static function inizioSessione(e_utente &$utente)
-    
     {
-        
         session_start();
-        
         // i suoi dati sono memorizzati all'interno della sessione
-        
         $_SESSION['id'] =  $utente->getId();
-        
-        $_SESSION['nickname'] = $utente->getNick();
-        
+        $_SESSION['nick'] = $utente->getNick();
         $_SESSION['tipo'] = lcfirst(substr(get_class($utente), 2));
-        
     }
     
     
     
     static function getUtenteDaSessione() : e_utente
     {
-        
         session_start();
          
         if(isset($_SESSION['id']))
@@ -35,17 +25,13 @@ class c_sessione
             
                
             $utente = new $u_tipo();
-            
             $utente->setId($_SESSION['id']);
-            
-            $utente->setNick($_SESSION['nickname']);
+            $utente->setNick($_SESSION['nick']);
         }
         
         else
         {
-            
             $utente = new e_visitatore();
-            
         }
         
         return $utente;
@@ -55,27 +41,20 @@ class c_sessione
     }
     
     static function trovaPrivilegiAmministratore() : bool
-    
     {
-        
         if(isset($_SESSION['amministratore']))
-            
             return true;
             
         else 
-            return false;
-            
+            return false; 
     }
     
     
     
   
     static function setPrivilegiAmministratore()
-    
     {
-        
         $_SESSION['amministratore'] = true;
-        
     }
     
     
@@ -83,23 +62,16 @@ class c_sessione
  
     
     static function rimuoviPrivilegiAmministratore()
-    
     {
-        
         session_start();
         
         unset($_SESSION['amministratore']);
-        
     }
     
     static function terminaSessione()
-    
     {
-        
         session_start(); // recupera i parametri di sessione
-        
-        session_unset(); // rimuove le variabili di sessione
-            
+        session_unset(); // rimuove le variabili di sessione 
         session_destroy(); // distrugge la sessione
         
     }
@@ -107,25 +79,18 @@ class c_sessione
     
     
     static function populateApplication()
-    
     {
-        
         setcookie('install', 'ok', time()+3600);
-        
     }
     
     
     
     static function checkPopulateApplication() : bool
-    
     {
-        
-        if(isset($_COOKIE['install']))
-            
+        if(isset($_COOKIE['installa']))
             return true;
             
         else
-                
             return false;
                 
     }
@@ -133,11 +98,8 @@ class c_sessione
     
     
     static function unsetCookie()
-    
     {
-        
-        setcookie('install', 'ok', time()-3600);
-        
+        setcookie('installa', 'ok', time()-3600);
     }
     
 }

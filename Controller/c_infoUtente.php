@@ -5,7 +5,7 @@ require_once 'inc.php';
 /**
 * La classe c_infoUtente implementa la funzionalità 'Gestione Profilo': le sue funzioni infatti
 * presentano/ricevono una form in cui l'utente inserirà informazioni su di se, come :
-* - Nome e Cognome (se non è un Bibliotecario)
+* - Nome e Cognome
 * - Data di Nascita
 * - Luogo di Nascita
 * - Codice fiscale

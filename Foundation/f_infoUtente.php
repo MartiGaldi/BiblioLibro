@@ -1,10 +1,15 @@
 <?php
 
+/**
+ * La classe f_infoUtente fornisce query per gli oggetti e_infoUtente
+ * @author gruppo11
+ * @package Foundation
+ */
+ 
 class f_infoUtente{
     
     /**
      * Salva una e_infoUtente nel database
-     * @param PDO $database la connessione verso il dbms
      * @return string la query sql per la INSERT
      */
     static function salvaInfoUtente() : string
@@ -31,7 +36,7 @@ class f_infoUtente{
     }
     
     /**
-     * Carica info_utente dal database.
+     * Carica un oggetto e_infoUtente dal database.
      * @return string la query sql per la SELECT
      */
     static function caricaInfoUtente() : string
@@ -53,17 +58,6 @@ class f_infoUtente{
                 WHERE id = :id;";
     }
     
-    /**
-     * Cancella tutte le entry di una query. Usata a scopo di debug.
-     * @param PDO $db
-     */
-    static function tabellaVuota (PDO &$database)
-    {
-        $database->beginTransaction();                         //inizio transazione
-        $stmt = $database->prepare("TRUNCATE TABLE infoUtente;");    //prepara lo statement
-        $stmt->execute();
-        $database->commit();
-    }
     
     /**
      * Associa ai campi della query i corrispondenti attributi dell'oggetto e_infoUtente.
@@ -108,26 +102,26 @@ class f_infoUtente{
      * @param array $ennupla la tupla ricevuta dal dbms
      * @return infoUtente l'oggetto e_infoUtente risultato dell'operazione
      */
-    static function creaOggettoDaDB($ennupla) : e_infoUtente
+    static function creaOggettoDaRiga($riga) : e_infoUtente
     {
         $info_utente = new e_infoUtente();
         
-        $info_utente->setId($ennupla['id']);
+        $info_utente->setId($riga['id']);
         
-        if($ennupla['nome']!='NULL')
-            $info_utente->setNome($ennupla['nome']);
-        if($ennupla['cognome']!='NULL')
-            $info_utente->setCognome($ennupla['cognome']);
-        if($ennupla['cod_fisc']!='NULL')
-            $info_utente->setCodFisc($ennupla['cod_fisc']);                    
-        if($ennupla['telefono']!='NULL')
-            $info_utente->setTelefono($ennupla['telefono']);
-        if($ennupla['sesso']!='NULL')             
-            $info_utente->setSesso($ennupla['sesso']);
-        if($ennupla['dt_nasc']!='NULL')
-            $info_utente->setDtNasc($ennupla['dt_nasc']);
-        if($ennupla['luogo_nascita']!='NULL')
-            $info_utente->setLuogoNascita($ennupla['luogo_nascita']);
+        if($riga['nome']!='NULL')
+            $info_utente->setNome($riga['nome']);
+        if($riga['cognome']!='NULL')
+            $info_utente->setCognome($riga['cognome']);
+        if($riga['cod_fisc']!='NULL')
+            $info_utente->setCodFisc($riga['cod_fisc']);                    
+        if($riga['telefono']!='NULL')
+            $info_utente->setTelefono($riga['telefono']);
+        if($riga['sesso']!='NULL')             
+            $info_utente->setSesso($riga['sesso']);
+        if($riga['dt_nasc']!='NULL')
+            $info_utente->setDtNasc($riga['dt_nasc']);
+        if($riga['luogo_nascita']!='NULL')
+            $info_utente->setLuogoNascita($tiga['luogo_nascita']);
         
             return $info_utente;
     }

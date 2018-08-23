@@ -40,12 +40,11 @@
 			{if $uId == $pId}
 			<div>
 			<!-- Rimozione profilo (se il profilo e' dell'utente della sessione)-->
-				<a href="/BiblioLibro/utente/rimuovi/" 
-					class="btn btn-primary btn-lg btn-danger active" role="button" aria-pressed="true">Rimuovi Profilo</a>
+				<a href="/BiblioLibro/utente/rimuovi/" class="btn btn-primary btn-lg btn-danger active" role="button" aria-pressed="true">Rimuovi Profilo</a>
 			</div>
 			
 			{elseif $uTipo eq 'bibliotecario'}
-			<div class = "well">
+			<div>
 			<!-- Rimozione profilo (da parte del bibliotecario)-->
 				<a href="/BiblioLibro/utente/rimuovi/{$pId}" 
 					class="btn btn-primary btn-lg btn-danger active" role="button" aria-pressed="true">Rimuovi Profilo</a>
@@ -55,8 +54,19 @@
         </div>
 			<div class="col-sm-7">
 			<!-- Contenuto principale -->
-				{if $content eq 'None'}
-				<h3>Il mio profilo {ucfirst($pTipo)}!</h3>
+			    {if $content eq 'Prestito'}
+				<!--lista prestiti (in corso)-->
+				<h4>Lista Prestiti</h4>
+				{include file="Catalogo.tpl"}
+				
+				{elseif $content eq 'Storico'}
+				<!--lista prestiti (conclusi)-->
+				<h4>Storico</h4>
+				{include file="Catalogo.tpl"}
+				
+				{elseif $content eq 'None'}
+				<!-- introduzione semplice -->
+				<h3>Il mio profilo da {ucfirst($pTipo)}!</h3>
 				{/if}
 			</div>
 	</div>

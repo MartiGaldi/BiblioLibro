@@ -166,7 +166,7 @@ class e_utente
     
     function __toString()
     {
-        return "nickName: ".$this->nickname."\nId: ".$this->id;
+        return "nickname: ".$this->nick_name."\nId: ".$this->id;
     }
     
 }
