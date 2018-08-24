@@ -16,7 +16,7 @@ require_once'inc.php';
 class f_persistance
 {
     private static $instance = null;  //maniglia della classe
-    private $db;                //oggetto che instanza la connessione
+    private $db;                      //oggetto che instanza la connessione
     
     /**
     * Inizializza un oggetto f_persisatnce. Metodo privato per evitare duplicazioni dell'oggetto.
@@ -52,20 +52,20 @@ class f_persistance
      */ 
     private function __clone(){}
     
+	
 	/**
      * Metodo che restituisce l'unica istanza dell'oggetto.
      * @return f_persistance l'istanza dell'oggetto.
      */
     static function getInstance() : f_persistance
     {
-        if(static::$instance == null)
+        if (static::$instance == null)
         {
             static::$instance = new f_persistance();
         }
         return static::$instance;
     }
     
-	
 	
 	
     /**
@@ -88,7 +88,7 @@ class f_persistance
             $foundClass = 'f_'.$risorsa; // si ricava il nome della corrispettiva classe Foundation
             
             if($target) // se il target e' specificato
-                $method = 'carica'.$target; // i
+                $method = 'carica'.$target;
             else
                 $method = 'carica'.$risorsa;
                     
@@ -213,6 +213,7 @@ class f_persistance
         
         if(is_a($oggetto, e_bibliotecario::class) || is_a($oggetto, e_cliente::class)) // se l'oggetto e' una tipologia di utente
             $classe = get_parent_class($oggetto); // si considera la classe padre, e_utente
+			
         else
             $classe = get_class($oggetto); // restituisce il nome della classe dall'oggetto
                 
@@ -240,9 +241,7 @@ class f_persistance
     private function eseguiSalva(&$oggetto, string $sql)
     {
         $this->db->beginTransaction(); // inizio della transazione
-           
-        $stmt = $this->db>prepare($sql);
-        
+        $stmt = $this->db->prepare($sql);
         // si prepara la query facendo un bind tra parametri e variabili dell'oggetto
         
         try

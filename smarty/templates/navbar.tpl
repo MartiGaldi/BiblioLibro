@@ -33,11 +33,7 @@
           			{else}
           			<!-- se loggato -->
 					<li class="nav-item">
-           				<a class="nav-link" href="/BiblioLibro/utente/profilo/{$uId}">{$uName} Profilo</a>
-          			</li>
-          			
-          			<li class="nav-item">
-           				<a class="nav-link" href="/BiblioLibro/utente/prestito"> Prestiti </a>
+           				<a class="nav-link" href="/BiblioLibro/utente/profilo/{$uId}">{$uNick} Profilo</a>
           			</li>
           			
           			{if $uTipo eq 'cliente'}
@@ -47,9 +43,7 @@
           			{/if}
           			
           			{if $uTipo eq 'bibliotecario'}
-        			 <li class="nav-item">
-           				<a class="nav-link" href="/BiblioLibro/Utenti"> Utenti </a>
-          			</li>
+        			 
           			 <li class="nav-item">
            				<a class="nav-link" href="/BiblioLibro/libro/caricaLibro"> + Libro </a>
           			</li>
@@ -69,8 +63,6 @@
           				<i class="fa d-inline fa-lg fa-user-circle-o"></i> ESCI </a>
           			</li>
 					</ul>
-          			
-					
           	{/if}	
     	 </ul>
           

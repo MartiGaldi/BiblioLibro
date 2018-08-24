@@ -72,10 +72,7 @@
   
   {include file="fine.tpl"}
    <footer class="container-fluid text-center">
-
   		<a href="/BiblioLibro/amministratore/login">Pannello Amministratore</a>
-
 	</footer>
 </body>
-
 </html>

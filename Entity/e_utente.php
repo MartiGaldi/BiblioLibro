@@ -1,7 +1,6 @@
 <?php 
 
-require_once'inc.php';
-
+require_once 'inc.php';
 
 /**
 * La classe e_utente contiene tutti gli attributi e metodi base che sono adoperati da tutte
@@ -16,29 +15,29 @@ require_once'inc.php';
 
 class e_utente
 {
-    protected $id;
+	protected $id;
     protected $nick_name;
     protected $mail;
     protected $password;
     protected $info_utente;
     
     function __construct(){}
-    
-	function getId() : int
-    {
+	
+	
+    function getId() : int
+	{
         if(!$this->id)
             return 0;
-        else return $this->id;
+        else 
+			return $this->id;
     }
     
-    /**
-     * @param int $id l'identificativo dell'oggetto Entity
-     */
     function setId(int $id)
-    {
-        $this->id=$id;
+	{
+        $this->id = $id;
     }
 	
+
     function setNick(string $nick_name)
     {
         $this->nick_name=$nick_name;  
@@ -51,7 +50,7 @@ class e_utente
         
     function validazioneNick() : bool
     {
-        if ($this->nick_name && preg_match("/^[a-zA-Z][a-zA-Z0-9]+$/", $this->nick_name)) // solo lettere e numeri
+        if ($this->nick_name && preg_match('/^[a-zA-Z0-9_-]{6,15}$/', $this->nick_name)) // solo lettere e numeri
             return true;
         else
             return false;
@@ -94,12 +93,12 @@ class e_utente
 
     
     /** Metodo che verifica che la password sia corretta ovvero composta da caratteri alfanumerici
-     *  ed abbia la lunghezza almeno pari a 8 e massimo 20
+     *  ed abbia la lunghezza almeno pari a 6 e massimo 20
      *  @return bool true se la password è corretta, false altrimenti
      */
     function validazionePassword() : bool
     {
-        if($this->password && preg_match('/^[[:alnum:]]{8,20}$/', $this->password))
+        if($this->password && preg_match('/^[[:alnum:]]{6,20}$/', $this->password))
             return true;
         
         else
@@ -144,32 +143,30 @@ class e_utente
     function setInfoUtente(e_infoUtente $info = null)
     {
         if(!$info)
-            $info = new e_infoUtente();
+		{
+			$info = new e_infoUtente();
+		}
         
          $info->setId($this->id);
+		 var_dump('CIAO');
          $this->info_utente = $info;
          
          if(!f_persistance::getInstance()->carica(e_infoUtente::class, $this->id)) 
-         {   //se le info non sono presenti vengono aggiunte nel db   
+         {  
+			//se le info non sono presenti vengono aggiunte nel db   
              f_persistance::getInstance()->salva($this->info_utente);
-         
          }
          
          else
-         
-         { //altrimenti vengono aggiornate
+         { 
+			//altrimenti vengono aggiornate
              f_persistence::getInstance()->aggiorna($this->info_utente);
-             
          }
-        
     }
     
     function __toString()
     {
         return "nickname: ".$this->nick_name."\nId: ".$this->id;
     }
-    
 }
-
-   
 ?>

@@ -45,14 +45,17 @@ class v_utente extends v_oggetto
         
         else
             $utente = new e_utente();
-                
-                if(isset($_POST['mail']))
-                    $utente->setMail($_POST['mail']);
+           
+		if(isset($_POST['nick']))
+            $utente->setNick($_POST['nick']);
+		
+        if(isset($_POST['mail']))
+            $utente->setMail($_POST['mail']);
                     
-                    if(isset($_POST['password']))
-                        $utente->setPassword($_POST['password']);
+        if(isset($_POST['password']))
+            $utente->setPassword($_POST['password']);
                         
-                        return $utente;                
+    return $utente;                
     }
    
     
@@ -63,7 +66,7 @@ class v_utente extends v_oggetto
     */
     function validazioneLogin(e_utente $utente): bool
     {
-        if($this->check['mail']=$utente->validazioneMail() && 
+        if($this->check['nick']=$utente->validazioneNick() && $this->check['mail']=$utente->validazioneMail() && 
                 $this->check['password']=$utente->validazionePassword())
             return true;
         
@@ -77,7 +80,9 @@ class v_utente extends v_oggetto
         if($this->check['nick_name']=$utente->validazioneNick() && 
             $this->check['mail']=$utente->validazioneMail() && 
             $this->check['password']=$utente->validazionePassword())
-            return true;
+			{
+				return true;
+			}
         else
             return false;
     }
@@ -91,9 +96,9 @@ class v_utente extends v_oggetto
     * @param array $array: l'array del contenuto da visualizzare
     */
     
-    function mostraProfilo (e_utente &$profiloUtente, e_utente &$Utente, string $contenuto, array $array = NULL)
+    function mostraProfilo (e_utente &$profiloUtente, e_utente &$Utente, string $content, array $array = NULL)
     {
-        $this->smarty->assign('contenuto', $contenuto);
+        $this->smarty->assign('content', $content);
         $this->smarty->registerObject('utente', $Utente);
         $this->smarty->assign('uTipo', lcfirst(substr(get_class($User), 2)));
         
@@ -115,8 +120,8 @@ class v_utente extends v_oggetto
     function mostraLogin(bool $errore = NULL)
     {
         if(!$errore)
-        {$errore = false;}
-            
+			$errore = false;
+		
             $utente = new e_visitatore();
             
             $this->smarty->registerObject('utente', $utente);
@@ -141,6 +146,7 @@ class v_utente extends v_oggetto
         {$errore = false;}
             
             $utente = new e_visitatore(); 
+			
             $this->smarty->registerObject('utente', $utente);
             $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
 
@@ -165,12 +171,12 @@ class v_utente extends v_oggetto
         if($rimuovi)
         {  
             $setRimuoviUtente = true;
-            $this->smarty->assign('rName', $removed->getNickName());
-            $this->smarty->assign('rId', $removed->getId());
+            $this->smarty->assign('rNick', $rimuovi->getNick());
+            $this->smarty->assign('rId', $rimuovi->getId());
         }
         else
         {
-            $this->smarty->assign('rNome', NULL);
+            $this->smarty->assign('rNick', NULL);
             $this->smarty->assign('rId', NULL);
         }
         

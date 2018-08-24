@@ -216,8 +216,8 @@ class c_utente
             {
                 // se la mail e il nickname non sono stati ancora usati, si puo salvare l'utente
                 $Utente->hashPassword(); // si cripta la password
-                f_peristance::getInstance()->salva($Utente); // si salva l'utente
-                c_sessione::inizioSessione($Utente);
+                f_persistance::getInstance()->salva($Utente); // si salva l'utente
+				c_sessione::inizioSessione($Utente);
 
                 $Utente->setInfoUtente();
                 header('Location: /BiblioLibro/infoUtente/modificaInfo/');

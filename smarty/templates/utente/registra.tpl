@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registrati</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> </head>
+  <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
+</head>
 
-<body >
+<body class="bg-dark">
 
 	{utente->getNick assign='uNick'}
 	
@@ -29,15 +29,17 @@
   {include file="navbar.tpl"}
   
   
-  <div class="py-5 bg-dark">
+  <div class="py-5 bg-light">
     <div class="container">
-      <div class="row bg-light">
+      <div class="row">
         <div class="col-md-3"> 
 		
 		</div>
         <div class="col-md-6">
           <div class="card text-white p-5 bg-primary">
             <div class="card-body">
+			<h1 class="mb-4"> Registrati </h1>
+			
 			{if $errore}
 			<div class="alert alert-warning">
 				<strong>Attenzione!</strong>
@@ -47,17 +49,17 @@
 				Riprova.
 			</div>
 			{/if}
-              <h1 class="mb-4"> Registrati </h1>
+              
               <form action="iscrizione" method="post" enctype="multipart/form-data">
 			  
                 <div class="form-group row">
                   <label for="utente" class="col-sm-6 col-form-label {if !$check.nick} text-danger{/if}"> NickName: *</label>
 				  <input type="text" class="form-control" id="utente" name="nick" placeholder="Inserisci NickName...">
                 
-					{if !  $check.nick}
-					<div class="col-sm-8 well">
+					{if ! $check.nick}
+					<div class="col-sm-8">
 						<small id="nickHelp" class="text-danger">
-  							Deve comprendere dagli 8 ai 20 caratteri.
+  							Deve comprendere dagli 6 ai 20 caratteri.
 						</small>      
 					</div>
 					{/if}
@@ -79,16 +81,16 @@
 				
 				<div class="form-group row">
                   <label for="inputPassword" class="col-sm-6 col-form-label{if !$check.password} text-danger{/if}">Password: *</label>
-				  <input type="password" class="form-control" id="inputPassword" name="pwd" placeholder="Inserisci password...">
+				  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Inserisci password...">
                 
 					{if ! $check.password}
 					<div class="col-sm-8 well">
 						<small id="passwordHelp" class="text-danger">
-  							Deve contere 8-20 caratteri.
+  							Deve contere 6-20 caratteri.
 						</small>      
 					</div>
 					{/if}
-					</div>
+				</div>
 				
 				
                 <label>Tipo Utente: *</label>
@@ -110,9 +112,11 @@
           </div>
         </div>
       </div>
-	  {include file="fine.tpl"}
-    </div>
+     </div>
   </div>
+  
+	  {include file="fine.tpl"}
+
   </body>
 
 </html>
