@@ -85,14 +85,14 @@ class f_persistance
         if ( class_exists( $classe ) ) // si verifica che l'oggetto Entity esista
         {
             $risorsa = substr($classe,2); // si ricava il nome della risorsa corrispondente all'oggetto Entity
-            $foundClass = 'f_'.$risorsa; // si ricava il nome della corrispettiva classe Foundation
+            $classeFound = 'f_'.$risorsa; // si ricava il nome della corrispettiva classe Foundation
             
             if($target) // se il target e' specificato
                 $method = 'carica'.$target;
             else
                 $method = 'carica'.$risorsa;
                     
-            if(method_exists($foundClass, $method))
+            if(method_exists($classeFound, $method))
                 $sql = $classeFound::$method();      
         }
         
@@ -146,7 +146,7 @@ class f_persistance
     * parametri come titolo e autore.
     * @param string $key la tabella da cui prelevare i dati
     * @param string $value il valore per cui cercare i valori
-    * @param string $string il dato richiesto dall'utente
+    * @param string $str il dato richiesto dall'utente
     * @return array|NULL i risultati ottenuti dalla ricerca. Se la richiesta non ha match, ritorna NULL.
     */
     
@@ -218,12 +218,12 @@ class f_persistance
             $classe = get_class($oggetto); // restituisce il nome della classe dall'oggetto
                 
         $risorsa = substr($classe,2); // nome della risorsa (Utente, Libro, ...)
-        $foundClass = 'f_'.$risorsa; // nome della rispettiva classe Foundation
+        $classeFound = 'f_'.$risorsa; // nome della rispettiva classe Foundation
                 
         $method = 'salva'.$risorsa; // nome del metodo salva+nome_risorsa
                 
-        if(class_exists($foundClass) && method_exists($foundClass, $method))  // se la classe esiste e il metodo pure...
-            $sql = $foundClass::$method(); //ottieni la stringa sql
+        if(class_exists($classeFound) && method_exists($classeFound, $method))  // se la classe esiste e il metodo pure...
+            $sql = $classeFound::$method(); //ottieni la stringa sql
         
         if($sql) //se la stringa sql esiste...
             $risultato = $this->eseguiSalva($oggetto, $sql); // ... esegui la query
@@ -373,11 +373,11 @@ class f_persistance
         if (class_exists($classe))
         {
             $risorsa = substr($classe, 2);
-            $foundClass = 'f_' . $risorsa;
+            $classeFound = 'f_' . $risorsa;
             
             $method	= 'rimuovi' . $risorsa;
             
-            $sql = $foundClass::$method();
+            $sql = $classeFound::$method();
         }
         
         if ($sql)
@@ -440,12 +440,12 @@ class f_persistance
         if (class_exists($classe))
         {
             $risorsa = substr($classe, 2);
-            $foundClass = 'f_' . $risorsa;
+            $classeFound = 'f_' . $risorsa;
             
             $method = 'esiste' . $target;
             
-            if(method_exists($foundClass, $method))
-                $sql = $foundClass::$method();
+            if(method_exists($classeFound, $method))
+                $sql = $classeFound::$method();
         }
         if ($sql)
         {
@@ -518,7 +518,7 @@ class f_persistance
     
     private function bindValues(PDOStatement &$stmt, &$oggetto)
     {
-        $class = '';
+        $classe = '';
    
         if(is_a($oggetto, e_bibliotecario::class) || is_a($oggetto, e_cliente::class))
             $classe = get_parent_class($oggetto);
@@ -526,8 +526,8 @@ class f_persistance
             $classe = get_class($oggetto); // restituisce il nome della classe dall'oggetto
 
             $risorsa = substr($classe,2); // nome della risorsa (utente, libro, ...)
-            $foundClass = 'f_'.$risorsa; // nome della rispettiva classe Foundation
-            $foundClass::bindValues($stmt, $oggetto); // associazione statement - e_oggetto
+            $classeFound = 'f_'.$risorsa; // nome della rispettiva classe Foundation
+            $classeFound::bindValues($stmt, $oggetto); // associazione statement - e_oggetto
     }
     
     /**
@@ -542,7 +542,7 @@ class f_persistance
         $oggetto = NULL; //oggetto che conterra' l'istanza dell'elaborazione
         if ( class_exists( $classe ) )
         {
-            $foundClass = 'f_'.substr($classe,2);
+            $classeFound = 'f_'.substr($classe,2);
             $oggetto = $classeFound::creaOggettoDaRiga($riga);
         }
         return $oggetto;
