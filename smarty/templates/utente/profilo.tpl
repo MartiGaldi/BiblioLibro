@@ -64,6 +64,11 @@
 				<h4>Storico</h4>
 				{include file="Catalogo.tpl"}
 				
+				{elseif $content eq 'Prenotazione'}
+				<!--lista prenotazioni (non acquisiti)-->
+				<h4>Prenotazione</h4>
+				{include file="Catalogo.tpl"}
+				
 				{elseif $content eq 'None'}
 				<!-- introduzione semplice -->
 				<h3>Il mio profilo da {ucfirst($pTipo)}!</h3>
