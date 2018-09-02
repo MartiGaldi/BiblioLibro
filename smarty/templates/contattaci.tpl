@@ -25,34 +25,38 @@
   
   {include file="navbar.tpl"}
   
-  <div class="py-5 text-white bg-light">
+  <div class="py-5 bg-light">
     <div class="container">
       <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-          <h1 class="bg-primary">Contattaci</h1>
-          <p class="text-dark">Ci piacerebbe soddisfare le tue richieste!</p>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="card text-white p-5 bg-primary">
+		  <div class="card-body">
+		  <h1 class="mb-4">Contattaci</h1>
+          <p class="text-light">Ci piacerebbe soddisfare le tue richieste!</p>
           <form>
-            <div class="form-group">
-              <label for="InputName" class="text-dark">Nome:</label>
-              <input type="text" class="form-control" id="InputName" placeholder="Il tuo nome"> </div>
-            <div class="form-group">
-              <label for="InputEmail1" class="text-dark">Email:</label>
-              <input type="email" class="form-control" id="InputEmail1" placeholder="La tua email"> </div>
-            <div class="form-group">
-              <label for="Textarea" class="text-dark">Scrivi qui:</label>
-              <textarea class="form-control" id="Textarea" rows="3" placeholder="Scrivi qui la tua richiesta..."></textarea>
+            <div class="form-group row">
+              <label for="InputName" class="col-sm-6 text-dark">Nome:</label>
+              <input type="text" class="form-control" id="InputName" name="nome" placeholder="Il tuo nome"> </div>
+            <div class="form-group row">
+              <label for="InputEmail1" class="col-sm-6 text-dark">Email:</label>
+              <input type="email" class="form-control" id="InputEmail1" name="mail" placeholder="La tua email"> </div>
+            <div class="form-group row">
+              <label for="Textarea" class="col-sm-6 text-dark">Scrivi qui:</label>
+              <textarea class="form-control" id="Textarea" name="textarea" rows="3" placeholder="Scrivi qui la tua richiesta..."></textarea>
             </div>
+			<br>
             <button type="submit" class="btn btn-secondary">Invia</button>
           </form>
         </div>
+		</div>
         <div class="col-md-4" ></div>
       </div>
     </div>
+  </div>
   </div>
   
   {include file="fine.tpl"}
   
 </body>
-
 </html>
