@@ -3,16 +3,16 @@ require_once 'inc.php';
 
 class SampleUsers
 {
-    static function generateUserPool(int $nUtente, int $nBibliotecario)
+    static function generateUserPool(int $nUtenti, int $nBibliotecari)
     {
         $listaLibri = array();
         
-        for ($i = 0; $i < $nBibliotecario; $i++)
+        for ($i = 0; $i < $nBibliotecari; $i++)
         {
             SampleUsers::generaBibliotecario($i);
         }
         
-        for ($i = 0; $i < $nUtente; $i++)
+        for ($i = 0; $i < $nUtenti; $i++)
         {
             SampleUsers::generaCliente($i);
         }
@@ -22,25 +22,27 @@ class SampleUsers
     
     private function generaCliente (int $n)
     {
-        $cliente=new e_cliente();
+        $cli=new e_cliente();
+		
+		$cli->seiId(0);
+        $cli->setNick("cliente".$n);
+        $cli->setMail("cliente".$n."@mail.ex");
+        $cli->setPassword("cliente".$n);
+        $cli->hashPassword();
         
-        $cliente->setMail("cliente".$n."@mail.ex");
-        $cliente->setPassword("cliente".$n);
-        $cliente->hashPassword();
-        
-        f_persistance::getInstance()->salva($cliente);
+        f_persistance::getInstance()->salva($cli);
         
         $staticInfo=new e_infoUtente();
+		
         $staticInfo->setNome("cliente");
         $staticInfo->setCognome($n);
         $staticInfo->setDtNasc("0000-00-00");
         $staticInfo->setLuogoNascita("Luogo");
-        $staticInfo->setCodFisc("Codice Fiscale");
-        $staticInfo->setSesso("F o M");
+        $staticInfo->setCodFisc("0000000000000000");
+        $staticInfo->setSesso("F");
         $staticInfo->setTelefono("0000000000");
         
-        
-        $cliente->setInfoUtente($staticInfo);
+        $cli->setInfoUtente($staticInfo);
     }
     
     
@@ -49,36 +51,38 @@ class SampleUsers
     {
         $bibl=new e_bibliotecario();
         
+		$bibl->seiId(0);
+		$bubl->setNick("bibliotecario".$n);
         $bibl->setMail("bibliotecario".$n."@mail.ex");
         $bibl->setPassword("bibliotecario".$n);
         $bibl->hashPassword();
-
-        
+		
         f_persistance::getInstance()->salva($bibl);
         
-
         $staticInfo=new e_infoUtente();
-       
         $staticInfo->setNome("bibliotecario");
         $staticInfo->setCognome($n);
         $staticInfo->setDtNasc("0000-00-00");
         $staticInfo->setLuogoNascita("Luogo");
-        $staticInfo->setCodFisc("Codice Fiscale");
-        $staticInfo->setSesso("F o M");
-        $staticInfo->setTelefono("0000000000000");
-        
+        $staticInfo->setCodFisc("0000000000000000");
+        $staticInfo->setSesso("F");
+        $staticInfo->setTelefono(0000000000000);
         
         $bibl->setInfoUtente($staticInfo);
         
-        
-        $staticLibro = new e_libro();
-        
+        /*$staticLibro = new e_libro();
+		$staticLibro->setId(0);
         $staticLibro->setAutore("Autore".$n);
         $staticLibro->setTitolo("Libro".$n);
-        $staticLibro->setNumCopie("Copie".$n);
-        
+        $staticLibro->setNumCopie(0.$n);
+		$staticLibro->setDurata("Consultazione".$n);
+        $staticLibro->setGenere("Genere".$n);
+		//private $info_libro;
+        $bibl->setInfoLibro($staticLibro);
+		
         f_persistance::getInstance()->salva($staticLibro);
         
-        return $bibl;   
+        return $bibl; */   
+		
     }
 }
