@@ -18,8 +18,8 @@ class c_utente
     static function login()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') // se il metodo e' get...
-        { //...carica la pagina del login, se l'utente e' effettivamente un guest
-            
+        { 
+			//carica la pagina del login, se l'utente e' effettivamente un guest
             $v_utente = new v_utente();
             $utente = c_sessione::getUtenteDaSessione();
             
@@ -178,7 +178,7 @@ class c_utente
             $autenticato = false; // bool per l'autenticazione
             
             // si verifica che l'utente inserito matchi una entry nel db
-            $idUtente = f_persistance::getInstance()->esiste(e_utente::class, f_target::NICKNAME_ESISTENTE, $Utente->getNick()); 
+            $idUtente = f_persistance::getInstance()->esiste(e_utente::class, f_target::MAIL_ESISTENTE, $Utente->getMail()); 
             
             if($idUtente) // se e' stato prelevato un id...
             {

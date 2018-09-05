@@ -17,8 +17,10 @@ class e_copertina
     private $copertina; //byte immagine
     
     /**inizializzazione immagine vuota*/
-    function __constructor(){
-        $this->size=0;
+    function __constructor()
+	{
+        $this->id=null;
+		$this->size=0;
         $this->tipo='non definito';
     }
     

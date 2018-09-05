@@ -4,11 +4,9 @@ require_once'inc.php';
 
 /**
 * La classe e_infoUtente contiene le informazioni dettagliate sull'utente che non
-* sono necessarie in fase di autenticazione. Proprio per questo, estende
-* la classe e_oggetto avendo come id lo stesso identificativo dell'utente a cui appartengono.
+* sono necessarie in fase di autenticazione.
 * @author gruppo11
 * @package Entity
-
 */
 
 class e_infoUtente
@@ -22,22 +20,23 @@ class e_infoUtente
    private $dt_nasc;
    private $luogo_nascita;
    
-    
-    
-    function __construct()
-    {
-        
-        $this->id=null;
-        $this->nome='';
-        $this->cognome='';
-        $this->cod_fisc='';
-        $this->telefono='';
-        $this->sesso='';
-        $this->dt_nasc='';
-        $this->luogo_nascita='';
+   
+   function __construct(){}
+	
+    function setId (int $id)
+	{
+        $this->id = $id;
     }
-    
-    
+	
+     function getId() : int
+	{
+        if(!$this->id)
+            return 0;
+        else 
+			return $this->id;
+    }
+   
+	
     function setNome (string $nome)
     {
         $this->nome=$nome;
@@ -50,14 +49,13 @@ class e_infoUtente
     
     function setCognome (string $cognome)
     {
-    $this->cognome=$cognome;
+		$this->cognome=$cognome;
     }
 
     function getCognome() : string
     {
-    return $this->cognome;
+		return $this->cognome;
     }
-    
     
     function setCodFisc (string $cod_fisc)
     {
@@ -100,9 +98,9 @@ class e_infoUtente
     {
         if($this->dt_nasc)
         {
-            $formato="Y-m-d";
+            $formato="y-m-d";
             if($mostraFormato)
-                $formato= "Y/m/d";
+                $formato= "y/m/d";
             return $this->dt_nasc->format($formato);
         }
         else
@@ -178,7 +176,6 @@ class e_infoUtente
              $lg_nasc = false;
                  
      }
-        
 }
         
 ?>       

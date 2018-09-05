@@ -11,6 +11,7 @@ require_once 'inc.php';
 
 class e_storicoPrestito
 {
+	private $id;
     private $prestito;
   
     /**

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Log In</title>
+  <title>Accedi</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
 </head>
@@ -41,28 +41,30 @@
 			  
 			  {if $errore}
 			<div class="alert alert-warning">
-			<!-- Form errore-->
-				<strong>Attenzione!</strong><br> Combinazione errata di mail e password. <br>Riprova.
+				<strong>Attenzione!</strong>
+				<br>
+				Combinazione errata di mail e password.
+				<br>
+				Riprova.
 			</div>
 			{/if}
 			
-              <form action="login" method="post">
-			  
+              <form class="form-horizontal" action="login" method="post">
                 <div class="form-group row">
-                  <label for="utente" class="col-sm-6 {if !$check.mail} text-danger{/if}">Indirizzo email:</label>
-				  <input type="text" class="form-control" id="utente" name="mail" placeholder="Inserisci email..."> </div>
+                  <label for="inputMail" class="col-sm-6 col-form-label {if !$check.mail} text-danger{/if}">Indirizzo mail:</label>
+				  <input type="text" class="form-control" id="inputMail" name="mail" placeholder="Inserisci mail">
 				  {if ! $check.mail}
-			        <div class="col-sm-8">
+			        <div class="col-sm-10">
 						<small id="mailHelp" class="text-danger">
-  							La struttura della mail inserita non è valida.
+  							La struttura della mail inserita non e' valida.
 						</small>      
 					</div>
 				{/if}
-				
+				</div>
 				
                 <div class="form-group row">
-                  <label for="inputPassword" class="col-sm-6 {if !$check.password} text-danger{/if}">Password:</label>
-				  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Inserisci password..."> </div>
+                  <label for="inputPassword" class="col-sm-6 col-form-label {if !$check.password} text-danger{/if}">Password:</label>
+				  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Inserisci password...">
 					
 					{if ! $check.password}
 					<div class="col-sm-8 well">
@@ -71,6 +73,7 @@
 						</small>      
 					</div>
 					{/if}
+				</div>
 				<br>
                 <button type="submit" class="btn btn-secondary">Accedi</button>
               </form>

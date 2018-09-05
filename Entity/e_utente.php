@@ -129,9 +129,9 @@ class e_utente
      */
     function getInfoUtente()
     {
-        $info_utente = f_persistance::getIstance()->carica(e_infoUtente::class, $this->id);
-        if($info_utente)
-            $this->info_utente = $info_utente;
+        $uInfo = f_persistance::getIstance()->carica(e_infoUtente::class, $this->id);
+        if($uInfo)
+            $this->info_utente = $uInfo;
         else
             $this->info_utente = new e_infoUtente();
         return $this->info_utente;
@@ -143,12 +143,9 @@ class e_utente
     function setInfoUtente(e_infoUtente $info = null)
     {
         if(!$info)
-		{
 			$info = new e_infoUtente();
-		}
-        
+     
          $info->setId($this->id);
-		 var_dump('CIAO');
          $this->info_utente = $info;
          
          if(!f_persistance::getInstance()->carica(e_infoUtente::class, $this->id)) 
@@ -166,7 +163,7 @@ class e_utente
     
     function __toString()
     {
-        return "nickname: ".$this->nick_name."\nId: ".$this->id;
+        return "Nickname: ".$this->nick_name."\nId: ".$this->id;
     }
 }
 ?>
