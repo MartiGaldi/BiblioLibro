@@ -58,7 +58,7 @@ class v_libro extends v_oggetto
     
     
     /**
-    * Mostra la pagina che consente l'inserimento di un libro da parte di un bibliootecario
+    * Mostra la pagina che consente l'inserimento di un libro da parte di un bibliotecario
     * @param e_utente $utente l'utente della sessione
     * @param bool $errore facoltativo, da impostare a true se il biblitecario ha inserito
     * un titolo di un testo gia' inserita da lui

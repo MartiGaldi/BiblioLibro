@@ -33,19 +33,22 @@
           			{else}
           			<!-- se loggato -->
 					<li class="nav-item">
-           				<a class="nav-link" href="/BiblioLibro/utente/profilo/{$uId}">{$uNick} Profilo</a>
+           				<a class="active nav-link" href="/BiblioLibro">Home</a>
           			</li>
+					
           			
-          			{if $uTipo eq 'cliente'}
+					{if $uTipo eq 'cliente'}
+					<li class="nav-item">
+           				<a class="nav-link" href="/BiblioLibro/utente/profilo/{$uId}">{$uNick}</a>
+          			</li>
           			<li class="nav-item">
-           				<a class="nav-link" href="/BiblioLibro/Catalogo"> Catalogo </a>
+           				<a class="nav-link" href="/BiblioLibro/libro/catalogo"> Catalogo </a>
           			</li>
           			{/if}
           			
           			{if $uTipo eq 'bibliotecario'}
-        			 
-          			 <li class="nav-item">
-           				<a class="nav-link" href="/BiblioLibro/libro/caricaLibro"> + Libro </a>
+          			<li class="nav-item">
+           				<a class="nav-link" href="/BiblioLibro/libro/aggiungiLibro"> + Libro </a>
           			</li>
           			<li class="nav-item">
            				<a class="nav-link" href="/BiblioLibro/libro/rimuoviLibro"> - Libro </a>

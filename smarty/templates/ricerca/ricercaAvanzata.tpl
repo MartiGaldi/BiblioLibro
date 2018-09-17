@@ -51,7 +51,7 @@
 					</div>
 					
 					<div class="form-group col-md-3">
-						<select id="inputKey" class="form-control" name="value">
+						<select id="inputValue" class="form-control" name="value">
 							<option value="titolo" selected>Titolo</option>
 							<option value="autore">Autore</option>
 						</select>

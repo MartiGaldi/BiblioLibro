@@ -71,7 +71,7 @@
 				
 				{elseif $content eq 'None'}
 				<!-- introduzione semplice -->
-				<h3>Il mio profilo da {ucfirst($pTipo)}!</h3>
+				<h3>Il mio profilo!</h3>
 				{/if}
 			</div>
 	</div>

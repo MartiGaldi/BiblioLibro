@@ -70,7 +70,7 @@ class c_ricerca
                 if(($key == c_ricerca::KEY_DEFAULT || $key == c_ricerca::KEY_ADVANCED) && ($value == c_ricerca::VALUE_DEFAULT || $value == c_ricerca::VALUE_ADVANCED))
                 {   
 					// si prelevano gli oggetti
-                    $oggetti = f_peristance::getInstance()->cerca($key, $value, $string);
+                    $oggetti = f_persistance::getInstance()->ricerca($key, $value, $string);
                     $v_ricerca->mostraRisultatoRicerca($utente, $oggetti, $key, $value, $string);
                 } 
                 else

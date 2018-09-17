@@ -27,6 +27,9 @@ class f_target
 	
 	/** caricamento dei presiti di un cliente (conclusi)*/
 	const CARICA_STORICO = 'Storico';
+	
+	/** caricamento delle prenotazioni di un cliente */
+	const CARICA_PRENOTAZIONE = 'Prenotazione';
 }
 
 ?>

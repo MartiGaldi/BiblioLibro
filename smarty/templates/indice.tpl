@@ -32,11 +32,11 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <form class="form-inline m-0 role="search" action="/BiblioLibro/ricerca/semplice ">
+          <form class="form-inline m-0 role="ricerca" action="/BiblioLibro/ricerca/semplice ">
             <input class="form-control mr-2" type="text" name="str" placeholder="Fai la tua ricerca...">
             <button class="btn btn-primary" type="submit">CERCA</button>
 			{if $uTipo != "visitatore"}
-            <a class="nav-link" href="/BiblioLibro/ricerca/ricercaAvanzata.tpl"> ricerca avanzata </a>
+            <a class="nav-link" href="/BiblioLibro/ricerca/avanzata"> ricerca avanzata </a>
 			{/if}
           </form>
         </div>

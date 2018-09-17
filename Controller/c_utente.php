@@ -74,11 +74,10 @@ class c_utente
     /**
     * La funzione mostra il profilo di un utente. A seconda del tipo di URL, saranno visualizzati contenuti differenti.
     * In particolare:
-    *  - /BiblioLibro/utente/profilo/id mostra la pagina base: messaggio di benvenuto
+    *  - /BiblioLibro/utente/profilo/id mostra la pagina base;
     *  - /BiblioLibro/utente/profilo/id&libro mostra la lista dei libri presi in prestito dall'utente
     * @param $string l'argomento della url. Se non specificato, si viene reindirizzati ad una pagina di errore.
     */
-    
     static function profilo($id, $content = null)
     {
         $v_utente = new v_utente();
@@ -96,20 +95,29 @@ class c_utente
                     if ($profiloUtente) // se l'utente esiste...
                     {   
                         $array = NULL; // array contenente i dati dell'utente da visualizzare
-                       /** if ($content == 'prestito')  // se il parametro e' un libro preso in prestito
-                        { // si carica la lista dei libri presi dall'utente
+						
+                        if ($content == 'prestito')  // se il parametro e' un libro preso in prestito
+                        { 
+							// si carica la lista dei libri presi in prestito dall'utente (in corso)
                             $array = f_peristance::getInstance()->carica(e_prestito::class, $profiloUtente->getId(), f_target::CARICA_PRESTITO);
                             $content = 'Prestito';
                         }
+						
 						elseif ($content == 'storico')
 						{
 							$array = f_peristance::getInstance()->carica(e_storico::class, $profiloUtente->getId(), f_target::CARICA_STORICO);
                             $content = 'Storico';
 						}
 						
+						elseif ($content == 'prenotazione')
+						{
+							$array = f_peristance::getInstance()->carica(e_prenotazione::class, $profiloUtente->getId(), f_target::CARICA_PRENOTAZIONE);
+                            $content = 'Storico';
+						}
+						
                         else // se il contenuto non e' specificato (e' stato inserito solo l'id) si visualizza la pagina base
                                 $content = 'None';   
-                        */
+                        
                                
                         $v_utente->mostraProfilo($profiloUtente, $Utente, $content, $array); // mostra il profilo   
                     }

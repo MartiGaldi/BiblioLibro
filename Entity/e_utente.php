@@ -144,7 +144,7 @@ class e_utente
     {
         if(!$info)
 			$info = new e_infoUtente();
-     var_dump("CIAO");
+		
          $info->setId($this->id);
 	 var_dump("CIAO2");
          $this->info_utente = $info;
