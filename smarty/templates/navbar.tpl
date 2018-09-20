@@ -12,13 +12,25 @@
         			{if $uTipo eq 'visitatore'}
         			<!-- se visitatore -->
 					<li class="nav-item">
+					{if $smarty.server.REQUEST_URI eq "/BiblioLibro/"}
            				<a class="active nav-link" href="/BiblioLibro">Home</a>
+						 {else}
+						 <a class="nav-link" href="/BiblioLibro">Home</a>
+					{/if}
           			</li>
           			<li class="nav-item">
-            			<a class="nav-link" href="/BiblioLibro/chiSiamo">Chi siamo?</a>
+					{if $smarty.server.REQUEST_URI eq "/BiblioLibro/chiSiamo"}
+            			<a class="active nav-link" href="/BiblioLibro/chiSiamo">Chi siamo?</a>
+						{else}
+						 <a class="nav-link" href="/BiblioLibro/chiSiamo">Chi siamo?</a>
+					{/if}
           			</li>
           			<li class="nav-item">
-            			<a class="nav-link" href="/BiblioLibro/contattaci">Contattaci</a>
+					{if $smarty.server.REQUEST_URI eq "/BiblioLibro/contattaci"}
+            			<a class="active nav-link" href="/BiblioLibro/contattaci">Contattaci</a>
+						{else}
+						 <a class="nav-link" href="/BiblioLibro/contattaci">Contattaci</a>
+					{/if}
           			</li>
 					</ul>
 					<ul class="navbar-nav">
@@ -30,6 +42,7 @@
           				<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/registra">REGISTRATI</a>
           			</li>
 					</ul>
+					
           			{else}
           			<!-- se loggato -->
 					<li class="nav-item">

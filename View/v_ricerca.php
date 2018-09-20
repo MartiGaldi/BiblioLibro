@@ -26,10 +26,10 @@ class v_ricerca extends v_oggetto
     function getValoreRicerca() : string
     {
         $string = "";
-        if(isset($_GET['str']))
+        if(isset($_REQUEST['str']))
         { 
 			// se l'utente ha inviato tramite GET un valore di ricerca, si ricava la stringa
-            $string = $_GET['str'];
+            $string = $_REQUEST['str'];
         }
         return $string;  
     }

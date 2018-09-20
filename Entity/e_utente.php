@@ -142,13 +142,13 @@ class e_utente
      */
     function setInfoUtente(e_infoUtente $info = null)
     {
-        if(!$info)
+        if(!$info){
 			$info = new e_infoUtente();
-		
-         $info->setId($this->id);
-	 var_dump("CIAO2");
-         $this->info_utente = $info;
-         
+			
+            $info->setId($this->id);
+			var_dump(new e_infoUtente());
+			$this->info_utente = $info;
+		}
          if(!f_persistance::getInstance()->carica(e_infoUtente::class, $this->id)) 
          {  
 			//se le info non sono presenti vengono aggiunte nel db   

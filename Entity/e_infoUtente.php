@@ -22,7 +22,16 @@ class e_infoUtente
    private $luogo_nascita;
    
    
-   function __construct(){}
+   function __construct(){
+	   $id=0;
+	   $nome="ginopippo";
+	   $cognome="nd";
+	   $cod_fisc="nd";
+	   $telefono=0;
+	   $sesso="ND";
+	   $dt_nasc="0000/00/00";
+	   $luogo_nascita="nd";
+   }
 	
     function setId (int $id)
 	{
