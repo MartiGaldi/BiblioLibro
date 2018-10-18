@@ -20,7 +20,10 @@ class e_utente extends e_oggetto
     protected $nick_name;
     protected $mail;
     protected $password;
-    protected $infoUtente;
+	protected $nome;
+	protected $cognome;
+	protected $dtNasc;
+	protected $lgNasc;
     
     function __construct()
 	{
@@ -52,6 +55,8 @@ class e_utente extends e_oggetto
         return $this->nick_name;
     }
         
+	 
+        
     function validazioneNick() : bool
     {
         if ($this->nick_name && preg_match('/^[a-zA-Z0-9_-]{6,15}$/', $this->nick_name))
@@ -60,7 +65,26 @@ class e_utente extends e_oggetto
             return false;
     }
     
-    
+    function setNome (string $nome)
+    {
+        $this->nome = $nome;  
+    }
+        
+    function getNome() : string
+    {
+        return $this->nome;
+    }
+        
+	 function setCognome(string $cognome)
+    {
+        $this->cognome = $cognome;  
+    }
+        
+    function getCognome() : string
+    {
+        return $this->cognome;
+    }
+	
     function setMail (string $mail)
     {
         $this->mail = $mail;
@@ -128,41 +152,66 @@ class e_utente extends e_oggetto
         return password_verify($this->password, f_persistance::getIstance()->carica(e_cliente::class, $this->id)->getPassword());
     }
     
-    /**
-     * restituisce le informazioni relative all'utente o null
-     */
-    function getInfoUtente()
+	
+	
+	function setDtNasc(string $dtNasc)
     {
-        $uInfo = f_persistance::getIstance()->carica(e_infoUtente::class, $this->id);
-        if($uInfo)
-            $this->infoUtente = $uInfo;
-        else
-            $this->infoUtente = new e_infoUtente();
-        return $this->infoUtente;
+        $this->dtNasc = new DateTime($dtNasc);
     }
-    
-    /**
-     * Imposta le informazioni dell'utente
-     */
-    function setInfoUtente(e_infoUtente $info = null)
+        
+    function getDtNasc(bool $mostraFormato = null)
     {
-        if(!$info)
-			$info = new e_infoUtente();
-			
-            $info->setId($this->id);
-			$this->infoUtente = $info;
-		
-         if(!f_persistance::getInstance()->carica(e_infoUtente::class, $this->id)) 
-         {  
-			//se le info non sono presenti vengono caricate nel db   
-             f_persistance::getInstance()->salva($this->infoUtente);
-         }
-         
-         else
-         { 
-			//altrimenti vengono aggiornate
-             f_persistence::getInstance()->aggiorna($this->infoUtente);
-         }
+        if($this->dtNasc)
+        {
+            $formato="y-m-d";
+            if($mostraFormato)
+                $formato= "y/m/d";
+            return $this->dtNasc->format($formato);
+        }
+        else
+            return NULL;
+    }
+
+     function setLgNasc(string $lgNasc)
+     {
+            $this->lgNasc=$lgNasc;
+     }
+
+     function getLgNasc()
+     {
+            return $this->lgNasc;
+     }
+     
+     function validazioneNome() : bool
+    {
+        if ($this->nome && preg_match('/^[a-zA-Z_-]{3,20}$/', $this->nome))
+            return true;
+        else
+            return false;
+    }
+	
+	function validazioneCognome() : bool
+    {
+        if ($this->cognome && preg_match('/^[a-zA-Z_-]{3,20}$/', $this->cognome))
+            return true;
+        else
+            return false;
+    }
+	
+	/*function validazioneDtNasc() : bool
+    {
+        if ($this->dtNasc && preg_match('/^[0-9_-]{10,11}$/', $this->dtNasc))
+            return true;
+        else
+            return false;
+    }*/
+	
+	 function validazioneLgNasc() : bool
+    {
+        if ($this->lgNasc && preg_match('/^[a-zA-Z_-]{6,15}$/', $this->lgNasc))
+            return true;
+        else
+            return false;
     }
     
     /*function __toString()

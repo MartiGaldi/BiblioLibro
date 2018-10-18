@@ -65,6 +65,31 @@
 					{/if}
 					</div>
 				
+				 <div class="form-group row">
+                  <label for="utente" class="col-sm-6 col-form-label {if !$check.nome} text-danger{/if}"> Nome: *</label>
+				  <input type="text" class="form-control" id="utente" name="nome" placeholder="Inserisci Nome...">
+                
+					{if ! $check.nome}
+					<div class="col-sm-8">
+						<small id="nomeHelp" class="text-danger">
+  							Deve comprendere dagli 3 ai 20 caratteri.
+						</small>      
+					</div>
+					{/if}
+					</div>
+					
+				  <div class="form-group row">
+                  <label for="utente" class="col-sm-6 col-form-label {if !$check.cognome} text-danger{/if}"> Cognome: *</label>
+				  <input type="text" class="form-control" id="utente" name="cognome" placeholder="Inserisci Cognome...">
+                
+					{if ! $check.cognome}
+					<div class="col-sm-8">
+						<small id="cognomeHelp" class="text-danger">
+  							Deve comprendere dagli 3 ai 20 caratteri.
+						</small>      
+					</div>
+					{/if}
+					</div>
 				
 				<div class="form-group row">
 				<label for="mail" class="col-sm-6 col-form-label{if !$check.mail} text-danger{/if}">Indirizzo email: * </label>
@@ -79,6 +104,32 @@
 					{/if}
 				</div>
 				
+				 <div class="form-group row">
+                  <label for="utente" class="col-sm-6 col-form-label {if !$check.dtNasc} text-danger{/if}"> Data di Nascita: *</label>
+				  <input type="text" class="form-control" id="utente" name="dtNasc" placeholder="Inserisci Data di Nascita...">
+                
+					{if ! $check.dtNasc}
+					<div class="col-sm-8">
+						<small id="dtNascHelp" class="text-danger">
+  							Deve rispettare il formato GG-MM-AAAA
+						</small>      
+					</div>
+					{/if}
+					</div>
+					
+				  <div class="form-group row">
+                  <label for="utente" class="col-sm-6 col-form-label {if !$check.lgNasc} text-danger{/if}"> Luogo di Nascita: *</label>
+				  <input type="text" class="form-control" id="utente" name="lgNasc" placeholder="Inserisci Luogo di Nascita...">
+                
+					{if ! $check.lgNasc}
+					<div class="col-sm-8">
+						<small id="lgNascHelp" class="text-danger">
+  							Deve comprendere dagli 6 ai 20 caratteri.
+						</small>      
+					</div>
+					{/if}
+					</div>
+					
 				<div class="form-group row">
                   <label for="inputPassword" class="col-sm-6 col-form-label{if !$check.password} text-danger{/if}">Password: *</label>
 				  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Inserisci password...">

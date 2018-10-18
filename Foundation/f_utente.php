@@ -23,15 +23,15 @@ class f_utente
                 FROM users
                 WHERE mail = :value ;";
     }
-    
+	
     /**
      * Query che effettua il salvataggio di un utente nella tabella utente
      * @return string contenente la query sql
      */
     static function salvaUtente() : string
     {
-        return "INSERT INTO utente(nick_name, mail, password, tipo)
-                VALUES (:nick_name, :mail, :password, :tipo);";
+        return "INSERT INTO utente(nick_name, mail, password, tipo, nome, cognome, dtNasc, lgNasc)
+                VALUES (:nick_name, :mail, :password, :tipo, :nome, :cognome, :dtNasc, :lgNasc);";
     }
     
     /**
@@ -41,7 +41,7 @@ class f_utente
     static function aggiornaUtente() : string
     {
         return "UPDATE utente
-                SET nick_name = :nick_name, mail = :mail, password = :password, tipo = :tipo
+                SET nick_name = :nick_name, mail = :mail, password = :password, tipo = :tipo nome = :nome, cognome = :cognome, dtNasc = :dtNasc, lgNasc = :lgNasc
                 WHERE id = :id;";
     }
     
@@ -102,6 +102,10 @@ class f_utente
         $stmt->bindValue(':nick_name', $utente->getNick(), PDO::PARAM_STR);
         $stmt->bindValue(':mail', $utente->getMail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR);
+		$stmt->bindValue(':nome', $utente->getNome(), PDO::PARAM_STR);
+		$stmt->bindValue(':cognome', $utente->getCognome(), PDO::PARAM_STR);
+		$stmt->bindValue(':dtNasc', $utente->getDtNasc(), PDO::PARAM_STR);
+		$stmt->bindValue(':lgNasc', $utente->getLgNasc(), PDO::PARAM_STR);
         $stmt->bindValue(':tipo', lcfirst(substr(get_class($utente),2)), PDO::PARAM_STR);
     }
     
@@ -120,6 +124,10 @@ class f_utente
         $utente->setNick($riga['nick_name']);
         $utente->setMail($riga['mail']);
         $utente->setPassword($riga['password']);
+		$utente->setNome($riga['nome']);
+		$utente->setCognome($riga['cognome']);
+		$utente->setDtNasc($riga['dtNasc']);
+		$utente->setLgNasc($riga['lgNasc']);
                                     
         return $utente;
     }

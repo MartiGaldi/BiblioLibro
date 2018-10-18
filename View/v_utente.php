@@ -22,7 +22,11 @@ class v_utente extends v_oggetto
             'nick' => true,
             'mail' => true,
             'password' => true,
-            'tipo' => true 
+            'tipo' => true,
+			'nome' => true,
+			'cognome' => true,
+			'dtNasc' => true,
+			'lgNasc' => true
         ); 
     }
     
@@ -54,6 +58,18 @@ class v_utente extends v_oggetto
                     
         if(isset($_POST['password']))
             $utente->setPassword($_POST['password']);
+		
+		if(isset($_POST['nome']))
+            $utente->setNome($_POST['nome']);
+		
+		if(isset($_POST['cognome']))
+            $utente->setCognome($_POST['cognome']);
+		
+		if(isset($_POST['dtNasc']))
+            $utente->setDtNasc($_POST['dtNasc']);
+		
+		if(isset($_POST['lgNasc']))
+            $utente->setLgNasc($_POST['lgNasc']);
                         
     return $utente;                
     }
@@ -78,7 +94,11 @@ class v_utente extends v_oggetto
     {
         if($this->check['nick_name']=$utente->validazioneNick() && 
             $this->check['mail']=$utente->validazioneMail() && 
-            $this->check['password']=$utente->validazionePassword())
+            $this->check['password']=$utente->validazionePassword() &&
+			$this->check['nome']=$utente->validazioneNome() && 
+			$this->check['cognome']=$utente->validazioneCognome() && 
+			//$this->check['dtNasc']=$utente->validazioneDtNasc() && 
+			$this->check['lgNasc']=$utente->validazioneLgNasc())
 			{
 				return true;
 			}
