@@ -93,7 +93,7 @@
 				
 				<div class="form-group row">
 				<label for="mail" class="col-sm-6 col-form-label{if !$check.mail} text-danger{/if}">Indirizzo email: * </label>
-                  <input type="text" class="form-control" id="mail" name="mail" placeholder="Iserisci mail...">
+                  <input type="text" class="form-control" id="mail" name="mail" placeholder="Inserisci mail...">
                 
 					{if ! $check.mail}
 					<div class="col-sm-8 well">
