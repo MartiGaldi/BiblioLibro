@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Lug 20, 2018 alle 19:18
+-- Creato il: Ott 18, 2018 alle 11:51
 -- Versione del server: 10.1.30-MariaDB
 -- Versione PHP: 7.2.2
 
@@ -45,23 +45,6 @@ CREATE TABLE `info_libro` (
   `id` smallint(5) UNSIGNED NOT NULL,
   `isbn` varchar(13) NOT NULL,
   `descrizione` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `info_utente`
---
-
-CREATE TABLE `info_utente` (
-  `id` smallint(5) UNSIGNED NOT NULL,
-  `nome` varchar(30) NOT NULL,
-  `cognome` varchar(30) NOT NULL,
-  `cod_fisc` varchar(16) NOT NULL,
-  `telefono` int(10) NOT NULL,
-  `sesso` varchar(10) NOT NULL,
-  `dt_nasc` datetime NOT NULL,
-  `luogo_nascita` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -125,11 +108,26 @@ CREATE TABLE `prestito` (
 
 CREATE TABLE `utente` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `nick_name` varchar(20) NOT NULL,
-  `mail` varchar(70) NOT NULL,
+  `nick_name` varchar(20) DEFAULT NULL,
+  `mail` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `tipo` set('bibliotecario','cliente') NOT NULL
+  `tipo` set('bibliotecario','cliente') NOT NULL,
+  `nome` varchar(30) DEFAULT NULL,
+  `cognome` varchar(30) DEFAULT NULL,
+  `dtNasc` date DEFAULT NULL,
+  `lgNasc` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `utente`
+--
+
+INSERT INTO `utente` (`id`, `nick_name`, `mail`, `password`, `tipo`, `nome`, `cognome`, `dtNasc`, `lgNasc`) VALUES
+(1, 'martigal96', 'martiemirko46@gmail.com', '$2y$10$JFXTE6/mMVZIo', 'cliente', NULL, NULL, NULL, NULL),
+(2, 'martinagaldi96', 'martina.galdi46@gmai.com', '$2y$10$XqEYRYom21moH', 'cliente', NULL, NULL, NULL, NULL),
+(8, 'marta1996', 'marta.marta@gmail.com', '$2y$10$2gJsw944N23nq', 'cliente', NULL, NULL, NULL, NULL),
+(9, 'mariogaldi78', 'mario.galdi78@gmail.com', '$2y$10$OAiF2cXksQ8yS', 'cliente', NULL, NULL, NULL, NULL),
+(16, 'albade74', 'alba.alba74@gmail.com', '$2y$10$juc7i5mCxVMHQ', 'cliente', NULL, NULL, NULL, NULL);
 
 --
 -- Indici per le tabelle scaricate
@@ -147,13 +145,6 @@ ALTER TABLE `copertina`
 ALTER TABLE `info_libro`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `isbn` (`isbn`);
-
---
--- Indici per le tabelle `info_utente`
---
-ALTER TABLE `info_utente`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `cod_fisc` (`cod_fisc`);
 
 --
 -- Indici per le tabelle `libro`
@@ -182,8 +173,8 @@ ALTER TABLE `prestito`
 --
 ALTER TABLE `utente`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nick_name` (`nick_name`),
-  ADD UNIQUE KEY `mail` (`mail`);
+  ADD UNIQUE KEY `mail` (`mail`),
+  ADD UNIQUE KEY `nick_name` (`nick_name`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -211,7 +202,7 @@ ALTER TABLE `prestito`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Limiti per le tabelle scaricate
@@ -228,12 +219,6 @@ ALTER TABLE `copertina`
 --
 ALTER TABLE `info_libro`
   ADD CONSTRAINT `info_libro_ibfk_1` FOREIGN KEY (`id`) REFERENCES `libro` (`id`);
-
---
--- Limiti per la tabella `info_utente`
---
-ALTER TABLE `info_utente`
-  ADD CONSTRAINT `info_utente_ibfk_1` FOREIGN KEY (`id`) REFERENCES `utente` (`id`);
 
 --
 -- Limiti per la tabella `prenota`
