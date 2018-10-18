@@ -64,15 +64,22 @@ class f_utente
 	 static function caricaPrestito() : string
     {
         return "SELECT *
-                FROM prestito
-                WHERE prestito.id = :id";
+                FROM prestito, utente
+                WHERE prestito.id_prestito = :id AND prestito.id_utente = utente.id ; ";
     }
 	
 	 static function caricaStorico() : string
     {
         return "SELECT *
-                FROM storico
-                WHERE storico.id = :id";
+                FROM storico, utente
+                WHERE storico.id_storico = :id AND storico.id_utente = utente.id ; ";
+    }
+	
+	static function caricaPrenota() : string
+    {
+        return "SELECT *
+                FROM prenota, utente
+                WHERE prenota.id_prenota= :id AND prenota.id_utente = utente.id; ";
     }
 	
 	

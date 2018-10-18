@@ -29,7 +29,7 @@ class f_target
 	const CARICA_STORICO = 'Storico';
 	
 	/** caricamento delle prenotazioni di un cliente */
-	const CARICA_PRENOTAZIONE = 'Prenotazione';
+	const CARICA_PRENOTA = 'Prenota';
 }
 
 ?>

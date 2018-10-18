@@ -1,6 +1,7 @@
 <?php 
 
 require_once 'inc.php';
+include_once 'Entity/e_oggetto.php';
 
 /**
 * La classe e_utente contiene tutti gli attributi e metodi base che sono adoperati da tutte
@@ -13,18 +14,21 @@ require_once 'inc.php';
 * @package Entity
 */
 
-class e_utente
+class e_utente extends e_oggetto
 {
-	protected $id;
+	//protected $id;
     protected $nick_name;
     protected $mail;
     protected $password;
-    protected $info_utente;
+    protected $infoUtente;
     
-    function __construct(){}
+    function __construct()
+	{
+		parent::__construct();
+	}
 	
 	
-    function getId() : int
+    /*function getId() : int
 	{
         if(!$this->id)
             return 0;
@@ -36,11 +40,11 @@ class e_utente
 	{
         $this->id = $id;
     }
-	
+	*/
 
     function setNick(string $nick_name)
     {
-        $this->nick_name=$nick_name;  
+        $this->nick_name = $nick_name;  
     }
         
     function getNick() : string
@@ -50,7 +54,7 @@ class e_utente
         
     function validazioneNick() : bool
     {
-        if ($this->nick_name && preg_match('/^[a-zA-Z0-9_-]{6,15}$/', $this->nick_name)) // solo lettere e numeri
+        if ($this->nick_name && preg_match('/^[a-zA-Z0-9_-]{6,15}$/', $this->nick_name))
             return true;
         else
             return false;
@@ -59,7 +63,7 @@ class e_utente
     
     function setMail (string $mail)
     {
-        $this->mail=$mail;
+        $this->mail = $mail;
     }
     
     
@@ -110,7 +114,7 @@ class e_utente
      */
     function hashPassword ()
     {
-        $this->password=password_hash($this->password, PASSWORD_DEFAULT);
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
     }
     
     /**
@@ -131,10 +135,10 @@ class e_utente
     {
         $uInfo = f_persistance::getIstance()->carica(e_infoUtente::class, $this->id);
         if($uInfo)
-            $this->info_utente = $uInfo;
+            $this->infoUtente = $uInfo;
         else
-            $this->info_utente = new e_infoUtente();
-        return $this->info_utente;
+            $this->infoUtente = new e_infoUtente();
+        return $this->infoUtente;
     }
     
     /**
@@ -142,29 +146,43 @@ class e_utente
      */
     function setInfoUtente(e_infoUtente $info = null)
     {
-        if(!$info){
+        if(!$info)
 			$info = new e_infoUtente();
 			
             $info->setId($this->id);
-			var_dump(new e_infoUtente());
-			$this->info_utente = $info;
-		}
+			$this->infoUtente = $info;
+		
          if(!f_persistance::getInstance()->carica(e_infoUtente::class, $this->id)) 
          {  
-			//se le info non sono presenti vengono aggiunte nel db   
-             f_persistance::getInstance()->salva($this->info_utente);
+			//se le info non sono presenti vengono caricate nel db   
+             f_persistance::getInstance()->salva($this->infoUtente);
          }
          
          else
          { 
 			//altrimenti vengono aggiornate
-             f_persistence::getInstance()->aggiorna($this->info_utente);
+             f_persistence::getInstance()->aggiorna($this->infoUtente);
          }
     }
     
-    function __toString()
+    /*function __toString()
     {
         return "Nickname: ".$this->nick_name."\nId: ".$this->id;
-    }
+    }*/
+	
+	function getPrestito()
+	{
+		return f_persistance::getInstance()->carica(e_libro::class, $this->id, f_target::CARICA_PRESTITO);
+	}
+	
+	function getPrenotazione()
+	{
+		return f_persistance::getInstance()->carica(e_libro::class, $this->id, f_target::CARICA_PRENOTAZIONE);
+	}
+	
+	function getStorico()
+	{
+		return f_persistance::getInstance()->carica(e_libro::class, $this->id, f_target::CARICA_STORICO);
+	}
 }
 ?>

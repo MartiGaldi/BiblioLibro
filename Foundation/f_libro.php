@@ -62,16 +62,16 @@ class f_libro{
         
     static function ricercaLibroDaTitolo() : string
     {
-        return "SELECT libro.*, utenti.nick
-                FROM libro, utenti
+        return "SELECT libro.*
+                FROM libro
                 WHERE LOCATE( :titolo , libro.titolo) > 0;";
     }
         
         
     static function ricercaLibroDaAutore() : string
     {
-        return "SELECT libro.* , utenti.nick
-                FROM libro, utenti
+        return "SELECT libro.*
+                FROM libro
                 WHERE LOCATE( :autore , libro.autore) > 0;";
     }
     

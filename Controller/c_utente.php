@@ -78,7 +78,7 @@ class c_utente
     *  - /BiblioLibro/utente/profilo/id&libro mostra la lista dei libri presi in prestito dall'utente
     * @param $string l'argomento della url. Se non specificato, si viene reindirizzati ad una pagina di errore.
     */
-    static function profilo($id, $content = null)
+    static function profilo ($id, $content = null)
     {
         $v_utente = new v_utente();
         $Utente = c_sessione::getUtenteDaSessione();
@@ -109,10 +109,10 @@ class c_utente
                             $content = 'Storico';
 						}
 						
-						elseif ($content == 'prenotazione')
+						elseif ($content == 'prenota')
 						{
-							$array = f_peristance::getInstance()->carica(e_prenotazione::class, $profiloUtente->getId(), f_target::CARICA_PRENOTAZIONE);
-                            $content = 'Storico';
+							$array = f_peristance::getInstance()->carica(e_prenota::class, $profiloUtente->getId(), f_target::CARICA_PRENOTA);
+                            $content = 'Prenota';
 						}
 						
                         else // se il contenuto non e' specificato (e' stato inserito solo l'id) si visualizza la pagina base
@@ -226,9 +226,8 @@ class c_utente
                 $Utente->hashPassword(); // si cripta la password
                 f_persistance::getInstance()->salva($Utente); // si salva l'utente
 				c_sessione::inizioSessione($Utente);
-
-                $Utente->setInfoUtente();
-                header('Location: /BiblioLibro/infoUtente/modificaInfo/');
+				
+                header('Location: /BiblioLibro');
             }
             else
                 $v_utente->mostraIscrizione(true);
