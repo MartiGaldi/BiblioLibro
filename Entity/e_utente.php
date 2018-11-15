@@ -1,22 +1,21 @@
 <?php 
 
 require_once 'inc.php';
-include_once 'Entity/e_oggetto.php';
 
 /**
-* La classe e_utente contiene tutti gli attributi e metodi base che sono adoperati da tutte
-* le tipologie di utente (cliente, bibliotecario,visitatore).
+* La classe e_utente contiene tutti gli attributi e metodi che sono adoperati da tutte
+* le tipologie di utente (cliente, bibliotecario e visitatore).
 * Contiene metodi per impostare, ottenere, validare i seguenti attributi:
 * - mail: l'indirizzo utilizzato in fase di registrazione
 * - password: la password per accedere nell'applicazione
-* - info: oggetto e_InfoUtente contenente informazioni da modificare e visualizzabili nel profilo
+* - ...
 * @author gruppo11
 * @package Entity
 */
 
-class e_utente extends e_oggetto
+class e_utente
 {
-	//protected $id;
+	protected $id;
     protected $nick_name;
     protected $mail;
     protected $password;
@@ -25,13 +24,10 @@ class e_utente extends e_oggetto
 	protected $dtNasc;
 	protected $lgNasc;
     
-    function __construct()
-	{
-		parent::__construct();
-	}
+    function __construct(){}
 	
 	
-    /*function getId() : int
+    function getId() : int
 	{
         if(!$this->id)
             return 0;
@@ -43,7 +39,7 @@ class e_utente extends e_oggetto
 	{
         $this->id = $id;
     }
-	*/
+	
 
     function setNick(string $nick_name)
     {
