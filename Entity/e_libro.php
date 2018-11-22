@@ -101,13 +101,32 @@ class e_libro
         return $this->descrizione;
     }
     
-    function setCopertina(e_copertina $copertina)
+    /*function setCopertina(e_copertina $copertina = null)
     {
-        $this->copertina=$copertina;
-    }
+		if(!$copertina){
+			$copertina=new e_copertina();
+			$copertina->setStatic();
+		}
+        $copertina->setId($this->id);
+		
+		if(!f_persistance::getIstance()->carica(e_copertina::class, $this->id)
+		{
+			f_persistance::getIstance()->salva($copertina);
+		}
+		else
+			f_persistance::getIstance()->aggiorna($copertina);
+		
+		$this->copertina=$copertina;
+    }*/
+	
+	function setCopertina(e_copertina $copertina)
+	{
+		$this->copertina=$copertina;
+	}
     
     function getCopertina()
     {
+		$this->copertina = f_persistance::getIstance()->carica(e_copertina::class, $this->id);
         return $this->copertina;
     }
     

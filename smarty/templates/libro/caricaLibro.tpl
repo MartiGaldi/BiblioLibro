@@ -55,7 +55,7 @@
 						<div class="form-group row">
       						<label for="Titolo" class="col-sm-2 col-form-label {if !$check.titolo} text-danger{/if}">Titolo: *</label>
       						<div class="col-sm-7">
-        						<input type="text" class="form-control is-invalid" id="TitoloLibro" name="titolo" placeholder="Inserisci titolo...">
+        						<input type="text" class="form-control" id="TitoloLibro" name="titolo" placeholder="Inserisci titolo...">
       						</div>
       						{if ! $check.titolo}
       						<div class="col-sm-3 well">
@@ -69,7 +69,7 @@
 						<div class="form-group row">
       						<label for="Genere" class="col-sm-2 col-form-label {if !$check.genere} text-danger{/if}">Genere: *</label>
       						<div class="col-sm-7">
-        						<input type="text" class="form-control is-invalid" id="GenereLibro" name="genere" placeholder="Inserisci genere...">
+        						<input type="text" class="form-control" id="GenereLibro" name="genere" placeholder="Inserisci genere...">
       						</div>
 
       						{if ! $check.genere}
@@ -84,7 +84,7 @@
     				<div class="form-group row">
       						<label for="AutoreLibro" class="col-sm-2 col-form-label {if !$check.autore} text-danger{/if}">Autore: *</label>
       						<div class="col-sm-7">
-        						<input type="text" class="form-control is-invalid" id="AutoreLibro" name="autore" placeholder="Inserisci autore...">
+        						<input type="text" class="form-control" id="AutoreLibro" name="autore" placeholder="Inserisci autore...">
       						</div>
 
       						{if ! $check.autore}
@@ -97,12 +97,12 @@
     					</div>
 						
 						<div class="form-group row">
-      						<label for="NumCopieLibro" class="col-sm-2 col-form-label {if !$check.numcopie} text-danger{/if}">Numero copie: *</label>
+      						<label for="NumCopieLibro" class="col-sm-2 col-form-label {if !$check.num_copie} text-danger{/if}">Numero copie: *</label>
       						<div class="col-sm-7">
-        						<input type="text" class="form-control is-invalid" id="NumCopieLibro" name="numcopie" placeholder="Inserisci numero di copie...">
+        						<input type="text" class="form-control" id="NumCopieLibro" name="numcopie" placeholder="Inserisci numero di copie...">
       						</div>
 
-      						{if ! $check.numcopie}
+      						{if ! $check.num_copie}
       						<div class="col-sm-3 well">
         						<small id="numcopieHelp" class="text-danger">
           							Almeno una copia.
@@ -114,7 +114,7 @@
 						<div class="form-group row">
       						<label for="IsbnLibro" class="col-sm-2 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: *</label>
       						<div class="col-sm-7">
-        						<input type="text" class="form-control is-invalid" id="IsbnLibro" name="isbn" placeholder="Inserisci isbn...">
+        						<input type="text" class="form-control" id="IsbnLibro" name="isbn" placeholder="Inserisci isbn...">
       						</div>
 
       						{if ! $check.isbn}
@@ -129,28 +129,13 @@
 						<div class="form-group row">
       						<label for="DescrizioneLibro" class="col-sm-2 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: *</label>
       						<div class="col-sm-7">
-        						<input type="text" class="form-control is-invalid" id="DescrizioneLibro" name="descrizione" placeholder="Inserisci una descrizione...">
+        						<input type="text" class="form-control" id="DescrizioneLibro" name="descrizione" placeholder="Inserisci una descrizione...">
       						</div>
 
       						{if ! $check.descrizione}
       						<div class="col-sm-3 well">
         						<small id="descrizioneHelp" class="text-danger">
           							Lunghezza massima 150 caratteri.
-        						</small>      
-     						</div>
-     						{/if}
-    					</div>
-						
-						<div class="form-group row">
-      						<label for="CopertinaLibro" class="col-sm-2 col-form-label {if !$check.copertina} text-danger{/if}">Copertina: *</label>
-      						<div class="col-sm-7">
-        						<input type="text" class="form-control is-invalid" id="CopertinaLibro" name="copertina" placeholder="Inserisci copertina...">
-      						</div>
-
-      						{if ! $check.copertina}
-      						<div class="col-sm-3 well">
-        						<small id="copertinaHelp" class="text-danger">
-          							Deve avere formati jpg, png.
         						</small>      
      						</div>
      						{/if}

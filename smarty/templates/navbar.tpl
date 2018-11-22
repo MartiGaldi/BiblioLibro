@@ -48,26 +48,21 @@
 					<li class="nav-item">
            				<a class="active nav-link" href="/BiblioLibro">Home</a>
           			</li>
-					
-          			
-					{if $uTipo eq 'cliente'}
 					<li class="nav-item">
            				<a class="nav-link" href="/BiblioLibro/utente/profilo/{$uId}">{$uNick}</a>
           			</li>
+					
+          			
+					{if $uTipo eq 'cliente'}
           			<li class="nav-item">
            				<a class="nav-link" href="/BiblioLibro/libro/catalogo"> Catalogo </a>
           			</li>
           			{/if}
           			
           			{if $uTipo eq 'bibliotecario'}
+					
           			<li class="nav-item">
-           				<a class="nav-link" href="/BiblioLibro/libro/aggiungiLibro"> + Libro </a>
-          			</li>
-          			<li class="nav-item">
-           				<a class="nav-link" href="/BiblioLibro/libro/rimuoviLibro"> - Libro </a>
-          			</li>
-          			<li class="nav-item">
-           				<a class="nav-link" href="/BiblioLibro/libro/modificaLibro"> Modifica Libro </a>
+           				<a class="nav-link" href="/BiblioLibro/libro/carica"> + Libro </a>
           			</li>
           			{/if}
           			

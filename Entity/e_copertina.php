@@ -72,7 +72,7 @@ class e_copertina
     }
     
     /**imposta l'oggetto con valori statici ricavati da un'immagine nella directory di lavoro*/
-    function SetStatico()
+    function SetStatic()
     {
         $file=dirname(__DIR__)."/risorse/static/copertina.png";
         
