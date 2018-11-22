@@ -29,6 +29,8 @@ class v_libro extends v_oggetto
             'num_copie' => true,
             'durata' => true,
             'genere' => true,
+			'isbn' => true,
+			'descrizione' => true
         ); 
     }
     
@@ -49,7 +51,9 @@ class v_libro extends v_oggetto
             $libro->setTitolo(ucfirst($_POST['titolo']));
             $libro->setNumCopie(ucfirst($_POST['num_copie']));
             $libro->setDurata(ucfirst($_POST['durata']));
-            $libro->setGenere(ucfirst($_POST['genere']));                
+            $libro->setGenere(ucfirst($_POST['genere']));
+			$libro->setIsbn(ucfirst($_POST['isbn']));
+			$libro->setDescrizione(ucfirst($_POST['descrizione']));
         }        
         return $libro;
         
@@ -150,7 +154,7 @@ class v_libro extends v_oggetto
     
     function validazioneCarica(e_libro &$libro) : bool
     {
-        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && $this->check['genere']=$libro->validazioneGenere())
+        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && $this->check['genere']=$libro->validazioneGenere() && $this->check['isbn']=$libro->validazioneIsbn() && $this->check['descrizione']=$libro->validazioneDescrizione())
             return true;
         else
             return false;  
@@ -164,7 +168,7 @@ class v_libro extends v_oggetto
     */
     function validazioneModifica(e_libro &$libro) : bool
     {
-        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && $this->check['genere']=$libro->validazioneGenere())
+        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && $this->check['genere']=$libro->validazioneGenere() && $this->check['isbn']=$libro->validazioneIsbn() && $this->check['descrizione']=$libro->validazioneDescrizione())
             return true;
         
         else 
@@ -188,5 +192,32 @@ class v_libro extends v_oggetto
         }
         else
             return false;   
+    }
+	
+	/**
+     * Funzione che permette la creazione della copertina di un libro
+     */
+    function creaCopertina() : e_copertina
+    {
+        $copertina = new e_copertina();
+        if($_FILES['file']['size']!=0)
+        {
+            $copertina->setCopertina(file_get_contents($_FILES['file']['tmp_name']));
+            $copertina->setSize($_FILES['file']['size']);
+            $copertina->setTipo($_FILES['file']['tipo']);
+        }
+        return $copertina;
+    }
+    
+    /**
+     * Funzione che permette la validazione della copertina di un libro
+     */
+    function validazioneCopertina(e_copertina &$copertina)
+    {
+        $copertina->validate($this->check['file']);
+        if($this->check['file'])
+            return true;
+        else
+            return false;
     }
 }

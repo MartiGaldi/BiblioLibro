@@ -9,8 +9,8 @@ class f_libro{
     */
     static function salvaLibro() : string
     {
-        return "INSERT INTO libro(num_copie,titolo,autore,durata,genere)
-                VALUES(:num_copie,:titolo,:autore,:durata,:genere)";
+        return "INSERT INTO libro(num_copie,titolo,autore,durata,genere, isbn, descrizione)
+                VALUES(:num_copie,:titolo,:autore,:durata,:genere, :isbn, :descrizione)";
     }
         
     /**
@@ -31,7 +31,7 @@ class f_libro{
     static function aggiornaLibro() : string
     {
         return "UPDATE libro
-                SET num_copie = :num_copie, titolo = :titolo, autore = :autore, durata = :durata, genere = :genere
+                SET num_copie = :num_copie, titolo = :titolo, autore = :autore, durata = :durata, genere = :genere, isbn = :isbn, descrizione = :descrizione
                 WHERE id = :id ;";
     }
         
@@ -85,7 +85,9 @@ class f_libro{
         $stmt->bindValue(':titolo', $lib->getTitolo(), PDO::PARAM_STR);
         $stmt->bindValue(':autore', $lib->getAutore(), PDO::PARAM_STR);
         $stmt->bindValue(':durata', $lib->getDurata(), PDO::PARAM_STR);
-        $stmt->bindValue(':genere', $lib->getgGenere(), PDO::PARAM_STR);
+        $stmt->bindValue(':genere', $lib->getGenere(), PDO::PARAM_STR);
+		$stmt->bindValue(':isbn', $lib->getIsbn(), PDO::PARAM_STR);
+		$stmt->bindValue(':descrizione', $lib->getDescrizione(), PDO::PARAM_STR);
     } 
     
     /**
@@ -103,6 +105,8 @@ class f_libro{
         $libro->setAutore($riga['autore']);
         $libro->setDurata($riga['durata']);
         $libro->setGenere($riga['genere']);
+		$libro->setIsbn($riga['isbn']);
+		$libro->setDescrizione($riga['descrizione']);
                     
         return $libro;
     }

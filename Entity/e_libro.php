@@ -20,10 +20,10 @@ class e_libro
     private $durata;
     private $genere;
     private $info_libro;
-    
-    /**
-     * istanzia un oggetto e_libro vuoto
-     */
+	private $isbn;
+	private $descrizione;
+	private $copertina;
+
     function __constructor(){}
     
 	function getId() : int
@@ -80,41 +80,35 @@ class e_libro
     function getGenere() : string {
         return $this->genere;
     }
-    
-    /**
-     * Imposta le informazioni del libro
-     */
-    
-    function setInfoLibro(e_infoLibro $info=null) {
-        if(!$info)
-            $info = new e_infoLibro();
-        
-        $info->setId($this->id);
-        $this->info_libro=$info;
-        
-        if(!f_persistance::getIstance()->carica(e_infoLIbro::class, $this->id))
-        {  //se le info non sono presenti vengono aggiunte nel db
-            f_persistance::getIstance()->salva($this->info_libro);
-        }
-        
-        else
-            
-        {  //altrimenti vengono aggiornate
-            f_persistance::getIstance()->aggiorna($this->infoLibro);
-        }
+	
+	function setIsbn(string $isbn)
+    {
+        $this->isbn=$isbn;
     }
     
-    /**
-     * restituisce le informazioni relative al libro o null
-     */
+    function getIsbn() : string
+    {
+        return $this->isbn;
+    }
+	
+    function setDescrizione(string $descrizione)
+    {
+        $this->descrizione=$descrizione;
+    }
     
-    function getInfoLibro() {
-        $info_libro = f_persistance::getIstance()->carica(e_infoLibro::class, $this->id);
-        if(info_libro)
-            $this->info_libro = $info_libro;
-        else
-            $this->info_libro = new e_infoLibro();
-        return $this->info_libro;
+    function getDescrizione()
+    {
+        return $this->descrizione;
+    }
+    
+    function setCopertina(e_copertina $copertina)
+    {
+        $this->copertina=$copertina;
+    }
+    
+    function getCopertina()
+    {
+        return $this->copertina;
     }
     
     /**
@@ -176,6 +170,23 @@ class e_libro
         else
             return false;
     }
+	
+	function validazioneIsbn() : bool
+    {
+        if($this->isbn && preg_match('/[0-9]+{13}/', $this->isbn))
+            return true;
+            else
+                return false;
+    }
+	
+	function validazioneDescrizione() : bool
+    {
+        if($this->descrizione && preg_match('/^[[:alnum:]]{10,150}$/', $this->descrizione))
+            return true;
+        else
+            return false;
+    }
+    
         
 }
 

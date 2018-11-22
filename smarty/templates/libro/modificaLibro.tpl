@@ -99,6 +99,49 @@
 						</div>
 						{/if}
 					</div>
+					
+					<div class="form-group row">
+						<label for="IsbnLibro" class="col-sm-2 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: *</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control is-invalid" id="IsbnLibro" name="isbn" value ="{$libro->getIsbn()}" placeholder="Inserisci isbn...">
+						</div>
+						{if ! $check.isbn}
+						<div class="col-sm-3 well">
+							<small id="isbnHelp" class="text-danger">
+  								Deve contenere 16 caratteri.
+							</small>      
+						</div>
+						{/if}
+					</div>
+					
+					<div class="form-group row">
+						<label for="DescrizioneLibro" class="col-sm-2 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: *</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control is-invalid" id="DescrizioneLibro" name="descrizione" value ="{$libro->getDescrizione()}" placeholder="Inserisci una descrizione...">
+						</div>
+						{if ! $check.numcopie}
+						<div class="col-sm-3 well">
+							<small id="descrizioneHelp" class="text-danger">
+  								Lunghezza massima 150 caratteri.
+							</small>      
+						</div>
+						{/if}
+					</div>
+					
+					<div class="form-group row">
+						<label for="CopertinaLibro" class="col-sm-2 col-form-label {if !$check.copertina} text-danger{/if}">Copertina: *</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control is-invalid" id="CopertinaLibro" name="copertina" value ="{$libro->getCopertina()}" placeholder="Inserisci copertina...">
+						</div>
+						{if ! $check.copertina}
+						<div class="col-sm-3 well">
+							<small id="copertinaHelp" class="text-danger">
+  								Deve avere formati jpg, png.
+							</small>      
+						</div>
+						{/if}
+					</div>
+					
 				</fieldset>
 				
 				<fieldset class="form-group">
