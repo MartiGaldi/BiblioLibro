@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 18, 2018 alle 11:51
+-- Creato il: Nov 22, 2018 alle 12:50
 -- Versione del server: 10.1.30-MariaDB
 -- Versione PHP: 7.2.2
 
@@ -38,18 +38,6 @@ CREATE TABLE `copertina` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `info_libro`
---
-
-CREATE TABLE `info_libro` (
-  `id` smallint(5) UNSIGNED NOT NULL,
-  `isbn` varchar(13) NOT NULL,
-  `descrizione` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `libro`
 --
 
@@ -59,15 +47,17 @@ CREATE TABLE `libro` (
   `titolo` varchar(50) NOT NULL,
   `autore` varchar(30) NOT NULL,
   `durata` set('consultazione','breve','lungo') NOT NULL,
-  `genere` varchar(30) NOT NULL
+  `genere` varchar(30) NOT NULL,
+  `isbn` varchar(16) NOT NULL COMMENT 'isbn libro',
+  `descrizione` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `libro`
 --
 
-INSERT INTO `libro` (`id`, `num_copie`, `titolo`, `autore`, `durata`, `genere`) VALUES
-(32767, 4, 'prova', 'martina', 'breve', 'giallo');
+INSERT INTO `libro` (`id`, `num_copie`, `titolo`, `autore`, `durata`, `genere`, `isbn`, `descrizione`) VALUES
+(32767, 4, 'prova', 'martina', 'breve', 'giallo', '12345678912345678', 'descrizione');
 
 -- --------------------------------------------------------
 
@@ -127,7 +117,8 @@ INSERT INTO `utente` (`id`, `nick_name`, `mail`, `password`, `tipo`, `nome`, `co
 (2, 'martinagaldi96', 'martina.galdi46@gmai.com', '$2y$10$XqEYRYom21moH', 'cliente', NULL, NULL, NULL, NULL),
 (8, 'marta1996', 'marta.marta@gmail.com', '$2y$10$2gJsw944N23nq', 'cliente', NULL, NULL, NULL, NULL),
 (9, 'mariogaldi78', 'mario.galdi78@gmail.com', '$2y$10$OAiF2cXksQ8yS', 'cliente', NULL, NULL, NULL, NULL),
-(16, 'albade74', 'alba.alba74@gmail.com', '$2y$10$juc7i5mCxVMHQ', 'cliente', NULL, NULL, NULL, NULL);
+(16, 'albade74', 'alba.alba74@gmail.com', '$2y$10$juc7i5mCxVMHQ', 'cliente', NULL, NULL, NULL, NULL),
+(17, 'sarasa1', 'saracasimirri@hotmail.it', '$2y$10$JgSc4IjVzxMqR', 'cliente', 'sarasara', 'casimirri', '1996-06-15', 'santomero');
 
 --
 -- Indici per le tabelle scaricate
@@ -138,13 +129,6 @@ INSERT INTO `utente` (`id`, `nick_name`, `mail`, `password`, `tipo`, `nome`, `co
 --
 ALTER TABLE `copertina`
   ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `info_libro`
---
-ALTER TABLE `info_libro`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `isbn` (`isbn`);
 
 --
 -- Indici per le tabelle `libro`
@@ -202,7 +186,7 @@ ALTER TABLE `prestito`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Limiti per le tabelle scaricate
@@ -212,13 +196,7 @@ ALTER TABLE `utente`
 -- Limiti per la tabella `copertina`
 --
 ALTER TABLE `copertina`
-  ADD CONSTRAINT `copertina_ibfk_1` FOREIGN KEY (`id`) REFERENCES `info_libro` (`id`);
-
---
--- Limiti per la tabella `info_libro`
---
-ALTER TABLE `info_libro`
-  ADD CONSTRAINT `info_libro_ibfk_1` FOREIGN KEY (`id`) REFERENCES `libro` (`id`);
+  ADD CONSTRAINT `copertina_ibfk_1` FOREIGN KEY (`id`) REFERENCES `libro` (`id`);
 
 --
 -- Limiti per la tabella `prenota`
