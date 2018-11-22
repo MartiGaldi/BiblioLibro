@@ -35,7 +35,7 @@
         </div>
 		<div class="col-sm-7 ">
 			<div class="well">
-			<h4><a href="/BiblioLibro/libro/{$libro->getTitolo()}">{$libro->getTitolo()}</a> : {$libro->getAutore()} ({$libro->getGenere()}) ({$libro->getDurata()}) ({$libro->getInfoLibro()})</h4>
+			<h4><a href="/BiblioLibro/libro/{$libro->getTitolo()}">{$libro->getTitolo()}</a> : {$libro->getAutore()} ({$libro->getGenere()}) ({$libro->getDurata()}) ({$libro->getIsbn()}) ({$libro->getDescrizione()}) ({$libro->getCopertina()})</h4>
 			<br>
 			<br>
 			{if $prenota}
