@@ -32,33 +32,29 @@
 	{include file="navbar.tpl"}
 
 	
-
-	<div class="container text-center">
-		<div class="col-sm-3">
-
-		
-
-        </div>
-
-		<div class="col-sm-7 well">
+	<div class="py-5 bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+				
+				</div>
+				<div class="col-md-6">
+					<div class="card text-white p-5 bg-primary">
+						<div class="card-body">
+						<h1 class="mb-4"> Aggiungi libro </h1>
 
 			{if $errore}
 			<div class="alert alert-warning">
 				<strong>Attenzione</strong><br> <br>Riprova.
 			</div>
 			{/if}
-
-			<h2>Carica Libro</h2>
-			<fieldset class="form-group">
-				<legend></legend>
+			
 					<form method="post" enctype="multipart/form-data" action="/BiblioLibro/libro/carica">
 						<div class="form-group row">
-      						<label for="Titolo" class="col-sm-2 col-form-label {if !$check.titolo} text-danger{/if}">Titolo: *</label>
-      						<div class="col-sm-7">
+      						<label for="Titolo" class="col-sm-6 col-form-label {if !$check.titolo} text-danger{/if}">Titolo: *</label>
         						<input type="text" class="form-control" id="TitoloLibro" name="titolo" placeholder="Inserisci titolo...">
-      						</div>
       						{if ! $check.titolo}
-      						<div class="col-sm-3 well">
+      						<div class="col-sm-8">
         						<small id="titoloHelp" class="text-danger">
           							Solo caratteri alfanumerici
         						</small>      
@@ -67,13 +63,10 @@
     					</div>
 
 						<div class="form-group row">
-      						<label for="Genere" class="col-sm-2 col-form-label {if !$check.genere} text-danger{/if}">Genere: *</label>
-      						<div class="col-sm-7">
+      						<label for="Genere" class="col-sm-6 col-form-label {if !$check.genere} text-danger{/if}">Genere: *</label>
         						<input type="text" class="form-control" id="GenereLibro" name="genere" placeholder="Inserisci genere...">
-      						</div>
-
       						{if ! $check.genere}
-      						<div class="col-sm-3 well">
+      						<div class="col-sm-8">
         						<small id="genereHelp" class="text-danger">
           							Solo caratteri.
         						</small>      
@@ -82,13 +75,10 @@
     					</div>
 
     				<div class="form-group row">
-      						<label for="AutoreLibro" class="col-sm-2 col-form-label {if !$check.autore} text-danger{/if}">Autore: *</label>
-      						<div class="col-sm-7">
-        						<input type="text" class="form-control" id="AutoreLibro" name="autore" placeholder="Inserisci autore...">
-      						</div>
-
+      						<label for="Autore" class="col-sm-6 col-form-label {if !$check.autore} text-danger{/if}">Autore: *</label>
+        						<input type="text" class="form-control" id="AutoreLibro" name="autore" placeholder="Inserisci autore...">		
       						{if ! $check.autore}
-      						<div class="col-sm-3 well">
+      						<div class="col-sm-8">
         						<small id="autoreHelp" class="text-danger">
           							Solo caratteri.
         						</small>      
@@ -97,13 +87,10 @@
     					</div>
 						
 						<div class="form-group row">
-      						<label for="NumCopieLibro" class="col-sm-2 col-form-label {if !$check.num_copie} text-danger{/if}">Numero copie: *</label>
-      						<div class="col-sm-7">
+      						<label for="NumCopieLibro" class="col-sm-6 col-form-label {if !$check.num_copie} text-danger{/if}">Numero copie: *</label>
         						<input type="text" class="form-control" id="NumCopieLibro" name="numcopie" placeholder="Inserisci numero di copie...">
-      						</div>
-
       						{if ! $check.num_copie}
-      						<div class="col-sm-3 well">
+      						<div class="col-sm-8">
         						<small id="numcopieHelp" class="text-danger">
           							Almeno una copia.
         						</small>      
@@ -112,13 +99,10 @@
     					</div>
 						
 						<div class="form-group row">
-      						<label for="IsbnLibro" class="col-sm-2 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: *</label>
-      						<div class="col-sm-7">
-        						<input type="text" class="form-control" id="IsbnLibro" name="isbn" placeholder="Inserisci isbn...">
-      						</div>
-
-      						{if ! $check.isbn}
-      						<div class="col-sm-3 well">
+      						<label for="IsbnLibro" class="col-sm-6 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: *</label>	
+        						<input type="text" class="form-control" id="IsbnLibro" name="isbn" placeholder="Inserisci isbn...">	
+						{if ! $check.isbn}								
+      						<div class="col-sm-8">
         						<small id="isbnHelp" class="text-danger">
           							Deve contenere 16 caratteri.
         						</small>      
@@ -127,13 +111,10 @@
     					</div>
 						
 						<div class="form-group row">
-      						<label for="DescrizioneLibro" class="col-sm-2 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: *</label>
-      						<div class="col-sm-7">
+      						<label for="DescrizioneLibro" class="col-sm-6 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: *</label>
         						<input type="text" class="form-control" id="DescrizioneLibro" name="descrizione" placeholder="Inserisci una descrizione...">
-      						</div>
-
       						{if ! $check.descrizione}
-      						<div class="col-sm-3 well">
+      						<div class="col-sm-8">
         						<small id="descrizioneHelp" class="text-danger">
           							Lunghezza massima 150 caratteri.
         						</small>      
@@ -174,14 +155,15 @@
   						</div>
 				</fieldset>
 					
-				<button type="submit" class="btn btn-primary">Carica</button>
+				<button type="submit" class="btn btn-secondary">Carica</button>
 			</form>
+			</div>
+			</div>
+		</div>
+		</div>
+		</div>
 	</div>
-	<div class="col-sm-3">
 
-		
-
-	</div>
 	{include file="fine.tpl"}
 </body>
 </html>

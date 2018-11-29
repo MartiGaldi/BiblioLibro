@@ -40,7 +40,7 @@ class f_libro{
     * @param PDO $database la connessione al dbms
     * @param int $id il libro da eliminare
     */
-    static function eliminaLibro() : string
+    static function rimuoviLibro() : string
     {
         return "DELETE
                 FROM libro

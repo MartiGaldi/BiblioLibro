@@ -44,9 +44,8 @@ class v_libro extends v_oggetto
     function creaLibro() : e_libro
     {
         $libro = new e_libro();
-        if (isset($_POST['autore']) && isset($_POST['titolo']) && isset($_POST['num_copie']) && isset($_POST['durata'])&& isset($_POST['genere']))
+        if (isset($_POST['autore']) && isset($_POST['titolo']) && isset($_POST['num_copie']) && isset($_POST['durata'])&& isset($_POST['genere']) && isset($_POST['isbn']) && isset($_POST['descrizione']))
         {
-            // impostazione di autore,titolo,numero copie, durata e genere
             $libro->setAutore(ucfirst($_POST['autore']));
             $libro->setTitolo(ucfirst($_POST['titolo']));
             $libro->setNumCopie(ucfirst($_POST['num_copie']));

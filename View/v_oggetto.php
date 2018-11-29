@@ -38,6 +38,14 @@ class v_oggetto
         $this->smarty->assign('errore', $errore);
         $this->smarty->display('Errore.tpl');
     }
+	
+	function Avviso(e_utente &$utente, string $avviso)
+    {
+        $this->smarty->registerObject('utente', $utente);
+        $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
+        $this->smarty->assign('avviso', $avviso);
+        $this->smarty->display('Avviso.tpl');
+    }
 }
 
 ?>
