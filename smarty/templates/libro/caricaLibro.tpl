@@ -12,8 +12,6 @@
 <body class="bg-dark">
 
 	{utente->getNick assign='uNick'}
-
-	{utente->getId assign='uId'} 
 	
 	<div class="py-5 bg-dark">
     <div class="container">
@@ -38,21 +36,24 @@
 				<div class="col-md-3">
 				
 				</div>
-				<div class="col-md-6">
-					<div class="card text-white p-5 bg-primary">
-						<div class="card-body">
-						<h1 class="mb-4"> Aggiungi libro </h1>
+	<div class="col-md-6">
+		<div class="card text-white p-5 bg-primary">
+			<div class="card-body">
+			<h1 class="mb-4"> Aggiungi libro </h1>
 
 			{if $errore}
 			<div class="alert alert-warning">
-				<strong>Attenzione</strong><br> <br>Riprova.
+				<strong>Attenzione</strong>
+				<br> 
+				<br>
+				Riprova.
 			</div>
 			{/if}
 			
 					<form method="post" enctype="multipart/form-data" action="/BiblioLibro/libro/carica">
 						<div class="form-group row">
-      						<label for="Titolo" class="col-sm-6 col-form-label {if !$check.titolo} text-danger{/if}">Titolo: *</label>
-        						<input type="text" class="form-control" id="TitoloLibro" name="titolo" placeholder="Inserisci titolo...">
+      						<label for="libro" class="col-sm-6 col-form-label {if !$check.titolo} text-danger{/if}">Titolo: *</label>
+        					<input type="text" class="form-control" id="libro" name="titolo" placeholder="Inserisci titolo...">
       						{if ! $check.titolo}
       						<div class="col-sm-8">
         						<small id="titoloHelp" class="text-danger">
@@ -63,8 +64,8 @@
     					</div>
 
 						<div class="form-group row">
-      						<label for="Genere" class="col-sm-6 col-form-label {if !$check.genere} text-danger{/if}">Genere: *</label>
-        						<input type="text" class="form-control" id="GenereLibro" name="genere" placeholder="Inserisci genere...">
+      						<label for="libro" class="col-sm-6 col-form-label {if !$check.genere} text-danger{/if}">Genere: *</label>
+        					<input type="text" class="form-control" id="libro" name="genere" placeholder="Inserisci genere...">
       						{if ! $check.genere}
       						<div class="col-sm-8">
         						<small id="genereHelp" class="text-danger">
@@ -75,8 +76,8 @@
     					</div>
 
     				<div class="form-group row">
-      						<label for="Autore" class="col-sm-6 col-form-label {if !$check.autore} text-danger{/if}">Autore: *</label>
-        						<input type="text" class="form-control" id="AutoreLibro" name="autore" placeholder="Inserisci autore...">		
+      						<label for="libro" class="col-sm-6 col-form-label {if !$check.autore} text-danger{/if}">Autore: *</label>
+        					<input type="text" class="form-control" id="libro" name="autore" placeholder="Inserisci autore...">		
       						{if ! $check.autore}
       						<div class="col-sm-8">
         						<small id="autoreHelp" class="text-danger">
@@ -87,8 +88,8 @@
     					</div>
 						
 						<div class="form-group row">
-      						<label for="NumCopieLibro" class="col-sm-6 col-form-label {if !$check.num_copie} text-danger{/if}">Numero copie: *</label>
-        						<input type="text" class="form-control" id="NumCopieLibro" name="numcopie" placeholder="Inserisci numero di copie...">
+      						<label for="libro" class="col-sm-6 col-form-label {if !$check.num_copie} text-danger{/if}">Numero copie: *</label>
+        						<input type="text" class="form-control" id="libro" name="numcopie" placeholder="Inserisci numero di copie...">
       						{if ! $check.num_copie}
       						<div class="col-sm-8">
         						<small id="numcopieHelp" class="text-danger">
@@ -99,8 +100,8 @@
     					</div>
 						
 						<div class="form-group row">
-      						<label for="IsbnLibro" class="col-sm-6 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: *</label>	
-        						<input type="text" class="form-control" id="IsbnLibro" name="isbn" placeholder="Inserisci isbn...">	
+      						<label for="libro" class="col-sm-6 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: *</label>	
+        						<input type="text" class="form-control" id="libro" name="isbn" placeholder="Inserisci isbn...">	
 						{if ! $check.isbn}								
       						<div class="col-sm-8">
         						<small id="isbnHelp" class="text-danger">
@@ -111,8 +112,8 @@
     					</div>
 						
 						<div class="form-group row">
-      						<label for="DescrizioneLibro" class="col-sm-6 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: *</label>
-        						<input type="text" class="form-control" id="DescrizioneLibro" name="descrizione" placeholder="Inserisci una descrizione...">
+      						<label for="libro" class="col-sm-6 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: *</label>
+        						<input type="text" class="form-control" id="libro" name="descrizione" placeholder="Inserisci una descrizione...">
       						{if ! $check.descrizione}
       						<div class="col-sm-8">
         						<small id="descrizioneHelp" class="text-danger">
