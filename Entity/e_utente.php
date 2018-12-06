@@ -23,6 +23,9 @@ class e_utente
 	protected $cognome;
 	protected $dtNasc;
 	protected $lgNasc;
+	protected $via;
+	protected $citta;
+	protected $cap;
     
     function __construct(){}
 	
@@ -50,16 +53,8 @@ class e_utente
     {
         return $this->nick_name;
     }
-        
-	 
-        
-    function validazioneNick() : bool
-    {
-        if ($this->nick_name && preg_match('/^[a-zA-Z0-9_-]{6,15}$/', $this->nick_name))
-            return true;
-        else
-            return false;
-    }
+	
+    
     
     function setNome (string $nome)
     {
@@ -70,7 +65,8 @@ class e_utente
     {
         return $this->nome;
     }
-        
+       
+	   
 	 function setCognome(string $cognome)
     {
         $this->cognome = $cognome;  
@@ -86,17 +82,11 @@ class e_utente
         $this->mail = $mail;
     }
     
-    
-    
     function getMail() : string
     {
         return $this->mail;
     }
-    
-    
-    /** Metodo che verifica che la struttura dell'e-mail sia valida
-     * @return bool true se l'email e' corretta, false altrimenti
-     */
+	
     function validazioneMail() : bool
     {
         if($this->mail && filter_var($this->mail, FILTER_VALIDATE_EMAIL))
@@ -189,6 +179,64 @@ class e_utente
 	function validazioneCognome() : bool
     {
         if ($this->cognome && preg_match('/^[a-zA-Z_-]{3,20}$/', $this->cognome))
+            return true;
+        else
+            return false;
+    }
+	function validazioneNick() : bool
+    {
+        if ($this->nick_name && preg_match('/^[a-zA-Z0-9_-]{3,20}$/', $this->nick_name))
+            return true;
+        else
+            return false;
+    }
+	
+	function setCitta (string $citta)
+    {
+        $this->citta = $citta;  
+    }
+        
+    function getCitta() : string
+    {
+        return $this->citta;
+    }
+	function validazioneCitta() : bool
+    {
+        if ($this->citta && preg_match('/^[a-zA-Z_-]{3,20}$/', $this->citta))
+            return true;
+        else
+            return false;
+    }
+	
+	function setCap(string $cap)
+    {
+        $this->cap = $cap;  
+    }
+        
+    function getCap() : string
+    {
+        return $this->cap;
+    }
+    function validazioneCap() : bool
+    {
+        if ($this->cap && preg_match('/^[a-zA-Z0-9_-]{3,20}$/', $this->cap))
+            return true;
+        else
+            return false;
+    }
+	
+	function setVia (string $via)
+    {
+        $this->via = $via;  
+    }
+        
+    function getVia() : string
+    {
+        return $this->via;
+    }
+	function validazioneVia() : bool
+    {
+        if ($this->via && preg_match('/^[a-zA-Z_-]{3,20}$/', $this->via))
             return true;
         else
             return false;

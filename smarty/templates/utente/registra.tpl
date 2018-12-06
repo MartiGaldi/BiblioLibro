@@ -64,7 +64,35 @@
 					</div>
 					{/if}
 					</div>
+					
+				<div class="form-group row">
+				  <label for="mail" class="col-sm-6 col-form-label{if !$check.mail} text-danger{/if}">Indirizzo email: * </label>
+                  <input type="text" class="form-control" id="mail" name="mail" placeholder="Inserisci mail...">
+                
+					{if ! $check.mail}
+					<div class="col-sm-8 well">
+						<small id="mailHelp" class="text-danger">
+  							Deve essere una mail.
+						</small>      
+					</div>
+					{/if}
+				</div>
 				
+				<div class="form-group row">
+                  <label for="inputPassword" class="col-sm-6 col-form-label{if !$check.password} text-danger{/if}">Password: *</label>
+				  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Inserisci password...">
+                
+					{if ! $check.password}
+					<div class="col-sm-8 well">
+						<small id="passwordHelp" class="text-danger">
+  							Deve contere 6-20 caratteri.
+						</small>      
+					</div>
+					{/if}
+				</div>
+				<br>
+				<br>
+				<h5>DATI ANAGRAFICI </h5>
 				 <div class="form-group row">
                   <label for="utente" class="col-sm-6 col-form-label {if !$check.nome} text-danger{/if}"> Nome: *</label>
 				  <input type="text" class="form-control" id="utente" name="nome" placeholder="Inserisci Nome...">
@@ -91,18 +119,7 @@
 					{/if}
 					</div>
 				
-				<div class="form-group row">
-				<label for="mail" class="col-sm-6 col-form-label{if !$check.mail} text-danger{/if}">Indirizzo email: * </label>
-                  <input type="text" class="form-control" id="mail" name="mail" placeholder="Inserisci mail...">
-                
-					{if ! $check.mail}
-					<div class="col-sm-8 well">
-						<small id="mailHelp" class="text-danger">
-  							Deve essere una mail.
-						</small>      
-					</div>
-					{/if}
-				</div>
+				
 				
 				 <div class="form-group row">
                   <label for="utente" class="col-sm-6 col-form-label {if !$check.dtNasc} text-danger{/if}"> Data di Nascita: *</label>
@@ -130,20 +147,48 @@
 					{/if}
 					</div>
 					
-				<div class="form-group row">
-                  <label for="inputPassword" class="col-sm-6 col-form-label{if !$check.password} text-danger{/if}">Password: *</label>
-				  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Inserisci password...">
+				  <div class="form-group row">
+                  <label for="utente" class="col-sm-6 col-form-label {if !$check.via} text-danger{/if}"> Via/Piazza: *</label>
+				  <input type="text" class="form-control" id="utente" name="via" placeholder="Inserisci via...">
                 
-					{if ! $check.password}
-					<div class="col-sm-8 well">
-						<small id="passwordHelp" class="text-danger">
-  							Deve contere 6-20 caratteri.
+					{if ! $check.via}
+					<div class="col-sm-8">
+						<small id="viaHelp" class="text-danger">
+  							Deve comprendere dagli 3 ai 20 caratteri.
 						</small>      
 					</div>
 					{/if}
-				</div>
-				
-				
+					</div>
+					
+					<div class="form-group row">
+                  <label for="utente" class="col-sm-6 col-form-label {if !$check.citta} text-danger{/if}"> Città: *</label>
+				  <input type="text" class="form-control" id="utente" name="citta" placeholder="Inserisci città...">
+                
+					{if ! $check.citta}
+					<div class="col-sm-8">
+						<small id="cittaHelp" class="text-danger">
+  							Deve comprendere dagli 3 ai 20 caratteri.
+						</small>      
+					</div>
+					{/if}
+					</div>
+					
+					<div class="form-group row">
+                  <label for="utente" class="col-sm-6 col-form-label {if !$check.cap} text-danger{/if}"> CAP: *</label>
+				  <input type="text" class="form-control" id="utente" name="cap" placeholder="Inserisci CAP...">
+                
+					{if ! $check.cap}
+					<div class="col-sm-8">
+						<small id="capHelp" class="text-danger">
+  							Deve comprendere dagli 3 ai 20 caratteri.
+						</small>      
+					</div>
+					{/if}
+					</div>
+					
+				<br>
+				<br>
+				<br>
                 <label>Tipo Utente: *</label>
                 <br>
                 <div class="form-check form-check-inline">

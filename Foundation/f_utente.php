@@ -30,8 +30,8 @@ class f_utente
      */
     static function salvaUtente() : string
     {
-        return "INSERT INTO utente(nick_name, mail, password, tipo, nome, cognome, dtNasc, lgNasc)
-                VALUES (:nick_name, :mail, :password, :tipo, :nome, :cognome, :dtNasc, :lgNasc);";
+        return "INSERT INTO utente(nick_name, mail, password, tipo, nome, cognome, dtNasc, lgNasc, via, citta, cap)
+                VALUES (:nick_name, :mail, :password, :tipo, :nome, :cognome, :dtNasc, :lgNasc, :via, :citta, :cap);";
     }
     
     /**
@@ -41,7 +41,7 @@ class f_utente
     static function aggiornaUtente() : string
     {
         return "UPDATE utente
-                SET nick_name = :nick_name, mail = :mail, password = :password, tipo = :tipo nome = :nome, cognome = :cognome, dtNasc = :dtNasc, lgNasc = :lgNasc
+                SET nick_name = :nick_name, mail = :mail, password = :password, tipo = :tipo nome = :nome, cognome = :cognome, dtNasc = :dtNasc, lgNasc = :lgNasc, via = :via, citta = :citta, cap = :cap
                 WHERE id = :id;";
     }
     
@@ -106,6 +106,9 @@ class f_utente
 		$stmt->bindValue(':cognome', $utente->getCognome(), PDO::PARAM_STR);
 		$stmt->bindValue(':dtNasc', $utente->getDtNasc(), PDO::PARAM_STR);
 		$stmt->bindValue(':lgNasc', $utente->getLgNasc(), PDO::PARAM_STR);
+		$stmt->bindValue(':via', $utente->getVia(), PDO::PARAM_STR);
+		$stmt->bindValue(':citta', $utente->getCitta(), PDO::PARAM_STR);
+		$stmt->bindValue(':cap', $utente->getCap(), PDO::PARAM_STR);
         $stmt->bindValue(':tipo', lcfirst(substr(get_class($utente),2)), PDO::PARAM_STR);
     }
     
@@ -128,6 +131,9 @@ class f_utente
 		$utente->setCognome($riga['cognome']);
 		$utente->setDtNasc($riga['dtNasc']);
 		$utente->setLgNasc($riga['lgNasc']);
+		$utente->setVia($riga['via']);
+		$utente->setCitta($riga['citta']);
+		$utente->setCap($riga['cap']);
                                     
         return $utente;
     }
