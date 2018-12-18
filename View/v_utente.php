@@ -94,7 +94,7 @@ class v_utente extends v_oggetto
     */
     function validazioneLogin(e_utente $utente): bool
     {
-        if($this->check['mail']=$utente->validazioneMail() && $this->check['password']=$utente->validazionePassword())
+        if($this->check['nick']=$utente->validazioneNick() && $this->check['password']=$utente->validazionePassword())
             return true;
         
         else

@@ -186,7 +186,7 @@ class c_utente
             $autenticato = false; // bool per l'autenticazione
             
             // si verifica che l'utente inserito matchi una entry nel db
-            $idUtente = f_persistance::getInstance()->esiste(e_utente::class, f_target::MAIL_ESISTENTE, $Utente->getMail()); 
+            $idUtente = f_persistance::getInstance()->esiste(e_utente::class, f_target::NICKNAME_ESISTENTE, $Utente->getNick()); 
             
             if($idUtente) // se e' stato prelevato un id...
             {

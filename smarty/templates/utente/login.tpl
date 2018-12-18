@@ -43,7 +43,7 @@
 			<div class="alert alert-warning">
 				<strong>Attenzione!</strong>
 				<br>
-				Combinazione errata di mail e password.
+				Combinazione errata di nickname e password.
 				<br>
 				Riprova.
 			</div>
@@ -51,12 +51,12 @@
 			
               <form class="form-horizontal" action="/BiblioLibro/utente/login" method="post">
                 <div class="form-group row">
-                  <label for="inputMail" class="col-sm-6 col-form-label {if !$check.mail} text-danger{/if}">Indirizzo mail:</label>
-				  <input type="text" class="form-control" id="inputMail" name="mail" placeholder="Inserisci mail">
-				  {if ! $check.mail}
+                  <label for="utente" class="col-sm-6 col-form-label {if !$check.nick} text-danger{/if}">NickName:</label>
+				  <input type="text" class="form-control" id="utente" name="nick" placeholder="Inserisci nickname">
+				  {if ! $check.nick}
 			        <div class="col-sm-10">
-						<small id="mailHelp" class="text-danger">
-  							La struttura della mail inserita non e' valida.
+						<small id="nickHelp" class="text-danger">
+  							NickName non valido.
 						</small>      
 					</div>
 				{/if}
