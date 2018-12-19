@@ -49,10 +49,10 @@
 			</div>
 			{/if}
 			
-              <form class="form-horizontal" action="/BiblioLibro/utente/login" method="post">
+              <form class="form-horizontal" action="login" method="post">
                 <div class="form-group row">
                   <label for="utente" class="col-sm-6 col-form-label {if !$check.nick} text-danger{/if}">NickName:</label>
-				  <input type="text" class="form-control" id="utente" name="nick" placeholder="Inserisci nickname">
+				  <input type="text" class="form-control" id="utente" name="nick_name" placeholder="Inserisci nickname...">
 				  {if ! $check.nick}
 			        <div class="col-sm-10">
 						<small id="nickHelp" class="text-danger">

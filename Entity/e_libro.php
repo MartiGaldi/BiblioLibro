@@ -163,7 +163,7 @@ class e_libro
      */
     function validazioneNumCopie(): bool
     {
-        if ($this->num_copie && preg_match("[1-9][0-9]*", $this->num_copie)) // sono consentiti solo numeri
+        if ($this->num_copie && preg_match("/^[1-9][0-9]+$/", $this->num_copie)) // sono consentiti solo numeri
             return true;
         else
             return false;

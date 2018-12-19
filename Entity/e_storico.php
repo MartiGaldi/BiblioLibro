@@ -9,7 +9,7 @@ require_once 'inc.php';
  * @author gruppo 11
  */
 
-class e_storicoPrestito
+class e_storico
 {
 	private $id;
     private $prestito;

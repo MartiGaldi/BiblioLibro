@@ -94,6 +94,17 @@ class c_utente
                     
                     if ($profiloUtente) // se l'utente esiste...
                     {   
+						/*$prenota = false;
+						$prestito = new e_prestito();
+						$prestito->setPrestito($Utente);
+						if($prestito->valido())
+						{
+							$prestito = $prestito->exists();
+						}
+						
+						$prestito = false;
+						$storico = false;*/
+						
                         $array = NULL; // array contenente i dati dell'utente da visualizzare
 						
                         if ($content == 'prestito')  // se il parametro e' un libro preso in prestito
@@ -184,7 +195,6 @@ class c_utente
         if($v_utente->validazioneLogin($Utente))
         {
             $autenticato = false; // bool per l'autenticazione
-            
             // si verifica che l'utente inserito matchi una entry nel db
             $idUtente = f_persistance::getInstance()->esiste(e_utente::class, f_target::NICKNAME_ESISTENTE, $Utente->getNick()); 
             
@@ -201,7 +211,6 @@ class c_utente
                     header('Location: /BiblioLibro/index');   
                 } 
             }
-            
             if(!$autenticato)
                 $v_utente->mostraLogin(true);
         }

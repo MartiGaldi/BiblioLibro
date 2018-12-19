@@ -39,7 +39,7 @@
 	<div class="col-md-6">
 		<div class="card text-white p-5 bg-primary">
 			<div class="card-body">
-			<h1 class="mb-4"> Aggiungi libro </h1>
+			<h1 class="mb-4"> Aggiungi Libro </h1>
 
 			{if $errore}
 			<div class="alert alert-warning">
@@ -64,8 +64,8 @@
     					</div>
 
 						<div class="form-group row">
-      						<label for="libro" class="col-sm-6 col-form-label {if !$check.genere} text-danger{/if}">Genere: *</label>
-        					<input type="text" class="form-control" id="libro" name="genere" placeholder="Inserisci genere...">
+      						<label for="inputGenere" class="col-sm-6 col-form-label {if !$check.genere} text-danger{/if}">Genere: *</label>
+        					<input type="text" class="form-control" id="inputGenere" name="genere" placeholder="Inserisci genere...">
       						{if ! $check.genere}
       						<div class="col-sm-8">
         						<small id="genereHelp" class="text-danger">
@@ -76,8 +76,8 @@
     					</div>
 
     				<div class="form-group row">
-      						<label for="libro" class="col-sm-6 col-form-label {if !$check.autore} text-danger{/if}">Autore: *</label>
-        					<input type="text" class="form-control" id="libro" name="autore" placeholder="Inserisci autore...">		
+      						<label for="inputAutore" class="col-sm-6 col-form-label {if !$check.autore} text-danger{/if}">Autore: *</label>
+        					<input type="text" class="form-control" id="inputAutore" name="autore" placeholder="Inserisci autore...">		
       						{if ! $check.autore}
       						<div class="col-sm-8">
         						<small id="autoreHelp" class="text-danger">
@@ -88,8 +88,8 @@
     					</div>
 						
 						<div class="form-group row">
-      						<label for="libro" class="col-sm-6 col-form-label {if !$check.num_copie} text-danger{/if}">Numero copie: *</label>
-        						<input type="text" class="form-control" id="libro" name="numcopie" placeholder="Inserisci numero di copie...">
+      						<label for="inputNumCopie" class="col-sm-6 col-form-label {if !$check.num_copie} text-danger{/if}">Numero copie: *</label>
+        						<input type="text" class="form-control" id="inputNumCopie" name="num_copie" placeholder="Inserisci numero di copie...">
       						{if ! $check.num_copie}
       						<div class="col-sm-8">
         						<small id="numcopieHelp" class="text-danger">
@@ -100,8 +100,8 @@
     					</div>
 						
 						<div class="form-group row">
-      						<label for="libro" class="col-sm-6 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: *</label>	
-        						<input type="text" class="form-control" id="libro" name="isbn" placeholder="Inserisci isbn...">	
+      						<label for="inputIsbn" class="col-sm-6 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: *</label>	
+        						<input type="text" class="form-control" id="inputIsbn" name="isbn" placeholder="Inserisci isbn...">	
 						{if ! $check.isbn}								
       						<div class="col-sm-8">
         						<small id="isbnHelp" class="text-danger">
@@ -112,8 +112,8 @@
     					</div>
 						
 						<div class="form-group row">
-      						<label for="libro" class="col-sm-6 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: *</label>
-        						<input type="text" class="form-control" id="libro" name="descrizione" placeholder="Inserisci una descrizione...">
+      						<label for="inputDescrizione" class="col-sm-6 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: *</label>
+        						<input type="text" class="form-control" id="inputDescrizione" name="descrizione" placeholder="Inserisci una descrizione...">
       						{if ! $check.descrizione}
       						<div class="col-sm-8">
         						<small id="descrizioneHelp" class="text-danger">
@@ -148,13 +148,7 @@
 					</div>
 				</fieldset>
 				
-				<fieldset class="form-group">
-  						<legend></legend>
-  						<div class="form-group row">
-    						<label for="exampleInputFile">Seleziona file copertina: *</label>
-    						<input type="file" class="form-control-file" name="file">
-  						</div>
-				</fieldset>
+				
 					
 				<button type="submit" class="btn btn-secondary">Carica</button>
 			</form>

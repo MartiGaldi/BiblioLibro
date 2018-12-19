@@ -24,13 +24,13 @@ class v_libro extends v_oggetto
         
         // l'array è istanziato con indici i campi delle varie form, i cui valori sono di default a false (no errori)
         $this->check = array(
-            'autore' => true,
             'titolo' => true,
+			'genere' => true,
+			'autore' => true,
             'num_copie' => true,
-            'durata' => true,
-            'genere' => true,
 			'isbn' => true,
-			'descrizione' => true
+			'descrizione' => true,
+			'durata' => true
         ); 
     }
     
@@ -44,16 +44,39 @@ class v_libro extends v_oggetto
     function creaLibro() : e_libro
     {
         $libro = new e_libro();
-        if (isset($_POST['autore']) && isset($_POST['titolo']) && isset($_POST['num_copie']) && isset($_POST['durata'])&& isset($_POST['genere']) && isset($_POST['isbn']) && isset($_POST['descrizione']))
-        {
-            $libro->setAutore(ucfirst($_POST['autore']));
+		
+		if(isset($_POST['titolo']))
             $libro->setTitolo(ucfirst($_POST['titolo']));
+		
+        if(isset($_POST['genere']))
+            $libro->setGenere(ucfirst($_POST['genere']));
+                    
+        if(isset($_POST['autore']))
+            $libro->setAutore(ucfirst($_POST['autore']));
+		
+		if(isset($_POST['num_copie']))
+            $libro->setNumCopie(ucfirst($_POST['num_copie']));
+		
+		if(isset($_POST['isbn']))
+            $libro->setIsbn(ucfirst($_POST['isbn']));
+		
+		if(isset($_POST['descrizione']))
+            $libro->setDescrizione(ucfirst($_POST['descrizione']));
+		
+		if(isset($_POST['durata']))
+            $libro->setDurata(ucfirst($_POST['durata']));
+		
+		
+       /* if ( isset($_POST['titolo']) && isset($_POST['autore']) && && isset($_POST['num_copie']) && isset($_POST['durata'])&& isset($_POST['genere']) && isset($_POST['isbn']) && isset($_POST['descrizione']))
+        {
+            $libro->setTitolo(ucfirst($_POST['titolo']));
+			$libro->setAutore(ucfirst($_POST['autore']));
             $libro->setNumCopie(ucfirst($_POST['num_copie']));
             $libro->setDurata(ucfirst($_POST['durata']));
             $libro->setGenere(ucfirst($_POST['genere']));
 			$libro->setIsbn(ucfirst($_POST['isbn']));
 			$libro->setDescrizione(ucfirst($_POST['descrizione']));
-        }        
+        }  */      
         return $libro;
         
     }
@@ -153,8 +176,15 @@ class v_libro extends v_oggetto
     
     function validazioneCarica(e_libro &$libro) : bool
     {
-        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && $this->check['genere']=$libro->validazioneGenere() && $this->check['isbn']=$libro->validazioneIsbn() && $this->check['descrizione']=$libro->validazioneDescrizione())
-            return true;
+        if($this->check['titolo']=$libro->validazioneTitolo() &&
+		$this->check['genere']=$libro->validazioneGenere() &&
+		$this->check['autore']=$libro->validazioneAutore() &&
+		$this->check['num_copie']=$libro->validazioneNumCopie() &&
+		$this->check['isbn']=$libro->validazioneIsbn() && 
+		$this->check['descrizione']=$libro->validazioneDescrizione() && $this->check['durata']=$libro->validazioneDurata())
+		{   
+			return true;
+		}
         else
             return false;  
     }

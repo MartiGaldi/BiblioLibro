@@ -449,7 +449,7 @@ class f_persistance
         }
         if ($sql)
         {
-            if($value2 && ($target==f_target::EXISTS_USER))
+            if($value2 && ($target==f_target::UTENTE_ESISTENTE))
             {
                 return $this->eseguiEsiste($sql, $value, $value2);
             }

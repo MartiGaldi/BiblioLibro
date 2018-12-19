@@ -36,7 +36,7 @@
 	<div class="container text-center">
 		<div class="col-sm-3">
 		<!-- Informazioni utente -->
-			{include file="utente/infoUtente.tpl"}
+			
 			{if $uId == $pId}
 			<div>
 			<!-- Rimozione profilo (se il profilo e' dell'utente della sessione)-->

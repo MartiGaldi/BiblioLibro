@@ -49,12 +49,12 @@ class v_utente extends v_oggetto
             $tipo = 'e_'.lcfirst($_POST['tipo']);
             $utente = new $tipo(); 
         }
-        
         else
             $utente = new e_utente();
            
-		if(isset($_POST['nick']))
-            $utente->setNick($_POST['nick']);
+		   
+		if(isset($_POST['nick_name']))
+            $utente->setNick($_POST['nick_name']);
 		
         if(isset($_POST['mail']))
             $utente->setMail($_POST['mail']);
@@ -94,7 +94,7 @@ class v_utente extends v_oggetto
     */
     function validazioneLogin(e_utente $utente): bool
     {
-        if($this->check['nick']=$utente->validazioneNick() && $this->check['password']=$utente->validazionePassword())
+        if($this->check['nick_name']=$utente->validazioneNick() && $this->check['password']=$utente->validazionePassword())
             return true;
         
         else
@@ -130,19 +130,19 @@ class v_utente extends v_oggetto
     * @param array $array: l'array del contenuto da visualizzare
     */
     
-    function mostraProfilo (e_utente &$profiloUtente, e_utente &$Utente, bool $haPrenota, bool $haPrestito, bool $haStorico, string $content, array $array = NULL)
+    function mostraProfilo (e_utente &$profiloUtente, e_utente &$Utente,/* bool $haPrenota, bool $haPrestito, bool $haStorico,*/ string $content, array $array = NULL)
     {
         $this->smarty->assign('content', $content);
         $this->smarty->registerObject('utente', $Utente);
-        $this->smarty->assign('uTipo', lcfirst(substr(get_class($User), 2)));
+        $this->smarty->assign('uTipo', lcfirst(substr(get_class($Utente), 2)));
         
         $this->smarty->registerObject('profilo', $profiloUtente);
         $this->smarty->assign('pTipo', lcfirst(substr(get_class($profiloUtente), 2)));
-      
+      /*
 		$this->smarty->assign('haPrestito', $haPrestito);
         $this->smarty->assign('haPrenota', $haPrenota);
 		$this->smarty->assign('haStorico', $haStorico);
-		
+	*/
         $this->smarty->assign('array', $array);
         
         $this->smarty->display('utente/profilo.tpl'); 

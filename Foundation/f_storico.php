@@ -1,5 +1,6 @@
 <?php
-class f_storicoPrestito{
+class f_storico
+{
     /**
      * Query che effettua il salvataggio di un prestito nella tabella storico_prestito
      * @return string contenente la query sql
