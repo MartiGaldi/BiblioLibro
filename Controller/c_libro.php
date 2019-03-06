@@ -258,19 +258,19 @@ class c_libro
         {
             $libro = $v_libro->creaLibro(); // la view restituisce una e_libro costruita a partire dalla form
             
-            if ($v_libro->validazioneCarica($libro)) // se l'oggetto e' valido 
-			{			
-               f_persistane::getInstance()->salva($libro);
+           // if ($v_libro->validazioneCarica($libro)) // se l'oggetto e' valido 
+			//{			
+               f_persistance::getInstance()->salva($libro);
 			   //$v_libro->Avviso($utente, 'Aggiunto con successo');
-			   header ('Location: /BiblioLibro');
+			 //  header ('Location: /BiblioLibro');
 			}
-            else
+          /*  else
             { 
                 f_persistance::getInstance()->rimuovi(e_libro::class, $libro->getId());
                 //$v_libro->Errore($utente, 'Errore');
-                $v_libro->mostraFormCarica($utente, false);
+              //  $v_libro->mostraFormCarica($utente, false);
             }
-        }
+        }*/
         else
             $v_libro->Errore($utente, 'NON sei un bibliotecario, non puoi inserire un libro');
     }
