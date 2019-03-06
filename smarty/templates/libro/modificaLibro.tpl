@@ -108,7 +108,7 @@
 						{if ! $check.isbn}
 						<div class="col-sm-3 well">
 							<small id="isbnHelp" class="text-danger">
-  								Deve contenere 16 caratteri.
+  								Deve contenere 13 caratteri.
 							</small>      
 						</div>
 						{/if}
