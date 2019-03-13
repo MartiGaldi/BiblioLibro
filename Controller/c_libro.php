@@ -261,8 +261,7 @@ class c_libro
            // if ($v_libro->validazioneCarica($libro)) // se l'oggetto e' valido 
 			//{			
                f_persistance::getInstance()->salva($libro);
-			   //$v_libro->Avviso($utente, 'Aggiunto con successo');
-			 //  header ('Location: /BiblioLibro');
+			   $v_libro->Avviso($utente, 'CONTENUTO AGGIUNTO CON SUCCESSO.');
 			}
           /*  else
             { 

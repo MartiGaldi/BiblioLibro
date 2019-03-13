@@ -112,6 +112,18 @@
     					</div>
 						
 						<div class="form-group row">
+      						<label for="libro" class="col-sm-6 col-form-label {if !$check.durata} text-danger{/if}">Durata: *</label>
+        					<input type="text" class="form-control" id="libro" name="durata" placeholder="Inserisci durata del prestito...">
+      						{if ! $check.durata}
+      						<div class="col-sm-8">
+        						<small id="durataHelp" class="text-danger">
+          							Prestito : BREVE - LUNGO - CONSULTAZIONE
+        						</small>      
+     						</div>
+     						{/if}
+    					</div>
+						
+						<div class="form-group row">
       						<label for="inputDescrizione" class="col-sm-6 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: *</label>
         						<input type="text" class="form-control" id="inputDescrizione" name="descrizione" placeholder="Inserisci una descrizione...">
       						{if ! $check.descrizione}
@@ -125,28 +137,7 @@
 						
   				</fieldset>		
 				
-				<fieldset class="form-group">
-					<legend></legend>
-					<h4 id="important">Durata prestito:</h4>
-					<div class="form-check">
-						<label class="form-check-label"> <input type="radio"
-							class="form-check-input" name="view" value="consultazione" checked>
-								Consultazione
-						</label>
-					</div>
-					<div class="form-check">
-						<label class="form-check-label"> <input type="radio"
-								class="form-check-input" name="view" value="breve">
-								Prestito Breve 
-						</label>
-					</div>
-					<div class="form-check">
-						<label class="form-check-label"> <input type="radio"
-								class="form-check-input" name="view" value="lungo">
-								Prestito Lungo
-						</label>
-					</div>
-				</fieldset>
+				
 				
 				
 					

@@ -30,11 +30,27 @@
   
 	{include file="navbar.tpl"}
 	
+	<div class="py-5 bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="card text-black p-5 bg-secondary">
+		  <div class="card-body">
+	<form>
 	<div class="container text-center">
 		<h3>AVVISO</h3>
-		<p>{$avviso} Torna alla <a href="/BiblioLibro/">HOME</a>
-		</p>
+		<p>{$avviso}</p>
+        <p>Torna alla <a href="/BiblioLibro/">HOME</a></p>
 	</div>
+	</form>
+	</div>
+		</div>
+        <div class="col-md-4" ></div>
+      </div>
+    </div>
+  </div>
+  </div>
 
 	{include file="fine.tpl"}
 	

@@ -176,7 +176,7 @@ class e_libro
      */
     function validazioneDurata() : bool 
     {
-        if($this->durata=='consultazione' || $this->durata=='breve' || $this->durata=='lungo')
+        if($this->durata && preg_match("/^[a-zA-Z][a-zA-Z0-9 -]+$/", $this->durata))
             return true;
         else
             return false;
