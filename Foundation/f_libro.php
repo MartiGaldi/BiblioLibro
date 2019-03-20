@@ -64,7 +64,7 @@ class f_libro{
     {
         return "SELECT libro.*
                 FROM libro
-                WHERE LOCATE( :titolo , libro.titolo) > 0;";
+                WHERE LOCATE( :Titolo , libro.titolo) > 0;";
     }
         
         
@@ -72,8 +72,15 @@ class f_libro{
     {
         return "SELECT libro.*
                 FROM libro
-                WHERE LOCATE( :autore , libro.autore) > 0;";
+                WHERE LOCATE( :Autore , libro.autore) > 0;";
     }
+	
+	 /*static function ricercaLibroDaGenere() : string
+    {
+        return "SELECT libro.*
+                FROM libro
+                WHERE LOCATE( :Genere , libro.genere) > 0;";
+    }*/
     
     /**
     * Associa ai campi della query i corrispondenti attributi dell'oggetto e_libro.

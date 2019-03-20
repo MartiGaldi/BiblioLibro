@@ -20,7 +20,7 @@ class c_ricerca
     //valore avanzato: ricerca per autore
     const VALUE_ADVANCED = 'Autore';
 	
-   /** //chiave avanzata
+   /*chiave avanzata
     const KEY_ADVANCED = 'Libro';
     //valore avanzato: ricerca per genere
     const VALUE_ADVANCED = 'Genere';*/

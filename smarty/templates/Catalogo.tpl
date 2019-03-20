@@ -2,14 +2,23 @@
 <table class="table table-responsive">
 	<tbody>					
 	{foreach $array as $libro}
+	<tr>
+	<td>TITOLO</td>
+	<td>AUTORE</td>
+	<td>GENERE</td>
+	<td>DURATA</td>
+	<td>DESCRIZIONE</td>
+	<td>NUMERO COPIE</td>
+	<td>ISBN</td>
+	
 		<tr>
-			{if isset($value)}
-			{if (value == Titolo)}
+		<td><a href="/Bibliolibro/libro/mostra/{$libro->getId()}">{$libro->getTitolo()}</a></td>
+			<td>{$libro->getAutore()}</td>
 			<td>{$libro->getGenere()}</td>
-			<td>{$libro->getDescrzione()}</td>
 			<td>{$libro->getDurata()}</td>
-			{/if}
-			{/if}
+			<td>{$libro->getDescrizione()}</td>
+			<td>{$libro->getNumCopie()}</td>
+			<td>{$libro->getIsbn()}</td>
 		</tr>
 	{/foreach}
 	</tbody>
