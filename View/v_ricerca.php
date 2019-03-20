@@ -11,7 +11,6 @@ include_once 'View/v_oggetto.php';
 
 class v_ricerca extends v_oggetto
 {
-    
     function __construct()
     {  
         parent::__construct(); 
@@ -29,7 +28,7 @@ class v_ricerca extends v_oggetto
         if(isset($_REQUEST['str']))
         { 
 			// se l'utente ha inviato tramite GET un valore di ricerca, si ricava la stringa
-            $string = $_REQUEST['str'];
+            $string = $_GET['str'];
         }
         return $string;  
     }
@@ -47,7 +46,7 @@ class v_ricerca extends v_oggetto
         
         if($_GET['value'] == 'titolo' || $_GET['value'] == 'autore')
 			$value = ucfirst($_GET['value']);
-        if($_GET['key'] == 'libro')
+        if($_GET['key'] == 'libro' || $_GET['key'] == 'libro' )
             $key=ucfirst($_GET['key']);
         
         return array($key, $value);    

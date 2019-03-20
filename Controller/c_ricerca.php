@@ -19,6 +19,7 @@ class c_ricerca
     const KEY_ADVANCED = 'Libro';
     //valore avanzato: ricerca per autore
     const VALUE_ADVANCED = 'Autore';
+	
    /** //chiave avanzata
     const KEY_ADVANCED = 'Libro';
     //valore avanzato: ricerca per genere
@@ -27,7 +28,7 @@ class c_ricerca
     
     
    /**
-    * Metodo implementa la ricerca di base che può essere effettuata da qualsiasi tipo di utente
+    * Metodo che implementa la ricerca di base
     */
     static function semplice()
     {
@@ -49,7 +50,7 @@ class c_ricerca
  
     
     /**
-	* Questo metodo implementa la ricerca avanzata che può essere effettuata solo dagli utenti registrati
+	* Metodo che implementa la ricerca avanzata 
     */
 	
     static function avanzata()

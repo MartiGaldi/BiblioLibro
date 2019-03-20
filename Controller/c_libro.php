@@ -261,15 +261,15 @@ class c_libro
            // if ($v_libro->validazioneCarica($libro)) // se l'oggetto e' valido 
 			//{			
                f_persistance::getInstance()->salva($libro);
-			   $v_libro->Avviso($utente, 'CONTENUTO AGGIUNTO CON SUCCESSO.');
-			}
-          /*  else
+			   $v_libro->Avviso($utente, 'CONTENUTO AGGIUNTO CON SUCCESSO');
+			/*}
+            else
             { 
                 f_persistance::getInstance()->rimuovi(e_libro::class, $libro->getId());
-                //$v_libro->Errore($utente, 'Errore');
-              //  $v_libro->mostraFormCarica($utente, false);
-            }
-        }*/
+                $v_libro->Errore($utente, 'Errore');
+                $v_libro->mostraFormCarica($utente, false);
+            }*/
+        }
         else
             $v_libro->Errore($utente, 'NON sei un bibliotecario, non puoi inserire un libro');
     }
