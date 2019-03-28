@@ -28,13 +28,15 @@
   </div>
   
 	{include file="navbar.tpl"}
-	
+	<div class="py-5 bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="card text-black p-5 bg-secondary">
+		  <div class="card-body">
+	<form>
 	<div class="container text-center">
-		<div class="col-sm-3">
-		
-        </div>
-		<div class="col-sm-7 ">
-			<div class="well">
 			<h4><a href="/BiblioLibro/libro/{$libro->getTitolo()}">{$libro->getTitolo()}</a> : {$libro->getAutore()} ({$libro->getGenere()}) ({$libro->getDurata()}) ({$libro->getIsbn()}) ({$libro->getDescrizione()})</h4>
 			<br>
 			<br>
@@ -44,7 +46,7 @@
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">PRENOTA</a>
 			{/if }
 			{else}
-			<h4>La prenotazione può essere conclusa solo da utenti registrati</h4>
+			<h4>Effettua <a href="/BiblioLbro/accedi"Login per procedere con la prenotazione</h4>
 			{/if}
 			<br>
 			<br>
@@ -54,11 +56,16 @@
 	
 			<a href="/BiblioLibro/libro/rimuovi/{$libro->getId()}" 
 				class="btn btn-primary btn-lg btn-danger active" role="button" aria-pressed="true">Rimuovi</a>
-			{/if}
-			</div>
-			<div>
-		</div>			
+			{/if}		
 	</div>
+	</form>
+	</div>
+    </div>
+    <div class="col-md-4" ></div>
+    </div>
+    </div>
+  </div>
+  </div>
 	{include file="fine.tpl"}
 </body>
 </html>
