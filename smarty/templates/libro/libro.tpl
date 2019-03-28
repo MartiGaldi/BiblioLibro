@@ -37,7 +37,7 @@
 		  <div class="card-body">
 	<form>
 	<div class="container text-center">
-			<h4><a href="/BiblioLibro/libro/{$libro->getTitolo()}">{$libro->getTitolo()}</a> : {$libro->getAutore()} ({$libro->getGenere()}) ({$libro->getDurata()}) ({$libro->getIsbn()}) ({$libro->getDescrizione()})</h4>
+			<h4>TITOLO: {$libro->getTitolo()} <br> AUTORE: {$libro->getAutore()} <br> GENERE: {$libro->getGenere()} <br> DURATA: {$libro->getDurata()} <br> ISBN: {$libro->getIsbn()}</h4>
 			<br>
 			<br>
 			{if $uTipo eq 'cliente' or $uTipo eq 'bibliotecario'}
@@ -46,7 +46,7 @@
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">PRENOTA</a>
 			{/if }
 			{else}
-			<h4>Effettua <a href="/BiblioLbro/accedi"Login per procedere con la prenotazione</h4>
+			<h4>Effettua il <a href="/BiblioLibro/utente/login">Login</a> per procedere con la prenotazione</h4>
 			{/if}
 			<br>
 			<br>
