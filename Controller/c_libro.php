@@ -91,7 +91,7 @@ class c_libro
         {
             $v_libro=new v_libro();
             $utente=c_sessione::getUtenteDaSessione();
-            $libro=f_persistance::getIstance()->carica(e_libro::class, $id);
+            $libro=f_persistance::getInstance()->carica(e_libro::class, $id);
             if($libro)
             {
                $v_libro->mostraLibro($utente, $libro);
@@ -347,5 +347,30 @@ class c_libro
         
         else
             $v_libro->Errore($utente, "L'id non corrisponde a nessun libro."); 
+    }
+	
+	static function prenota($id)
+    {
+        if(is_numeric($id)) // se nell'url è effettivamente presente un id.
+        {
+            $v_libro = new v_libro(); // crea la view
+            $utente = c_sessione::getUtenteDaSessione(); // ottiene l'utente dalla sessione
+            $libro = f_persistance::getInstance()->carica(e_libro::class, $id); // carica il libro dell'id
+            if($libro)
+            {
+                if (is_a($utente, e_bibliotecario::class) || is_a($utente, e_cliente::class))
+                {
+					$prenota = f_persistance::getInstance()->carica(e_prenota::class, $libro->getId());
+					header('Content-Description: File Transfer');
+                    header('Data: '.$prestito->getData() );
+				}
+                else 
+                    $v_libro->Errore($utente, 'Impossibile prenotare il documento');
+            }
+            else
+                $v_libro->Errore($utente, 'Il testo non corrisponde a nessun documento memerizzato nel sistema');
+        }
+        else
+            header('Location: HTTP/1.1 405 Invalid URL detected');
     }
 }

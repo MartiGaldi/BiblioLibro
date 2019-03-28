@@ -126,7 +126,7 @@ class e_libro
     
     function getCopertina()
     {
-		$this->copertina = f_persistance::getIstance()->carica(e_copertina::class, $this->id);
+		$this->copertina = f_persistance::getInstance()->carica(e_copertina::class, $this->id);
         return $this->copertina;
     }
     

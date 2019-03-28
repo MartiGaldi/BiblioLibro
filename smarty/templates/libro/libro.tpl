@@ -35,13 +35,19 @@
         </div>
 		<div class="col-sm-7 ">
 			<div class="well">
-			<h4><a href="/BiblioLibro/libro/{$libro->getTitolo()}">{$libro->getTitolo()}</a> : {$libro->getAutore()} ({$libro->getGenere()}) ({$libro->getDurata()}) ({$libro->getIsbn()}) ({$libro->getDescrizione()}) ({$libro->getCopertina()})</h4>
+			<h4><a href="/BiblioLibro/libro/{$libro->getTitolo()}">{$libro->getTitolo()}</a> : {$libro->getAutore()} ({$libro->getGenere()}) ({$libro->getDurata()}) ({$libro->getIsbn()}) ({$libro->getDescrizione()})</h4>
 			<br>
 			<br>
+			{if $uTipo eq 'cliente' or $uTipo eq 'bibliotecario'}
 			{if $prenota}
 				<a href="/BiblioLbro/libro/prenota/{$libro->getId()}" 
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">PRENOTA</a>
+			{/if }
+			{else}
+			<h4>La prenotazione può essere conclusa solo da utenti registrati</h4>
 			{/if}
+			<br>
+			<br>
 			{if $uTipo eq 'bibliotecario'}
 			<a href="/BiblioLibro/libro/modifica/{$libro->getId()}" 
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Modifica</a>
