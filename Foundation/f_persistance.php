@@ -298,7 +298,7 @@ class f_persistance
         else
             $classe = get_class($oggetto); // restituisce il nome della classe dall'oggetto
                 
-        $risorsa = substr($classe,2); // nome della risorsa (User, Song, UserInfo, ...)
+        $risorsa = substr($classe,2); // nome della risorsa (Utente, Libro, ...)
         $classeFound = 'f_'.$risorsa; // nome della rispettiva classe Foundation
         
         $metodo = 'aggiorna'.$risorsa; // nome del metodo aggiorna+nome_risorsa
