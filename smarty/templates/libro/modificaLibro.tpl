@@ -47,7 +47,7 @@
 					<div class="form-group row">
 						<label for="TitoloLibro" class="col-sm-2 col-form-label {if !$check.titolo} text-danger{/if}">Titolo: *</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control is-invalid" id="TitoloLibro" name="titolo" value="{$libro->getTitolo()}" placeholder="Inserisci titolo...">
+							<input type="text" class="form-control" id="TitoloLibro" name="titolo" value="{$libro->getTitolo()}" placeholder="Inserisci titolo...">
 						</div>
 						{if ! $check.titolo}
 						<div class="col-sm-3 well">
@@ -61,7 +61,7 @@
 					<div class="form-group row">
 						<label for="GenereLibro" class="col-sm-2 col-form-label {if !$check.genere} text-danger{/if}">Genere: *</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control is-invalid" id="GenereLibro" name="genere" value ="{$libro->getGenere()}" placeholder="Inserisci genere...">
+							<input type="text" class="form-control" id="GenereLibro" name="genere" value ="{$libro->getGenere()}" placeholder="Inserisci genere...">
 						</div>
 						{if ! $check.genere}
 						<div class="col-sm-3 well">
@@ -75,7 +75,7 @@
 					<div class="form-group row">
 						<label for="AutoreLibro" class="col-sm-2 col-form-label {if !$check.autore} text-danger{/if}">Autore: *</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control is-invalid" id="AutoreLibro" name="autore" value ="{$libro->getAutore()}" placeholder="Inserisci autore...">
+							<input type="text" class="form-control" id="AutoreLibro" name="autore" value ="{$libro->getAutore()}" placeholder="Inserisci autore...">
 						</div>
 						{if ! $check.autore}
 						<div class="col-sm-3 well">
@@ -87,11 +87,11 @@
 					</div>
 					
 					<div class="form-group row">
-						<label for="NumCopieLibro" class="col-sm-2 col-form-label {if !$check.numcopie} text-danger{/if}">Numero copie: *</label>
+						<label for="NumCopieLibro" class="col-sm-2 col-form-label {if !$check.num_copie} text-danger{/if}">Numero copie: *</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control is-invalid" id="NumCopieLibro" name="numcopie" value ="{$libro->getNumCopie()}" placeholder="Inserisci numero copie...">
+							<input type="text" class="form-control" id="NumCopieLibro" name="numcopie" value ="{$libro->getNumCopie()}" placeholder="Inserisci numero copie...">
 						</div>
-						{if ! $check.numcopie}
+						{if ! $check.num_copie}
 						<div class="col-sm-3 well">
 							<small id="numcopieHelp" class="text-danger">
   								Solo caratteri numerici; Almeno una copia.
@@ -103,7 +103,7 @@
 					<div class="form-group row">
 						<label for="IsbnLibro" class="col-sm-2 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: *</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control is-invalid" id="IsbnLibro" name="isbn" value ="{$libro->getIsbn()}" placeholder="Inserisci isbn...">
+							<input type="text" class="form-control" id="IsbnLibro" name="isbn" value ="{$libro->getIsbn()}" placeholder="Inserisci isbn...">
 						</div>
 						{if ! $check.isbn}
 						<div class="col-sm-3 well">
@@ -117,9 +117,9 @@
 					<div class="form-group row">
 						<label for="DescrizioneLibro" class="col-sm-2 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: *</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control is-invalid" id="DescrizioneLibro" name="descrizione" value ="{$libro->getDescrizione()}" placeholder="Inserisci una descrizione...">
+							<input type="text" class="form-control" id="DescrizioneLibro" name="descrizione" value ="{$libro->getDescrizione()}" placeholder="Inserisci una descrizione...">
 						</div>
-						{if ! $check.numcopie}
+						{if ! $check.descrizione}
 						<div class="col-sm-3 well">
 							<small id="descrizioneHelp" class="text-danger">
   								Lunghezza massima 150 caratteri.
@@ -131,7 +131,7 @@
 					<div class="form-group row">
 						<label for="CopertinaLibro" class="col-sm-2 col-form-label {if !$check.copertina} text-danger{/if}">Copertina: *</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control is-invalid" id="CopertinaLibro" name="copertina" value ="{$libro->getCopertina()}" placeholder="Inserisci copertina...">
+							<input type="text" class="form-control" id="CopertinaLibro" name="copertina" value ="{$libro->getCopertina()}" placeholder="Inserisci copertina...">
 						</div>
 						{if ! $check.copertina}
 						<div class="col-sm-3 well">
@@ -142,30 +142,22 @@
 						{/if}
 					</div>
 					
+					<div class="form-group row">
+      					<label for="DurataLibro" class="col-sm-2 col-form-label {if !$check.durata} text-danger{/if}">Durata: *</label>
+						<div class="col-sm-7">
+        				<input type="text" class="form-control" id="libro" name="durata" value="{$libro->getDurata()}" placeholder="Inserisci durata del prestito...">
+						</div>
+      						{if ! $check.durata}
+      						<div class="col-sm-3 well">
+        						<small id="durataHelp" class="text-danger">
+          							Prestito : BREVE - LUNGO - CONSULTAZIONE
+        						</small>      
+     						</div>
+     						{/if}
+    				</div>
+					
 				</fieldset>
 				
-				<fieldset class="form-group">
-					<legend></legend>
-					<h4 id="important">Durata prestito:</h4>
-					<div class="form-check">
-						<label class="form-check-label"> <input type="radio"
-							class="form-check-input" name="view" value="consultazione" {if $checked eq 'consultazione'}checked{/if}>
-							Consultazione
-						</label>
-					</div>
-					<div class="form-check">
-						<label class="form-check-label"> <input type="radio"
-							class="form-check-input" name="view" value="breve" {if $checked eq 'breve'}checked{/if}>
-							Prestito Breve 
-						</label>
-					</div>
-					<div class="form-check">
-						<label class="form-check-label"> <input type="radio"
-							class="form-check-input" name="view" value="lungo" {if $checked eq 'lungo'}checked{/if}>
-							Prestito Lungo 
-						</label>
-					</div>
-				</fieldset>
 				<button type="submit" class="btn btn-primary">Modifica</button>
 			</form>
 		</div>
