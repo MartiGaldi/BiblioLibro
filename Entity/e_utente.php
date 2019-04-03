@@ -252,7 +252,7 @@ class e_utente
 	
 	 function validazioneLgNasc() : bool
     {
-        if ($this->lgNasc && preg_match('/^[a-zA-Z_-]{6,15}$/', $this->lgNasc))
+        if ($this->lgNasc && preg_match('/^[a-zA-Z_-]{3,15}$/', $this->lgNasc))
             return true;
         else
             return false;
