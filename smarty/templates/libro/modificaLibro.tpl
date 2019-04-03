@@ -29,28 +29,32 @@
   
 	{include file="navbar.tpl"}
 	
-	<div class="container text-center">
-		<div class="col-sm-3">
-		
-        </div>
-		<div class="col-sm-7 well">
+	<div class="py-5 bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+				
+				</div>
+	<div class="col-md-6">
+		<div class="card text-white p-5 bg-primary">
+			<div class="card-body">
+			<h1 class="mb-4"> Modifica Libro </h1>
+
 			{if $errore}
 			<div class="alert alert-warning">
-				<strong>Attenzione!</strong><br> <br>Riprova.
+				<strong>Attenzione</strong>
+				<br> 
+				<br>
+				Riprova.
 			</div>
 			{/if}
-			<h2>Modifica Libro</h2>
-			<hr>
+			
 			<form method="post" enctype="multipart/form-data" action="/BiblioLibro/libro/modifica/{$libro->getId()}">
-				<fieldset class="form-group">
-					<legend></legend>
 					<div class="form-group row">
-						<label for="TitoloLibro" class="col-sm-2 col-form-label {if !$check.titolo} text-danger{/if}">Titolo: *</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="TitoloLibro" name="titolo" value="{$libro->getTitolo()}" placeholder="Inserisci titolo...">
-						</div>
+						<label for="libro" class="col-sm-6 col-form-label {if !$check.titolo} text-danger{/if}">Titolo: </label>
+						<input type="text" class="form-control" id="libro" name="titolo" value="{$libro->getTitolo()}" placeholder="Inserisci nuovo titolo...">
 						{if ! $check.titolo}
-						<div class="col-sm-3 well">
+						<div class="col-sm-8">
 							<small id="titoloHelp" class="text-danger">
   							Solo caratteri alfanumerici
 						</small>      
@@ -59,12 +63,10 @@
 					</div>
 					
 					<div class="form-group row">
-						<label for="GenereLibro" class="col-sm-2 col-form-label {if !$check.genere} text-danger{/if}">Genere: *</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="GenereLibro" name="genere" value ="{$libro->getGenere()}" placeholder="Inserisci genere...">
-						</div>
+						<label for="genereLibro" class="col-sm-6 col-form-label {if !$check.genere} text-danger{/if}">Genere: </label>
+						<input type="text" class="form-control" id="genereLibro" name="genere" value ="{$libro->getGenere()}" placeholder="Inserisci genere...">
 						{if ! $check.genere}
-						<div class="col-sm-3 well">
+						<div class="col-sm-8">
 							<small id="genereHelp" class="text-danger">
   								Solo caratteri alfabetici.
 							</small>      
@@ -73,12 +75,10 @@
 					</div>
 					
 					<div class="form-group row">
-						<label for="AutoreLibro" class="col-sm-2 col-form-label {if !$check.autore} text-danger{/if}">Autore: *</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="AutoreLibro" name="autore" value ="{$libro->getAutore()}" placeholder="Inserisci autore...">
-						</div>
+						<label for="autoreLibro" class="col-sm-6 col-form-label {if !$check.autore} text-danger{/if}">Autore: </label>
+						<input type="text" class="form-control" id="autoreLibro" name="autore" value ="{$libro->getAutore()}" placeholder="Inserisci autore...">
 						{if ! $check.autore}
-						<div class="col-sm-3 well">
+						<div class="col-sm-8">
 							<small id="autoreHelp" class="text-danger">
   								Solo caratteri alfabetici.
 							</small>      
@@ -87,12 +87,10 @@
 					</div>
 					
 					<div class="form-group row">
-						<label for="NumCopieLibro" class="col-sm-2 col-form-label {if !$check.num_copie} text-danger{/if}">Numero copie: *</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="NumCopieLibro" name="numcopie" value ="{$libro->getNumCopie()}" placeholder="Inserisci numero copie...">
-						</div>
+						<label for="numCopieLibro" class="col-sm-6 col-form-label {if !$check.num_copie} text-danger{/if}">Numero copie: </label>
+						<input type="text" class="form-control" id="numCopieLibro" name="numcopie" value ="{$libro->getNumCopie()}" placeholder="Inserisci numero copie...">
 						{if ! $check.num_copie}
-						<div class="col-sm-3 well">
+						<div class="col-sm-8">
 							<small id="numcopieHelp" class="text-danger">
   								Solo caratteri numerici; Almeno una copia.
 							</small>      
@@ -101,12 +99,10 @@
 					</div>
 					
 					<div class="form-group row">
-						<label for="IsbnLibro" class="col-sm-2 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: *</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="IsbnLibro" name="isbn" value ="{$libro->getIsbn()}" placeholder="Inserisci isbn...">
-						</div>
+						<label for="isbnLibro" class="col-sm-6 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: </label>
+						<input type="text" class="form-control" id="isbnLibro" name="isbn" value ="{$libro->getIsbn()}" placeholder="Inserisci isbn...">
 						{if ! $check.isbn}
-						<div class="col-sm-3 well">
+						<div class="col-sm-8">
 							<small id="isbnHelp" class="text-danger">
   								Deve contenere 13 caratteri.
 							</small>      
@@ -115,12 +111,22 @@
 					</div>
 					
 					<div class="form-group row">
-						<label for="DescrizioneLibro" class="col-sm-2 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: *</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="DescrizioneLibro" name="descrizione" value ="{$libro->getDescrizione()}" placeholder="Inserisci una descrizione...">
-						</div>
+      						<label for="libro" class="col-sm-6 col-form-label {if !$check.durata} text-danger{/if}">Durata: </label>
+        					<input type="text" class="form-control" id="libro" name="durata" value ="{$libro->getDurata()}" placeholder="Inserisci durata del prestito...">
+      						{if ! $check.durata}
+      						<div class="col-sm-8">
+        						<small id="durataHelp" class="text-danger">
+          							BREVE - LUNGO - CONSULTAZIONE
+        						</small>      
+     						</div>
+     						{/if}
+    					</div>
+						
+					<div class="form-group row">
+						<label for="descrizioneLibro" class="col-sm-6 col-form-label {if !$check.descrizione} text-danger{/if}">Descrizione: </label>
+						<input type="text" class="form-control" id="descrizioneLibro" name="descrizione" value ="{$libro->getDescrizione()}" placeholder="Inserisci una descrizione...">
 						{if ! $check.descrizione}
-						<div class="col-sm-3 well">
+						<div class="col-sm-8">
 							<small id="descrizioneHelp" class="text-danger">
   								Lunghezza massima 150 caratteri.
 							</small>      
@@ -128,42 +134,15 @@
 						{/if}
 					</div>
 					
-					<div class="form-group row">
-						<label for="CopertinaLibro" class="col-sm-2 col-form-label {if !$check.copertina} text-danger{/if}">Copertina: *</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" id="CopertinaLibro" name="copertina" value ="{$libro->getCopertina()}" placeholder="Inserisci copertina...">
-						</div>
-						{if ! $check.copertina}
-						<div class="col-sm-3 well">
-							<small id="copertinaHelp" class="text-danger">
-  								Deve avere formati jpg, png.
-							</small>      
-						</div>
-						{/if}
-					</div>
-					
-					<div class="form-group row">
-      					<label for="DurataLibro" class="col-sm-2 col-form-label {if !$check.durata} text-danger{/if}">Durata: *</label>
-						<div class="col-sm-7">
-        				<input type="text" class="form-control" id="libro" name="durata" value="{$libro->getDurata()}" placeholder="Inserisci durata del prestito...">
-						</div>
-      						{if ! $check.durata}
-      						<div class="col-sm-3 well">
-        						<small id="durataHelp" class="text-danger">
-          							Prestito : BREVE - LUNGO - CONSULTAZIONE
-        						</small>      
-     						</div>
-     						{/if}
-    				</div>
-					
 				</fieldset>
 				
-				<button type="submit" class="btn btn-primary">Modifica</button>
+				<button type="submit" class="btn btn-secondary">Modifica</button>
 			</form>
 		</div>
-		<div class="col-sm-3">
-		
 		</div>
+		</div>
+	</div>
+	</div>
 	</div>
 	{include file="fine.tpl"}
 </body>

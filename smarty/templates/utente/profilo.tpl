@@ -32,7 +32,7 @@
   </div>
   
 	{include file="navbar.tpl"}
-	
+		  
 	<div class="container text-center">
 		<div class="col-sm-3">
 		<!-- Informazioni utente -->
@@ -76,6 +76,9 @@
 			</div>
 	</div>
 	
+    <br>
+	<br>
+   
 	{include file="fine.tpl"}
 	
 </body>

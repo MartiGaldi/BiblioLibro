@@ -39,13 +39,11 @@
             <div class="card-body">
               <h1 class="mb-4"> Login </h1>
 			  
-			  {if $errore}
+			{if $errore}
 			<div class="alert alert-warning">
 				<strong>Attenzione!</strong>
 				<br>
-				Combinazione errata di nickname e password.
-				<br>
-				Riprova.
+				Combinazione errata di nickname e/o password.  Riprova
 			</div>
 			{/if}
 			

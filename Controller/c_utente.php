@@ -315,7 +315,7 @@ class c_utente
         { // altrimenti e' l'utente della sessione che chiede di essere rimosso
             if(get_class($utente)!=e_visitatore::class)
             {
-                f_peristance::getInstance()->rimuovi(e_utente::class, $utente->getId());
+                f_persistance::getInstance()->rimuovi(e_utente::class, $utente->getId());
                 c_sessione::terminaSessione(); // viene rimossa la sessione
                 header('Location: /BiblioLibro/index');
             }
