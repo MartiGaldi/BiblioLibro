@@ -97,7 +97,7 @@ class c_libro
                $v_libro->mostraLibro($utente, $libro);
             }
             else
-                $v_libro->Errore($utente, 'id del libro non corrisponde a nessun libro del sistema');
+                $v_libro->Errore($utente, 'id del libro non corrisponde a nessun elenemento del catalogo');
         }
         else
             header('Location: HTTP/1.1 405 Invalid URL detected');
@@ -362,7 +362,12 @@ class c_libro
                 {
 					$prenota = f_persistance::getInstance()->carica(e_prenota::class, $libro->getId());
 					header('Content-Description: File Transfer');
-                    header('Data: '.$prestito->getData() );
+                   // header('Data: '.$prestito->getData() );
+					
+					ob_clean();
+					flush();
+					echo $prenota->getPrenota();
+                    exit;
 				}
                 else 
                     $v_libro->Errore($utente, 'Impossibile prenotare il documento');

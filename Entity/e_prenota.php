@@ -10,30 +10,30 @@ require_once'inc.php';
 
 class e_prenota
 {
-    private $id;
+    private $id_prenota;
     private $data;
-    private $nick_cliente;
-    private $id_libro;
     private $data_fine;
     private $acquisito = false;
     private $disp = false;
+	
+	private $prenota;
     
     function __constructor(){}
     
-	function getId() : int
+	
+	function getIdprenota() : int
     {
-        if(!$this->id)
+        if(!$this->id_prenota)
             return 0;
-        else return $this->id;
+        else return $this->id_prenota;
     }
     
-    /**
-     * @param int $id l'identificativo dell'oggetto Entity
-     */
-    function setId(int $id)
+    function setIdprenota(int $id_prenota)
     {
-        $this->id=$id;
+        $this->id_prenota=$id_prenota;
     }
+	
+	
 	
     function setData (DateTime $data){
         $this->data=new DateTime($data);
@@ -53,22 +53,6 @@ class e_prenota
     }
     
     
-    function setNickCliente (string $nick_cliente){
-        $this->nick_cliente=$nick_cliente;
-    }
-    
-    function getNickCliente() : string{
-        return $this->nick_cliente;
-    }
-    
-    function setIdLibro(string $id_libro){
-        $this->id_libro=$id_libro;
-    }
-    
-    function getIdLibro() : string {
-        return $this->id_libro;
-    }
-    
     function setDataFine() {
         $this->data_fine = time + (3*24*60*60);
     }
@@ -77,6 +61,8 @@ class e_prenota
         return $this->date('Y/m/d', $data_fine);
     }
     
+	
+	
     function setAcquisito(bool $acquisito) {
         $this->acquisito=$acquisito;
     }
@@ -125,6 +111,15 @@ class e_prenota
             rimuoviPrenotazione();
         }
     }
+	
+	
+	function getPrenota (){
+		return $this->prenota;
+	}
+	
+	function setPrenota ($prenota){
+		$this->prenota = $prenota;
+	}
 }
 
 ?>

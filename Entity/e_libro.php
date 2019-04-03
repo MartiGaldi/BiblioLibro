@@ -23,6 +23,8 @@ class e_libro
 	private $isbn;
 	private $descrizione;
 	private $copertina;
+	
+	private $prenota;
 
     function __constructor(){}
     
@@ -101,6 +103,23 @@ class e_libro
         return $this->descrizione;
     }
     
+	
+	function setPrenota(e_prenota &$prenota)
+    {
+        $this->prenota = $prenota;
+    }
+    
+    function getPrenota() : e_prenota
+    {
+		if($this->prenota) // se la prenotazione e' gia presente, la restituisce
+            return $this->prenota;
+        else
+		{
+		$this->prenota = f_persistance::getInstance()->carica('prenota', $this->id);
+        return $this->prenota;
+		}
+    } 
+	
     /*function setCopertina(e_copertina $copertina = null)
     {
 		if(!$copertina){

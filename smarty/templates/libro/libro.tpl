@@ -42,7 +42,7 @@
 			<br>
 			{if $uTipo eq 'cliente' or $uTipo eq 'bibliotecario'}
 			{if $prenota}
-				<a href="/BiblioLbro/libro/prenota/{$libro->getId()}" 
+				<a href="/BiblioLibro/libro/prenota/{$libro->getId()}" 
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">PRENOTA</a>
 			{/if }
 			{else}
