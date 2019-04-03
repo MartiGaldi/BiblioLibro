@@ -202,7 +202,7 @@ class c_utente
             {
                 $Utente->setId($idUtente); // viene assegnato all'utente l'id utente
                 
-                if($Utente->validazionePassword()) // se la password e' corretta
+                if($Utente->verificaPassword()) // se la password e' corretta
                 {
                     unset($Utente); // l'istanza utilizzata per il login viene rimossa
                     $utente = f_persistance::getInstance()->carica(e_utente::class, $idUtente); // viene caricato l'utente
