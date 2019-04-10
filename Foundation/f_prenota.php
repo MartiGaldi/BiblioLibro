@@ -7,8 +7,8 @@ class f_prenota{
     */
     static function salvaPrenota() : string
     {
-        return "INSERT INTO prenota(id_prenota,data,nick_name_utente,id_libro,data_fine,acquisito,disp,prenota)
-                VALUES(:id_prenota,:data,:nick_name,:id,:data_fine,:acquisito,:disp,:prenota)";
+        return "INSERT INTO prenota(id_libro,id_prenota,data,nick_utente,data_fine,acquisito,disp,prenota)
+                VALUES(:id,:id_prenota,:data,:nick_name,:data_fine,:acquisito,:disp,:prenota)";
     }
 
     /**
@@ -18,7 +18,7 @@ class f_prenota{
     static function aggiornaPrenota() : string
     {
         return "UPDATE prenota
-                SET data = :data, nick_name_utente = :nick_name, id_libro = :id, data_fine = :data_fine, acquisito = :acquisito, disp = :disp
+                SET id_libro = :id, id_prenota = :id_prenota, data = :data, nick_utente = :nick_name, data_fine = :data_fine, acquisito = :acquisito, disp = :disp
                 WHERE id_prenota = :id_prenota;";
     }
     
@@ -63,9 +63,9 @@ class f_prenota{
      */
     static function bindValues(PDOStatement &$stmt, e_prenota &$prenota)
     {
-        $stmt->bindValue('id_prenota', $prenota->getIdprenota(), PDO::PARAM_INT);
+        $stmt->bindValue('id_prenota', $prenota->getIdPrenota(), PDO::PARAM_INT);
         $stmt->bindValue('data', $prenota->getData(), PDO::PARAM_STR);
-        $stmt->bindValue(':nick_name', $prenota->getNick(), PDO::PARAM_STR);
+        $stmt->bindValue(':nick_name', $prenota->getNickUtente(), PDO::PARAM_STR);
         $stmt->bindValue(':id', $prenota->getId(), PDO::PARAM_INT);
         $stmt->bindValue(':data_fine', $prenota->getDataFine(), PDO::PARAM_STR);
         $stmt->bindValue('acquisito', $prenota->getAcquisito(), PDO::PARAM_BOOL);
@@ -80,9 +80,9 @@ class f_prenota{
     static function creaOggettoDaRiga($riga) : e_prenota
     {
         $prenota = new e_prenota();
-        $prenota->setIdprenota($riga['id_prenota']);
+        $prenota->setIdPrenota($riga['id_prenota']);
         $prenota->setData($riga['data']);
-        $prenota->setNickCliente($riga['nick_cliente']);
+        $prenota->setNickUtente($riga['nick_utente']);
         $prenota->setId($riga['id_libro']);
         $prenota->setDataFine($riga['data_fine']);
         $prenota->setAcquisito($riga['acquisito']);

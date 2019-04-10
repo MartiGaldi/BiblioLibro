@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="utf-8">
@@ -40,11 +39,13 @@
 			<h4>TITOLO: {$libro->getTitolo()} <br> AUTORE: {$libro->getAutore()} <br> GENERE: {$libro->getGenere()} <br> DURATA: {$libro->getDurata()} <br> ISBN: {$libro->getIsbn()}</h4>
 			<br>
 			<br>
-			{if $uTipo eq 'cliente' or $uTipo eq 'bibliotecario'}
+			
+		{if $uTipo eq 'cliente' or $uTipo eq 'bibliotecario'}
 			{if $prenota}
 				<a href="/BiblioLibro/libro/prenota/{$libro->getId()}" 
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">PRENOTA</a>
 			{/if }
+			
 			{else}
 			<h4>Effettua il <a href="/BiblioLibro/utente/login">Login</a> per procedere con la prenotazione</h4>
 			{/if}

@@ -10,7 +10,9 @@ require_once'inc.php';
 
 class e_prenota
 {
+	private $id;
     private $id_prenota;
+	private $nick_utente;
     private $data;
     private $data_fine;
     private $acquisito = false;
@@ -21,18 +23,41 @@ class e_prenota
     function __constructor(){}
     
 	
-	function getIdprenota() : int
+	 function getId() : int {
+        if(!$this->id)
+            return 0;
+        else return $this->id;
+    }
+    
+    function setId(int $id) {
+        $this->id = $id;
+    }
+	
+	
+	function getIdPrenota() : int
     {
         if(!$this->id_prenota)
             return 0;
         else return $this->id_prenota;
     }
     
-    function setIdprenota(int $id_prenota)
+    function setIdPrenota(int $id_prenota)
     {
         $this->id_prenota=$id_prenota;
     }
 	
+	
+    function setNickUtente(string $nick_utente)
+    {
+        $this->nick_utente = $nick_utente;  
+    }
+        
+    function getNickUtente() : string
+    {
+        return $this->nick_utente;
+    }
+	
+    
 	
 	
     function setData (DateTime $data){

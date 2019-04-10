@@ -94,7 +94,13 @@ class c_libro
             $libro=f_persistance::getInstance()->carica(e_libro::class, $id);
             if($libro)
             {
-               $v_libro->mostraLibro($utente, $libro);
+			   $prenota = false;
+			   
+			    if(is_a($utente, e_bibliotecario::class) || is_a($utente, e_cliente::class))
+				{
+					$prenota = true;
+				}
+		   $v_libro->mostraLibro($utente, $libro);
             }
             else
                 $v_libro->Errore($utente, 'id del libro non corrisponde a nessun elenemento del catalogo');
@@ -361,7 +367,7 @@ class c_libro
                 if (is_a($utente, e_bibliotecario::class) || is_a($utente, e_cliente::class))
                 {
 					$prenota = f_persistance::getInstance()->carica(e_prenota::class, $libro->getId());
-					header('Content-Description: File Transfer');
+					header('Content-Description: File Reservation');
                    // header('Data: '.$prestito->getData() );
 					
 					ob_clean();
