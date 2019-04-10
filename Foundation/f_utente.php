@@ -10,7 +10,7 @@ class f_utente
      * Query che verifica l'esistenza di un nickname nella table utente
      * @return string contenente la query sql
      */
-    static function nickEsistente() : string
+    static function nickNameEsistente() : string
     {
         return "SELECT *
                 FROM utente
