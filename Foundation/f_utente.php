@@ -137,7 +137,6 @@ class f_utente
                                     
         return $utente;
     }
-    
 }
 
 ?>

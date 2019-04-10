@@ -135,7 +135,7 @@ class e_utente
     */
     function verificaPassword () : bool
     {
-        return password_verify($this->password, f_persistance::getIstance()->carica(e_cliente::class, $this->id)->getPassword());
+        return password_verify($this->password, f_persistance::getInstance()->carica(e_cliente::class, $this->id)->getPassword());
     }
     
 	

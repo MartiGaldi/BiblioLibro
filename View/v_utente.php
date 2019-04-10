@@ -46,7 +46,8 @@ class v_utente extends v_oggetto
         
         if(isset($_POST['tipo']))
         { 
-            $tipo = 'e_'.lcfirst($_POST['tipo']);
+			$tipo = 'e_'.ucfirst($_POST['tipo']);
+           // $tipo = 'e_'.lcfirst($_POST['tipo']);
             $utente = new $tipo(); 
         }
         else

@@ -218,7 +218,41 @@ class c_utente
             $v_utente->mostraLogin();      
     }
     
-    
+    /*private function autenticazione($utente=null)
+    {
+      if(!isset($utente)){
+         $v_utente=new v_utente();
+         if($v_utente->validazioneLogin()){
+           $utente=f_utente::esistePassUtente($_POST['nick'],hash('md5',$_POST['password']));
+           if($utente!=null){
+               if(isset($_POST['remindme']) && $_POST['remindme']=="yes"){
+                   setcookie("remindme",$_POST['username'].hash("md5","{\?/}").hash('md5',$_POST['username'].hash('md5',$_POST['password'])));
+               }
+            if (session_status() == PHP_SESSION_NONE) session_start();
+               $_SESSION['id']= $utente->getId();
+               $_SESSION['nick']=$utente->getNick();
+			   if(isset($_SESSION['redirect'])) header('Location: '.$_SESSION['redirect']);
+			   else header('Location: /BiblioLibro/Home');
+            }
+            else{
+                $v_utente->mostraLogin(true);
+            } 
+        }
+        else{   
+            $v_utente->mostraLogin(true);
+        }
+    }
+    else{
+        if (session_status() == PHP_SESSION_NONE) session_start();
+               $_SESSION['id']= $utente->getId();
+               $_SESSION['nick']=$utente->getNick();
+                   if(isset($_SESSION['redirect'])) header('Location: '.$_SESSION['redirect']);
+                   else header('Location: /AppCrowdFunding/Homepage');
+    }
+    }*/
+	
+	
+	
     
     /**
     * La funzione Registra permette di creare un nuovo utente se non sono presenti utenti con stessa mail e nickname inseriti nella form
