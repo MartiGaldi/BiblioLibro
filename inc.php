@@ -5,7 +5,7 @@ require_once 'SampleUsers.php';
 
 require_once 'Entity/e_cliente.php';
 require_once 'Entity/e_libro.php';
-require_once 'Entity/e_prenota.php';
+require_once 'Entity/e_prenotazione.php';
 require_once 'Entity/e_copertina.php';
 require_once 'Entity/e_prestito.php';
 require_once 'Entity/e_utente.php';
@@ -15,7 +15,7 @@ require_once 'Entity/e_storico.php';
 
 
 require_once 'Foundation/f_persistance.php';
-require_once 'Foundation/f_prenota.php';
+require_once 'Foundation/f_prenotazione.php';
 require_once 'Foundation/f_libro.php';
 require_once 'Foundation/f_prestito.php';
 require_once 'Foundation/f_copertina.php';

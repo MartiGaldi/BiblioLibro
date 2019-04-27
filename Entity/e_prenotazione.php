@@ -8,17 +8,17 @@ require_once'inc.php';
  * l'utente non si reca in biblioteca per ritirarlo, la prenotazione viene eliminata. 
  */
 
-class e_prenota
+class e_prenotazione
 {
-	private $id;
-    private $id_prenota;
-	private $nick_utente;
+	/*private $id; //libro
+    private $id_prenotazione;
+	private $id_utente;
     private $data;
     private $data_fine;
     private $acquisito = false;
     private $disp = false;
 	
-	private $prenota;
+	private $prenotazione;
     
     function __constructor(){}
     
@@ -34,27 +34,27 @@ class e_prenota
     }
 	
 	
-	function getIdPrenota() : int
+	function getIdPrenotazione() : int
     {
-        if(!$this->id_prenota)
+        if(!$this->id_prenotazione)
             return 0;
-        else return $this->id_prenota;
+        else return $this->id_prenotazione;
     }
     
-    function setIdPrenota(int $id_prenota)
+    function setIdPrenotazione(int $id_prenotazione)
     {
-        $this->id_prenota=$id_prenota;
+        $this->id_prenotazione=$id_prenotazione;
     }
 	
 	
-    function setNickUtente(string $nick_utente)
+    function setIdUtente(e_utente $id_utente)
     {
-        $this->nick_utente = $nick_utente;  
+        $this->id_utente = $id_utente;  
     }
         
-    function getNickUtente() : string
+    function getIdUtente() : e_utente
     {
-        return $this->nick_utente;
+        return $this->id_utente;
     }
 	
     
@@ -85,10 +85,17 @@ class e_prenota
     function getDataFine() : DateTime {
         return $this->date('Y/m/d', $data_fine);
     }
+   /* function setDataFine(date $data_fine) {
+        $this->data_fine = $data_fine;
+    }
     
+    function getDataFine() : date {
+        return $this->$data_fine;
+    }*/
 	
 	
-    function setAcquisito(bool $acquisito) {
+	
+   /* function setAcquisito(bool $acquisito) {
         $this->acquisito=$acquisito;
     }
     
@@ -99,7 +106,7 @@ class e_prenota
     /**
      * Metodo che permette di verificare se un testo è presente oppure no nella biblioteca
      */
-    function setDisp(bool $disp)
+   /** function setDisp(bool $disp)
         {
             $numero=contaNumero();
             $num_copie= f_persistance::getIstance()->carica(e_libro::class, $this->id)->getNumCopie();
@@ -120,7 +127,7 @@ class e_prenota
     /**
      * Metodo che permette il controllo della prenotazione
      */
-    function controllaPrenotazione(bool $acquisito)
+    /*function controllaPrenotazione(bool $acquisito)
     {
         if($acquisito == false)
            eliminaPrenotazione();
@@ -129,7 +136,7 @@ class e_prenota
     /**
      * Metodo che elimina la prenotazione se entro tre giorni il libro non viene ritirato
      */
-    function eliminaPrenotazione(int $id, DateTime $data_fine){
+   /* function eliminaPrenotazione(int $id, DateTime $data_fine){
         $data_odierna=time();
         if($data_odierna>$data_fine)
         {
@@ -138,13 +145,39 @@ class e_prenota
     }
 	
 	
-	function getPrenota (){
-		return $this->prenota;
+	function getPrenotazione (){
+		return $this->prenotazione;
 	}
 	
-	function setPrenota ($prenota){
-		$this->prenota = $prenota;
+	function setPrenotazione ($prenotazione){
+		$this->prenotazione = $prenotazione;
 	}
-}
+}*/
 
+	private $utente;
+	private $prenotazione;
+	
+	function __construct(){}
+	
+	function getUtente() : e_utente
+	{
+		return $this->utente;
+	}
+	
+	function getPrenotazione() : e_libro
+	{
+		return $this->prenotazione;
+	}
+	
+	function setUtente(e_utente &$utente)
+	{
+        $this->utente = $utente;
+    }
+	
+    function setPrenotazione(e_libro &$prenotazione)
+    {
+        $this->libro = $libro;
+    }
+	
+	}
 ?>

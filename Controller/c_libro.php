@@ -100,7 +100,7 @@ class c_libro
 				{
 					$prenota = true;
 				}
-		   $v_libro->mostraLibro($utente, $libro);
+		   $v_libro->mostraLibro($utente, $libro, $prenota);
             }
             else
                 $v_libro->Errore($utente, 'id del libro non corrisponde a nessun elenemento del catalogo');
@@ -366,14 +366,19 @@ class c_libro
             {
                 if (is_a($utente, e_bibliotecario::class) || is_a($utente, e_cliente::class))
                 {
-					$prenota = f_persistance::getInstance()->carica(e_prenota::class, $libro->getId());
-					header('Content-Description: File Reservation');
-                   // header('Data: '.$prestito->getData() );
-					
-					ob_clean();
-					flush();
-					echo $prenota->getPrenota();
-                    exit;
+				/*$prenotazione = new e_prenotazione();
+				$prenotazione= setLibro($libro);
+				$prenotazione = setUtente($utente);
+				f_persistance::getInstance()->salva($prenotazione);*/
+				
+				$v_libro->Avviso($utente, 'Documento prenotato con successo. Si prega di procede al ritiro presso la sede entro il: ' . date ('d/m/Y') . '.');
+				
+				/*$idLibro = f_persistance::getInstance()->carica(e_libro::class, $id);
+				$prenotazione = new e_prenotazione();
+				$prenotazione->setId($idLibro);
+				$prenotazione->setIdUtente($utente);
+				f_persistance::getInstance()->salva($prenotazione);
+				$v_libro->Avviso($utente, 'Documento prenotato con successo. Si prega di procede al ritiro presso la sede.');*/
 				}
                 else 
                     $v_libro->Errore($utente, 'Impossibile prenotare il documento');

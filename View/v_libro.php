@@ -157,13 +157,13 @@ class v_libro extends v_oggetto
     * @param e_libro $libro il libro da visualizzare
     */
     
-    function mostraLibro(e_utente &$utente, e_libro &$libro)
+    function mostraLibro(e_utente &$utente, e_libro &$libro, bool $prenota)
     {
         $this->smarty->registerObject('utente', $utente);
         $this->smarty->assign('libro', $libro);
 
         $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
-		 
+		$this->smarty->assign('prenota', $prenota);
         $this->smarty->display('libro/libro.tpl');  
     }
     
