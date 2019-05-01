@@ -371,7 +371,10 @@ class c_libro
 				$prenotazione = setUtente($utente);
 				f_persistance::getInstance()->salva($prenotazione);*/
 				
-				$v_libro->Avviso($utente, 'Documento prenotato con successo. Si prega di procede al ritiro presso la sede entro il: ' . date ('d/m/Y') . '.');
+				$date = new DateTime('NOW');
+				date_add($date, date_interval_create_from_date_string('3 days')); 
+				
+				$v_libro->Avviso($utente, 'Documento prenotato con successo. Si prega di procede al ritiro presso la sede entro il: ' .  date_format($date,'d/m/Y') .  '.');
 				
 				/*$idLibro = f_persistance::getInstance()->carica(e_libro::class, $id);
 				$prenotazione = new e_prenotazione();
