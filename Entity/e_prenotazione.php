@@ -154,30 +154,94 @@ class e_prenotazione
 	}
 }*/
 
-	private $utente;
-	private $prenotazione;
+	private $dataScadenza;
+	private $utentePrenotazione;
+	private $libro;
 	
 	function __construct(){}
 	
-	function getUtente() : e_utente
+	function getUtentePrenotazione() : e_utente
 	{
-		return $this->utente;
+		return $this->utentePrenotazione;
 	}
 	
-	function getPrenotazione() : e_libro
+	function setUtentePrenotazione (e_utente $utentePrenotazione)
 	{
-		return $this->prenotazione;
-	}
-	
-	function setUtente(e_utente &$utente)
-	{
-        $this->utente = $utente;
+        $this->utentePrenotazione = $utentePrenotazione;
     }
 	
-    function setPrenotazione(e_libro &$prenotazione)
+	function getLibroPrenotazione() : e_libro
+	{
+		return $this->libroPrenotazione;
+	}
+	
+	function setLibroPrenotazione (e_libro $libroPrenotazione)
+	{
+        $this->libroPrenotazione = $libroPrenotazione;
+    }
+	
+	/**
+     * @return string la data di scadenza della prenotazione
+     */
+    public function getDataScadenza() : string
     {
-        $this->libro = $libro;
+        return $this->dataScadenza;
+    }
+	/**
+     * @param string $dataScadenza la data di scadenza nel formato y-m-d
+     */
+    function setDataScadenza(string $dataScadenza)
+    {
+        $this->dataScadenza = $dataScadenza;
     }
 	
+	/**
+     * Costruisce la data di scadenza sommando alla data attuale il numero di giorni passati alla funzione.
+     * @param int $days i giorni da sommare alla data
+     */
+    function creaDataScadenza()
+    {
+		$days = 3;
+        $date = new DateTime();
+        $date->modify("+".$days."days");
+        $this->expirationData = $date->format('y-m-d');
+    }
+	
+	/**
+     * Verifica che la prenotazione sia valido.
+     * @return bool true se l'associazione e' valida, false altrimenti
+     */
+    function isValid(): bool
+    {
+        if ($this->utentePrenotazione->getId() != $this->utentePrenotazione->getId())
+        {
+            if (is_a($this->getUtentePrenotazione(), e_utente::class))
+            {
+                if(is_a($this->getUtentePrenotazione(), e_visitatore::class))
+                    return false;
+                else
+                    return true;
+            }
+            else
+                return false;
+        } 
+        else
+            return false;
+    }
+	
+	 /**
+     * Verifica che la prenotazione esiste gia
+     * @return bool true se la prenotazione esiste, false altrimenti
+     */
+    function exists() : bool
+    {
+        $artistId = $this->artist->getId();
+        $supporterId = $this->support->getId();
+        
+        if(FPersistantManager::getInstance()->exists(ESupporter::class, FTarget::EXISTS_SUPPORTER, $artistId, $supporterId))
+            return true;
+        else 
+            return false;
+    }
 	}
 ?>

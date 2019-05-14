@@ -26,6 +26,7 @@ require_once 'Foundation/f_storico.php';
 
 require_once 'Controller/c_amministratore.php';
 require_once 'Controller/c_ricerca.php';
+require_once 'Controller/c_prenotazione.php';
 require_once 'Controller/c_libro.php';
 require_once 'Controller/c_sessione.php';
 require_once 'Controller/c_utente.php';
@@ -34,6 +35,7 @@ require_once 'Controller/FrontController.php';
 
 require_once 'View/v_amministratore.php';
 require_once 'View/v_ricerca.php';
+require_once 'View/v_prenotazione.php';
 require_once 'View/v_oggetto.php';
 require_once 'View/v_libro.php';
 require_once 'View/v_utente.php';

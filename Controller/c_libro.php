@@ -355,7 +355,7 @@ class c_libro
             $v_libro->Errore($utente, "L'id non corrisponde a nessun libro."); 
     }
 	
-	static function prenota($id)
+	/*static function prenota($id)
     {
         if(is_numeric($id)) // se nell'url è effettivamente presente un id.
         {
@@ -369,19 +369,21 @@ class c_libro
 				/*$prenotazione = new e_prenotazione();
 				$prenotazione= setLibro($libro);
 				$prenotazione = setUtente($utente);
-				f_persistance::getInstance()->salva($prenotazione);*/
+				if(f_persistance::getInstance()->salva($prenotazione)){;//
 				
 				$date = new DateTime('NOW');
 				date_add($date, date_interval_create_from_date_string('3 days')); 
 				
 				$v_libro->Avviso($utente, 'Documento prenotato con successo. Si prega di procede al ritiro presso la sede entro il: ' .  date_format($date,'d/m/Y') .  '.');
-				
+				}
+					else
+					{$v_libro->Avviso($utente, "Impossibile seguire l'perazione");}
 				/*$idLibro = f_persistance::getInstance()->carica(e_libro::class, $id);
 				$prenotazione = new e_prenotazione();
 				$prenotazione->setId($idLibro);
 				$prenotazione->setIdUtente($utente);
 				f_persistance::getInstance()->salva($prenotazione);
-				$v_libro->Avviso($utente, 'Documento prenotato con successo. Si prega di procede al ritiro presso la sede.');*/
+				$v_libro->Avviso($utente, 'Documento prenotato con successo. Si prega di procede al ritiro presso la sede.');//
 				}
                 else 
                     $v_libro->Errore($utente, 'Impossibile prenotare il documento');
@@ -391,5 +393,6 @@ class c_libro
         }
         else
             header('Location: HTTP/1.1 405 Invalid URL detected');
-    }
+    }*/
+
 }

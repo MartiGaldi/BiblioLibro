@@ -1,14 +1,15 @@
 <?php
 
-class f_prenotazione{
+class f_prenotazione
+{
     /**
     * Query che effettua il salvataggio di una prenotazione nella tabella prenota
     * @return string contenente la query sql
     */
     static function salvaPrenotazione() : string
     {
-        return "INSERT INTO prenotazione(id,id_utente)
-                VALUES(:id,:id_utente)";
+        return "INSERT INTO prenotazione(id, data_scadenza, libro)
+                VALUES(:id,:data_scadenza, :libro)";
     }
 
     /**
@@ -18,8 +19,8 @@ class f_prenotazione{
     static function aggiornaPrenotazione() : string
     {
         return "UPDATE prenotazione
-                SET id_libro = :id, id_prenotazione = :id_prenotazione, data = :data, id_utente = :id_utente, data_fine = :data_fine, acquisito = :acquisito, disp = :disp
-                WHERE id_prenotazione = :id_prenotazione;";
+                SET id_utente = :id, data_scadenza = :dataScadenza, libro = :libro
+                WHERE id= :id;";
     }
     
     /**
@@ -30,7 +31,7 @@ class f_prenotazione{
     {
         return "SELECT *
                 FROM prenotazione
-                WHERE id_libro = :id";
+                WHERE id = :id";
     }
     
     /**
@@ -41,20 +42,20 @@ class f_prenotazione{
     {
         return "DELETE
                 FROM prenotazione
-                WHERE id_libro = :id";
+                WHERE id = :id";
+    }
+	
+	/**
+     * Controlla se la prenotazione è già presente
+     * @return string la stringa sql pe l'EXISTS
+     */
+    static function prenotazioneEsistente() : string
+    {
+        return        "SELECT *
+                       FROM prenotazione
+                       WHERE id = :value; ";
     }
     
-    /**
-     * Cancella tutte le entry di una query. Usata a scopo di debug.
-     * @param PDO $db
-     */
-   /* static function tabellaVuota (PDO &$database)
-    {
-        $database->beginTransaction();                         //inizio transazione
-        $stmt = $database->prepare("TRUNCATE TABLE prenota;");    //prepara lo statement
-        $stmt->execute();
-        $database->commit();
-    }*/
     
     /**
      * Associazione di un oggetto e_prenota ai campi di una query sql per la tabella prenota.
@@ -63,10 +64,10 @@ class f_prenotazione{
      */
     static function bindValues(PDOStatement &$stmt, e_prenotazione &$prenotazione)
     {
-        $stmt->bindValue('id_utente', $prenotazione->getIdPrenotazione(), PDO::PARAM_INT);
-      //  $stmt->bindValue('data', $prenotazione->getData(), PDO::PARAM_STR);
+        $stmt->bindValue('id', $prenotazione->getUtentePrenotazione(), PDO::PARAM_INT);
+        $stmt->bindValue('dataScadenza', $prenotazione->getDataScadenza(), PDO::PARAM_STR);
        // $stmt->bindValue(':id_utente', $prenotazione->getIdUtente(), PDO::PARAM_INT);
-        $stmt->bindValue(':id', $prenotazione->getId(), PDO::PARAM_INT);
+       // $stmt->bindValue(':id', $prenotazione->getId(), PDO::PARAM_INT);
        // $stmt->bindValue(':data_fine', $prenotazione->getDataFine(), PDO::PARAM_STR);
        // $stmt->bindValue('acquisito', $prenotazione->getAcquisito(), PDO::PARAM_BOOL);
        // $stmt->bindValue('disp', $prenotazione->getDisp(), PDO::PARAM_BOOL);
@@ -89,14 +90,14 @@ class f_prenotazione{
         $prenotazione->setDisp($riga['disp']);
         
         return $prenotazione;
-    }*/
+    }
     
     static function contaNumero() : int
     {
         return "SELECT count (*)
                 FROM prenotazione INNER JOIN prestito
                 WHERE id_libro = :id_libro AND prenotazione.id_libro = prestito.id_libro;";
-    }
+    }*/
 }
 
 ?>

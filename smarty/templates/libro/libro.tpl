@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{$libro->getTitolo()}</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css">
@@ -12,7 +12,7 @@
 		{utente->getNick assign='uNick'}
 	    {utente->getId assign='uId'}
 		
-		<div class="py-5 bg-dark">
+	<div class="py-5 bg-dark">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -42,7 +42,7 @@
 			
 		{if $uTipo eq 'cliente' or $uTipo eq 'bibliotecario'}
 			{if $prenota}
-				<a href="/BiblioLibro/libro/prenota/{$libro->getId()}" 
+				<a href="/BiblioLibro/prenotazione/prenota/{$libro->getId()}" 
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">PRENOTA</a>
 			{/if }
 			
