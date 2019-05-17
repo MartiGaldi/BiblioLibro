@@ -47,7 +47,7 @@
 			</div>
 			{/if}
 			
-              <form class="form-horizontal" action="login" method="post">
+              <form action="login" method="post" enctype="multipart/form-data">
                 <div class="form-group row">
                   <label for="utente" class="col-sm-6 col-form-label {if !$check.nick} text-danger{/if}">NickName:</label>
 				  <input type="text" class="form-control" id="utente" name="nick_name" placeholder="Inserisci nickname...">

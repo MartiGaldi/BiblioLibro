@@ -24,15 +24,15 @@ class c_utente
             $utente = c_sessione::getUtenteDaSessione();
             
             if(get_class($utente)!=e_visitatore::class) // se l'utente non è guest, non puo accedere al login
-            {
                 $v_utente->Errore($utente, 'Sei già connesso.');
-            }
+            
             else
                 $v_utente->mostraLogin();  
         }
-        else if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        elseif ($_SERVER['REQUEST_METHOD'] == 'POST')
+		{
             c_utente::autenticazione();
-            
+		}  
             else
                 header('Location: HTTP/1.1 Invalid HTTP method detected');
                 

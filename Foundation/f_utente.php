@@ -20,7 +20,7 @@ class f_utente
     static function mailEsistente() : string
     {
         return "SELECT *
-                FROM users
+                FROM utente
                 WHERE mail = :value ;";
     }
 	
