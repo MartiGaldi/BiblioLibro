@@ -43,19 +43,17 @@ class v_utente extends v_oggetto
     function creaUtente() : e_utente
     { 
         $utente;
-        
         if(isset($_POST['tipo']))
         { 
-			$tipo = 'e_'.ucfirst($_POST['tipo']);
-           // $tipo = 'e_'.lcfirst($_POST['tipo']);
+            $tipo = 'e_'.lcfirst($_POST['tipo']);
             $utente = new $tipo(); 
         }
         else
             $utente = new e_utente();
            
 		   
-		if(isset($_POST['nick_name']))
-            $utente->setNick($_POST['nick_name']);
+		if(isset($_POST['nick']))
+            $utente->setNick($_POST['nick']);
 		
         if(isset($_POST['mail']))
             $utente->setMail($_POST['mail']);
@@ -95,17 +93,20 @@ class v_utente extends v_oggetto
     */
     function validazioneLogin(e_utente $utente): bool
     {
-        if($this->check['nick_name']=$utente->validazioneNick() && $this->check['password']=$utente->validazionePassword())
-            return true;
-        
+        if($this->check['nick']=$utente->validazioneNick() && $this->check['password']=$utente->validazionePassword())
+		{
+			return true;
+		}
         else
-            return false;    
+		{
+            return false; 
+		}			
     }
     
     
     function validazioneIscrizione(e_utente $utente): bool
     {
-        if($this->check['nick_name']=$utente->validazioneNick() && 
+        if($this->check['nick']=$utente->validazioneNick() && 
             $this->check['mail']=$utente->validazioneMail() && 
             $this->check['password']=$utente->validazionePassword() &&
 			$this->check['nome']=$utente->validazioneNome() && 

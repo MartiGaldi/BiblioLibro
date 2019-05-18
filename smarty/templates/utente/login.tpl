@@ -47,14 +47,16 @@
 			</div>
 			{/if}
 			
-              <form action="login" method="post" enctype="multipart/form-data">
+              <form class="form-horizontal" action="login" method="post">
                 <div class="form-group row">
                   <label for="utente" class="col-sm-6 col-form-label {if !$check.nick} text-danger{/if}">NickName:</label>
-				  <input type="text" class="form-control" id="utente" name="nick_name" placeholder="Inserisci nickname...">
+				  <div class="col-sm-12">
+				  <input type="text" class="form-control" id="utente" name="nick" placeholder="Inserisci nickname...">
+				  </div>
 				  {if ! $check.nick}
 			        <div class="col-sm-10">
 						<small id="nickHelp" class="text-danger">
-  							NickName non valido.
+  							Deve contenere 6-20 caratteri.
 						</small>      
 					</div>
 				{/if}
@@ -62,8 +64,9 @@
 				
                 <div class="form-group row">
                   <label for="inputPassword" class="col-sm-6 col-form-label {if !$check.password} text-danger{/if}">Password:</label>
+				  <div class="col-sm-12">
 				  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Inserisci password...">
-					
+				  </div>
 					{if ! $check.password}
 					<div class="col-sm-8 well">
 						<small id="passwordHelp" class="text-danger">

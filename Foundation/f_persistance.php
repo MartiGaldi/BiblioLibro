@@ -449,7 +449,7 @@ class f_persistance
         }
         if ($sql)
         {
-            if($value2 && ($target==f_target::UTENTE_ESISTENTE))
+            if($value2 && ($target==f_target::ESISTE_UTENTE))
             {
                 return $this->eseguiEsiste($sql, $value, $value2);
             }
@@ -474,15 +474,15 @@ class f_persistance
         { 
             $stmt = $this->db->prepare($sql); // a partire dalla stringa sql viene creato uno statement
             if (is_int($value))
-                $stmt->bindValue(":valore", (int) $value, PDO::PARAM_INT); // si associa l'intero al campo della query
+                $stmt->bindValue(":value", (int) $value, PDO::PARAM_INT); // si associa l'intero al campo della query
             if (is_string($value))
-                $stmt->bindValue(":valore", $value, PDO::PARAM_STR); // si associa la stringa al campo della query
+                $stmt->bindValue(":value", $value, PDO::PARAM_STR); // si associa la stringa al campo della query
             if ($value2) // se il secondo valore e' stato inserito
             {            
                 if (is_int($value2))
-                    $stmt->bindValue(":valore2", (int) $value2, PDO::PARAM_INT); // si associa l'intero al campo della query
+                    $stmt->bindValue(":value2", (int) $value2, PDO::PARAM_INT); // si associa l'intero al campo della query
                 if (is_string($value2))
-                    $stmt->bindValue(":valore2", $value2, PDO::PARAM_STR); // si associa la stringa al campo della query
+                    $stmt->bindValue(":value2", $value2, PDO::PARAM_STR); // si associa la stringa al campo della query
             }
             $risultato = $stmt->execute(); // esegue lo statement
                     

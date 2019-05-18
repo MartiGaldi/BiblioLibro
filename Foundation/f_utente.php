@@ -10,14 +10,14 @@ class f_utente
      * Query che verifica l'esistenza di un nickname nella table utente
      * @return string contenente la query sql
      */
-    static function nickNameEsistente() : string
+    static function esisteNick() : string
     {
         return "SELECT *
                 FROM utente
-                WHERE nick_name = :value ;";
+                WHERE nick = :value ;";
     }
     
-    static function mailEsistente() : string
+    static function esisteMail() : string
     {
         return "SELECT *
                 FROM utente
@@ -30,8 +30,8 @@ class f_utente
      */
     static function salvaUtente() : string
     {
-        return "INSERT INTO utente(nick_name, mail, password, tipo, nome, cognome, dtNasc, lgNasc, via, citta, cap)
-                VALUES (:nick_name, :mail, :password, :tipo, :nome, :cognome, :dtNasc, :lgNasc, :via, :citta, :cap);";
+        return "INSERT INTO utente(nick, mail, password, tipo, nome, cognome, dtNasc, lgNasc, via, citta, cap)
+                VALUES (:nick, :mail, :password, :tipo, :nome, :cognome, :dtNasc, :lgNasc, :via, :citta, :cap);";
     }
     
     /**
@@ -41,7 +41,7 @@ class f_utente
     static function aggiornaUtente() : string
     {
         return "UPDATE utente
-                SET nick_name = :nick_name, mail = :mail, password = :password, tipo = :tipo nome = :nome, cognome = :cognome, dtNasc = :dtNasc, lgNasc = :lgNasc, via = :via, citta = :citta, cap = :cap
+                SET nick = :nick, mail = :mail, password = :password, tipo = :tipo nome = :nome, cognome = :cognome, dtNasc = :dtNasc, lgNasc = :lgNasc, via = :via, citta = :citta, cap = :cap
                 WHERE id = :id;";
     }
     
@@ -99,7 +99,7 @@ class f_utente
      */
     static function bindValues(PDOStatement &$stmt, e_utente &$utente)
     {
-        $stmt->bindValue(':nick_name', $utente->getNick(), PDO::PARAM_STR);
+        $stmt->bindValue(':nick', $utente->getNick(), PDO::PARAM_STR);
         $stmt->bindValue(':mail', $utente->getMail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR);
 		$stmt->bindValue(':nome', $utente->getNome(), PDO::PARAM_STR);
@@ -124,7 +124,7 @@ class f_utente
         $utente = new $uTipo();
         
         $utente->setId($riga['id']);
-        $utente->setNick($riga['nick_name']);
+        $utente->setNick($riga['nick']);
         $utente->setMail($riga['mail']);
         $utente->setPassword($riga['password']);
 		$utente->setNome($riga['nome']);

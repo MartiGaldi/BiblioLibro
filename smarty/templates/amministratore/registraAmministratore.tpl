@@ -68,12 +68,12 @@
     					
     					
     					<div class="form-group row">
-      						<label for="inputNickName" class="col-sm-2 col-form-label {if !$check.nick_name} text-danger{/if}">NickName:</label>
+      						<label for="inputNick" class="col-sm-2 col-form-label {if !$check.nick} text-danger{/if}">NickName:</label>
       						<div class="col-sm-7">
-        						<input type="nickName" class="form-control is-invalid" id="inputNickName" name="nick_name" placeholder="Inserisci NickName">
+        						<input type="nick" class="form-control is-invalid" id="inputNick" name="nick" placeholder="Inserisci NickName">
       						</div>
 
-      						{if ! $check.nick_name}
+      						{if ! $check.nick}
       						<div class="col-sm-3">
         						<small id="nickHelp" class="text-danger">
           							Deve avere una lunghezza compresa fra 8-20 caratteri.

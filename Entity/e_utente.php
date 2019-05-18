@@ -16,7 +16,7 @@ require_once 'inc.php';
 class e_utente
 {
 	protected $id;
-    protected $nick_name;
+    protected $nick;
     protected $mail;
     protected $password;
 	protected $nome;
@@ -44,14 +44,14 @@ class e_utente
     }
 	
 
-    function setNick(string $nick_name)
+    function setNick(string $nick)
     {
-        $this->nick_name = $nick_name;  
+        $this->nick = $nick;  
     }
         
     function getNick() : string
     {
-        return $this->nick_name;
+        return $this->nick;
     }
 	
     
@@ -113,7 +113,9 @@ class e_utente
     function validazionePassword() : bool
     {
         if($this->password && preg_match('/^[[:alnum:]]{6,20}$/', $this->password))
-            return true;
+			{ 
+				return true;
+			}
         
         else
             return false;
@@ -133,9 +135,9 @@ class e_utente
     * @param string $password la password
     * @return bool
     */
-    function verificaPassword () : bool
+    function checkPassword () : bool
     {
-        return password_verify($this->password, f_persistance::getInstance()->carica(e_cliente::class, $this->id)->getPassword());
+        return password_verify($this->password, f_persistance::getInstance()->carica(e_utente::class, $this->id)->getPassword());
     }
     
 	
@@ -185,10 +187,12 @@ class e_utente
     }
 	function validazioneNick() : bool
     {
-        if ($this->nick_name && preg_match('/^[a-zA-Z0-9_-]{3,20}$/', $this->nick_name))
-            return true;
-        else
-            return false;
+        if ($this->nick && preg_match('/^[a-zA-Z0-9_-]{3,20}$/', $this->nick))
+			{
+				return true;
+			}
+		else
+			return false;
     }
 	
 	function setCitta (string $citta)
@@ -260,7 +264,7 @@ class e_utente
     
     /*function __toString()
     {
-        return "Nickname: ".$this->nick_name."\nId: ".$this->id;
+        return "Nickname: ".$this->nick."\nId: ".$this->id;
     }*/
 	
 	function getPrestito()

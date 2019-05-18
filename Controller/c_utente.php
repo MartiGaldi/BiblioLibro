@@ -191,18 +191,19 @@ class c_utente
     {
         $v_utente = new v_utente();
         $Utente = $v_utente->creaUtente();
-        
+        //var_dump ($Utente);
+		//print_r ($Utente);
         if($v_utente->validazioneLogin($Utente))
         {
             $autenticato = false; // bool per l'autenticazione
             // si verifica che l'utente inserito matchi una entry nel db
-            $idUtente = f_persistance::getInstance()->esiste(e_utente::class, f_target::NICKNAME_ESISTENTE, $Utente->getNick()); 
-            
+            $idUtente = f_persistance::getInstance()->esiste(e_utente::class, f_target::ESISTE_NICK, $Utente->getNick()); 
+            //var_dump ($idUtente);
             if($idUtente) // se e' stato prelevato un id...
             {
                 $Utente->setId($idUtente); // viene assegnato all'utente l'id utente
                 
-                if($Utente->verificaPassword()) // se la password e' corretta
+                if($Utente->checkPassword()) // se la password e' corretta
                 {
                     unset($Utente); // l'istanza utilizzata per il login viene rimossa
                     $utente = f_persistance::getInstance()->carica(e_utente::class, $idUtente); // viene caricato l'utente
@@ -263,7 +264,7 @@ class c_utente
         $Utente = $v_utente->creaUtente(); // viene creato un utente con i parametri della form
         if($v_utente->validazioneIscrizione($Utente))
         {
-            if(!f_persistance::getInstance()->esiste(e_utente::class, f_target::NICKNAME_ESISTENTE, $Utente->getNick()) && !f_persistance::getInstance()->esiste(e_utente::class, f_target::MAIL_ESISTENTE, $Utente->getMail()))
+            if(!f_persistance::getInstance()->esiste(e_utente::class, f_target::NICK_ESISTENTE, $Utente->getNick()) && !f_persistance::getInstance()->esiste(e_utente::class, f_target::MAIL_ESISTENTE, $Utente->getMail()))
             {
                 // se la mail e il nickname non sono stati ancora usati, si puo salvare l'utente
                 $Utente->hashPassword(); // si cripta la password

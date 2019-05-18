@@ -19,7 +19,7 @@ class e_visitatore extends e_utente
     {
         parent::__construct();
         $this->id=0;
-        $this->nick_name="Visitatore";
+        $this->nick="Visitatore";
     }
 }
 

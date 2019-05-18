@@ -15,12 +15,15 @@ class f_target
     
     /** caricamento dei clienti */
     const CARICA_CLIENTE = 'Cliente';
-    
+	
+	 /** caricamento degli utenti */
+    const CARICA_UTENE = 'Utente';
+	
     /** verifica che un nickname non sia utilizzato */
-    const NICKNAME_ESISTENTE = 'Nickname';
+    const ESISTE_NICK = 'Nick';
     
     /** verifica che una mail non sia utilizzata */
-    const MAIL_ESISTENTE = 'Mail';
+    const ESISTE_MAIL= 'Mail';
 	
 	/** caricamento dei prestiti di un cliente (in corso) */
 	const CARICA_PRESTITO = 'Prestito';
