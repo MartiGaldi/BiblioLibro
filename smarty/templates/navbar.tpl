@@ -39,7 +39,7 @@
 							<i class="fa d-inline fa-lg fa-user-circle-o"></i>ACCEDI</a>
 					</li>
 					<li class="nav-item" float:right>
-          				<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/registra">REGISTRATI</a>
+          				<a class="btn navbar-btn ml-2 text-white btn-secondary" href="/BiblioLibro/utente/iscrizione">REGISTRATI</a>
           			</li>
 					</ul>
 					

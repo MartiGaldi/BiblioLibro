@@ -51,11 +51,10 @@
 			</div>
 			{/if}
               
-              <form action="iscrizione" method="post" enctype="multipart/form-data">
-                
+              <form method="post" action="iscrizione" enctype="multipart/form-data">
 				<div class="form-group row">
-                  <label for="inputNick" class="col-sm-6 col-form-label {if !$check.nick} text-danger{/if}"> NickName: *</label>
-				  <input type="text" class="form-control" id="inputNick" name="nick" placeholder="Inserisci NickName...">
+                  <label for="utente" class="col-sm-6 col-form-label {if !$check.nick} text-danger{/if}"> NickName: *</label>
+				  <input type="text" class="form-control" id="utente" name="nick" placeholder="Inserisci NickName...">
 					{if ! $check.nick}
 					<div class="col-sm-8">
 						<small id="nickHelp" class="text-danger">

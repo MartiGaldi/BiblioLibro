@@ -32,6 +32,7 @@ class c_prenotazione
     {
         $v_prenotazione = new v_prenotazione();
         $utente = c_sessione::getUtenteDaSessione();
+		var_dump($utente);
         
         if (! is_a($utente, e_visitatore::class)) 
         { // se l'utente non e' un visitatore
@@ -40,23 +41,23 @@ class c_prenotazione
                 $utentePrenotazione = f_persistance::getInstance()->carica(e_utente::class, $id); // si carica l'utente
                 if ($utentePrenotazione) // se l'utente esiste
                 {
-                    if ($vSupporter->validaScelta()) // se l'utente ha scelto di prenotare il testo
+                    if ($v_prenotazione->validaScelta()) // se l'utente ha scelto di prenotare il testo
                     { // si costruisce l'oggetto prenotazione
                         $prenotazione = new e_prenotazione();
                         $prenotazione->setUtentePrenotazione($utentePrenotazione);
                         if ($prenotazione->isValid()) { // se l'associazione e' valida
-                            if (! $prenotazione->exists())
+                            if (! $prenotazione->esiste())
                             { // salva l'associazione nel database
-                                $supInfo = $supportUser->getSupportInfo();
+                                //$supInfo = $supportUser->getSupportInfo();
                                 
                                 $prenotazione->creaDataScadenza($supInfo->getPeriod());
                                 
-                                FPersistantManager::getInstance()->salva($prenotazione);
+                                f_persistance::getInstance()->salva($prenotazione);
                                 
                                 header('Location: /Bibliolibro/utente/profilo/' . $utentePrenotazione->getId()); // redirect al profilo
                             } 
                             else
-                                $vSupporter->Errore($utente, 'Hai gia effettuato la prenotazione ');
+                                $v_prenotazione->Errore($utente, 'Hai gia effettuato la prenotazione ');
                        // } 
                       //  else
                         //    $vSupporter->showErrorPage($user, 'You can\'t support yourself!');

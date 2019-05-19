@@ -41,7 +41,7 @@
 	<div class="container text-center">
 		<h3>Sei sicuro di voler prenotare?</h3>
 		<form method="post" action="/BiblioLibro/prenota/prenotazione/{$libro->getId()}">
-    		<button type="submit" class="btn btn-secondary btn-lg active" name="action" value="yes">Si</button>
+    		<button type="submit" class="btn btn-primary btn-lg active" name="action" value="yes">Si</button>
     		<button type="submit" class="btn btn-primary btn-lg btn-danger active" name="action" value="no">No</button>
 		</form>
 		<br>

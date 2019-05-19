@@ -189,14 +189,11 @@ class c_utente
     {
         $v_utente = new v_utente();
         $Utente = $v_utente->creaUtente();
-        //var_dump ($Utente);
-		//print_r ($Utente);
         if($v_utente->validazioneLogin($Utente))
         {
             $autenticato = false; // bool per l'autenticazione
             // si verifica che l'utente inserito matchi una entry nel db
             $idUtente = f_persistance::getInstance()->esiste(e_utente::class, f_target::ESISTE_NICK, $Utente->getNick()); 
-            //var_dump ($idUtente);
             if($idUtente) // se e' stato prelevato un id...
             {
                 $Utente->setId($idUtente); // viene assegnato all'utente l'id utente
@@ -217,41 +214,6 @@ class c_utente
             $v_utente->mostraLogin();      
     }
     
-    /*private function autenticazione($utente=null)
-    {
-      if(!isset($utente)){
-         $v_utente=new v_utente();
-         if($v_utente->validazioneLogin()){
-           $utente=f_utente::esistePassUtente($_POST['nick'],hash('md5',$_POST['password']));
-           if($utente!=null){
-               if(isset($_POST['remindme']) && $_POST['remindme']=="yes"){
-                   setcookie("remindme",$_POST['username'].hash("md5","{\?/}").hash('md5',$_POST['username'].hash('md5',$_POST['password'])));
-               }
-            if (session_status() == PHP_SESSION_NONE) session_start();
-               $_SESSION['id']= $utente->getId();
-               $_SESSION['nick']=$utente->getNick();
-			   if(isset($_SESSION['redirect'])) header('Location: '.$_SESSION['redirect']);
-			   else header('Location: /BiblioLibro/Home');
-            }
-            else{
-                $v_utente->mostraLogin(true);
-            } 
-        }
-        else{   
-            $v_utente->mostraLogin(true);
-        }
-    }
-    else{
-        if (session_status() == PHP_SESSION_NONE) session_start();
-               $_SESSION['id']= $utente->getId();
-               $_SESSION['nick']=$utente->getNick();
-                   if(isset($_SESSION['redirect'])) header('Location: '.$_SESSION['redirect']);
-                   else header('Location: /AppCrowdFunding/Homepage');
-    }
-    }*/
-	
-	
-	
     
     /**
     * La funzione Registra permette di creare un nuovo utente se non sono presenti utenti con stessa mail e nickname inseriti nella form
@@ -260,14 +222,13 @@ class c_utente
     {
         $v_utente = new v_utente();
         $Utente = $v_utente->creaUtente(); // viene creato un utente con i parametri della form
-		//var_dump($Utente);
         if($v_utente->validazioneIscrizione($Utente))
         {
             if(!f_persistance::getInstance()->esiste(e_utente::class, f_target::ESISTE_NICK, $Utente->getNick()) && !f_persistance::getInstance()->esiste(e_utente::class, f_target::ESISTE_MAIL, $Utente->getMail()))
             {
                 // se la mail e il nickname non sono stati ancora usati, si puo salvare l'utente
                 $Utente->hashPassword(); // si cripta la password
-                f_persistance::getInstance()->salva($Utente); // si salva l'utente
+                f_persistance::getInstance()->salva($Utente);
 				c_sessione::inizioSessione($Utente);
 				
                 header('Location: /BiblioLibro');
@@ -354,8 +315,7 @@ class c_utente
                 header('Location: /BiblioLibro/index');
             }
             else
-                $v_utente->Errore($utente, 'Non puoi eliminare un visitatore');
-                
+                $v_utente->Errore($utente, 'Non puoi eliminare un visitatore'); 
         }  
     } 
 }

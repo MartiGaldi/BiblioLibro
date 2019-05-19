@@ -16,7 +16,7 @@ class v_prenotazione extends v_oggetto
     {
         $this->smarty->registerObject('utente', $utente);
         $this->smarty->assign('libro', $libro);
-        $this->smarty->assign('uType', lcfirst(substr(get_class($utente), 2)));
+        $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));
         $this->smarty->display('prenotazione/confermaPrenotazione.tpl');
     }
     
@@ -26,8 +26,8 @@ class v_prenotazione extends v_oggetto
         {
             if($_POST['action']=='yes')
                 return true;
-                else
-                    return false;
+            else
+                return false;
         }
         else
             return false;
