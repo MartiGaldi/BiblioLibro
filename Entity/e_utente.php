@@ -185,12 +185,11 @@ class e_utente
         else
             return false;
     }
+	
 	function validazioneNick() : bool
     {
         if ($this->nick && preg_match('/^[a-zA-Z0-9_-]{3,20}$/', $this->nick))
-			{
 				return true;
-			}
 		else
 			return false;
     }

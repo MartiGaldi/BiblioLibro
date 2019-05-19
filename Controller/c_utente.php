@@ -53,18 +53,16 @@ class c_utente
 		//visualizza la pagina Registra, controllando che l'utente sia effettivamente un guest
             $v_utente = new v_utente();
             $utente = c_sessione::getUtenteDaSessione();
-            
+			
             if (get_class($utente)!=e_visitatore::class) // se l'utente non è guest, non puo accedere al login
                 $v_utente->Errore($utente, 'Sei gia connesso.');
-                
-                else
-                    $v_utente->mostraIscrizione();         
+            else
+                $v_utente->mostraIscrizione();         
         }
         elseif ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{
 			c_utente::registra();
 		}
-        
             else
                 header('Location: Invalid HTTP method detected');  
     }
@@ -262,9 +260,10 @@ class c_utente
     {
         $v_utente = new v_utente();
         $Utente = $v_utente->creaUtente(); // viene creato un utente con i parametri della form
+		//var_dump($Utente);
         if($v_utente->validazioneIscrizione($Utente))
         {
-            if(!f_persistance::getInstance()->esiste(e_utente::class, f_target::NICK_ESISTENTE, $Utente->getNick()) && !f_persistance::getInstance()->esiste(e_utente::class, f_target::MAIL_ESISTENTE, $Utente->getMail()))
+            if(!f_persistance::getInstance()->esiste(e_utente::class, f_target::ESISTE_NICK, $Utente->getNick()) && !f_persistance::getInstance()->esiste(e_utente::class, f_target::ESISTE_MAIL, $Utente->getMail()))
             {
                 // se la mail e il nickname non sono stati ancora usati, si puo salvare l'utente
                 $Utente->hashPassword(); // si cripta la password
@@ -278,7 +277,7 @@ class c_utente
         }
         else
             $v_utente->mostraIscrizione();
-    }
+   }
     
     
     

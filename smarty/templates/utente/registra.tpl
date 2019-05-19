@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registrati</title>
@@ -51,10 +52,10 @@
 			{/if}
               
               <form action="iscrizione" method="post" enctype="multipart/form-data">
-                <div class="form-group row">
-                  <label for="utente" class="col-sm-6 col-form-label {if !$check.nick} text-danger{/if}"> NickName: *</label>
-				  <input type="text" class="form-control" id="utente" name="nick" placeholder="Inserisci NickName...">
                 
+				<div class="form-group row">
+                  <label for="inputNick" class="col-sm-6 col-form-label {if !$check.nick} text-danger{/if}"> NickName: *</label>
+				  <input type="text" class="form-control" id="inputNick" name="nick" placeholder="Inserisci NickName...">
 					{if ! $check.nick}
 					<div class="col-sm-8">
 						<small id="nickHelp" class="text-danger">
@@ -65,8 +66,8 @@
 					</div>
 					
 				<div class="form-group row">
-				  <label for="mail" class="col-sm-6 col-form-label{if !$check.mail} text-danger{/if}">Indirizzo email: * </label>
-                  <input type="text" class="form-control" id="mail" name="mail" placeholder="Inserisci mail...">
+				  <label for="inputMail" class="col-sm-6 col-form-label{if !$check.mail} text-danger{/if}">Indirizzo email: * </label>
+                  <input type="text" class="form-control" id="inputMail" name="mail" placeholder="Inserisci mail...">
                 
 					{if ! $check.mail}
 					<div class="col-sm-8 well">
@@ -76,7 +77,7 @@
 					</div>
 					{/if}
 				</div>
-				
+					
 				<div class="form-group row">
                   <label for="inputPassword" class="col-sm-6 col-form-label{if !$check.password} text-danger{/if}">Password: *</label>
 				  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Inserisci password...">
@@ -93,8 +94,8 @@
 				<br>
 				<h5>DATI ANAGRAFICI </h5>
 				 <div class="form-group row">
-                  <label for="utente" class="col-sm-6 col-form-label {if !$check.nome} text-danger{/if}"> Nome: *</label>
-				  <input type="text" class="form-control" id="utente" name="nome" placeholder="Inserisci Nome...">
+                  <label for="inputNome" class="col-sm-6 col-form-label {if !$check.nome} text-danger{/if}"> Nome: *</label>
+				  <input type="text" class="form-control" id="inputNome" name="nome" placeholder="Inserisci Nome...">
                 
 					{if ! $check.nome}
 					<div class="col-sm-8">
@@ -106,8 +107,8 @@
 					</div>
 					
 				  <div class="form-group row">
-                  <label for="utente" class="col-sm-6 col-form-label {if !$check.cognome} text-danger{/if}"> Cognome: *</label>
-				  <input type="text" class="form-control" id="utente" name="cognome" placeholder="Inserisci Cognome...">
+                  <label for="inputCognome" class="col-sm-6 col-form-label {if !$check.cognome} text-danger{/if}"> Cognome: *</label>
+				  <input type="text" class="form-control" id="inputCognome" name="cognome" placeholder="Inserisci Cognome...">
                 
 					{if ! $check.cognome}
 					<div class="col-sm-8">
@@ -121,8 +122,8 @@
 				
 				
 				 <div class="form-group row">
-                  <label for="utente" class="col-sm-6 col-form-label {if !$check.dtNasc} text-danger{/if}"> Data di Nascita: *</label>
-				  <input type="text" class="form-control" id="utente" name="dtNasc" placeholder="Inserisci Data di Nascita...">
+                  <label for="inputDtNasc" class="col-sm-6 col-form-label {if !$check.dtNasc} text-danger{/if}"> Data di Nascita: *</label>
+				  <input type="text" class="form-control" id="inputDtNasc" name="dtNasc" placeholder="Inserisci Data di Nascita...">
                 
 					{if ! $check.dtNasc}
 					<div class="col-sm-8">
@@ -134,8 +135,8 @@
 					</div>
 					
 				  <div class="form-group row">
-                  <label for="utente" class="col-sm-6 col-form-label {if !$check.lgNasc} text-danger{/if}"> Luogo di Nascita: *</label>
-				  <input type="text" class="form-control" id="utente" name="lgNasc" placeholder="Inserisci Luogo di Nascita...">
+                  <label for="inputLgNasc" class="col-sm-6 col-form-label {if !$check.lgNasc} text-danger{/if}"> Luogo di Nascita: *</label>
+				  <input type="text" class="form-control" id="inputLgNasc" name="lgNasc" placeholder="Inserisci Luogo di Nascita...">
                 
 					{if ! $check.lgNasc}
 					<div class="col-sm-8">
@@ -147,8 +148,8 @@
 					</div>
 					
 				  <div class="form-group row">
-                  <label for="utente" class="col-sm-6 col-form-label {if !$check.via} text-danger{/if}"> Via/Piazza: *</label>
-				  <input type="text" class="form-control" id="utente" name="via" placeholder="Inserisci via...">
+                  <label for="inputVia" class="col-sm-6 col-form-label {if !$check.via} text-danger{/if}"> Via/Piazza: *</label>
+				  <input type="text" class="form-control" id="inputVia" name="via" placeholder="Inserisci via...">
                 
 					{if ! $check.via}
 					<div class="col-sm-8">
@@ -160,8 +161,8 @@
 					</div>
 					
 					<div class="form-group row">
-                  <label for="utente" class="col-sm-6 col-form-label {if !$check.citta} text-danger{/if}"> Città: *</label>
-				  <input type="text" class="form-control" id="utente" name="citta" placeholder="Inserisci città...">
+                  <label for="inputCitta" class="col-sm-6 col-form-label {if !$check.citta} text-danger{/if}"> Città: *</label>
+				  <input type="text" class="form-control" id="inputCitta" name="citta" placeholder="Inserisci città...">
                 
 					{if ! $check.citta}
 					<div class="col-sm-8">
@@ -173,8 +174,8 @@
 					</div>
 					
 					<div class="form-group row">
-                  <label for="utente" class="col-sm-6 col-form-label {if !$check.cap} text-danger{/if}"> CAP: *</label>
-				  <input type="text" class="form-control" id="utente" name="cap" placeholder="Inserisci CAP...">
+                  <label for="inputCap" class="col-sm-6 col-form-label {if !$check.cap} text-danger{/if}"> CAP: *</label>
+				  <input type="text" class="form-control" id="inputCap" name="cap" placeholder="Inserisci CAP...">
                 
 					{if ! $check.cap}
 					<div class="col-sm-8">
