@@ -38,13 +38,13 @@ class c_prenotazione
         { // se l'utente non e' un visitatore
             if (is_numeric($id)) 
             { // se l'url contiene un id
-                $utentePrenotazione = f_persistance::getInstance()->carica(e_utente::class, $id); // si carica l'utente
-                if ($utentePrenotazione) // se l'utente esiste
+               // $utentePrenotazione = f_persistance::getInstance()->carica(e_utente::class, $id); // si carica l'utente
+                if ($utente) // se l'utente esiste
                 {
                     if ($v_prenotazione->validaScelta()) // se l'utente ha scelto di prenotare il testo
                     { // si costruisce l'oggetto prenotazione
                         $prenotazione = new e_prenotazione();
-                        $prenotazione->setUtentePrenotazione($utentePrenotazione);
+                        $prenotazione->setUtentePrenotazione($utente);
                         if ($prenotazione->isValid()) { // se l'associazione e' valida
                             if (! $prenotazione->esiste())
                             { // salva l'associazione nel database

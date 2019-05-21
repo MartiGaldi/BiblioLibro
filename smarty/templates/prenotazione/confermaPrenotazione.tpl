@@ -39,15 +39,15 @@
 		  <div class="card-body">
 	<form>
 	<div class="container text-center">
-		<h3>Sei sicuro di voler prenotare?</h3>
-		<form method="post" action="/BiblioLibro/prenota/prenotazione/{$libro->getId()}">
+		<h3>Sei sicuro di voler prenotare?</h3> 
+		<form method="post" action="/BiblioLibro/prenotazione/prenota/{$libro->getId()}">
     		<button type="submit" class="btn btn-primary btn-lg active" name="action" value="yes">Si</button>
     		<button type="submit" class="btn btn-primary btn-lg btn-danger active" name="action" value="no">No</button>
 		</form>
 		<br>
 		<br>
 		<br>
-		<p>Il perido di prenotazione vale per 3 giorni, giunti al termine la sua prenotazione verrà annullata.</p>
+		<p>Il periodo di prenotazione vale per 3 giorni, giunti al termine la sua prenotazione verrà annullata.</p>
 	</div>
 	</form>
 	
