@@ -67,7 +67,7 @@ class v_libro extends v_oggetto
             $libro->setDurata(ucfirst($_POST['durata']));
 		
 		
-       /* if ( isset($_POST['titolo']) && isset($_POST['autore']) && && isset($_POST['num_copie']) && isset($_POST['durata'])&& isset($_POST['genere']) && isset($_POST['isbn']) && isset($_POST['descrizione']))
+        if ( isset($_POST['titolo']) && isset($_POST['autore']) && isset($_POST['num_copie']) && isset($_POST['durata'])&& isset($_POST['genere']) && isset($_POST['isbn']) && isset($_POST['descrizione']))
         {
             $libro->setTitolo(ucfirst($_POST['titolo']));
 			$libro->setAutore(ucfirst($_POST['autore']));
@@ -76,7 +76,7 @@ class v_libro extends v_oggetto
             $libro->setGenere(ucfirst($_POST['genere']));
 			$libro->setIsbn(ucfirst($_POST['isbn']));
 			$libro->setDescrizione(ucfirst($_POST['descrizione']));
-        }  */      
+        }     
         return $libro;
         
     }
@@ -181,7 +181,8 @@ class v_libro extends v_oggetto
 		$this->check['autore']=$libro->validazioneAutore() &&
 		$this->check['num_copie']=$libro->validazioneNumCopie() &&
 		$this->check['isbn']=$libro->validazioneIsbn() && 
-		$this->check['descrizione']=$libro->validazioneDescrizione() && $this->check['durata']=$libro->validazioneDurata())
+		$this->check['durata']=$libro->validazioneDurata() &&
+		$this->check['descrizione']=$libro->validazioneDescrizione())
 		{   
 			return true;
 		}
@@ -197,7 +198,13 @@ class v_libro extends v_oggetto
     */
     function validazioneModifica(e_libro &$libro) : bool
     {
-        if($this->check['autore']=$libro->validazioneAutore() && $this->check['titolo']=$libro->validazioneTitolo() && $this->check['num_copie']=$libro->validazioneNumCopie() && $this->check['durata']=$libro->validazioneDurata() && $this->check['genere']=$libro->validazioneGenere() && $this->check['isbn']=$libro->validazioneIsbn() && $this->check['descrizione']=$libro->validazioneDescrizione())
+        if( $this->check['titolo']=$libro->validazioneTitolo() &&
+			$this->check['genere']=$libro->validazioneGenere() && 			
+			$this->check['autore']=$libro->validazioneAutore() && 
+			$this->check['num_copie']=$libro->validazioneNumCopie() && 
+			$this->check['isbn']=$libro->validazioneIsbn() && 
+			$this->check['durata']=$libro->validazioneDurata() && 
+			$this->check['descrizione']=$libro->validazioneDescrizione() )
             return true;
         
         else 

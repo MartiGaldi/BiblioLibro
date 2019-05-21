@@ -305,6 +305,7 @@ class c_libro
                 {
                     $nuovoLibro->setId($vecchioLibro->getId());
                     f_persistance::getInstance()->aggiorna($nuovoLibro);
+					var_dump($nuovoLibro);
                         
                         header('Location: /BilioLibro/libro/mostra/'.$nuovoLibro->getId());   
                 }

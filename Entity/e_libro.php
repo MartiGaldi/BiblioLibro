@@ -22,7 +22,7 @@ class e_libro
     private $info_libro;
 	private $isbn;
 	private $descrizione;
-	private $copertina;
+	//private $copertina;
 	
 	private $prenota;
 
@@ -120,7 +120,8 @@ class e_libro
 		}
     } 
 	
-    /*function setCopertina(e_copertina $copertina = null)
+    /* vecchio
+	function setCopertina(e_copertina $copertina = null)
     {
 		if(!$copertina){
 			$copertina=new e_copertina();
@@ -138,6 +139,7 @@ class e_libro
 		$this->copertina=$copertina;
     }*/
 	
+	/* nuovo
 	function setCopertina(e_copertina $copertina)
 	{
 		$this->copertina=$copertina;
@@ -147,7 +149,7 @@ class e_libro
     {
 		$this->copertina = f_persistance::getInstance()->carica(e_copertina::class, $this->id);
         return $this->copertina;
-    }
+    }*/
     
     /**
      * Funzione che verifica che il nome dell'autore sia valido. Il nome dell'autore si intende valido se
@@ -223,9 +225,7 @@ class e_libro
             return true;
         else
             return false;
-    }
-    
-        
+    }     
 }
 
 ?>
