@@ -21,6 +21,9 @@ class f_target
 	
     /** verifica che un nickname non sia utilizzato */
     const ESISTE_NICK = 'Nick';
+	
+	/** verifica che la prenotazione non sia già in corso */
+    const ESISTE_PRENOTAZIONE = 'Prenota';
     
     /** verifica che una mail non sia utilizzata */
     const ESISTE_MAIL= 'Mail';

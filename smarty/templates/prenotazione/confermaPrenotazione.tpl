@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-<title>Prenotazione</title>
+<title>Prenotazione {$libro->getTitolo()}</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
@@ -37,9 +37,9 @@
         <div class="col-md-6">
           <div class="card text-black p-5 bg-secondary">
 		  <div class="card-body">
-	<form>
+	
 	<div class="container text-center">
-		<h3>Sei sicuro di voler prenotare?</h3> 
+		<h3>Sei sicuro di voler prenotare: {$libro->getTitolo()}?</h3> 
 		<form method="post" action="/BiblioLibro/prenotazione/prenota/{$libro->getId()}">
     		<button type="submit" class="btn btn-primary btn-lg active" name="action" value="yes">Si</button>
     		<button type="submit" class="btn btn-primary btn-lg btn-danger active" name="action" value="no">No</button>
@@ -49,7 +49,7 @@
 		<br>
 		<p>Il periodo di prenotazione vale per 3 giorni, giunti al termine la sua prenotazione verrà annullata.</p>
 	</div>
-	</form>
+	
 	
 	</div>
     </div>

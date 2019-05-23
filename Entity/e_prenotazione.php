@@ -153,10 +153,9 @@ class e_prenotazione
 		$this->prenotazione = $prenotazione;
 	}
 }*/
-
-	private $dataScadenza;
 	private $utentePrenotazione;
-	private $libro;
+	private $libroPrenotazione;
+	private $dataScadenza;
 	
 	function __construct(){}
 	
@@ -201,10 +200,10 @@ class e_prenotazione
      */
     function creaDataScadenza()
     {
-		$days = 3;
+		$days = "3";
         $date = new DateTime();
         $date->modify("+".$days."days");
-        $this->expirationData = $date->format('y-m-d');
+        $this->dataScadenza = $date->format('y-m-d');
     }
 	
 	/**
@@ -233,12 +232,12 @@ class e_prenotazione
      * Verifica che la prenotazione esiste gia
      * @return bool true se la prenotazione esiste, false altrimenti
      */
-    function exists() : bool
+    function esiste() : bool
     {
-        $artistId = $this->artist->getId();
-        $supporterId = $this->support->getId();
+        $utentePrenotazioneId = $this->utentePrenotazione->getId();
+        $libroPrenotazioneId = $this->libroPrenotazione->getId();
         
-        if(FPersistantManager::getInstance()->exists(ESupporter::class, FTarget::EXISTS_SUPPORTER, $artistId, $supporterId))
+        if(f_persistance::getInstance()->esiste(e_prenotazione::class, f_target::ESISTE_PRENOTAZIONE, $utentePrenotazioneId, $libroPrenotazioneId))
             return true;
         else 
             return false;

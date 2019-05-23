@@ -32,48 +32,36 @@ class c_prenotazione
     {
         $v_prenotazione = new v_prenotazione();
         $utente = c_sessione::getUtenteDaSessione();
-		var_dump($utente);
         
         if (! is_a($utente, e_visitatore::class)) 
         { // se l'utente non e' un visitatore
             if (is_numeric($id)) 
             { // se l'url contiene un id
-               // $utentePrenotazione = f_persistance::getInstance()->carica(e_utente::class, $id); // si carica l'utente
-                if ($utente) // se l'utente esiste
+                $libroPrenotazione = f_persistance::getInstance()->carica(e_libro::class, $id); // si carica il libro
+                if ($libroPrenotazione) // se il libro esiste
                 {
                     if ($v_prenotazione->validaScelta()) // se l'utente ha scelto di prenotare il testo
-                    { // si costruisce l'oggetto prenotazione
+                    {
+						// si costruisce l'oggetto prenotazione
                         $prenotazione = new e_prenotazione();
                         $prenotazione->setUtentePrenotazione($utente);
-                        if ($prenotazione->isValid()) { // se l'associazione e' valida
-                            if (! $prenotazione->esiste())
-                            { // salva l'associazione nel database
-                                //$supInfo = $supportUser->getSupportInfo();
-                                
-                                $prenotazione->creaDataScadenza($supInfo->getPeriod());
-                                
-                                f_persistance::getInstance()->salva($prenotazione);
-                                
-                                header('Location: /Bibliolibro/utente/profilo/' . $utentePrenotazione->getId()); // redirect al profilo
-                            } 
-                            else
-                                $v_prenotazione->Errore($utente, 'Hai gia effettuato la prenotazione ');
-                       // } 
-                      //  else
-                        //    $vSupporter->showErrorPage($user, 'You can\'t support yourself!');
+						$prenotazione->setLibroPrenotazione($libroPrenotazione);
+						$prenotazione->creaDataScadenza();
+						f_persistance::getInstance()->salva($prenotazione);
+						//$v_prenotazione->Avviso($utente, 'PRENOTAZIONE EFFETTUATA CON SUCCESSO.');
+						header('Location: /Bibliolibro/utente/profilo/' . $utente->getId()); // redirect al profilo
                     } 
                     else
-                        header('Location: /Bibliolibro/utente/profilo/' . $utentePrenotazione->getId() ); // redirect al profilo
-                }
-            } 
-            else
-                $vSupporter->Errore($utente, 'URL invalido');
-        } 
+                        header('Location: /Bibliolibro/libro/mostra/' . $libroPrenotazione->getId()); // redirect alla home
+				} 
+			} 
+			else
+					$v_prenotazione->Errore($utente, 'URL invalido');
+		}
         else
-            $vSupporter->Errore($utente, 'Devi essere registrato per utilizzare questa funzionalità!');
+            $v_prenotazione->Errore($utente, 'Devi essere registrato per utilizzare questa funzionalità!');
     }
-}
-    
+	
     private function mostraConfermaPrenotazione($id)
     {
         $v_prenotazione = new v_prenotazione();

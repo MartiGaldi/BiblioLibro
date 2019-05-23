@@ -1,5 +1,8 @@
 <?php
-
+require_once 'inc.php';
+/**
+ * @author gruppo11
+ */
 class f_prenotazione
 {
     /**
@@ -8,8 +11,8 @@ class f_prenotazione
     */
     static function salvaPrenotazione() : string
     {
-        return "INSERT INTO prenotazione(id, data_scadenza, libro)
-                VALUES(:id,:data_scadenza, :libro)";
+        return "INSERT INTO prenotazione(id_utente, id_libro , data_scadenza)
+                VALUES(:id, :id2, :dataScadenza)";
     }
 
     /**
@@ -19,8 +22,8 @@ class f_prenotazione
     static function aggiornaPrenotazione() : string
     {
         return "UPDATE prenotazione
-                SET id_utente = :id, data_scadenza = :dataScadenza, libro = :libro
-                WHERE id= :id;";
+                SET id_utente= :id, id_libro = :id2, data_scadenza = :dataScadenza
+                WHERE id_utente = :id1 AND id_libro = :id2 ;";
     }
     
     /**
@@ -31,7 +34,7 @@ class f_prenotazione
     {
         return "SELECT *
                 FROM prenotazione
-                WHERE id = :id";
+                WHERE id_utente = :utentePrenotazione";
     }
     
     /**
@@ -42,19 +45,19 @@ class f_prenotazione
     {
         return "DELETE
                 FROM prenotazione
-                WHERE id = :id";
+                WHERE id = :id AND id_libro = :id2 ; ";
     }
 	
 	/**
      * Controlla se la prenotazione è già presente
      * @return string la stringa sql pe l'EXISTS
      */
-    static function prenotazioneEsistente() : string
+    /*static function prenotazioneEsistente() : string
     {
         return        "SELECT *
                        FROM prenotazione
                        WHERE id = :value; ";
-    }
+    }*/
     
     
     /**
@@ -64,9 +67,10 @@ class f_prenotazione
      */
     static function bindValues(PDOStatement &$stmt, e_prenotazione &$prenotazione)
     {
-        $stmt->bindValue('id', $prenotazione->getUtentePrenotazione(), PDO::PARAM_INT);
-        $stmt->bindValue('dataScadenza', $prenotazione->getDataScadenza(), PDO::PARAM_STR);
-       // $stmt->bindValue(':id_utente', $prenotazione->getIdUtente(), PDO::PARAM_INT);
+        $stmt->bindValue(':id', $prenotazione->getUtentePrenotazione(), PDO::PARAM_INT);
+		$stmt->bindValue(':id2', $prenotazione->getLibroPrenotazione(), PDO::PARAM_INT);
+        $stmt->bindValue(':dataScadenza', $prenotazione->getDataScadenza(), PDO::PARAM_STR);
+      
        // $stmt->bindValue(':id', $prenotazione->getId(), PDO::PARAM_INT);
        // $stmt->bindValue(':data_fine', $prenotazione->getDataFine(), PDO::PARAM_STR);
        // $stmt->bindValue('acquisito', $prenotazione->getAcquisito(), PDO::PARAM_BOOL);
