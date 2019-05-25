@@ -64,6 +64,9 @@
           			<li class="nav-item">
            				<a class="nav-link" href="/BiblioLibro/libro/carica"> + Libro </a>
           			</li>
+					<li class="nav-item">
+           				<a class="nav-link" href="/BiblioLibro/prestito/carica"> + Prestito </a>
+          			</li>
           			{/if}
           			
           			

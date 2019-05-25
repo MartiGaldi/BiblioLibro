@@ -23,7 +23,7 @@ class e_prenotazione
     function __constructor(){}
     
 	
-	 function getId() : int {
+	function getId() : int {
         if(!$this->id)
             return 0;
         else return $this->id;
@@ -153,28 +153,39 @@ class e_prenotazione
 		$this->prenotazione = $prenotazione;
 	}
 }*/
+	private $id;
 	private $utentePrenotazione;
 	private $libroPrenotazione;
 	private $dataScadenza;
 	
 	function __construct(){}
 	
-	function getUtentePrenotazione() : e_utente
+	function getId() : int {
+        if(!$this->id)
+            return 0;
+        else return $this->id;
+    }
+    
+    function setId(int $id) {
+        $this->id = $id;
+    }
+	
+	function getUtentePrenotazione()
 	{
 		return $this->utentePrenotazione;
 	}
 	
-	function setUtentePrenotazione (e_utente $utentePrenotazione)
+	function setUtentePrenotazione ( $utentePrenotazione)
 	{
         $this->utentePrenotazione = $utentePrenotazione;
     }
 	
-	function getLibroPrenotazione() : e_libro
+	function getLibroPrenotazione()
 	{
 		return $this->libroPrenotazione;
 	}
 	
-	function setLibroPrenotazione (e_libro $libroPrenotazione)
+	function setLibroPrenotazione ( $libroPrenotazione)
 	{
         $this->libroPrenotazione = $libroPrenotazione;
     }

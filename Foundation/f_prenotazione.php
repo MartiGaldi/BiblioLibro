@@ -11,8 +11,8 @@ class f_prenotazione
     */
     static function salvaPrenotazione() : string
     {
-        return "INSERT INTO prenotazione(id_utente, id_libro , data_scadenza)
-                VALUES(:id, :id2, :dataScadenza)";
+        return "INSERT INTO prenotazione(id_prenotazione, id_utente, id_libro , data_scadenza)
+                VALUES(:id, :id_utente, :id_libro, :dataScadenza)";
     }
 
     /**
@@ -22,8 +22,8 @@ class f_prenotazione
     static function aggiornaPrenotazione() : string
     {
         return "UPDATE prenotazione
-                SET id_utente= :id, id_libro = :id2, data_scadenza = :dataScadenza
-                WHERE id_utente = :id1 AND id_libro = :id2 ;";
+                SET id_prenotazione= :id, id_utente= :id_utente, id_libro = :id_libro, data_scadenza = :dataScadenza
+                WHERE id_prenotazione = :id ;";
     }
     
     /**
@@ -34,7 +34,7 @@ class f_prenotazione
     {
         return "SELECT *
                 FROM prenotazione
-                WHERE id_utente = :utentePrenotazione";
+                WHERE id_prenotazione = :id";
     }
     
     /**
@@ -45,7 +45,7 @@ class f_prenotazione
     {
         return "DELETE
                 FROM prenotazione
-                WHERE id = :id AND id_libro = :id2 ; ";
+                WHERE id_prenotazione = :id ; ";
     }
 	
 	/**
@@ -67,14 +67,10 @@ class f_prenotazione
      */
     static function bindValues(PDOStatement &$stmt, e_prenotazione &$prenotazione)
     {
-        $stmt->bindValue(':id', $prenotazione->getUtentePrenotazione(), PDO::PARAM_INT);
-		$stmt->bindValue(':id2', $prenotazione->getLibroPrenotazione(), PDO::PARAM_INT);
+		$stmt->bindValue(':id', $prenotazione->getId(), PDO::PARAM_INT);
+        $stmt->bindValue(':id_utente', $prenotazione->getUtentePrenotazione(), PDO::PARAM_INT);
+		$stmt->bindValue(':id_libro', $prenotazione->getLibroPrenotazione(), PDO::PARAM_INT);
         $stmt->bindValue(':dataScadenza', $prenotazione->getDataScadenza(), PDO::PARAM_STR);
-      
-       // $stmt->bindValue(':id', $prenotazione->getId(), PDO::PARAM_INT);
-       // $stmt->bindValue(':data_fine', $prenotazione->getDataFine(), PDO::PARAM_STR);
-       // $stmt->bindValue('acquisito', $prenotazione->getAcquisito(), PDO::PARAM_BOOL);
-       // $stmt->bindValue('disp', $prenotazione->getDisp(), PDO::PARAM_BOOL);
     }
     
     /**
@@ -82,21 +78,18 @@ class f_prenotazione
      * @param array $ennupla la tupla ricevuta dal dbms
      * @return prenota l'oggetto e_prenota risultato dell'operazione
      */
-   /* static function creaOggettoDaRiga($riga) : e_prenotazione
+    static function creaOggettoDaRiga($riga) : e_prenotazione
     {
         $prenotazione = new e_prenotazione();
-        $prenotazione->setIdPrenotazione($riga['id_prenotazione']);
-        $prenotazione->setData($riga['data']);
-        $prenotazione->setNickUtente($riga['nick_utente']);
-        $prenotazione->setId($riga['id_libro']);
-        $prenotazione->setDataFine($riga['data_fine']);
-        $prenotazione->setAcquisito($riga['acquisito']);
-        $prenotazione->setDisp($riga['disp']);
+        $prenotazione->setId($riga['id_prenotazione']);
+		$prenotazione->setUtentePrenotazione($riga['id_utente']);
+		$prenotazione->setLibroPrenotazione($riga['id_libro']);
+        $prenotazione->setDataScadenza($riga['data_scadenza']);
         
         return $prenotazione;
     }
     
-    static function contaNumero() : int
+    /*static function contaNumero() : int
     {
         return "SELECT count (*)
                 FROM prenotazione INNER JOIN prestito

@@ -32,20 +32,22 @@ class c_prenotazione
     {
         $v_prenotazione = new v_prenotazione();
         $utente = c_sessione::getUtenteDaSessione();
-        
+		$user = $utente->getId();
+		
         if (! is_a($utente, e_visitatore::class)) 
         { // se l'utente non e' un visitatore
             if (is_numeric($id)) 
             { // se l'url contiene un id
                 $libroPrenotazione = f_persistance::getInstance()->carica(e_libro::class, $id); // si carica il libro
-                if ($libroPrenotazione) // se il libro esiste
+				$book= $libroPrenotazione->getId();
+				if ($libroPrenotazione) // se il libro esiste
                 {
                     if ($v_prenotazione->validaScelta()) // se l'utente ha scelto di prenotare il testo
                     {
 						// si costruisce l'oggetto prenotazione
                         $prenotazione = new e_prenotazione();
-                        $prenotazione->setUtentePrenotazione($utente);
-						$prenotazione->setLibroPrenotazione($libroPrenotazione);
+                        $prenotazione->setUtentePrenotazione($user);
+						$prenotazione->setLibroPrenotazione($book);
 						$prenotazione->creaDataScadenza();
 						f_persistance::getInstance()->salva($prenotazione);
 						//$v_prenotazione->Avviso($utente, 'PRENOTAZIONE EFFETTUATA CON SUCCESSO.');

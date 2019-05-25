@@ -315,7 +315,7 @@ class c_libro
             }
             
             else
-                $vLibro->Errore($utente, "Non hai l'autorizzaione di modificare il libro.");        
+                $v_libro->Errore($utente, "Non hai l'autorizzaione di modificare il libro.");        
         }
         
         else

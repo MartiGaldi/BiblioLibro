@@ -1,13 +1,14 @@
 <?php
-class f_prestito{
+class f_prestito
+{
     /**
      * Query che effettua il salvataggio di un prestito nella tabella prestito
      * @return string contenente la query sql
      */
     static function salvaPrestito():string
     {
-        return "INSERT INTO prestito(id,nick_cliente,data_inizio,data_fine,id_libro,prenotazione,rientro,storico)
-                VALUES(:id,:nick_cliente,:data_inizio,:data_fine,:id_libro,:prenotazione,:rientro,:storico)";
+        return "INSERT INTO prestito(id_prestito, id_utente, id_libro, data_scadenza)
+                VALUES(:id, :id_utente, :id_libro, :datScadenza)";
     }
     
     /**
@@ -17,8 +18,8 @@ class f_prestito{
     static function aggiornaPrestito() : string
     {
         return "UPDATE prestito
-                SET nick_cliente = :nick_cliente, data_inizio = :data_inizio, data_fine = :data_fine, id_libro = :id_libro, prenotazione = :prenotazione, rientro = :rientro, storico = :storico
-                WHERE id = :id;";
+                SET id_prestito = :id, id_utente = :id_utente, id_libro = :id_libro, data_scadenza = :dataScadenza
+				WHERE id_prestito= :id ;";
     }
     
     /**
@@ -29,7 +30,7 @@ class f_prestito{
     {
         return "SELECT *
                 FROM prestito
-                WHERE id = :id;";
+                WHERE id_prestito = :id;";
     }
     
     /**
@@ -40,37 +41,22 @@ class f_prestito{
     {
         return "DELETE
                 FROM prestito
-                WHERE id = :id;";
+                WHERE id_prestito = :id ;";
     }
     
-    /**
-     * Cancella tutte le entry di una query. Usata a scopo di debug.
-     * @param PDO $db
-     */
-    static function tabellaVuota (PDO &$database)
-    {
-        $database->beginTransaction();                         //inizio transazione
-        $stmt = $database->prepare("TRUNCATE TABLE prestito;");    //prepara lo statement
-        $stmt->execute();
-        $database->commit();
-    }
     
     /**
      * Associazione di un oggetto e_prestito ai campi di una query sql per la tabella prenota.
      * @param PDOStatement $stmt lo statement contenente i campi da riempire
      * @param e_prestito $pres il prestito da cui prelevare i dati
      */
-    static function bindValues(PDOStatement &$stmt, e_prestito &$pres){
+    static function bindValues(PDOStatement &$stmt, e_prestito &$pres)
+	{
         $stmt->bindValue('id', $pres->getId(), PDO::PARAM_INT);
-        $stmt->bindValue(':nick_cliente', $pres->getNickCliente(), PDO::PARAM_STR);
-        $stmt->bindValue(':data_inizio', $pres->getDataInizio(), PDO::PARAM_STR);
-        $stmt->bindValue(':data_fine', $pres->getDataFine(), PDO::PARAM_STR);
-        $stmt->bindValue(':id_libro', $pres->getIdLibro(), PDO::PARAM_INT);
-        $stmt->bindValue('prenotazione', $pres->getPrenotazione(), PDO::PARAM_STR);
-        $stmt->bindValue(':rientro', $pres->getRientro(), PDO::PARAM_BOOL);
-        $stmt->bindValue(':storico', $pres->getStorico(), PDO::PARAM_BOOL);
+        $stmt->bindValue(':id_utente', $pres->getUtentePrestito(), PDO::PARAM_INT);
+        $stmt->bindValue(':id_libro', $pres->getLibroPrestito(), PDO::PARAM_INT);
+        $stmt->bindValue(':dataScadenza', $pres->getDataScadenza(), PDO::PARAM_STR);
     }
-    
 }
 
 ?>

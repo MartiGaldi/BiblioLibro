@@ -5,10 +5,9 @@ require_once "inc.php";
 /**
  * La classe e_prestito contiene le informazioni riguardanti i prestiti ancora in corso.
  */
-
 class e_prestito 
 {
-    protected $id;
+    /*protected $id;
     protected $nick_cliente;
     protected $data_inizio;
     protected $data_fine;
@@ -28,7 +27,7 @@ class e_prestito
     /**
      * @param int $id l'identificativo dell'oggetto Entity
      */
-    function setId(int $id)
+   /* function setId(int $id)
     {
         $this->id=$id;
     }
@@ -65,7 +64,7 @@ class e_prestito
      * periodo brene = dopo 7 giorni
      * periodo lungo = dopo 30 giorni
      */
-    function setDataFine(DateTime $data_inizio, string $durata){
+    /*function setDataFine(DateTime $data_inizio, string $durata){
         if($durata=='consultaione')
             $this->$data_fine = $data_inizio;
         else
@@ -114,7 +113,7 @@ class e_prestito
      * Restituisce le informazioni relative alla prenotazione
      */
     
-    function recuperaPrenotazione()
+    /*function recuperaPrenotazione()
     {
        $disp= f_persistance::getIstance()->carica(e_prenota::class, $this->id)->getDisp();
        
@@ -137,13 +136,89 @@ class e_prestito
      * Metodo che elimina il prestito nel caso in cui l'utente ha restituito il libro alla biblioteca.
      * Il prestito corrispondente viene spostato nella tabella storicoPrestito
      */
-    function eliminaPrestito()
+   /* function eliminaPrestito()
     {
         $storico = f_persistance::getIstance()->carica(e_storicoPrestito::class, $this->id)->getStorico;
         if($storico==true)
             rimuoviPrestito();
+    }*/
+	
+	private $id;
+	private $utentePrestito;
+	private $libroPrestito;
+	private $dataScadenza;
+	
+	private $prestito;
+	
+	function __constructor(){}
+    
+	function getId() : int
+    {
+        if(!$this->id)
+            return 0;
+        else return $this->id;
     }
-
+    
+    function setId(int $id)
+    {
+        $this->id=$id;
+    }
+	
+	function getUtentePrestito()
+	{
+		return $this->utentePrestito;
+	}
+	
+	function setUtentePrestito ( $utentePrestito)
+	{
+        $this->utentePrestito = $utentePrestito;
+    }
+	
+	function getLibroPrestito()
+	{
+		return $this->libroPrestito;
+	}
+	
+	function setLibroPrestito ( $libroPrestito)
+	{
+        $this->libroPrestito = $libroPrestito;
+    }
+	
+    public function getDataScadenza() : string
+    {
+        return $this->dataScadenza;
+    }
+	
+    function setDataScadenza(string $dataScadenza)
+    {
+        $this->dataScadenza = $dataScadenza;
+    }
+	
+    /*function creaDataScadenza()
+    {
+		//if($durata=="consultazione")
+		$days = "30";
+		$date = new DateTime();
+        $date->modify("+".$days."days");
+        $this->dataScadenza = $date->format('y-m-d')
+		/*}
+			else
+				if ($durata=="breve")
+				{
+				  $days = "1";
+				  $date = new DateTime();
+				  $date->modify("+".$days."days");
+				  $this->dataScadenza = $date->format('y-m-d')
+				}
+			else
+				if ($durata=="lungo")
+				{
+					$days = "30"
+					$date = new DateTime();
+					$date->modify("+".$days."days");
+					$this->dataScadenza = $date->format('y-m-d')
+				}
+    }*/
 }
 
 ?>
