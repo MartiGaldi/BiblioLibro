@@ -194,31 +194,40 @@ class e_prestito
         $this->dataScadenza = $dataScadenza;
     }
 	
-    /*function creaDataScadenza()
+    function creaDataScadenza($durata)
     {
-		//if($durata=="consultazione")
+		if($durata=="lungo"){
 		$days = "30";
 		$date = new DateTime();
         $date->modify("+".$days."days");
-        $this->dataScadenza = $date->format('y-m-d')
-		/*}
-			else
-				if ($durata=="breve")
-				{
-				  $days = "1";
-				  $date = new DateTime();
-				  $date->modify("+".$days."days");
-				  $this->dataScadenza = $date->format('y-m-d')
-				}
-			else
-				if ($durata=="lungo")
-				{
-					$days = "30"
-					$date = new DateTime();
-					$date->modify("+".$days."days");
-					$this->dataScadenza = $date->format('y-m-d')
-				}
-    }*/
+        $this->dataScadenza = $date->format('y-m-d');}
+		else if ($durata=="breve"){
+			$days = "7";
+			$date = new DateTime();
+			$date->modify("+".$days."days");
+			$this->dataScadenza = $date->format('y-m-d');}
+		else {
+		    $days = "1";
+			$date = new DateTime();
+			$date->modify("+".$days."days");
+			$this->dataScadenza = $date->format('y-m-d');}
+    }
+	
+	function validazioneUtentePrestito() : bool
+    {
+        if ($this->utentePrestito && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->utentePrestito)) // solo lettere e spazi
+            return true;
+        else
+            return false;
+    }
+	
+	  function validazioneLibroPrestito() : bool
+    {
+        if ($this->libroPrestito && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->libroPrestito)) // solo lettere e spazi
+            return true;
+        else
+            return false;
+    }
 }
 
 ?>

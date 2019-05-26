@@ -45,40 +45,22 @@ class v_prestito extends v_oggetto
     {
         $prestito = new e_prestito();
 		
-		if(isset($_POST['titolo']))
-            $libro->setTitolo(ucfirst($_POST['titolo']));
+		if(isset($_POST['utentePrestito']))
+            $prestito->setUtentePrestito(ucfirst($_POST['utentePrestito']));
 		
-        if(isset($_POST['genere']))
-            $libro->setGenere(ucfirst($_POST['genere']));
+        if(isset($_POST['libroPrestito']))
+            $prestito->setLibroPrestito(ucfirst($_POST['libroPrestito']));
+		
+		if(isset($_POST['dataScadenza']))
+            $prestito->setDataScadenza(ucfirst($_POST['dataScadenza']));
                     
-        if(isset($_POST['autore']))
-            $libro->setAutore(ucfirst($_POST['autore']));
-		
-		if(isset($_POST['num_copie']))
-            $libro->setNumCopie(ucfirst($_POST['num_copie']));
-		
-		if(isset($_POST['isbn']))
-            $libro->setIsbn(ucfirst($_POST['isbn']));
-		
-		if(isset($_POST['descrizione']))
-            $libro->setDescrizione(ucfirst($_POST['descrizione']));
-		
-		if(isset($_POST['durata']))
-            $libro->setDurata(ucfirst($_POST['durata']));
-		
-		
-        if ( isset($_POST['titolo']) && isset($_POST['autore']) && isset($_POST['num_copie']) && isset($_POST['durata'])&& isset($_POST['genere']) && isset($_POST['isbn']) && isset($_POST['descrizione']))
+        if ( isset($_POST['utentePrestito']) && isset($_POST['libroPrestito']) && isset($_POST['dataScadenza']))
         {
-            $libro->setTitolo(ucfirst($_POST['titolo']));
-			$libro->setAutore(ucfirst($_POST['autore']));
-            $libro->setNumCopie(ucfirst($_POST['num_copie']));
-            $libro->setDurata(ucfirst($_POST['durata']));
-            $libro->setGenere(ucfirst($_POST['genere']));
-			$libro->setIsbn(ucfirst($_POST['isbn']));
-			$libro->setDescrizione(ucfirst($_POST['descrizione']));
+            $prestito->setUtentePrestito(ucfirst($_POST['utentePrestito']));
+			$prestito->setLibroPrestito(ucfirst($_POST['libroPrestito']));
+			$prestito->setDataScadenza(ucfirst($_POST['dataScadenza']));
         }     
-        return $libro;
-        
+        return $prestito;
     }
     
     
@@ -229,31 +211,4 @@ class v_prestito extends v_oggetto
         else
             return false;   
     }
-	
-	/**
-     * Funzione che permette la creazione della copertina di un libro
-     */
-   /* function creaCopertina() : e_copertina
-    {
-        $copertina = new e_copertina();
-        if($_FILES['file']['size']!=0)
-        {
-            $copertina->setCopertina(file_get_contents($_FILES['file']['tmp_name']));
-            $copertina->setSize($_FILES['file']['size']);
-            $copertina->setTipo($_FILES['file']['tipo']);
-        }
-        return $copertina;
-    }*/
-    
-    /**
-     * Funzione che permette la validazione della copertina di un libro
-     */
-   /* function validazioneCopertina(e_copertina &$copertina)
-    {
-        $copertina->validate($this->check['file']);
-        if($this->check['file'])
-            return true;
-        else
-            return false;
-    }*/
 }

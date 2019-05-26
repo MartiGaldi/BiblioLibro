@@ -56,7 +56,7 @@
         			<input type="text" class="form-control" id="prestito" name="utentePrestito" placeholder="Inserisci utente...">
       				{if ! $check.utentePrestito}
       				<div class="col-sm-8">
-        				<small id="utenteHelp" class="text-danger">
+        				<small id="utentePrestitoHelp" class="text-danger">
           					Solo caratteri alfanumerici
         				</small>      
      				</div>
@@ -65,10 +65,10 @@
 
 				<div class="form-group row">
       				<label for="inputLibroPrestito" class="col-sm-6 col-form-label {if !$check.libroPrestito} text-danger{/if}">Libro: *</label>
-        			<input type="text" class="form-control" id="inputLibroPrestito" name="genere" placeholder="Inserisci identificativo libro...">
+        			<input type="text" class="form-control" id="inputLibroPrestito" name="libroPrestito" placeholder="Inserisci identificativo libro...">
       				{if ! $check.libroPrestito}
       				<div class="col-sm-8">
-        				<small id="libroHelp" class="text-danger">
+        				<small id="libroPrestitoHelp" class="text-danger">
           					Solo caratteri alfanumerici
         				</small>      
      				</div>

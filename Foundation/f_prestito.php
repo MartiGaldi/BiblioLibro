@@ -8,7 +8,7 @@ class f_prestito
     static function salvaPrestito():string
     {
         return "INSERT INTO prestito(id_prestito, id_utente, id_libro, data_scadenza)
-                VALUES(:id, :id_utente, :id_libro, :datScadenza)";
+                VALUES(:id, :id_utente, :id_libro, :dataScadenza)";
     }
     
     /**

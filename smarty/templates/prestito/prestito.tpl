@@ -36,26 +36,26 @@
 		  <div class="card-body">
 	<form>
 	<div class="container text-center">
-			<h4>TITOLO: {$libro->getTitolo()} <br> AUTORE: {$libro->getAutore()} <br> GENERE: {$libro->getGenere()} <br> DURATA: {$libro->getDurata()} <br> ISBN: {$libro->getIsbn()}</h4>
+			<h4>UTENTE: {$prestito->getUtentePrestito()} <br> LIBRO: {$prestito->getLibroPrestito()} </h4>
 			<br>
 			<br>
 			
 		{if $uTipo eq 'cliente' or $uTipo eq 'bibliotecario'}
-			{if $prenota}
+			{if $mostra}
 				<a href="/BiblioLibro/prenotazione/prenota/{$libro->getId()}" 
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">PRENOTA</a>
 			{/if }
 			
 			{else}
-			<h4>Effettua il <a href="/BiblioLibro/utente/login">Login</a> per procedere con la prenotazione</h4>
+			<h4>Effettua il <a href="/BiblioLibro/utente/login">Login</a> per procedere con la visualizzazione</h4>
 			{/if}
 			<br>
 			<br>
 			{if $uTipo eq 'bibliotecario'}
-			<a href="/BiblioLibro/libro/modifica/{$libro->getId()}" 
+			<a href="/BiblioLibro/prestito/modifica/{$prestito->getId()}" 
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Modifica</a>
 	
-			<a href="/BiblioLibro/libro/rimuovi/{$libro->getId()}" 
+			<a href="/BiblioLibro/prestito/rimuovi/{$prestito->getId()}" 
 				class="btn btn-primary btn-lg btn-danger active" role="button" aria-pressed="true">Rimuovi</a>
 			{/if}		
 	</div>
