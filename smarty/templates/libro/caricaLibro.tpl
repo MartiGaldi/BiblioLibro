@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="utf-8">
@@ -134,12 +133,6 @@
      						</div>
      						{/if}
     					</div>
-						
-  				</fieldset>		
-				
-				
-				
-				
 					
 				<button type="submit" class="btn btn-secondary">Carica</button>
 			</form>

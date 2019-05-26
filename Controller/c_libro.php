@@ -117,7 +117,6 @@ class c_libro
     */
     
     private function mostraFormCarica()
-    
     {
         $v_libro = new v_libro();
         $Utente = c_sessione::getUtenteDaSessione();

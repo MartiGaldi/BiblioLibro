@@ -53,7 +53,7 @@
 						
 				<div class="form-group row">
       				<label for="prestito" class="col-sm-6 col-form-label {if !$check.utentePrestito} text-danger{/if}">Utente: *</label>
-        			<input type="text" class="form-control" id="prestito" name="utentePrestito" placeholder="Inserisci utente...">
+        			<input type="text" class="form-control" id="prestito" name="utentePrestito" placeholder="Inserisci identificativo utente...">
       				{if ! $check.utentePrestito}
       				<div class="col-sm-8">
         				<small id="utentePrestitoHelp" class="text-danger">

@@ -117,7 +117,6 @@ class c_prestito
     */
     
     private function mostraFormCarica()
-    
     {
         $v_prestito = new v_prestito();
         $Utente = c_sessione::getUtenteDaSessione();
@@ -209,12 +208,20 @@ class c_prestito
         {
             $prestito = $v_prestito->creaPrestito(); // la view restituisce una e_prestito costruita a partire dalla form
 			$id = $prestito->getLibroPrestito();
+			
+			/*$utente = $prestito->getUtentePrestito();
+			$prenotazione = f_persistance::getInstance()->carica(e_prenotazione::class, $id);
+			$id_prenotazione = $prenotazione->getLibroPrenotazione();
+			$utente_prenotazione = $prenotazione->getLibroPrenotazione();
+			if ($id == $id_prenotazione && $utente == $utente_prenotazione){*/
+				
+			
 			$libroPrestito = f_persistance::getInstance()->carica(e_libro::class, $id); // si carica il libro
 			$durata= $libroPrestito->getDurata();
 			$data = $prestito->creaDataScadenza($durata);
 			f_persistance::getInstance()->salva($prestito);
-			$v_prestito->Avviso($utente, 'PRESTITO AGGIUNTO CON SUCCESSO');
-        }
+			$v_prestito->Avviso($utente, 'PRESTITO AGGIUNTO CON SUCCESSO');}
+       // }
         else
             $v_prestito->Errore($utente, 'NON sei un bibliotecario, non puoi inserire un prestito');
     }

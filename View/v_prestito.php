@@ -22,16 +22,12 @@ class v_prestito extends v_oggetto
     {
         parent::__construct();
         
-       /* // l'array è istanziato con indici i campi delle varie form, i cui valori sono di default a false (no errori)
+       // l'array è istanziato con indici i campi delle varie form, i cui valori sono di default a false (no errori)
         $this->check = array(
-            'titolo' => true,
-			'genere' => true,
-			'autore' => true,
-            'num_copie' => true,
-			'isbn' => true,
-			'descrizione' => true,
-			'durata' => true
-        ); */
+            'utentePrestito' => true,
+			'libroPrestito' => true
+			//'dataScadenza' => true
+        );
     }
     
     
