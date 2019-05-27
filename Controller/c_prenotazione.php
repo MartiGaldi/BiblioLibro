@@ -39,22 +39,49 @@ class c_prenotazione
             if (is_numeric($id)) 
             { // se l'url contiene un id
                 $libroPrenotazione = f_persistance::getInstance()->carica(e_libro::class, $id); // si carica il libro
-				$book= $libroPrenotazione->getId();
 				if ($libroPrenotazione) // se il libro esiste
                 {
+					$book= $libroPrenotazione->getId();
+					$numCopie = $libroPrenotazione->getCopieDisponibili();
+					/*$autore= $libroPrenotazione->getAutore();
+					$titolo= $libroPrenotazione->getTitolo();
+					$num= $libroPrenotazione->getNumCopie();
+					$durata= $libroPrenotazione->getDurata();
+					$genere= $libroPrenotazione->getGenere();
+					$isbn= $libroPrenotazione->getIsbn();
+					$descrizione= $libroPrenotazione->getDescrizione();*/
+					
                     if ($v_prenotazione->validaScelta()) // se l'utente ha scelto di prenotare il testo
                     {
+						if ($numCopie != 0)
+						{
 						// si costruisce l'oggetto prenotazione
                         $prenotazione = new e_prenotazione();
                         $prenotazione->setUtentePrenotazione($user);
 						$prenotazione->setLibroPrenotazione($book);
 						$prenotazione->creaDataScadenza();
 						f_persistance::getInstance()->salva($prenotazione);
+						//$numCopie --;
+						/*$libro = new e_libro();
+						$libro->setId($book);
+						$libro->setAutore($autore);
+						$libro->setTitolo($titolo);
+						$libro->setNumCopie($num);
+						$libro->setDurata($durata);
+						$libro->setGenere($genere);
+						$libro->setIsbn($isbn);
+						$libro->setDescrizione($descrizione);
+						$libro->setCopieDisponibili($numCopie);
+						f_persistance::getInstance()->salva($libro);
+						f_persistance::getInstance()->rimuovi($libro,$book);*/
 						//$v_prenotazione->Avviso($utente, 'PRENOTAZIONE EFFETTUATA CON SUCCESSO.');
 						header('Location: /Bibliolibro/utente/profilo/' . $utente->getId()); // redirect al profilo
+						}
+						else
+						$v_prenotazione->Errore($utente, 'Siamo spiacenti. Attualmente non ci sono copie disponibili per la prenotazione.');
                     } 
                     else
-                        header('Location: /Bibliolibro/libro/mostra/' . $libroPrenotazione->getId()); // redirect alla home
+                        header('Location: /Bibliolibro/libro/mostra/' . $libroPrenotazione->getId()); // redirect alla schermata precedente
 				} 
 			} 
 			else

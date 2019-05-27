@@ -198,61 +198,6 @@ class c_libro
     }
     
     
-    
-    
-	/*static function aggiungi()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') // se il metodo e' get...
-        { 
-			//carica la pagina, se l'utente e' effettivamente un bibliotecario
-            $v_libro = new v_libro();
-            $utente = c_sessione::getUtenteDaSessione();
-            
-            if(get_class($utente) != e_bibliotecario::class)
-            {
-                $v_utente->Errore($utente, 'Non puoi accedere a questa funzione.');
-            }
-            else
-                $v_libro->mostraFormCarica();  
-        }
-        else if ($_SERVER['REQUEST_METHOD'] == 'POST')
-            c_libro::carica();
-		
-            else
-                header('Location: HTTP/1.1 Invalid HTTP method detected');       
-    }*/
-	
-	 /*private function aggiungi()
-    {
-		if ($_SERVER['REQUEST_METHOD'] == 'GET') // se il metodo e' get...
-        {
-			$v_libro = new v_libro(); // crea la view
-			$utente = c_sessione::getUtenteDaSessione(); // ottiene l'utente della sessione
-        
-			if (get_class($utente) == e_bibliotecario::class)
-			{
-				$libro = $v_libro->creaLibro(); // la view restituisce una e_libro costruita a partire dalla form
-            
-				if ($v_libro->validazioneCarica($libro)) // se l'oggetto e' valido  
-					f_persistane::getInstance()->salva($libro); 
-				else
-				{ 
-					f_persistance::getInstance()->rimuovi(e_libro::class, $libro->getId());
-					$v_libro->Errore($utente, 'Errore');
-					$v_libro->mostraFormCarica($utente, false);
-				}
-			}
-        
-			else
-				$v_libro->Errore($utente, 'NON sei un bibliotecario, non puoi inserire un libro!');
-		}
-		else if ($_SERVER['REQUEST_METHOD'] == 'POST')
-				c_libro::carica();
-		
-            else
-                header('Location: HTTP/1.1 Invalid HTTP method detected'); 
-    }
-	*/
 	
     private function aggiungiLibro()
     {
@@ -308,15 +253,12 @@ class c_libro
                         
                         header('Location: /BilioLibro/libro/mostra/'.$nuovoLibro->getId());   
                 }
-                
                 else 
                     $v_libro->mostraFormModifica($utente, $vecchioLibro, false);        
             }
-            
             else
                 $v_libro->Errore($utente, "Non hai l'autorizzaione di modificare il libro.");        
         }
-        
         else
             $v_libro->Errore($utente, "L'id non corrisponde a nessun libro.");
     }
@@ -350,49 +292,7 @@ class c_libro
             else
                 $v_libro->Errore($utente, "Non hai l'autorizzazione per rimuovere il libro"); 
         }
-        
         else
             $v_libro->Errore($utente, "L'id non corrisponde a nessun libro."); 
     }
-	
-	/*static function prenota($id)
-    {
-        if(is_numeric($id)) // se nell'url è effettivamente presente un id.
-        {
-            $v_libro = new v_libro(); // crea la view
-            $utente = c_sessione::getUtenteDaSessione(); // ottiene l'utente dalla sessione
-            $libro = f_persistance::getInstance()->carica(e_libro::class, $id); // carica il libro dell'id
-            if($libro)
-            {
-                if (is_a($utente, e_bibliotecario::class) || is_a($utente, e_cliente::class))
-                {
-				/*$prenotazione = new e_prenotazione();
-				$prenotazione= setLibro($libro);
-				$prenotazione = setUtente($utente);
-				if(f_persistance::getInstance()->salva($prenotazione)){;//
-				
-				$date = new DateTime('NOW');
-				date_add($date, date_interval_create_from_date_string('3 days')); 
-				
-				$v_libro->Avviso($utente, 'Documento prenotato con successo. Si prega di procede al ritiro presso la sede entro il: ' .  date_format($date,'d/m/Y') .  '.');
-				}
-					else
-					{$v_libro->Avviso($utente, "Impossibile seguire l'perazione");}
-				/*$idLibro = f_persistance::getInstance()->carica(e_libro::class, $id);
-				$prenotazione = new e_prenotazione();
-				$prenotazione->setId($idLibro);
-				$prenotazione->setIdUtente($utente);
-				f_persistance::getInstance()->salva($prenotazione);
-				$v_libro->Avviso($utente, 'Documento prenotato con successo. Si prega di procede al ritiro presso la sede.');//
-				}
-                else 
-                    $v_libro->Errore($utente, 'Impossibile prenotare il documento');
-            }
-            else
-                $v_libro->Errore($utente, 'Il testo non corrisponde a nessun documento memerizzato nel sistema');
-        }
-        else
-            header('Location: HTTP/1.1 405 Invalid URL detected');
-    }*/
-
 }

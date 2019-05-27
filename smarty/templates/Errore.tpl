@@ -31,8 +31,15 @@
 	{include file="navbar.tpl"}
 	
 	<div class="container text-center">
+	<br>
+	<br>
 		<h3>ERRORE</h3>
-		<p>{$errore} Torna alla <a href="/BiblioLibro/">HOME</a>
+		<br>
+		<br>
+		<p>{$errore} 
+		<br>
+		<br>
+		Torna alla <a href="/BiblioLibro/">HOME</a>
 		</p>
 	</div>
 

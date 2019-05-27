@@ -19,9 +19,9 @@ class e_libro
     private $num_copie;
     private $durata;
     private $genere;
-    private $info_libro;
 	private $isbn;
 	private $descrizione;
+	private $copieDisponibili;
 	//private $copertina;
 	
 	private $prenota;
@@ -120,6 +120,13 @@ class e_libro
 		}
     } 
 	
+	function setCopieDisponibili (int $copieDisponibili){
+        $this->copieDisponibili=$copieDisponibili;
+    }
+    
+    function getCopieDisponibili() : int {
+        return $this->copieDisponibili;
+    }
     /* vecchio
 	function setCopertina(e_copertina $copertina = null)
     {
@@ -225,7 +232,20 @@ class e_libro
             return true;
         else
             return false;
-    }     
+    }    
+
+    /**
+     * Funzione che verifica che il numero copie sia valido. Si intende valido se
+     * contiene solamente numeri
+     * @return bool true se il nome e' corretto, false altrimenti
+     */
+    function validazioneCopieDisponibili(): bool
+    {
+        if ($this->copieDisponibili && preg_match("/^[1-9][0-9]+$/", $this->copieDisponibili)) // sono consentiti solo numeri
+            return true;
+        else
+            return false;
+    }	
 }
 
 ?>

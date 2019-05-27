@@ -208,22 +208,46 @@ class c_prestito
         {
             $prestito = $v_prestito->creaPrestito(); // la view restituisce una e_prestito costruita a partire dalla form
 			$id = $prestito->getLibroPrestito();
-			
-			/*$utente = $prestito->getUtentePrestito();
-			$prenotazione = f_persistance::getInstance()->carica(e_prenotazione::class, $id);
-			$id_prenotazione = $prenotazione->getLibroPrenotazione();
-			$utente_prenotazione = $prenotazione->getLibroPrenotazione();
-			if ($id == $id_prenotazione && $utente == $utente_prenotazione){*/
-				
-			
+			$id2 = $prestito->getPrenotazione();
+			$id3 = $prestito->getUtentePrestito();
+			if ($id2)
+			{
+			$pren = f_persistance::getInstance()->carica(e_prenotazione::class, $id2); // si carica il libro
+			if($pren)
+			{
+			$dataPrenotazione = $pren->getDataScadenza();
+			$dataOdierna = date("Y-m-d");
+			if ($dataPrenotazione >= $dataOdierna) //se non scaduta la prenotazione
+			{		
+			$utentePrenotazione = $pren->getUtentePrenotazione();
+			$libroPrenotazione = $pren->getLibroPrenotazione();
+			if ($utentePrenotazione == $id3 && $libroPrenotazione == $id)
+			{
 			$libroPrestito = f_persistance::getInstance()->carica(e_libro::class, $id); // si carica il libro
 			$durata= $libroPrestito->getDurata();
 			$data = $prestito->creaDataScadenza($durata);
 			f_persistance::getInstance()->salva($prestito);
-			$v_prestito->Avviso($utente, 'PRESTITO AGGIUNTO CON SUCCESSO');}
+			//RIMUOVI PRENOTAZIONE
+			$v_prestito->Avviso($utente, 'PRESTITO AGGIUNTO CON SUCCESSO');
+			}
+			else
+			$v_prestito->Errore($utente, "PRENOTAZIONE NON VALIDA"); 
+			}
+			else 
+			{
+			//rimuovi prenotazione
+			$v_prestito->Errore($utente, "PRENOTAZIONE SCADUTA"); 
+			}
+			}
+			else 
+			$v_prestito->Errore($utente, "PRENOTAZIONE NON VALIDA"); 	
+			}
+			else
+			$v_prestito->Errore($utente, "BISOGNA PRIMA PROCEDERE CON UNA PRENOTAZIONE"); 
        // }
+		}
         else
-            $v_prestito->Errore($utente, 'NON sei un bibliotecario, non puoi inserire un prestito');
+            $v_prestito->Errore($utente, 'UTENTE NON AUTORIZZATO');
     }
     
     

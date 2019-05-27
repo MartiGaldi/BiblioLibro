@@ -9,8 +9,8 @@ class f_libro{
     */
     static function salvaLibro() : string
     {
-        return "INSERT INTO libro(num_copie,titolo,autore,durata,genere, isbn, descrizione)
-                VALUES(:num_copie,:titolo,:autore,:durata,:genere, :isbn, :descrizione)";
+        return "INSERT INTO libro(num_copie,titolo,autore,durata,genere, isbn, descrizione, copieDisponibili)
+                VALUES(:num_copie,:titolo,:autore,:durata,:genere, :isbn, :descrizione, :copieDisponibili)";
     }
         
     /**
@@ -31,7 +31,7 @@ class f_libro{
     static function aggiornaLibro() : string
     {
         return "UPDATE libro
-                SET num_copie = :num_copie, titolo = :titolo, autore = :autore, durata = :durata, genere = :genere, isbn = :isbn, descrizione = :descrizione
+                SET num_copie = :num_copie, titolo = :titolo, autore = :autore, durata = :durata, genere = :genere, isbn = :isbn, descrizione = :descrizione, copieDisponibili = :copieDisponibili
                 WHERE id = :id ;";
     }
         
@@ -47,18 +47,6 @@ class f_libro{
                 WHERE id = :id ;"; //query sql
     }
         
-        
-    /**
-    * Cancella tutte le entry di una query. Usata a scopo di debug.
-    * @param PDO $db
-    */
-    static function tabellaVuota (PDO &$database)
-    {
-        $database->beginTransaction();                         //inizio transazione
-        $stmt = $database->prepare("TRUNCATE TABLE libro;");    //prepara lo statement
-        $stmt->execute();
-        $database->commit();
-    }
         
     static function ricercaLibroDaTitolo() : string
     {
@@ -95,6 +83,7 @@ class f_libro{
         $stmt->bindValue(':genere', $lib->getGenere(), PDO::PARAM_STR);
 		$stmt->bindValue(':isbn', $lib->getIsbn(), PDO::PARAM_STR);
 		$stmt->bindValue(':descrizione', $lib->getDescrizione(), PDO::PARAM_STR);
+		 $stmt->bindValue(':copieDisponibili', $lib->getCopieDisponibili(), PDO::PARAM_INT);
     } 
     
     /**
@@ -114,6 +103,7 @@ class f_libro{
         $libro->setGenere($riga['genere']);
 		$libro->setIsbn($riga['isbn']);
 		$libro->setDescrizione($riga['descrizione']);
+		 $libro->setCopieDisponibili($riga['copieDisponibili']);
                     
         return $libro;
     }

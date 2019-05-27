@@ -7,8 +7,8 @@ class f_prestito
      */
     static function salvaPrestito():string
     {
-        return "INSERT INTO prestito(id_prestito, id_utente, id_libro, data_scadenza)
-                VALUES(:id, :id_utente, :id_libro, :dataScadenza)";
+        return "INSERT INTO prestito(id_prestito, id_utente, id_libro, data_scadenza, id_prenotazione)
+                VALUES(:id, :id_utente, :id_libro, :dataScadenza, :id_prenotazione)";
     }
     
     /**
@@ -18,7 +18,7 @@ class f_prestito
     static function aggiornaPrestito() : string
     {
         return "UPDATE prestito
-                SET id_prestito = :id, id_utente = :id_utente, id_libro = :id_libro, data_scadenza = :dataScadenza
+                SET id_prestito = :id, id_utente = :id_utente, id_libro = :id_libro, data_scadenza = :dataScadenza, id_prenotazione = :id_prenotazione
 				WHERE id_prestito= :id ;";
     }
     
@@ -56,6 +56,7 @@ class f_prestito
         $stmt->bindValue(':id_utente', $pres->getUtentePrestito(), PDO::PARAM_INT);
         $stmt->bindValue(':id_libro', $pres->getLibroPrestito(), PDO::PARAM_INT);
         $stmt->bindValue(':dataScadenza', $pres->getDataScadenza(), PDO::PARAM_STR);
+		$stmt->bindValue(':id_prenotazione', $pres->getPrenotazione(), PDO::PARAM_INT);
     }
 }
 

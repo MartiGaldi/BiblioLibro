@@ -25,7 +25,8 @@ class v_prestito extends v_oggetto
        // l'array è istanziato con indici i campi delle varie form, i cui valori sono di default a false (no errori)
         $this->check = array(
             'utentePrestito' => true,
-			'libroPrestito' => true
+			'libroPrestito' => true,
+			'prenotazione' => true
 			//'dataScadenza' => true
         );
     }
@@ -49,12 +50,16 @@ class v_prestito extends v_oggetto
 		
 		if(isset($_POST['dataScadenza']))
             $prestito->setDataScadenza(ucfirst($_POST['dataScadenza']));
+		
+		 if(isset($_POST['prenotazione']))
+            $prestito->setPrenotazione(ucfirst($_POST['prenotazione']));
                     
-        if ( isset($_POST['utentePrestito']) && isset($_POST['libroPrestito']) && isset($_POST['dataScadenza']))
+        if ( isset($_POST['utentePrestito']) && isset($_POST['libroPrestito']) && isset($_POST['dataScadenza']) && isset($_POST['prenotazione']))
         {
             $prestito->setUtentePrestito(ucfirst($_POST['utentePrestito']));
 			$prestito->setLibroPrestito(ucfirst($_POST['libroPrestito']));
 			$prestito->setDataScadenza(ucfirst($_POST['dataScadenza']));
+			$prestito->setPrenotazione(ucfirst($_POST['prenotazione']));
         }     
         return $prestito;
     }

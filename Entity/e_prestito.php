@@ -147,6 +147,7 @@ class e_prestito
 	private $utentePrestito;
 	private $libroPrestito;
 	private $dataScadenza;
+	private $prenotazione;
 	
 	private $prestito;
 	
@@ -213,6 +214,16 @@ class e_prestito
 			$this->dataScadenza = $date->format('y-m-d');}
     }
 	
+	function setPrenotazione ( $prenotazione)
+	{
+        $this->prenotazione = $prenotazione;
+    }
+	
+	function getPrenotazione()
+	{
+		return $this->prenotazione;
+	}
+	
 	function validazioneUtentePrestito() : bool
     {
         if ($this->utentePrestito && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->utentePrestito)) // solo lettere e spazi
@@ -224,6 +235,14 @@ class e_prestito
 	  function validazioneLibroPrestito() : bool
     {
         if ($this->libroPrestito && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->libroPrestito)) // solo lettere e spazi
+            return true;
+        else
+            return false;
+    }
+	
+	function validazionePrenotazione() : bool
+    {
+        if ($this->prenotazione && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->prenotazione)) // solo lettere e spazi
             return true;
         else
             return false;

@@ -99,6 +99,18 @@
 					</div>
 					
 					<div class="form-group row">
+      						<label for="inputCopieDisponibili" class="col-sm-6 col-form-label {if !$check.copieDisponibili} text-danger{/if}">Copie disponibili: </label>
+        					<input type="text" class="form-control" id="inputCopieDisponibili" name="copieDisponibili" value ="{$libro->getCopieDisponibili()}" placeholder="Inserisci numero di copie disponibili per il prestito...">
+      						{if ! $check.copieDisponibili}
+      						<div class="col-sm-8">
+        						<small id="copieDisponibiliHelp" class="text-danger">
+          							Solo caratteri numerici.
+        						</small>      
+     						</div>
+     						{/if}
+    				</div>
+						
+					<div class="form-group row">
 						<label for="isbnLibro" class="col-sm-6 col-form-label {if !$check.isbn} text-danger{/if}">Isbn: </label>
 						<input type="text" class="form-control" id="isbnLibro" name="isbn" value ="{$libro->getIsbn()}" placeholder="Inserisci isbn...">
 						{if ! $check.isbn}

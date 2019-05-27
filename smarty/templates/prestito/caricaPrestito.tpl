@@ -38,7 +38,7 @@
 	<div class="col-md-6">
 		<div class="card text-white p-5 bg-primary">
 			<div class="card-body">
-			<h1 class="mb-4"> Aggiungi Prenotazione </h1>
+			<h1 class="mb-4"> Aggiungi Prestito </h1>
 
 			{if $errore}
 			<div class="alert alert-warning">
@@ -69,6 +69,18 @@
       				{if ! $check.libroPrestito}
       				<div class="col-sm-8">
         				<small id="libroPrestitoHelp" class="text-danger">
+          					Solo caratteri alfanumerici
+        				</small>      
+     				</div>
+     				{/if}
+    			</div>
+				
+				<div class="form-group row">
+      				<label for="inputPrenotazione" class="col-sm-6 col-form-label {if !$check.prenotazione} text-danger{/if}">Prenotazione: *</label>
+        			<input type="text" class="form-control" id="inputPrenotazione" name="prenotazione" placeholder="Inserisci identificativo prenotazione...">
+      				{if ! $check.prenotazione}
+      				<div class="col-sm-8">
+        				<small id="prenotazioneHelp" class="text-danger">
           					Solo caratteri alfanumerici
         				</small>      
      				</div>

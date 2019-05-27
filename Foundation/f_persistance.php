@@ -301,7 +301,7 @@ class f_persistance
         $risorsa = substr($classe,2); // nome della risorsa (Utente, Libro, ...)
         $classeFound = 'f_'.$risorsa; // nome della rispettiva classe Foundation
         
-        $metodo = 'aggiorna'.$risorsa; // nome del metodo aggiorna+nome_risorsa
+        $method = 'aggiorna'.$risorsa; // nome del metodo aggiorna+nome_risorsa
 
         $sql = $classeFound::$method();
                 

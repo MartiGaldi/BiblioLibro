@@ -17,7 +17,7 @@
 			<td>{$libro->getGenere()}</td>
 			<td>{$libro->getDurata()}</td>
 			<td>{$libro->getDescrizione()}</td>
-			<td>{$libro->getNumCopie()}</td>
+			<td>{$libro->getCopieDisponibili()}</td>
 			<td>{$libro->getIsbn()}</td>
 		</tr>
 	{/foreach}

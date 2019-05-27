@@ -35,20 +35,30 @@
           <div class="card text-black p-5 bg-secondary">
 		  <div class="card-body">
 	<form>
-	<div class="container text-center">
-			<h4>TITOLO: {$libro->getTitolo()} <br> AUTORE: {$libro->getAutore()} <br> GENERE: {$libro->getGenere()} <br> DURATA: {$libro->getDurata()} <br> ISBN: {$libro->getIsbn()}</h4>
+	<div class="container text">
+			<h4>
+			<table>
+			<tr><td>TITOLO: </td><td>{$libro->getTitolo()}</td></tr>
+			<tr><td>AUTORE: </td><td>{$libro->getAutore()}</td></tr>
+			<tr><td>GENERE: </td><td>{$libro->getGenere()}</td></tr>
+			<tr><td>DURATA: </td><td>{$libro->getDurata()}</td></tr>
+			<tr><td>ISBN: </td><td>{$libro->getIsbn()}</td></tr>
+			<tr><td>COPIE: </td><td>{$libro->getCopieDisponibili()}</td></tr>
+			</table> 
+			</h4>
 			<br>
 			<br>
 			
 		{if $uTipo eq 'cliente' or $uTipo eq 'bibliotecario'}
 			{if $prenota}
 				<a href="/BiblioLibro/prenotazione/prenota/{$libro->getId()}" 
-				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">PRENOTA</a>
+				class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">PRENOTA</a>
 			{/if }
 			
 			{else}
 			<h4>Effettua il <a href="/BiblioLibro/utente/login">Login</a> per procedere con la prenotazione</h4>
 			{/if}
+			<br>
 			<br>
 			<br>
 			{if $uTipo eq 'bibliotecario'}
