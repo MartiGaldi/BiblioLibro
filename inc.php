@@ -31,6 +31,7 @@ require_once 'Controller/c_prestito.php';
 require_once 'Controller/c_libro.php';
 require_once 'Controller/c_sessione.php';
 require_once 'Controller/c_utente.php';
+require_once 'Controller/c_storico.php';
 require_once 'Controller/FrontController.php';
 
 
@@ -41,6 +42,7 @@ require_once 'View/v_prestito.php';
 require_once 'View/v_oggetto.php';
 require_once 'View/v_libro.php';
 require_once 'View/v_utente.php';
+require_once 'View/v_storico.php';
 
 require_once 'SmartyConfig.php';
 

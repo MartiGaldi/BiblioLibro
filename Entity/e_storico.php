@@ -12,12 +12,15 @@ require_once 'inc.php';
 class e_storico
 {
 	private $id;
-    private $prestito;
-  
-    /**
-     * Metodo costruttore che istanzia un oggetto e_storicoPrestito
-     */
-    function __construct(){}
+	private $utenteStorico;
+	private $libroStorico;
+	private $dataScadenzaPrestito;
+	private $idPrestito;
+	
+	private $storico;
+	
+	
+	function __constructor(){}
     
 	function getId() : int
     {
@@ -26,34 +29,91 @@ class e_storico
         else return $this->id;
     }
     
-    /**
-     * @param int $id l'identificativo dell'oggetto Entity
-     */
     function setId(int $id)
     {
         $this->id=$id;
     }
 	
-    function setPrestito () {
-        $this->prestito=$prestito;
+	function getUtenteStorico()
+	{
+		return $this->utenteStorico;
+	}
+	
+	function setUtenteStorico ( $utenteStorico)
+	{
+        $this->utenteStorico = $utenteStorico;
     }
-    
-    /**
-     * Metodo che sposta le informazioni del prestito in storicoPrestito.
-     */
-    function getPrestito(bool $rientro) : bool
+	
+	function getLibroStorico()
+	{
+		return $this->libroStorico;
+	}
+	
+	function setLibroStorico ( $libroStorico)
+	{
+        $this->libroStorico = $libroStorico;
+    }
+	
+    public function getDataScadenzaPrestito() : string
     {
-        $rientro = f_persistance::getIstance()->carica(e_prestito::class, $this->id)->getRientro;
-        if($rientro==true)
-        {
-            $prestito = f_persistance::getIstance()->carica(e_prestito::class, $this->id);
-            if($prestito)
-                $this->prestito = $prestito;
-            else
-                $this->prestito = new e_prestito();
-            return $storico=true;
-        }
+        return $this->dataScadenzaPrestito;
+    }
+	
+    function setDataScadenzaPrestito(string $dataScadenzaPrestito)
+    {
+        $this->dataScadenzaPrestito = $dataScadenzaPrestito;
+    }
+	
+	function getIdPrestito()
+	{
+		return $this->idPrestito;
+	}
+	
+	function setIdPrestito ($idPrestito)
+	{
+        $this->idPrestito = $idPrestito;
+    }
+	
+	function setStorico ( $storico)
+	{
+        $this->storico = $storico;
+    }
+	
+	function getStorico()
+	{
+		return $this->storico;
+	}
+	
+	function validazioneUtenteStorico() : bool
+    {
+        if ($this->utenteStorico && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->utenteStorico)) // solo lettere e spazi
+            return true;
+        else
+            return false;
+    }
+	
+	  function validazioneLibroStorico() : bool
+    {
+        if ($this->libroStorico && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->libroStorico)) // solo lettere e spazi
+            return true;
+        else
+            return false;
+    }
+	
+	function validazioneStorico() : bool
+    {
+        if ($this->storico && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->storico)) // solo lettere e spazi
+            return true;
+        else
+            return false;
+    }
+	
+	function validazioneIdPrestito() : bool
+    {
+        if ($this->idPrestito && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->idPrestito)) // solo lettere e spazi
+            return true;
+        else
+            return false;
     }
 }
-
 ?>
