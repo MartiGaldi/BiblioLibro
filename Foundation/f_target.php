@@ -23,7 +23,7 @@ class f_target
     const ESISTE_NICK = 'Nick';
 	
 	/** verifica che la prenotazione non sia già in corso */
-    const ESISTE_PRENOTAZIONE = 'Prenota';
+    const ESISTE_PRENOTA = 'Prenota';
     
     /** verifica che una mail non sia utilizzata */
     const ESISTE_MAIL= 'Mail';

@@ -8,7 +8,7 @@ class f_storico
     static function salvaStorico():string
     {
         return "INSERT INTO storico(id_storico, id_utente, id_libro, data_scadenza, id_prestito)
-                VALUES(:id, :id_utente, :id_libro, :dataScadenza, :idPrestito)";
+                VALUES(:id, :id_utente, :id_libro, :dataScadenza, :id_prestito)";
     }
     
     /**
@@ -53,10 +53,29 @@ class f_storico
     static function bindValues(PDOStatement &$stmt, e_storico &$stor)
 	{
         $stmt->bindValue('id', $stor->getId(), PDO::PARAM_INT);
-        $stmt->bindValue(':id_utente', $stor->getUtentePrestito(), PDO::PARAM_INT);
-        $stmt->bindValue(':id_libro', $stor->getLibroPrestito(), PDO::PARAM_INT);
+        $stmt->bindValue(':id_utente', $stor->getUtenteStorico(), PDO::PARAM_INT);
+        $stmt->bindValue(':id_libro', $stor->getLibroStorico(), PDO::PARAM_INT);
         $stmt->bindValue(':dataScadenza', $stor->getDataScadenza(), PDO::PARAM_STR);
 		$stmt->bindValue(':id_prestito', $stor->getIdPrestito(), PDO::PARAM_INT);
+    }
+	
+	/**
+    * Istanzia un oggetto e_storico a partire dai valori di una tupla ricevuta dal dbms
+    * @param array $ennupla la tupla ricevuta dal dbms
+    * @return storico l'oggetto e_storico risultato dell'operazione
+    */
+    static function creaOggettoDaRiga($riga)
+    {
+        // creazione dell'oggetto e_storico
+        $storico = new e_storico();
+        $storico->setId($riga['id']);
+        $storico->setUtenteStorico($riga['id_utente']);
+        $storico->setLibroStorico($riga['id_libro']);
+        $storico->setDataScadenza($riga['data_scadenza']);
+        $storico->setPrestito($riga['id_prestito']);
+       // $storico->setStorico($riga['storico']);
+		            
+        return $storico;
     }
 }
 ?>

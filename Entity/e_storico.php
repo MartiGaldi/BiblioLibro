@@ -14,7 +14,7 @@ class e_storico
 	private $id;
 	private $utenteStorico;
 	private $libroStorico;
-	private $dataScadenzaPrestito;
+	private $dataScadenza;
 	private $idPrestito;
 	
 	private $storico;
@@ -54,14 +54,14 @@ class e_storico
         $this->libroStorico = $libroStorico;
     }
 	
-    public function getDataScadenzaPrestito() : string
+    public function getDataScadenza() : string
     {
-        return $this->dataScadenzaPrestito;
+        return $this->dataScadenza;
     }
 	
-    function setDataScadenzaPrestito(string $dataScadenzaPrestito)
+    function setDataScadenza(string $dataScadenza)
     {
-        $this->dataScadenzaPrestito = $dataScadenzaPrestito;
+        $this->dataScadenza = $dataScadenza;
     }
 	
 	function getIdPrestito()
@@ -74,15 +74,6 @@ class e_storico
         $this->idPrestito = $idPrestito;
     }
 	
-	function setStorico ( $storico)
-	{
-        $this->storico = $storico;
-    }
-	
-	function getStorico()
-	{
-		return $this->storico;
-	}
 	
 	function validazioneUtenteStorico() : bool
     {
@@ -100,13 +91,6 @@ class e_storico
             return false;
     }
 	
-	function validazioneStorico() : bool
-    {
-        if ($this->storico && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->storico)) // solo lettere e spazi
-            return true;
-        else
-            return false;
-    }
 	
 	function validazioneIdPrestito() : bool
     {

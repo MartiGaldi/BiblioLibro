@@ -190,26 +190,57 @@ class c_storico
     private function aggiungiStorico()
     {
         $v_storico = new v_storico(); // crea la view
+		
         $utente = c_sessione::getUtenteDaSessione(); // ottiene l'utente della sessione
-        
         if (get_class($utente) == e_bibliotecario::class)
         {
             $storico = $v_storico->creaStorico(); // la view restituisce una e_storico costruita a partire dalla form
-			$idPrestito = $storico->getIdPrestito(); //id prestito
 			
-			$pres = f_persistance::getInstance()->carica(e_prestito::class, $idPrestito); // si carica il libro
+			$idPrestito = $storico->getIdPrestito(); //id prestito
+			$pres = f_persistance::getInstance()->carica(e_prestito::class, $idPrestito); // si caricano i dati del prestito
 			if($pres)
 			{
 			$utentePrestito = $pres->getUtentePrestito();
 			$libroPrestito = $pres->getLibroPrestito();
 			$dataScadenza = $pres->getDataScadenza();
 			
-			$storico->setUtenteStorico($utentePrestito);
-			$storico->setLibroStorico($libroPrestito);
-			$storico->setDataScadenzaPrestito($dataScadenza);
-			f_persistance::getInstance()->salva($storico);
+			$nuovoStorico = new e_storico();
+			$nuovoStorico->setUtenteStorico($utentePrestito);
+			$nuovoStorico->setLibroStorico($libroPrestito);
+			$nuovoStorico->setDataScadenza($dataScadenza);
+			$nuovoStorico->setIdPrestito($idPrestito);
+			f_persistance::getInstance()->salva($nuovoStorico);
+			
+			$lib = f_persistance::getInstance()->carica(e_libro::class, $libroPrestito); // si caricano i dati del libro
+			$copie = $lib->getCopieDisponibili();
+			$copie ++;
+			$autore= $lib->getAutore();
+			$titolo= $lib->getTitolo();
+			$num= $lib->getNumCopie();
+			$durata= $lib->getDurata();
+			$genere= $lib->getGenere();
+			$isbn= $lib->getIsbn();
+			$descrizione= $lib->getDescrizione();
+			
+			if($copie <= $num)
+			{
+			$libro = new e_libro();
+			$libro->setId($lib->getId());
+			$libro->setAutore($autore);
+			$libro->setTitolo($titolo);
+			$libro->setNumCopie($num);
+			$libro->setDurata($durata);
+			$libro->setGenere($genere);
+			$libro->setIsbn($isbn);
+			$libro->setDescrizione($descrizione);
+			$libro->setCopieDisponibili($copie);
+			f_persistance::getInstance()->aggiorna($libro);
+			
 			//RIMUOVI PRENOTAZIONE
 			$v_storico->Avviso($utente, 'PRESTITO STORICO AGGIUNTO CON SUCCESSO');
+			}
+			else
+			$v_storico->Errore($utente, "RIENTRO PRESTITO NON VALIDO");	
 			}
 			else 
 			$v_storico->Errore($utente, "PRESTITO NON VALIDO"); 	

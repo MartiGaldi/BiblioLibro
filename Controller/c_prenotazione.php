@@ -28,7 +28,7 @@ class c_prenotazione
 	}
     
     
-    private function prenotazione($id)
+    private function prenotazione($id) //id libro
     {
         $v_prenotazione = new v_prenotazione();
         $utente = c_sessione::getUtenteDaSessione();
@@ -42,18 +42,19 @@ class c_prenotazione
 				if ($libroPrenotazione) // se il libro esiste
                 {
 					$book= $libroPrenotazione->getId();
-					$numCopie = $libroPrenotazione->getCopieDisponibili();
-					/*$autore= $libroPrenotazione->getAutore();
+					$copieDisp = $libroPrenotazione->getCopieDisponibili();
+					
+					$autore= $libroPrenotazione->getAutore();
 					$titolo= $libroPrenotazione->getTitolo();
 					$num= $libroPrenotazione->getNumCopie();
 					$durata= $libroPrenotazione->getDurata();
 					$genere= $libroPrenotazione->getGenere();
 					$isbn= $libroPrenotazione->getIsbn();
-					$descrizione= $libroPrenotazione->getDescrizione();*/
+					$descrizione= $libroPrenotazione->getDescrizione();
 					
                     if ($v_prenotazione->validaScelta()) // se l'utente ha scelto di prenotare il testo
                     {
-						if ($numCopie != 0)
+						if ($copieDisp != 0)
 						{
 						// si costruisce l'oggetto prenotazione
                         $prenotazione = new e_prenotazione();
@@ -61,9 +62,10 @@ class c_prenotazione
 						$prenotazione->setLibroPrenotazione($book);
 						$prenotazione->creaDataScadenza();
 						f_persistance::getInstance()->salva($prenotazione);
-						//$numCopie --;
-						/*$libro = new e_libro();
-						$libro->setId($book);
+						
+						$copieDisp --;
+						$libro = new e_libro();
+						$libro->setId($libroPrenotazione->getId());
 						$libro->setAutore($autore);
 						$libro->setTitolo($titolo);
 						$libro->setNumCopie($num);
@@ -71,11 +73,11 @@ class c_prenotazione
 						$libro->setGenere($genere);
 						$libro->setIsbn($isbn);
 						$libro->setDescrizione($descrizione);
-						$libro->setCopieDisponibili($numCopie);
-						f_persistance::getInstance()->salva($libro);
-						f_persistance::getInstance()->rimuovi($libro,$book);*/
-						//$v_prenotazione->Avviso($utente, 'PRENOTAZIONE EFFETTUATA CON SUCCESSO.');
-						header('Location: /Bibliolibro/utente/profilo/' . $utente->getId()); // redirect al profilo
+						$libro->setCopieDisponibili($copieDisp);
+                        f_persistance::getInstance()->aggiorna($libro);
+						
+						$v_prenotazione->Avviso($utente, 'PRENOTAZIONE EFFETTUATA CON SUCCESSO.');
+						//header('Location: /Bibliolibro/utente/profilo/' . $utente->getId()); // redirect al profilo
 						}
 						else
 						$v_prenotazione->Errore($utente, 'Siamo spiacenti. Attualmente non ci sono copie disponibili per la prenotazione.');

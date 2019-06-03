@@ -42,13 +42,6 @@
 			<!-- Rimozione profilo (se il profilo e' dell'utente della sessione)-->
 				<a href="/BiblioLibro/utente/rimuovi/" class="btn btn-primary btn-lg btn-danger active" role="button" aria-pressed="true">Rimuovi Profilo</a>
 			</div>
-			
-			{elseif $uTipo eq 'bibliotecario'}
-			<div>
-			<!-- Rimozione profilo (da parte del bibliotecario)-->
-				<a href="/BiblioLibro/utente/rimuovi/{$pId}" 
-					class="btn btn-primary btn-lg btn-danger active" role="button" aria-pressed="true">Rimuovi Profilo</a>
-			</div>
 			{/if}
 			
         </div>

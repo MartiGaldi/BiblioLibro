@@ -58,6 +58,24 @@ class f_prestito
         $stmt->bindValue(':dataScadenza', $pres->getDataScadenza(), PDO::PARAM_STR);
 		$stmt->bindValue(':id_prenotazione', $pres->getPrenotazione(), PDO::PARAM_INT);
     }
+	
+	/**
+    * Istanzia un oggetto e_prestito a partire dai valori di una tupla ricevuta dal dbms
+    * @param array $ennupla la tupla ricevuta dal dbms
+    * @return prestito l'oggetto e_prestito risultato dell'operazione
+    */
+    static function creaOggettoDaRiga($riga)
+    {
+        // creazione dell'oggetto e_storico
+        $prestito = new e_prestito();
+        $prestito->setId($riga['id_prestito']);
+        $prestito->setUtentePrestito($riga['id_utente']);
+        $prestito->setLibroPrestito($riga['id_libro']);
+        $prestito->setDataScadenza($riga['data_scadenza']);
+        $prestito->setPrenotazione($riga['id_prestito']);
+                   
+        return $prestito;
+    }
 }
 
 ?>

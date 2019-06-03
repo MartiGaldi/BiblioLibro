@@ -31,7 +31,14 @@ class f_libro{
     static function aggiornaLibro() : string
     {
         return "UPDATE libro
-                SET num_copie = :num_copie, titolo = :titolo, autore = :autore, durata = :durata, genere = :genere, isbn = :isbn, descrizione = :descrizione, copieDisponibili = :copieDisponibili
+                SET num_copie = :num_copie,
+					titolo = :titolo,
+					autore = :autore, 
+					durata = :durata, 
+					genere = :genere,
+					isbn = :isbn,
+					descrizione = :descrizione,
+					copieDisponibili = :copieDisponibili
                 WHERE id = :id ;";
     }
         

@@ -20,10 +20,10 @@ class c_ricerca
     //valore avanzato: ricerca per autore
     const VALUE_ADVANCED = 'Autore';
 	
-   /*chiave avanzata
-    const KEY_ADVANCED = 'Libro';
+   //chiave avanzata2
+    const KEY_ADVANCED2 = 'Utente';
     //valore avanzato: ricerca per genere
-    const VALUE_ADVANCED = 'Genere';*/
+    const VALUE_ADVANCED2 = 'Nick';
     
     
     
@@ -68,7 +68,8 @@ class c_ricerca
 				// si ricavano chiave e valore di ricerca scelti dall'utente
                 list($key, $value)=$v_ricerca->getKeyAndValue();
                 // se le chiavi corrispondono alle costanti
-                if(($key == c_ricerca::KEY_DEFAULT || $key == c_ricerca::KEY_ADVANCED) && ($value == c_ricerca::VALUE_DEFAULT || $value == c_ricerca::VALUE_ADVANCED))
+                if(($key == c_ricerca::KEY_DEFAULT || $key == c_ricerca::KEY_ADVANCED || $key == c_ricerca::KEY_ADVANCED2) && 
+					($value == c_ricerca::VALUE_DEFAULT || $value == c_ricerca::VALUE_ADVANCED || $value == c_ricerca::VALUE_ADVANCED2))
                 {   
 					// si prelevano gli oggetti
                     $oggetti = f_persistance::getInstance()->ricerca($key, $value, $string);

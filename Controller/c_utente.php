@@ -89,31 +89,21 @@ class c_utente
                 {
                     // si effettua il caricamento dell'utente
                     $profiloUtente = f_persistance::getInstance()->carica(e_utente::class, $id);
-                    
-                    if ($profiloUtente) // se l'utente esiste...
+                   // var_dump($profiloUtente);
+					if ($profiloUtente) // se l'utente esiste...
                     {   
-						/*$prenota = false;
-						$prestito = new e_prestito();
-						$prestito->setPrestito($Utente);
-						if($prestito->valido())
-						{
-							$prestito = $prestito->exists();
-						}
-						
-						$prestito = false;
-						$storico = false;*/
-						
                         $array = NULL; // array contenente i dati dell'utente da visualizzare
-						
-                        if ($content == 'prestito')  // se il parametro e' un libro preso in prestito
+						//var_dump($array);
+                       if ($content == 'prestito')  // se il parametro e' un libro preso in prestito
                         { 
 							// si carica la lista dei libri presi in prestito dall'utente (in corso)
                             $array = f_peristance::getInstance()->carica(e_prestito::class, $profiloUtente->getId(), f_target::CARICA_PRESTITO);
                             $content = 'Prestito';
                         }
 						
-						elseif ($content == 'storico')
+						elseif ($content == 'libro')
 						{
+							// si carica la lista dei prestiti storici dell'utente (caricate se bibliotecario)
 							$array = f_peristance::getInstance()->carica(e_storico::class, $profiloUtente->getId(), f_target::CARICA_STORICO);
                             $content = 'Storico';
 						}
@@ -125,8 +115,16 @@ class c_utente
 						}
 						
                         else // se il contenuto non e' specificato (e' stato inserito solo l'id) si visualizza la pagina base
-                                $content = 'None';   
-                        
+                                //$content = 'None';   
+                        {
+                            if(get_class($profiloUtente)==e_bibiotecario::class || get_class($profiloUtente)==e_cliente::class)
+                            { //lista delle prenotazioni, prestiti e storico
+                                $array = f_persistance::getInstance()->carica(e_prenota::class, $profiloUtente->getId(), f_target::CARICA_PRENOTA);
+                                $content = 'Lista Prenotazioni';
+                            }
+                            else // altrimenti ad una semplice pagina di benvenuto
+                                $content = 'None';
+                     }
                                
                         $v_utente->mostraProfilo($profiloUtente, $Utente, $content, $array); // mostra il profilo   
                     }
@@ -135,13 +133,13 @@ class c_utente
                 }
                 else
                     $v_utente->Errore($Utente, "L'URL non e' valido");  
-            }
+        }
             else
                 $v_utente->Errore($Utente, "L'URL non e valido!");    
         }
         else 
-            $v_utente->Errore($Utente, "L'URL ha pochi argomenti");   
-    }
+           $v_utente->Errore($Utente, "L'URL ha pochi argomenti");   
+   }
     
     
     
@@ -318,4 +316,26 @@ class c_utente
                 $v_utente->Errore($utente, 'Non puoi eliminare un visitatore'); 
         }  
     } 
+	
+	 /**
+     *  la funzione mostra permette la visualizzazione degli utenti da parte del bibliotecario
+     */
+    static function mostra($id)
+    {
+        if(is_numeric($id))
+        {
+            $v_utente=new v_utente();
+            $utente=c_sessione::getUtenteDaSessione();
+            $Utente=f_persistance::getInstance()->carica(e_utente::class, $id);
+            if($Utente)
+            {
+			    if(is_a($utente, e_bibliotecario::class))
+				 $v_utente->mostraUtente($utente, $Utente);
+            }
+            else
+                $v_utente->Errore($utente, 'id non corrisponde a nessun utente');
+        }
+        else
+            header('Location: HTTP/1.1 405 Invalid URL detected');
+    }
 }

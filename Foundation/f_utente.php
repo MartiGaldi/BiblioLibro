@@ -90,7 +90,12 @@ class f_utente
                 WHERE id = :id;";
     }
     
-    
+     static function ricercaUtenteDaNick() : string
+    {
+        return "SELECT utente.*
+                FROM utente
+                WHERE LOCATE( :Nick , utente.nick) > 0;";
+    }
     
     /**
      * Associazione di un oggetto e_utente ai campi di una query sql per la tabella prenota.

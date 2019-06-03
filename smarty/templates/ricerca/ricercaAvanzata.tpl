@@ -47,6 +47,7 @@
 					<div class="form-group col-md-3">
 						<select id="inputKey" class="form-control" name="key">
 							<option value="libro">Libro</option>
+							<option value="utente">Utente</option>
 						</select>
 					</div>
 					
@@ -54,6 +55,7 @@
 						<select id="inputValue" class="form-control" name="value">
 							<option value="titolo" selected>Titolo</option>
 							<option value="autore">Autore</option>
+							<option value="nick">Nickname</option>
 						</select>
 					</div>
 

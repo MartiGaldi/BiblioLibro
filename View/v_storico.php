@@ -49,20 +49,17 @@ class v_storico extends v_oggetto
             $storico->setLibroStorico(ucfirst($_POST['libroStorico']));
 		
 		if(isset($_POST['dataScadenzaPrestito']))
-            $storico->setDataScadenzaPrestito(ucfirst($_POST['dataScadenzaPrestito']));
+            $storico->setDataScadenzaPrestito(ucfirst($_POST['dataScadenzaPrestito']));*/
 		
-		 if(isset($_POST['storico']))
-            $storico->setStorico(ucfirst($_POST['storico']));*/
 		
 		if(isset($_POST['idPrestito']))
             $storico->setIdPrestito(ucfirst($_POST['idPrestito']));
                     
-        if ( /*isset($_POST['utenteStorico'])&& isset($_POST['libroStorico']) && isset($_POST['dataScadenzaPrestito']) && isset($_POST['storico']) && */isset($_POST['idPrestito']) )
+        if ( /*isset($_POST['utenteStorico'])&& isset($_POST['libroStorico']) && isset($_POST['dataScadenzaPrestito']) && */isset($_POST['idPrestito']) )
         {
 			/*$storico->setUtenteStorico(ucfirst($_POST['utenteStorico']));
 			$storico->setLibroStorico(ucfirst($_POST['libroStorico']));
-			$storico->setDataScadenzaPrestito(ucfirst($_POST['dataScadenzaPrestito']));
-            $storico->setStorico(ucfirst($_POST['storico']));*/
+			$storico->setDataScadenzaPrestito(ucfirst($_POST['dataScadenzaPrestito']));*/
 			$storico->setIdPrestito(ucfirst($_POST['idPrestito']));
         }     
         return $storico;
