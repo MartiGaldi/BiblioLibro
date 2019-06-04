@@ -36,31 +36,39 @@
 	<div class="container text-center">
 		<div class="col-sm-3">
 		<!-- Informazioni utente -->
-			
-			{if $uId == $pId}
+		<br>
+		<br>
+		{include file="utente/utenteInfo.tpl"}
+		<br>
+		<br>
+		<br>
+		{if $uId == $pId}
 			<div>
 			<!-- Rimozione profilo (se il profilo e' dell'utente della sessione)-->
 				<a href="/BiblioLibro/utente/rimuovi/" class="btn btn-primary btn-lg btn-danger active" role="button" aria-pressed="true">Rimuovi Profilo</a>
 			</div>
-			{/if}
+		{/if}
 			
         </div>
 			<div class="col-sm-7">
 			<!-- Contenuto principale -->
 			    {if $content eq 'Prestito'}
 				<!--lista prestiti (in corso)-->
-				<h4>Lista Prestiti</h4>
-				{include file="Catalogo.tpl"}
+				<h4>LISTA PRESTITI (in corso)</h4>
+				{include file="Prestito.tpl"}
 				
 				{elseif $content eq 'Storico'}
 				<!--lista prestiti (conclusi)-->
-				<h4>Storico</h4>
-				{include file="Catalogo.tpl"}
+				<h4>LISTA PRESTITI CONCLUSI (Storico)</h4>
+				{include file="Storico.tpl"}
 				
 				{elseif $content eq 'Prenotazione'}
 				<!--lista prenotazioni (non acquisiti)-->
-				<h4>Prenotazione</h4>
-				{include file="Catalogo.tpl"}
+				<h4>PRENOTAZIONE</h4>
+				{include file="Prenotazione.tpl"}
+				
+				{elseif $content eq 'Utente'}
+				<h4>PROFILO:</h4>
 				
 				{elseif $content eq 'None'}
 				<!-- introduzione semplice -->

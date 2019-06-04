@@ -12,16 +12,16 @@ require_once 'inc.php';
 class e_copertina
 {
     private $id;
-    private $tipo; //formato
     private $size; //dimensione
+	private $type; //formato
     private $copertina; //byte immagine
     
     /**inizializzazione immagine vuota*/
     function __constructor()
 	{
-        $this->id=null;
-		$this->size=0;
-        $this->tipo='non definito';
+        $this->id = null;
+		$this->size = 0;
+        $this->type = 'non definito';
     }
     
 	function getId() : int
@@ -39,14 +39,15 @@ class e_copertina
         $this->id=$id;
     }
 	
-    function setTipo(string $tipo) {
+    function setType(string $type)
+	{
         
-        $this->tipo=$tipo;
+        $this->type=$type;
     }
     
-    function getTipo() : string {
+    function getType() : string {
         
-        return $this->tipo;
+        return $this->type;
     }
     
     function setSize(int $size){
@@ -72,12 +73,12 @@ class e_copertina
     }
     
     /**imposta l'oggetto con valori statici ricavati da un'immagine nella directory di lavoro*/
-    function SetStatic()
+    function setStatic()
     {
         $file=dirname(__DIR__)."/risorse/static/copertina.png";
         
         $this->copertina=file_get_contests($file);
-        $this->tipo=mime_content_type($file);
+        $this->type=mime_content_type($file);
         $this->size=(int) filesize($file);
     }
     
@@ -89,7 +90,7 @@ class e_copertina
     {  
         if($this->size<=0 && $this->copertina>=65535) 
             $file = false;
-        if($this->tipo!='image/jpeg' && $this->tipo!='image/gif' && $this->tipo!='image/png' && $this->tipo!='image/svg')
+        if($this->type!='image/jpeg' && $this->type!='image/gif' && $this->type!='image/png' && $this->type!='image/svg')
             $file = false;       
     }
        

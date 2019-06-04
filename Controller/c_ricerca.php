@@ -23,7 +23,7 @@ class c_ricerca
    //chiave avanzata2
     const KEY_ADVANCED2 = 'Utente';
     //valore avanzato: ricerca per genere
-    const VALUE_ADVANCED2 = 'Nick';
+    const VALUE_ADVANCED2 = 'Nome';
     
     
     

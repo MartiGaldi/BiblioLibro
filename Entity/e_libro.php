@@ -22,7 +22,7 @@ class e_libro
 	private $isbn;
 	private $descrizione;
 	private $copieDisponibili;
-	//private $copertina;
+	private $copertina;
 	
 	private $prenota;
 
@@ -127,37 +127,8 @@ class e_libro
     function getCopieDisponibili() : int {
         return $this->copieDisponibili;
     }
-    /* vecchio
-	function setCopertina(e_copertina $copertina = null)
-    {
-		if(!$copertina){
-			$copertina=new e_copertina();
-			$copertina->setStatic();
-		}
-        $copertina->setId($this->id);
-		
-		if(!f_persistance::getIstance()->carica(e_copertina::class, $this->id)
-		{
-			f_persistance::getIstance()->salva($copertina);
-		}
-		else
-			f_persistance::getIstance()->aggiorna($copertina);
-		
-		$this->copertina=$copertina;
-    }*/
-	
-	/* nuovo
-	function setCopertina(e_copertina $copertina)
-	{
-		$this->copertina=$copertina;
-	}
-    
-    function getCopertina()
-    {
-		$this->copertina = f_persistance::getInstance()->carica(e_copertina::class, $this->id);
-        return $this->copertina;
-    }*/
-    
+   
+	 
     /**
      * Funzione che verifica che il nome dell'autore sia valido. Il nome dell'autore si intende valido se
      * contiene solamente lettere e spazi
@@ -245,6 +216,42 @@ class e_libro
             return true;
         else
             return false;
+    }
+
+/**
+     * Restituisce la copertina del libro
+     * @return e_copertina | NULL
+     */
+    function getCopertina()
+    {
+        $this->copertina = f_persistance::getInstance()->carica(e_copertina::class, $this->id);
+        return $this->copertina;
+    }
+    
+    /**
+     * Imposta la copertina del libro
+     * @param e_copertina $copertina
+     */
+    function setCopertina(e_copertina $copertina = null)
+    {
+        if(!$copertina)
+        {
+            $copertina = new e_copertina();
+            $copertina->setStatic();
+        }
+        
+        $copertina->setId($this->id);
+        
+        if(!f_persistance::getInstance()->carica(e_copertina::class, $this->id)) // se le informazioni non sono presenti...
+        { // vengono salvate nel db
+            f_persistance::getInstance()->salva($copertina); 
+        }
+        else
+        { // altrimenti vengono aggiornate
+            f_persistance::getInstance()->aggiorna($copertina);
+        }
+        
+        $this->copertina = $copertina;
     }	
 }
 

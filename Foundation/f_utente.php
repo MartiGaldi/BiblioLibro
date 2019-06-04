@@ -55,12 +55,12 @@ class f_utente
                 FROM utente
                 WHERE id = :id;";
     }
-    
-    /**
-     * Query che rimuove un utente dalla tabella utente.
-     * @return string contenente la query sql
-     */
+  
 	 
+    /**
+     * Carica i prestiti di un utente in un array di e_prestito
+     * @return string la stringa sql per la SELECT
+     */
 	 static function caricaPrestito() : string
     {
         return "SELECT *
@@ -82,7 +82,11 @@ class f_utente
                 WHERE prenota.id_prenota= :id AND prenota.id_utente = utente.id; ";
     }
 	
-	
+	  
+    /**
+     * Query che rimuove un utente dalla tabella utente.
+     * @return string contenente la query sql
+     */
     static function rimuoviUtente() : string
     {
         return "DELETE
@@ -90,11 +94,11 @@ class f_utente
                 WHERE id = :id;";
     }
     
-     static function ricercaUtenteDaNick() : string
+     static function ricercaUtenteDaNome() : string
     {
         return "SELECT utente.*
                 FROM utente
-                WHERE LOCATE( :Nick , utente.nick) > 0;";
+                WHERE LOCATE( :Nome , utente.nome) > 0;";
     }
     
     /**

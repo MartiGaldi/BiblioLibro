@@ -147,6 +147,10 @@
      						{/if}
     					</div>
 					
+						<div class="form-group row">
+    						<label for="inputFile">Seleziona copertina: *</label>
+    						<input type="file" class="form-control-file" name="file">
+  						</div>
 				<button type="submit" class="btn btn-secondary">Carica</button>
 			</form>
 			</div>

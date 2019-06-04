@@ -324,14 +324,19 @@ class c_utente
     {
         if(is_numeric($id))
         {
-            $v_utente=new v_utente();
+            $v_utente = new v_utente();
             $utente=c_sessione::getUtenteDaSessione();
             $Utente=f_persistance::getInstance()->carica(e_utente::class, $id);
             if($Utente)
             {
-			    if(is_a($utente, e_bibliotecario::class))
-				 $v_utente->mostraUtente($utente, $Utente);
+			if(is_a($utente, e_bibliotecario::class))
+			{
+				$content = "Utente";
+				$v_utente->mostraProfilo($Utente, $utente, $content);
             }
+			else 
+				$v_utente->Errore($utente, "Non puoi accedere a questa funzionalita'");
+			}
             else
                 $v_utente->Errore($utente, 'id non corrisponde a nessun utente');
         }

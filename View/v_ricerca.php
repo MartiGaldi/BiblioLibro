@@ -44,7 +44,7 @@ class v_ricerca extends v_oggetto
         $key="";
         $value="";
         
-        if($_GET['value'] == 'titolo' || $_GET['value'] == 'autore' || $_GET['value'] == 'nick' )
+        if($_GET['value'] == 'titolo' || $_GET['value'] == 'autore' || $_GET['value'] == 'nome')
 			$value = ucfirst($_GET['value']);
         if($_GET['key'] == 'libro' || $_GET['key'] == 'utente'  )
             $key=ucfirst($_GET['key']);

@@ -261,10 +261,6 @@ class e_utente
             return false;
     }
     
-    /*function __toString()
-    {
-        return "Nickname: ".$this->nick."\nId: ".$this->id;
-    }*/
 	
 	function getPrestito()
 	{
@@ -280,5 +276,19 @@ class e_utente
 	{
 		return f_persistance::getInstance()->carica(e_libro::class, $this->id, f_target::CARICA_STORICO);
 	}
+	
+	/**
+     * Restituisce le info dell'utente
+     * @return EUserInfo|NULL
+     */
+    function getUtenteInfo()
+    {
+        $uInfo = f_persistance::getInstance()->carica(e_utente::class, $this->id); 
+        if($uInfo)
+            $this->utenteInfo = $uInfo;
+        else 
+            $this->utenteInfo = new e_utente();
+        return $this->utenteInfo;
+    }
 }
 ?>

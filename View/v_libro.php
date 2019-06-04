@@ -32,6 +32,7 @@ class v_libro extends v_oggetto
 			'descrizione' => true,
 			'durata' => true,
 			'copieDisponibili' => true
+			//'file' => true
         ); 
     }
     
@@ -67,7 +68,6 @@ class v_libro extends v_oggetto
 		if(isset($_POST['durata']))
             $libro->setDurata(ucfirst($_POST['durata']));
 		
-		
 		if(isset($_POST['copieDisponibili']))
             $libro->setCopieDisponibili(ucfirst($_POST['copieDisponibili']));
 		
@@ -86,7 +86,36 @@ class v_libro extends v_oggetto
         
     }
     
-    
+     /**
+     * Funzione che permette la creazione della copertina
+     * @return e_copertina
+     */
+    function creaCopertina() : e_copertina
+    {
+        $copertina = new e_copertina();
+        
+        if($_FILES['file']['size']!=0)
+        {
+            $copertina->setCopertina(file_get_contents($_FILES['file']['tmp_name']));
+            $copertina->setSize($_FILES['file']['size']);
+            $copertina->setType($_FILES['file']['type']);
+        }
+        return $copertina;
+    }
+	
+	/**
+     * 
+     * @param e_copertina $copertina
+     * @return boolean
+     */
+    function validazioneCopertina(e_copertina &$copertina)
+    {
+        $copertina->validazione($this->check['file']);
+        if($this->check['file'])
+            return true;
+        else 
+            return false;
+    }
     
     /**
     * Mostra la pagina che consente l'inserimento di un libro da parte di un bibliotecario
@@ -236,31 +265,4 @@ class v_libro extends v_oggetto
         else
             return false;   
     }
-	
-	/**
-     * Funzione che permette la creazione della copertina di un libro
-     */
-   /* function creaCopertina() : e_copertina
-    {
-        $copertina = new e_copertina();
-        if($_FILES['file']['size']!=0)
-        {
-            $copertina->setCopertina(file_get_contents($_FILES['file']['tmp_name']));
-            $copertina->setSize($_FILES['file']['size']);
-            $copertina->setTipo($_FILES['file']['tipo']);
-        }
-        return $copertina;
-    }*/
-    
-    /**
-     * Funzione che permette la validazione della copertina di un libro
-     */
-    /*function validazioneCopertina(e_copertina &$copertina)
-    {
-        $copertina->validate($this->check['file']);
-        if($this->check['file'])
-            return true;
-        else
-            return false;
-    }*/
 }

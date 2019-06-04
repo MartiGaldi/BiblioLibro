@@ -41,6 +41,8 @@
 			<h1>Risultato ricerca: </h1>
 			{if $key eq "Libro"}
 				{include file="Catalogo.tpl"}
+			{elseif $key eq "Utente"}
+				{include file="UtenteLista.tpl"}
 			{/if}
 		</div>
 		

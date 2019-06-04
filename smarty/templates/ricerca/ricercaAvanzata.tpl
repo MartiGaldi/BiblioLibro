@@ -55,7 +55,7 @@
 						<select id="inputValue" class="form-control" name="value">
 							<option value="titolo" selected>Titolo</option>
 							<option value="autore">Autore</option>
-							<option value="nick">Nickname</option>
+							<option value="nome">Nome</option>
 						</select>
 					</div>
 
