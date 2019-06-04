@@ -34,7 +34,13 @@ class f_prenotazione
     {
         return "SELECT *
                 FROM prenotazione
-                WHERE id_prenotazione = :id";
+                WHERE id_prenotazione = :id ";
+    }
+	static function caricaPrenotazioni() : string 
+    {
+        return "SELECT *
+                FROM prenotazione
+                WHERE LOCATE( :id , id_utente) > 0";
     }
     
     /**
@@ -89,12 +95,6 @@ class f_prenotazione
         return $prenotazione;
     }
     
-    /*static function contaNumero() : int
-    {
-        return "SELECT count (*)
-                FROM prenotazione INNER JOIN prestito
-                WHERE id_libro = :id_libro AND prenotazione.id_libro = prestito.id_libro;";
-    }*/
 }
 
 ?>

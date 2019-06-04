@@ -90,7 +90,7 @@ class f_libro{
         $stmt->bindValue(':genere', $lib->getGenere(), PDO::PARAM_STR);
 		$stmt->bindValue(':isbn', $lib->getIsbn(), PDO::PARAM_STR);
 		$stmt->bindValue(':descrizione', $lib->getDescrizione(), PDO::PARAM_STR);
-		 $stmt->bindValue(':copieDisponibili', $lib->getCopieDisponibili(), PDO::PARAM_INT);
+		$stmt->bindValue(':copieDisponibili', $lib->getCopieDisponibili(), PDO::PARAM_INT);
     } 
     
     /**
@@ -110,7 +110,7 @@ class f_libro{
         $libro->setGenere($riga['genere']);
 		$libro->setIsbn($riga['isbn']);
 		$libro->setDescrizione($riga['descrizione']);
-		 $libro->setCopieDisponibili($riga['copieDisponibili']);
+		$libro->setCopieDisponibili($riga['copieDisponibili']);
                     
         return $libro;
     }

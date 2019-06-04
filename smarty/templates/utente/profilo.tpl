@@ -32,54 +32,66 @@
   </div>
   
 	{include file="navbar.tpl"}
-		  
-	<div class="container text-center">
-		<div class="col-sm-3">
+	<div class="py-5 bg-white">	  
+	<div class="container">
+	 <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="card text-black p-5 bg-secondary">
+		  <div class="card-body">
+	<form>
+	<div class="container text">
 		<!-- Informazioni utente -->
-		<br>
-		<br>
 		{include file="utente/utenteInfo.tpl"}
-		<br>
-		<br>
-		<br>
+		
 		{if $uId == $pId}
-			<div>
-			<!-- Rimozione profilo (se il profilo e' dell'utente della sessione)-->
-				<a href="/BiblioLibro/utente/rimuovi/" class="btn btn-primary btn-lg btn-danger active" role="button" aria-pressed="true">Rimuovi Profilo</a>
-			</div>
+		<div>
+		<br>
+		<br>
+		<!-- Rimozione profilo (se il profilo e' dell'utente della sessione o se si è un bibliotecario)-->
+		<a href="/BiblioLibro/utente/rimuovi/" class="btn btn-primary btn-lg btn-danger active" role="button" aria-pressed="true">Rimuovi Profilo</a>
+		</div>
 		{/if}
-			
-        </div>
-			<div class="col-sm-7">
-			<!-- Contenuto principale -->
-			    {if $content eq 'Prestito'}
-				<!--lista prestiti (in corso)-->
-				<h4>LISTA PRESTITI (in corso)</h4>
-				{include file="Prestito.tpl"}
+		<br>
+		<br>
+		<br>
+		
+		<div class="col-sm-100">
+		<!-- Contenuto principale -->
+		
 				
-				{elseif $content eq 'Storico'}
-				<!--lista prestiti (conclusi)-->
-				<h4>LISTA PRESTITI CONCLUSI (Storico)</h4>
-				{include file="Storico.tpl"}
-				
-				{elseif $content eq 'Prenotazione'}
-				<!--lista prenotazioni (non acquisiti)-->
-				<h4>PRENOTAZIONE</h4>
+				<h4>PRENOTAZIONI:</h4>
+				<!--lista prenotazioni-->
 				{include file="Prenotazione.tpl"}
 				
-				{elseif $content eq 'Utente'}
-				<h4>PROFILO:</h4>
 				
-				{elseif $content eq 'None'}
+				<h4>LISTA PRESTITI (in corso):</h4>
+				<!--lista prestiti (in corso)-->
+				{include file="Prestito.tpl"}
+				
+				
+				<!--lista prestiti (conclusi)-->
+				<h4>LISTA PRESTITI CONCLUSI (Storico):</h4>
+				{include file="Storico.tpl"}
+				
+				{if $content eq 'None'}
 				<!-- introduzione semplice -->
-				<h3>Il mio profilo!</h3>
+				<h3></h3>
 				{/if}
-			</div>
+		</div>
 	</div>
-	
-    <br>
-	<br>
-   
+	</form>
+	</div>
+    </div>
+    <div class="col-md-4" ></div>
+    </div>
+    </div>
+  </div>
+  </div>
+   </div> 
+ </div>
+
+ 
 	{include file="fine.tpl"}
 	
 </body>

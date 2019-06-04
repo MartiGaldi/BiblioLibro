@@ -30,7 +30,13 @@ class f_storico
     {
         return "SELECT *
                 FROM storico
-                WHERE id_storico = :id;";
+                WHERE id_storico = :id ;";
+    }
+	static function caricaStorici() : string
+    {
+        return "SELECT *
+                FROM storico
+                WHERE LOCATE( :id , id_utente) > 0;";
     }
     
     /**
@@ -64,16 +70,16 @@ class f_storico
     * @param array $ennupla la tupla ricevuta dal dbms
     * @return storico l'oggetto e_storico risultato dell'operazione
     */
-    static function creaOggettoDaRiga($riga)
+    static function creaOggettoDaRiga($riga) : e_storico
     {
         // creazione dell'oggetto e_storico
         $storico = new e_storico();
-        $storico->setId($riga['id']);
+        $storico->setId($riga['id_storico']);
         $storico->setUtenteStorico($riga['id_utente']);
         $storico->setLibroStorico($riga['id_libro']);
         $storico->setDataScadenza($riga['data_scadenza']);
-        $storico->setPrestito($riga['id_prestito']);
-       // $storico->setStorico($riga['storico']);
+        $storico->setIdPrestito($riga['id_prestito']);
+        // $storico->setStorico($riga['storico']);
 		            
         return $storico;
     }

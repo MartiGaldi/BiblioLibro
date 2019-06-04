@@ -96,9 +96,9 @@ class f_persistance
                 $sql = $classeFound::$method();      
         }
         
-        if($sql)     
+        if($sql) {
             return $this->eseguiCarica($classe, $id, $sql, $target);
-        else 
+        }else 
             return NULL;
     }
     
@@ -111,7 +111,7 @@ class f_persistance
     */
     
     private function eseguiCarica(string $classe, int $id, string $sql, string $target=null) 
-    {    
+    {   
         try   
         {
             $stmt = $this->db->prepare($sql); // creo PDOStatement
@@ -123,7 +123,7 @@ class f_persistance
             
             while($riga = $stmt->fetch())
             { // per ogni tupla restituita dal database viene istanziato un oggetto
-                if($target == f_target::CARICA_LIBRO || $target == f_target::CARICA_CLIENTE)
+                if($target == f_target::CARICA_LIBRO || $target == f_target::CARICA_CLIENTE || $target == f_target::CARICA_PRENOTAZIONI || $target == f_target::CARICA_PRESTITI || $target == f_target::CARICA_STORICI)
                     //inserire qui target che richiedono un array come ritorno
                     $oggetto[] = f_persistance::creaOggettoDaRiga($classe, $riga);
                 else 
@@ -542,77 +542,11 @@ class f_persistance
         $oggetto = NULL; //oggetto che conterra' l'istanza dell'elaborazione
         if ( class_exists( $classe ) )
         {
-            $classeFound = 'f_'.substr($classe,2);
-            $oggetto = $classeFound::creaOggettoDaRiga($riga);
+			$classeFound = 'f_'.substr($classe,2);
+			$oggetto = $classeFound::creaOggettoDaRiga($riga);
         }
         return $oggetto;
     }
-    
-  /**
-  
-    function contaRighe (&$oggetto) : bool 
-    {
-        $risultato=false;
-        switch($oggetto)
-        {
-            case(is_a($oggetto, e_prestito::class)):
-               // $sql =  f_prestito::      
-        }
-    } 
-    
-    function salva(&$oggetto) : bool 
-    {
-        $risultato=false;
-        $sql='';
-        $classe='';
-        switch ($oggetto) {
-            case (is_a($oggetto, e_libro::class)):
-                $sql=f_libro::salvaLibro();
-                $risultato=$this->eseguiSalvataggio($oggetto,$sql);
-                break;
-            
-            default:
-                $sql=null;
-                break;
-        }
-        return $risultato;
-    }
-    
-    private function eseguiSalvataggio($oggetto,string $sql) {
-        $this->database->beginTransaction();
-        $stmt=$this->database->prepare($sql);
-        try {
-            f_persistance::bindValues($stmt,$oggetto);
-            $stmt->execute();
-            if($stmt->rowCount())
-            {
-                return $this->database->commit();
-            }
-            else
-            {
-                $this->database->rollBack();
-                return false;
-            }
-                
-            
-        } catch (PDOException $e) {
-            echo ('Errore: '.$e->getMessage());
-            $this->database->rollBack();
-            return false;
-        }
-    }
-    
-    private function bindValues(PDOStatement &$stmt, &$oggetto)
-    {
-        switch ($oggetto) {
-            case(is_a($oggetto, e_libro::class)):
-                f_libro::bindValues($stmt, $oggetto);
-                break;
-            default:
-                break;
-        }
-    }*/
-    
     
 }
 

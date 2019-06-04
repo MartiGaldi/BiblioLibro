@@ -237,6 +237,7 @@ class c_storico
 			f_persistance::getInstance()->aggiorna($libro);
 			
 			//RIMUOVI PRENOTAZIONE
+			f_persistance::getInstance()->rimuovi(e_prestito::class, $idPrestito);
 			$v_storico->Avviso($utente, 'PRESTITO STORICO AGGIUNTO CON SUCCESSO');
 			}
 			else

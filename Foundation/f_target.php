@@ -35,7 +35,14 @@ class f_target
 	const CARICA_STORICO = 'Storico';
 	
 	/** caricamento delle prenotazioni di un cliente */
-	const CARICA_PRENOTA = 'Prenota';
+	const CARICA_PRENOTAZIONE = 'Prenotazione';
+	
+	const CARICA_PRESTITI = 'Prestiti';
+	
+	const CARICA_STORICI = 'Storici';
+	
+	const CARICA_PRENOTAZIONI = 'Prenotazioni';
 }
+
 
 ?>

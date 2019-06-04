@@ -132,7 +132,7 @@ class v_utente extends v_oggetto
     * @param array $array: l'array del contenuto da visualizzare
     */
     
-    function mostraProfilo (e_utente &$profiloUtente, e_utente &$Utente,/* bool $haPrenota, bool $haPrestito, bool $haStorico*/ string $content, array $array = NULL)
+    function mostraProfilo (e_utente &$profiloUtente, e_utente &$Utente, string $content, array $array = NULL, array $array2 = NULL, array $array3 = NULL)
     {
         $this->smarty->assign('content', $content);
         $this->smarty->registerObject('utente', $Utente);
@@ -141,11 +141,9 @@ class v_utente extends v_oggetto
         $this->smarty->registerObject('profilo', $profiloUtente);
         $this->smarty->assign('pTipo', lcfirst(substr(get_class($profiloUtente), 2)));
       
-		/*$this->smarty->assign('haPrestito', $haPrestito);
-        $this->smarty->assign('haPrenota', $haPrenota);
-		$this->smarty->assign('haStorico', $haStorico);*/
-	
         $this->smarty->assign('array', $array);
+        $this->smarty->assign('array2', $array2);
+        $this->smarty->assign('array3', $array3);
         
         $this->smarty->display('utente/profilo.tpl'); 
     }

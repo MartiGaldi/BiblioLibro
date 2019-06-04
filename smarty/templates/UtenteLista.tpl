@@ -8,7 +8,7 @@
 		<td>NICKNAME</td>
 		<td>MAIL</td>
 		<tr>
-		<td><a href="/BiblioLibro/utente/mostra/{$utente->getId()}">{$utente->getNome()}</a></td>
+		<td><a href="/BiblioLibro/utente/profilo/{$utente->getId()}">{$utente->getNome()}</a></td>
 		<td>{$utente->getCognome()}</td>
 		<td>{$utente->getNick()}</td>
 		<td>{$utente->getMail()}</td>

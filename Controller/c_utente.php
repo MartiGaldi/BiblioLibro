@@ -89,51 +89,26 @@ class c_utente
                 {
                     // si effettua il caricamento dell'utente
                     $profiloUtente = f_persistance::getInstance()->carica(e_utente::class, $id);
-                   // var_dump($profiloUtente);
 					if ($profiloUtente) // se l'utente esiste...
-                    {   
-                        $array = NULL; // array contenente i dati dell'utente da visualizzare
-						//var_dump($array);
-                       if ($content == 'prestito')  // se il parametro e' un libro preso in prestito
-                        { 
-							// si carica la lista dei libri presi in prestito dall'utente (in corso)
-                            $array = f_peristance::getInstance()->carica(e_prestito::class, $profiloUtente->getId(), f_target::CARICA_PRESTITO);
-                            $content = 'Prestito';
-                        }
-						
-						elseif ($content == 'libro')
-						{
-							// si carica la lista dei prestiti storici dell'utente (caricate se bibliotecario)
-							$array = f_peristance::getInstance()->carica(e_storico::class, $profiloUtente->getId(), f_target::CARICA_STORICO);
-                            $content = 'Storico';
-						}
-						
-						elseif ($content == 'prenota')
-						{
-							$array = f_peristance::getInstance()->carica(e_prenota::class, $profiloUtente->getId(), f_target::CARICA_PRENOTA);
-                            $content = 'Prenota';
-						}
-						
-                        else // se il contenuto non e' specificato (e' stato inserito solo l'id) si visualizza la pagina base
-                                //$content = 'None';   
-                        {
-                            if(get_class($profiloUtente)==e_bibiotecario::class || get_class($profiloUtente)==e_cliente::class)
-                            { //lista delle prenotazioni, prestiti e storico
-                                $array = f_persistance::getInstance()->carica(e_prenota::class, $profiloUtente->getId(), f_target::CARICA_PRENOTA);
-                                $content = 'Lista Prenotazioni';
-                            }
-                            else // altrimenti ad una semplice pagina di benvenuto
-                                $content = 'None';
-                     }
-                               
-                        $v_utente->mostraProfilo($profiloUtente, $Utente, $content, $array); // mostra il profilo   
+                    {   	
+							$array = (f_persistance::getInstance()->carica(e_prenotazione::class, $profiloUtente->getId(), f_target::CARICA_PRENOTAZIONI));
+                            $content = 'Prenotazione';
+							
+							$array2 = (f_persistance::getInstance()->carica(e_prestito::class, $profiloUtente->getId(), f_target::CARICA_PRESTITI));
+							$content = 'Prestito';
+							
+							$array3 = (f_persistance::getInstance()->carica(e_storico::class, $profiloUtente->getId(), f_target::CARICA_STORICI));
+							$content = 'Storico';
+							
+						  
+                        $v_utente->mostraProfilo($profiloUtente, $Utente, $content, $array, $array2, $array3); // mostra il profilo   
                     }
                     else 
                         $v_utente->Errore($Utente, "L'id non corrisponde a nessun utente");
                 }
                 else
                     $v_utente->Errore($Utente, "L'URL non e' valido");  
-        }
+			}
             else
                 $v_utente->Errore($Utente, "L'URL non e valido!");    
         }

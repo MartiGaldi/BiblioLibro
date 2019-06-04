@@ -212,39 +212,42 @@ class c_prestito
 			$id3 = $prestito->getUtentePrestito();
 			if ($id2)
 			{
-			$pren = f_persistance::getInstance()->carica(e_prenotazione::class, $id2); // si carica il libro
-			if($pren)
-			{
-			$dataPrenotazione = $pren->getDataScadenza();
-			$dataOdierna = date("Y-m-d");
-			if ($dataPrenotazione >= $dataOdierna) //se non scaduta la prenotazione
-			{		
-			$utentePrenotazione = $pren->getUtentePrenotazione();
-			$libroPrenotazione = $pren->getLibroPrenotazione();
-			if ($utentePrenotazione == $id3 && $libroPrenotazione == $id)
-			{
-			$libroPrestito = f_persistance::getInstance()->carica(e_libro::class, $id); // si carica il libro
-			$durata= $libroPrestito->getDurata();
-			$data = $prestito->creaDataScadenza($durata);
-			f_persistance::getInstance()->salva($prestito);
-			//RIMUOVI PRENOTAZIONE
-			$v_prestito->Avviso($utente, 'PRESTITO AGGIUNTO CON SUCCESSO');
+				$pren = f_persistance::getInstance()->carica(e_prenotazione::class, $id2); // si carica il libro
+				if($pren)
+				{
+					$dataPrenotazione = $pren->getDataScadenza();
+					$dataOdierna = date("Y-m-d");
+					if ($dataPrenotazione >= $dataOdierna) //se non scaduta la prenotazione
+					{		
+						$utentePrenotazione = $pren->getUtentePrenotazione();
+						$libroPrenotazione = $pren->getLibroPrenotazione();
+						if ($utentePrenotazione == $id3 && $libroPrenotazione == $id)
+						{
+							$libroPrestito = f_persistance::getInstance()->carica(e_libro::class, $id); // si carica il libro
+							$durata= $libroPrestito->getDurata();
+							$data = $prestito->creaDataScadenza($durata);
+							f_persistance::getInstance()->salva($prestito);
+							//RIMUOVI PRENOTAZIONE
+							f_persistance::getInstance()->rimuovi(e_prenotazione::class, $id2);
+							
+							$v_prestito->Avviso($utente, 'PRESTITO AGGIUNTO CON SUCCESSO');
+						}
+						else
+							$v_prestito->Errore($utente, "PRENOTAZIONE aaa NON VALIDA"); 
+					}
+					else 
+					{
+						//rimuovi prenotazione
+						f_persistance::getInstance()->rimuovi(e_prenotazione::class, $id2);
+						$v_prestito->Errore($utente, "PRENOTAZIONE SCADUTA"); 
+					}
+				}
+				else 
+					$v_prestito->Errore($utente, "PRENOTAZIONE NON VALIDA"); 	
 			}
 			else
-			$v_prestito->Errore($utente, "PRENOTAZIONE NON VALIDA"); 
-			}
-			else 
-			{
-			//rimuovi prenotazione
-			$v_prestito->Errore($utente, "PRENOTAZIONE SCADUTA"); 
-			}
-			}
-			else 
-			$v_prestito->Errore($utente, "PRENOTAZIONE NON VALIDA"); 	
-			}
-			else
-			$v_prestito->Errore($utente, "BISOGNA PRIMA PROCEDERE CON UNA PRENOTAZIONE"); 
-       // }
+				$v_prestito->Errore($utente, "BISOGNA PRIMA PROCEDERE CON UNA PRENOTAZIONE"); 
+       // }		
 		}
         else
             $v_prestito->Errore($utente, 'UTENTE NON AUTORIZZATO');

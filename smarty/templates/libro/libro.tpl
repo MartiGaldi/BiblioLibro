@@ -36,6 +36,7 @@
 		  <div class="card-body">
 	<form>
 	<div class="container text">
+	<div class="card text-black p-10 bg-secondary">
 			<h4>
 			<table>
 			<tr><td>TITOLO: </td><td>{$libro->getTitolo()}</td></tr>
@@ -46,6 +47,8 @@
 			<tr><td>COPIE: </td><td>{$libro->getCopieDisponibili()}</td></tr>
 			</table> 
 			</h4>
+	</div>	
+
 			<br>
 			<br>
 			

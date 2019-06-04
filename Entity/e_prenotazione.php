@@ -110,5 +110,6 @@ class e_prenotazione
         else 
             return false;
     }
-	}
+	
+}
 ?>

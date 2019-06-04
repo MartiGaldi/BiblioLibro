@@ -30,7 +30,13 @@ class f_prestito
     {
         return "SELECT *
                 FROM prestito
-                WHERE id_prestito = :id;";
+                WHERE id_prestito = :id ;";
+    }
+	static function caricaPrestiti() : string
+    {
+        return "SELECT *
+                FROM prestito
+                WHERE LOCATE( :id , id_utente) > 0;";
     }
     
     /**
@@ -64,7 +70,7 @@ class f_prestito
     * @param array $ennupla la tupla ricevuta dal dbms
     * @return prestito l'oggetto e_prestito risultato dell'operazione
     */
-    static function creaOggettoDaRiga($riga)
+    static function creaOggettoDaRiga($riga) : e_prestito
     {
         // creazione dell'oggetto e_storico
         $prestito = new e_prestito();
