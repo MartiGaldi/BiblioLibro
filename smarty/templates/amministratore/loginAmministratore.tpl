@@ -40,7 +40,7 @@
 	<div class="col-md-6">
 		<div class="card text-white p-5 bg-primary">
 		    <div class="card-body">
-				<h1 class="mb-4"> Login Admin</h1>
+				<h1 class="mb-4"> Login Amministratore</h1>
 								
 			{if $errore}
 			<div class="alert alert-warning">
@@ -52,23 +52,23 @@
 			<form action="login" method="post">
 			
 				<div class="form-group row">
-      				<label for="utente" class="col-sm-6 {if !$check.mail} text-danger{/if}">Indirizzo mail:</label>
-					<input type="text" class="form-control is-invalid" id="utente" name="mail" placeholder="Inserisci mail..."></div>
+      				<label for="utente" class="col-sm-6 {if !$check.nick1} text-danger{/if}">NickName:</label>
+					<input type="text" class="form-control" id="utente" name="nick1" placeholder="Inserisci nickname..."></div>
 
-      				{if ! $check.mail}
+      				{if ! $check.nick1}
       					<div class="col-sm-8">
-        					<small id="mailHelp" class="text-danger">
-          						La struttura della mail non è valida.
+        					<small id="nickHelp" class="text-danger">
+          						Nickname non è valido.
         					</small>      
      					</div>
      				{/if}
 						
 
     			<div class="form-group row">
-      				<label for="inputPassword" class="col-sm-6 {if !$check.password} text-danger{/if}">Password:</label>
-        			<input type="password" class="form-control is-invalid" id="inputPassword" name="password" placeholder="Inserisci password..."></div>
+      				<label for="inputPassword" class="col-sm-6 {if !$check.password1} text-danger{/if}">Password:</label>
+        			<input type="password" class="form-control" id="inputPassword" name="password1" placeholder="Inserisci password..."></div>
 
-      				{if ! $check.password}
+      				{if ! $check.password1}
       					<div class="col-sm-3">
         					<small id="passwordHelp" class="text-danger">
           						La password deve contenere dagli 8 ai 20 charatteri.

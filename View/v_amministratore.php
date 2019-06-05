@@ -9,15 +9,28 @@ include_once 'View/v_oggetto.php';
 
 class v_amministratore extends v_oggetto
 {
+	
     function __construct()   
     {
         parent::__construct();
                 
         $this->check = array(
-            'nick' => true,
+            'nick1' => true,
+            'mail1' => true,
+            'password1' => true,
+            'tipo1' => true,
+			
+			'nick' => true,
             'mail' => true,
             'password' => true,
-            'tipo' => true
+            'tipo' => true,
+			'nome' => true,
+			'cognome' => true,
+			'dtNasc' => true,
+			'lgNasc' => true,
+			'via' => true,
+			'citta' => true,
+			'cap' => true
         );
     }
     
@@ -26,10 +39,10 @@ class v_amministratore extends v_oggetto
     * @return array
     */
     
-    function getMailEPassword() : array
+    function getNickEPassword() : array
     {
-        if (isset($_POST['mail']) && isset($_POST['password']))
-            return array($_POST['mail'],$_POST['password']);       
+        if (isset($_POST['nick1']) && isset($_POST['password1']))
+            return array($_POST['nick1'],$_POST['password1']);       
     }
     
     /**
@@ -39,7 +52,7 @@ class v_amministratore extends v_oggetto
     
     function validazioneIscrizione(e_utente $utente): bool
     {
-        if($this->check['mail']=$utente->validazioneMail() && $this->check['password']=$utente->validazionePassword())
+        if($this->check['nick1']=$utente->validazioneNick() && $this->check['password1']=$utente->validazionePassword())
             return true;   
         else   
             return false;
@@ -74,20 +87,20 @@ class v_amministratore extends v_oggetto
     {
         $utente;
         
-        if (isset($_POST['tipo']))
+        if (isset($_POST['tipo1']))
 		{
-            $tipo = 'e_' . ucfirst($_POST['tipo']);
+            $tipo = 'e_' . ucfirst($_POST['tipo1']);
             $utente = new $tipo();
         } 
 		else
             $utente = new e_utente();
                 
-				if (isset($_POST['nick']))
-					$utente->setNick($_POST['nick']);
-                if (isset($_POST['mail']))
-                    $utente->setMail($_POST['mail']);
-                if (isset($_POST['password']))
-                    $utente->setPassword($_POST['password']);
+				if (isset($_POST['nick1']))
+					$utente->setNick($_POST['nick1']);
+                if (isset($_POST['mail1']))
+                    $utente->setMail($_POST['mail1']);
+                if (isset($_POST['password1']))
+                    $utente->setPassword($_POST['password1']);
                         
                 return $utente;
     }
@@ -123,6 +136,54 @@ class v_amministratore extends v_oggetto
         $this->smarty->assign('check', $this->check);
         $this->smarty->display('amministratore/pannello.tpl');
     }
+	
+	function creaUtente1() : e_utente
+    { 
+        $utente;
+        if(isset($_POST['tipo']))
+        { 
+            $tipo = 'e_'.lcfirst($_POST['tipo']);
+            $utente = new $tipo(); 
+        }
+        else
+            $utente = new e_utente();
+           
+		   
+		if(isset($_POST['nick']))
+            $utente->setNick($_POST['nick']);
+		
+        if(isset($_POST['mail']))
+            $utente->setMail($_POST['mail']);
+                    
+        if(isset($_POST['password']))
+            $utente->setPassword($_POST['password']);
+		
+		if(isset($_POST['nome']))
+            $utente->setNome($_POST['nome']);
+		
+		if(isset($_POST['cognome']))
+            $utente->setCognome($_POST['cognome']);
+		
+		if(isset($_POST['dtNasc']))
+            $utente->setDtNasc($_POST['dtNasc']);
+		
+		if(isset($_POST['lgNasc']))
+            $utente->setLgNasc($_POST['lgNasc']);
+		
+		if(isset($_POST['via']))
+            $utente->setVia($_POST['via']);
+		
+		if(isset($_POST['citta']))
+            $utente->setCitta($_POST['citta']);
+		
+		if(isset($_POST['cap']))
+            $utente->setCap($_POST['cap']);
+                        
+    return $utente;                
+    }
+	
+	
+	
 }
 
 ?>

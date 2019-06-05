@@ -194,10 +194,12 @@
                   <label class="form-check-label">
                     <input class="form-check-input" type="radio" value="cliente" name="tipo" checked> Cliente </label>
                 </div>
+				<!--
                 <div class="form-check form-check-inline">
                   <label class="form-check-label">
                     <input class="form-check-input" type="radio" value="bibliotecario" name="tipo"> Bibliotecario </label>
                 </div>
+				-->
                 <br>
                 <br>
                 <button type="submit" class="btn btn-secondary">Registra</button>
