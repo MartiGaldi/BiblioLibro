@@ -38,6 +38,10 @@ class e_libro
 
     function __constructor(){}
     
+	/**
+     * Metodo che fornisce l'id del libro
+     * @return int l'id del libro
+     */
 	function getId() : int
     {
         if(!$this->id)

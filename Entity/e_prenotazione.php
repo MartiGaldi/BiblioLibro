@@ -12,52 +12,82 @@ require_once'inc.php';
 
 class e_prenotazione
 {
+	/** id prenotazione */
 	private $id;
+	/** id utente prenotazione */
 	private $utentePrenotazione;
+	/** id libro prenotazione */
 	private $libroPrenotazione;
+	/** data scadenza prenotazione */
 	private $dataScadenza;
 	
 	function __construct(){}
 	
+	/**
+     * Metodo che fornisce l'id della prenotazione
+     * @return int l'id della prenotazione
+     */
 	function getId() : int {
         if(!$this->id)
             return 0;
         else return $this->id;
     }
     
+	/**
+     * @param int $id l'identificativo dell'oggetto Entity
+     */
     function setId(int $id) {
         $this->id = $id;
     }
 	
+	/**
+     * Metodo che fornisce l'id dell'utente relativo alla prenotazione
+     * @return int l'id dell'utente relativo alla prenotazione
+     */
 	function getUtentePrenotazione()
 	{
 		return $this->utentePrenotazione;
 	}
 	
+	/**
+	 * metodo che imposta l'id dell'utente relativo alla prenotazione
+	 * @param int $utentePrenotazione l'id dell'utente relativo alla prenotazione
+	 */
 	function setUtentePrenotazione ( $utentePrenotazione)
 	{
         $this->utentePrenotazione = $utentePrenotazione;
     }
 	
+	/**
+     * Metodo che fornisce l'id del libro relativo alla prenotazione
+     * @return int l'id del libro relativo alla prenotazione
+     */
 	function getLibroPrenotazione()
 	{
 		return $this->libroPrenotazione;
 	}
 	
+	/**
+	 * metodo che imposta l'id del libro relativo alla prenotazione 
+	 * @param int $libroPrenotazione l'id del libro relativo alla prenotazione
+	 */
 	function setLibroPrenotazione ( $libroPrenotazione)
 	{
         $this->libroPrenotazione = $libroPrenotazione;
     }
 	
 	/**
+	 * Metodo che fornisce la data di scadenza relativa alla prenotazione
      * @return string la data di scadenza della prenotazione
      */
     public function getDataScadenza() : string
     {
         return $this->dataScadenza;
     }
+	
 	/**
-     * @param string $dataScadenza la data di scadenza nel formato y-m-d
+	 * metodo che imposta la data di scadenza relativa alla prenotazione
+	 * @param string $dataScadenza la data di scadenza relativa alla prenotazione nel formato y-m-d
      */
     function setDataScadenza(string $dataScadenza)
     {
