@@ -24,34 +24,11 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Struttura della tabella `copertina`
---
-
-CREATE TABLE `copertina` (
-  `id` smallint(5) UNSIGNED NOT NULL,
-  `type` varchar(25) NOT NULL,
-  `size` varchar(25) NOT NULL,
-  `copertina` blob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 -- --------------------------------------------------------
 
 --
 -- Struttura della tabella `libro`
 --
-
-CREATE TABLE `libro` (
-  `id` smallint(5) UNSIGNED NOT NULL,
-  `num_copie` int(3) UNSIGNED NOT NULL,
-  `titolo` varchar(50) NOT NULL,
-  `autore` varchar(30) NOT NULL,
-  `durata` set('consultazione','breve','lungo') NOT NULL,
-  `genere` varchar(30) NOT NULL,
-  `isbn` varchar(13) NOT NULL,
-  `descrizione` varchar(150) NOT NULL,
-  `copieDisponibili` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `libro`
@@ -79,17 +56,6 @@ INSERT INTO `libro` (`id`, `num_copie`, `titolo`, `autore`, `durata`, `genere`, 
 (35, 5, 'Provalibro12', 'Martina', 'breve', 'Thriller', '1234567891237', 'Provaprova12', 4);
 
 -- --------------------------------------------------------
-
---
--- Struttura della tabella `prenotazione`
---
-
-CREATE TABLE `prenotazione` (
-  `id_prenotazione` smallint(6) NOT NULL,
-  `id_utente` smallint(11) NOT NULL,
-  `id_libro` smallint(11) NOT NULL,
-  `data_scadenza` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `prenotazione`
@@ -155,14 +121,6 @@ INSERT INTO `prenotazione` (`id_prenotazione`, `id_utente`, `id_libro`, `data_sc
 -- Struttura della tabella `prestito`
 --
 
-CREATE TABLE `prestito` (
-  `id_prestito` smallint(6) NOT NULL,
-  `id_utente` smallint(6) NOT NULL,
-  `id_libro` smallint(6) NOT NULL,
-  `data_scadenza` date NOT NULL,
-  `id_prenotazione` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Dump dei dati per la tabella `prestito`
 --
@@ -187,14 +145,6 @@ INSERT INTO `prestito` (`id_prestito`, `id_utente`, `id_libro`, `data_scadenza`,
 -- Struttura della tabella `storico`
 --
 
-CREATE TABLE `storico` (
-  `id_storico` smallint(6) NOT NULL,
-  `id_utente` smallint(6) NOT NULL,
-  `id_libro` smallint(6) NOT NULL,
-  `data_scadenza` date NOT NULL,
-  `id_prestito` smallint(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Dump dei dati per la tabella `storico`
 --
@@ -216,22 +166,6 @@ INSERT INTO `storico` (`id_storico`, `id_utente`, `id_libro`, `data_scadenza`, `
 --
 -- Struttura della tabella `utente`
 --
-
-CREATE TABLE `utente` (
-  `id` smallint(5) UNSIGNED NOT NULL,
-  `nick` varchar(50) DEFAULT NULL,
-  `mail` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `tipo` set('bibliotecario','cliente') NOT NULL,
-  `nome` varchar(30) DEFAULT NULL,
-  `cognome` varchar(30) DEFAULT NULL,
-  `dtNasc` date DEFAULT NULL,
-  `lgNasc` varchar(30) DEFAULT NULL,
-  `via` varchar(20) NOT NULL,
-  `citta` varchar(20) NOT NULL,
-  `cap` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Dump dei dati per la tabella `utente`
 --
@@ -262,91 +196,6 @@ INSERT INTO `utente` (`id`, `nick`, `mail`, `password`, `tipo`, `nome`, `cognome
 (47, 'antoniobarbonetti', 'antonio.barbonetti@gmail.com', '$2y$10$D0Gf9LVy7g.7SwpmVk1tZurJaHuCIYdf2J9YpGlxXbc9.He8Euq7G', 'bibliotecario', 'antonio', 'barbonetti', '2007-01-06', 'avellino', 'treviso', 'ancona', '64789'),
 (48, 'testtest', 'test@gmail.com', '$2y$10$BxxBi2Pl9mdwLnOwn7Qh7efukyEej0iBZnQxeYeBVjTTS/xI98P86', 'bibliotecario', 'test', 'test', '1997-01-01', 'test', 'test', 'test', '10102');
 
---
--- Indici per le tabelle scaricate
---
-
---
--- Indici per le tabelle `copertina`
---
-ALTER TABLE `copertina`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `libro`
---
-ALTER TABLE `libro`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `prenotazione`
---
-ALTER TABLE `prenotazione`
-  ADD PRIMARY KEY (`id_prenotazione`);
-
---
--- Indici per le tabelle `prestito`
---
-ALTER TABLE `prestito`
-  ADD PRIMARY KEY (`id_prestito`);
-
---
--- Indici per le tabelle `storico`
---
-ALTER TABLE `storico`
-  ADD PRIMARY KEY (`id_storico`);
-
---
--- Indici per le tabelle `utente`
---
-ALTER TABLE `utente`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `mail` (`mail`),
-  ADD UNIQUE KEY `nick_name` (`nick`);
-
---
--- AUTO_INCREMENT per le tabelle scaricate
---
-
---
--- AUTO_INCREMENT per la tabella `libro`
---
-ALTER TABLE `libro`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
---
--- AUTO_INCREMENT per la tabella `prenotazione`
---
-ALTER TABLE `prenotazione`
-  MODIFY `id_prenotazione` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
-
---
--- AUTO_INCREMENT per la tabella `prestito`
---
-ALTER TABLE `prestito`
-  MODIFY `id_prestito` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT per la tabella `storico`
---
-ALTER TABLE `storico`
-  MODIFY `id_storico` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT per la tabella `utente`
---
-ALTER TABLE `utente`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
--- Limiti per le tabelle scaricate
---
-
---
--- Limiti per la tabella `copertina`
---
-ALTER TABLE `copertina`
-  ADD CONSTRAINT `copertina_ibfk_1` FOREIGN KEY (`id`) REFERENCES `libro` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
