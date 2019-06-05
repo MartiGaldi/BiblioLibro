@@ -71,6 +71,7 @@ class Installazione
 			
 			$query = $query . file_get_contents('bibliolibro.sql'); // aggiunge tabelle alla query
             $db->exec($query);
+			
             $db->commit();
             
             
