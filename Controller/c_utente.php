@@ -189,7 +189,7 @@ class c_utente
     
     
     /**
-    * La funzione Registra permette di creare un nuovo utente se non sono presenti utenti con stessa mail e nickname inseriti nella form
+    * La funzione Registra permette di creare un nuovo utente se non sono presenti utenti con stesso nickname inseriti nella form
     */
     function registra()
     {
