@@ -3,14 +3,16 @@ require_once 'inc.php';
 
 /**
  * La classe c_prenotazione implementa la funzionalità 'Prenota'.
- * @author gruppo11
+ * @author gruppo 11
  * @package Controller
  */
 class c_prenotazione
 {
     /**
-     * La funzione prenotazione permette la prenotazione di un testo.
-     * @param int $id l'identificativo dell'utente
+     * La funzione prenota permette la visualizzazione della form per il caricamento di una prenotazione,
+     * a seguito di una richiesta GET, o l'inserimento di una prenotazione da parte del bibliotecario a seguito
+     * di una richiesta POST.
+	 * @param int $id l'identificativo della prenotazione, prelevato dall'URL.
      */
     static function prenota($id)
     {
@@ -27,7 +29,11 @@ class c_prenotazione
 		}
 	}
     
-    
+    /**
+	 * effettua la prenotazione. Reindirizza ad un messaggio di errore
+     * se l'utente che vuole rimuovere il prestito non è il bibliotecario.
+     * @param int $id l'identificativo della prenotazione.
+	 */
     private function prenotazione($id) //id libro
     {
         $v_prenotazione = new v_prenotazione();
@@ -93,6 +99,11 @@ class c_prenotazione
             $v_prenotazione->Errore($utente, 'Devi essere registrato per utilizzare questa funzionalità!');
     }
 	
+	/**
+     * Mostra la form per la conferma di una prenotazione. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+	 * @param int $id l'identificativo della prenotazione
+     */
     private function mostraConfermaPrenotazione($id)
     {
         $v_prenotazione = new v_prenotazione();

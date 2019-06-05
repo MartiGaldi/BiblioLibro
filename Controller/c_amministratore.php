@@ -3,15 +3,18 @@ if(file_exists('config.inc.php'))
 require_once 'config.inc.php';
 require_once 'inc.php';
     
-    /**La classe c_amministratore fornisce accesso all'amministratore per effettuare alcune operazioni basiche attraverso l'applicazione**/
+    /** La classe c_amministratore fornisce accesso all'amministratore per effettuare alcune operazioni basiche attraverso l'applicazione 
+	 * @author gruppo 11
+     * @package Controller
+	 */
     
     class c_amministratore
     {
 	/**
-    * Metodo che implementa il login. Se richiamato tramite GET, fornisce
-    * la pagina di login, se richiamato tramite POST cerca di autenticare l'amministratore attraverso
-    * i valori che quest'ultimo ha fornito
-    */
+     * Metodo che implementa il login. Se richiamato tramite GET, fornisce
+     * la pagina di login, se richiamato tramite POST cerca di autenticare l'amministratore attraverso
+     * i valori che quest'ultimo ha fornito
+     */
 	static function login()
 	{
 		if ($_SERVER['REQUEST_METHOD'] == 'GET')
@@ -31,11 +34,10 @@ require_once 'inc.php';
         else 
             header('Location: HTTP/1.1 Invalid HTTP method detected');           
         }
-        
-
-        
-        // Mostra il pannello di amministrazione.
-        
+            
+        /**
+		 *Mostra il pannello di amministrazione.
+         */
         static function pannello()
         {
             if ($_SERVER['REQUEST_METHOD'] == 'GET')
@@ -53,14 +55,11 @@ require_once 'inc.php';
                 header('Location: HTTP/1.1 Invalid HTTP method detected');  
         }
         
-        
-        
     /**
-    * Metodo che implementa la registrazione. Se richiamato a seguito di una richiesta
-    * GET da parte dell'amministratore, mostra la form di compilazione; altrimenti se richiamato tramite POST
-    * riceve i dati forniti dall'amministratore e procede con la creazione di un nuovo amministratore. 
-    */
-        
+     * Metodo che implementa la registrazione. Se richiamato a seguito di una richiesta
+     * GET da parte dell'amministratore, mostra la form di compilazione; altrimenti se richiamato tramite POST
+     * riceve i dati forniti dall'amministratore e procede con la creazione di un nuovo amministratore. 
+     */
     static function iscrizione()
         {
          if ($_SERVER['REQUEST_METHOD'] == 'GET') 
@@ -77,10 +76,10 @@ require_once 'inc.php';
 			else
 				header('Location: Invalid HTTP method detected');    
         }
-        
-        
-        
-        //Logout dalla sessione di amministrazione.
+         
+        /*
+		 *Logout dalla sessione di amministrazione.
+		 */
         static function logout()
         {
             c_sessione::rimuoviPrivilegiAmministratore();
@@ -88,13 +87,11 @@ require_once 'inc.php';
             header('Location: /BiblioLibro/');
         }
         
-        
-        
 	/**
-    * La funzione Autenticazione verifica che le credenziali di accesso inserite
-    * siano corrette: in tal caso, l'applicazione lo riporterà verso la sua pagina, altrimenti
-    * restituirà la schermata di login, con un messaggio di errore.
-    */        
+     * La funzione Autenticazione verifica che le credenziali di accesso inserite
+     * siano corrette: in tal caso, l'applicazione lo riporterà verso la sua pagina, altrimenti
+     * restituirà la schermata di login, con un messaggio di errore.
+     */        
         private function autenticazione()
         {
             $v_amministratore = new v_amministratore();
@@ -112,11 +109,9 @@ require_once 'inc.php';
                 $v_amministratore->mostraLogin(true);      
         }
         
-        
         /**
-		* La funzione Registra permette di creare un nuovo utente se non sono presenti utenti con stesso nickname inseriti nella form
-		*/
-     
+	   	 * La funzione Registra permette di creare un nuovo utente se non sono presenti utenti con stesso nickname inseriti nella form
+		 */
         public function registra()
         {
             $v_amministratore = new v_amministratore();

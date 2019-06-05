@@ -4,19 +4,20 @@ include_once 'View/v_oggetto.php';
 
 
 /**
-* La classe v_libro si occupa dell'input-output per quanto riguarda i dati riguardanti i libri.
-*  Ovvero:
-* - dai dati inseriti dal bibliotecario costruiscono un oggetto e_libro
-* - predispone e visualizza le varie pagine HTML per la creazione/modifica/rimozione/visualizzazione di un testo.
-* @package View
-*/
+ * La classe v_libro si occupa dell'input-output per quanto riguarda i dati riguardanti i libri.
+ *  Ovvero:
+ * - dai dati inseriti dal bibliotecario costruiscono un oggetto e_libro
+ * - predispone e visualizza le varie pagine HTML per la creazione/modifica/rimozione/visualizzazione di un testo.
+ * @author gruppo 11
+ * @package View
+ */
 class v_libro extends v_oggetto
 {
     
     /**
-    * Costruttore che inizializza il componente view e definisce l'array contenente gli errori
-    * che possono essere commessi nella form di caricamento/modifica testi
-    */
+     * Costruttore che inizializza il componente view e definisce l'array contenente gli errori
+     * che possono essere commessi nella form di caricamento/modifica testi
+     */
     
     function __construct()
     {
@@ -39,9 +40,9 @@ class v_libro extends v_oggetto
     
 
     /**
-    * Funzione che crea un testo a partire dagli input della form.
-    * @return e_libro
-    */
+     * Funzione che crea un testo a partire dagli input della form.
+     * @return e_libro
+     */
     
     function creaLibro() : e_libro
     {
@@ -87,9 +88,9 @@ class v_libro extends v_oggetto
     }
     
      /**
-     * Funzione che permette la creazione della copertina
-     * @return e_copertina
-     */
+      * Funzione che permette la creazione della copertina
+      * @return e_copertina
+      */
     function creaCopertina() : e_copertina
     {
         $copertina = new e_copertina();
@@ -103,8 +104,7 @@ class v_libro extends v_oggetto
         return $copertina;
     }
 	
-	/**
-     * 
+	/** 
      * @param e_copertina $copertina
      * @return boolean
      */
@@ -118,11 +118,11 @@ class v_libro extends v_oggetto
     }
     
     /**
-    * Mostra la pagina che consente l'inserimento di un libro da parte di un bibliotecario
-    * @param e_utente $utente l'utente della sessione
-    * @param bool $errore facoltativo, da impostare a true se il biblitecario ha inserito
-    * un titolo di un testo gia' inserita da lui
-    */
+     * Mostra la pagina che consente l'inserimento di un libro da parte di un bibliotecario
+     * @param e_utente $utente l'utente della sessione
+     * @param bool $errore facoltativo, da impostare a true se il biblitecario ha inserito
+     * un titolo di un testo gia' inserita da lui
+     */
     
     function mostraFormCarica (e_utente &$utente, bool $errore = NULL)
     {
@@ -141,13 +141,12 @@ class v_libro extends v_oggetto
     
     
     /**
-    
-    * Mostra la pagina che consente la modifica di un testo da parte di un bibliotecario
-    * @param e_utente $utente l'utente della sessione
-    * @param e_libro $libro il testo da modificare
-    * @param bool $error facoltativo, da impostare a true se l'utente ha inserito un titolo di una libro
-    * gia' inserito
-    */
+     * Mostra la pagina che consente la modifica di un testo da parte di un bibliotecario
+     * @param e_utente $utente l'utente della sessione
+     * @param e_libro $libro il testo da modificare
+     * @param bool $errore facoltativo, da impostare a true se l'utente ha inserito un titolo di una libro
+     * gia' inserito
+     */
     
     function mostraFormModifica (e_utente &$utente, e_libro &$libro, bool $errore= NULL)
     {
@@ -167,10 +166,10 @@ class v_libro extends v_oggetto
     
     
     /**
-    * Mostra la pagina che consente la rimozione di un testo da parte di un bibliotecario
-    * @param e_utente $utente: l'utente della sessione
-    * @param e_libro $libro: il testo da rimuovere
-    */
+     * Mostra la pagina che consente la rimozione di un testo da parte di un bibliotecario
+     * @param e_utente $utente: l'utente della sessione
+     * @param e_libro $libro: il testo da rimuovere
+     */
     
     function mostraFormRimuovi(e_utente &$utente, e_libro &$libro)
     {
@@ -182,14 +181,11 @@ class v_libro extends v_oggetto
         
     }
     
-    
-    
-    
     /**
-    * Mostra il contenuto di un libro.
-    * @param e_utente $utente l'utente che sta visualizzando la pagina
-    * @param e_libro $libro il libro da visualizzare
-    */
+     * Mostra il contenuto di un libro.
+     * @param e_utente $utente l'utente che sta visualizzando la pagina
+     * @param e_libro $libro il libro da visualizzare
+     */
     
     function mostraLibro(e_utente &$utente, e_libro &$libro, bool $prenota)
     {
@@ -204,9 +200,9 @@ class v_libro extends v_oggetto
     
     
     /**
-    * Funzione che controlla i campi della form per l'inserimento di un libro
-    * @return bool true se gli input sono corretti, false altrimenti
-    */
+     * Funzione che controlla i campi della form per l'inserimento di un libro
+     * @return bool true se gli input sono corretti, false altrimenti
+     */
     
     function validazioneCarica(e_libro &$libro) : bool
     {
@@ -228,9 +224,9 @@ class v_libro extends v_oggetto
     
     
     /**
-    * Funzione che controlla i campi della form per la modifica di un testo
-    * @return bool true se gli input sono corretti, false altrimenti
-    */
+     * Funzione che controlla i campi della form per la modifica di un testo
+     * @return bool true se gli input sono corretti, false altrimenti
+     */
     function validazioneModifica(e_libro &$libro) : bool
     {
         if( $this->check['titolo']=$libro->validazioneTitolo() &&
@@ -248,12 +244,10 @@ class v_libro extends v_oggetto
             return false;      
     }
     
-    
-    
     /**
-    * Funzione che verifica se l'utente ha effettivamente richiesto la rimozione di una canzone
-    * @return bool true se l'utente vuole rimuovere il brano, false altrimenti
-    */
+     * Funzione che verifica se l'utente ha effettivamente richiesto la rimozione di un libro
+     * @return bool true se l'utente vuole rimuovere il libro, false altrimenti
+     */
     function validazioneRimuovi() : bool
     {
         if(isset($_POST['action']))

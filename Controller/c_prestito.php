@@ -2,16 +2,17 @@
 require_once 'inc.php';
 
 /**
-* Il Controller c_libro implementa le funzionalità 'Gestione Libro'.
-* Il bibliotecario può caricare, modificare e rimuovere un testo.
-* @package Controller
-*/
+ * Il Controller c_prestito implementa le funzionalità 'Prestito'.
+ * Il bibliotecario può caricare, modificare e rimuovere un prestito.
+ * @author gruppo 11
+ * @package Controller
+ */
 
 class c_prestito
 { 
     /**
-    * La funzione carica permette la visualizzazione della form per il caricamento di un testo,
-    *  a seguito di una richiesta GET, o l'inserimento di un libro da parte del bibliotecario a seguito
+    * La funzione carica permette la visualizzazione della form per il caricamento di un prestito,
+    * a seguito di una richiesta GET, o l'inserimento di un prestito da parte del bibliotecario a seguito
     * di una richiesta POST.
     */
     
@@ -30,10 +31,10 @@ class c_prestito
     
     
     /**
-    * La funzione modifica permette la visualizzazione della form per la modifica di un testo, 
+    * La funzione modifica permette la visualizzazione della form per la modifica di un prestito, 
     * a seguito di una richiesta GET,
-    * o l'inserimento delle modifiche di un libro da parte del bibliotecario a seguito di una richiesta POST.
-    * @param int $id l'identificativo del libro, specificato nell'URL.
+    * o l'inserimento delle modifiche di un prestito da parte del bibliotecario a seguito di una richiesta POST.
+    * @param int $id l'identificativo del prestito, specificato nell'URL.
     */
     
     static function modifica ($id)
@@ -59,10 +60,10 @@ class c_prestito
     
     /**
     
-    * La funzione rimuovi permette la visualizzazione della form per la rimozione di un testo,
+    * La funzione rimuovi permette la visualizzazione della form per la rimozione di un prestito,
     * a seguito di una richiesta GET, o la conferma
     * dell'operazione da parte del bibliotecario a seguito di una richiesta POST.
-    * @param int $id l'identificativo del libro, prelevato dall'URL.
+    * @param int $id l'identificativo del prestito, prelevato dall'URL.
     */
     
     static function rimuovi ($id)
@@ -83,7 +84,7 @@ class c_prestito
     }
 
     /**
-     *  la funzione mostra permette la visualizzazione del libro da parte degli utenti
+     *  la funzione mostra permette la visualizzazione del prestito da parte degli utenti
      */
     static function mostra($id)
     {
@@ -112,9 +113,9 @@ class c_prestito
     
     
     /**
-    * Mostra la form per il caricamento di un libro. Reindirizza ad un messaggio di errore
-    * se l'utente che accede alla risorsa non e' un bibliotecario.
-    */
+     * Mostra la form per il caricamento di un prestito. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     */
     
     private function mostraFormCarica()
     {
@@ -130,11 +131,10 @@ class c_prestito
     
     
     /**
-    
-    * Mostra la form per la modifica di un libro. Reindirizza ad un messaggio di errore
-    * se l'utente che accede alla risorsa non e' un bibliotecario.
-    * @param int $id l'identificativo del libro.
-    */
+     * Mostra la form per la modifica di un prestito. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     * @param int $id l'identificativo del prestito.
+     */
     
     private function mostraFormModifica($id)
     {
@@ -167,11 +167,10 @@ class c_prestito
     
     
     /**
-    
-    * Mostra la form per la rimozione di un testo. Reindirizza ad un messaggio di errore
-    * se l'utente che accede alla risorsa non e' un bibliotecario.
-    * @param int $id l'identificativo del libro.
-    */
+     * Mostra la form per la rimozione di un prestito. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     * @param int $id l'identificativo del prestito.
+     */
     
     private function mostraFormRimuovi ($id)
     {
@@ -198,7 +197,10 @@ class c_prestito
     }
     
     
-	
+	/**
+     * Mostra il form per l'aggiunta di un prestito. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     */
     private function aggiungiPrestito()
     {
         $v_prestito = new v_prestito(); // crea la view
@@ -256,9 +258,9 @@ class c_prestito
     
     
     /**
-    * Mostra il form per la modifica di un libro. Reindirizza ad un messaggio di errore
+    * Mostra il form per la modifica di un prestito. Reindirizza ad un messaggio di errore
     * se l'utente che accede alla risorsa non e' un bibliotecario.
-    * @param int $id l'identificativo del libro.
+    * @param int $id l'identificativo del prestito.
     */
     
     private function modificaPrestito ($id)
@@ -296,10 +298,10 @@ class c_prestito
     
     
     /**
-    * Effettua la rimozione di un libro. Reindirizza ad un messaggio di errore
-    * se l'utente che vuole rimuovere il brano non è il bibliotecario.
-    * @param int $id l'identificativo del libro.
-    */
+     * Effettua la rimozione di un prestito. Reindirizza ad un messaggio di errore
+     * se l'utente che vuole rimuovere il prestito non è il bibliotecario.
+     * @param int $id l'identificativo del prestito.
+     */
     
     private function rimuoviPrestito ($id)
     {

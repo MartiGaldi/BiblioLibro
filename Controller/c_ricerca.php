@@ -1,28 +1,29 @@
 <?php
+require_once 'inc.php';
 
 /**
- * La classe c_cerca implementa la funzionalità di Ricerca all'interno del catalogo. Al suo interno presenta inoltre delle 
+ * La classe c_ricerca implementa la funzionalità di Ricerca all'interno del catalogo. Al suo interno presenta inoltre delle 
  * costanti che definiscono chiavi (ovvero risorse da ricercare) e valori (ovvero indici rispetto a cui cercare)
  * di default e avanzati.
- * @author gruppo11
+ * @author gruppo 11
  * @package Controller
  */
 
 class c_ricerca
 {
-    //chiave di default
+    /** chiave di default */
     const KEY_DEFAULT = 'Libro';
-    //valore base: ricerca per titolo
+    /** valore base: ricerca per titolo */
     const VALUE_DEFAULT = 'Titolo';
     
-    //chiave avanzata
+    /** chiave avanzata */
     const KEY_ADVANCED = 'Libro';
-    //valore avanzato: ricerca per autore
+    /** valore avanzato: ricerca per autore */
     const VALUE_ADVANCED = 'Autore';
 	
-   //chiave avanzata2
+    /** chiave avanzata2 */
     const KEY_ADVANCED2 = 'Utente';
-    //valore avanzato: ricerca per genere
+    /** valore avanzato: ricerca per nome */
     const VALUE_ADVANCED2 = 'Nome';
 	
 	const VALUE_DEFAULT2 = 'Catalogo';
@@ -49,8 +50,8 @@ class c_ricerca
     
 	
 	/**
-    * Metodo che implementa la ricerca di base
-    */
+     * Metodo che implementa il catalogo
+     */
     static function catalogo()
     {
         $v_ricerca = new v_ricerca();
@@ -70,8 +71,8 @@ class c_ricerca
  
     
     /**
-	* Metodo che implementa la ricerca avanzata 
-    */
+	 * Metodo che implementa la ricerca avanzata 
+     */
 	
     static function avanzata()
     {

@@ -1,20 +1,21 @@
 <?php
+require_once 'inc.php';
 
 /**
-* La classe FrontController effettua il dispatching verso i metodi dei vari controller
-* a seconda dell'url richiesta dal client.
-* @package Controller
-*/
+ * La classe FrontController effettua il dispatching verso i metodi dei vari controller
+ * a seconda dell'url richiesta dal client.
+ * @author gruppo 11
+ * @package Controller
+ */
 
 class FrontController
 {
     /**
-    * La funzione run effettua il dispatching verso i metodi di un determinato controller.
-    * Un URL ha il seguente formato: /BiblioLibro/controller/metodo/(parametro)
-    * dove i parametri possono essere per un massimo di tre e possono essere delimitati da metacaratteri come '&' o '?'
-    * Se l'URL non e' valida, l'utente viene reindirizzato alla pagina principale
-    */
-    
+     * La funzione run effettua il dispatching verso i metodi di un determinato controller.
+     * Un URL ha il seguente formato: /BiblioLibro/controller/metodo/(parametro)
+     * dove i parametri possono essere per un massimo di tre e possono essere delimitati da metacaratteri come '&' o '?'
+     * Se l'URL non e' valida, l'utente viene reindirizzato alla pagina principale
+     */
     function run()
     {
         $resources = preg_split("#[][&?/]#", $_SERVER['REQUEST_URI']); // individua le componenti dell'url

@@ -3,11 +3,11 @@ require_once 'inc.php';
 include_once 'View/v_oggetto.php';
 
 /**
-* La classe v_cerca si occupa dell'input-output per quanto riguarda la funzionalità di ricerca
-* all'interno del catalogo.
-* @package View
-* @author gruppo11
-*/
+ * La classe v_cerca si occupa dell'input-output per quanto riguarda la funzionalità di ricerca
+ * all'interno del catalogo.
+ * @author gruppo 11
+ * @package View
+ */
 
 class v_ricerca extends v_oggetto
 {
@@ -18,9 +18,9 @@ class v_ricerca extends v_oggetto
     
     
     /**
-    * Restituisce il valore inserito dall'utente nella barra da ricerca. E' contenuto nell'array globale $_GET
-    * @return string contenente il valore inserito dall'utente, se presente
-    */
+     * Restituisce il valore inserito dall'utente nella barra da ricerca. E' contenuto nell'array globale $_GET
+     * @return string contenente il valore inserito dall'utente, se presente
+     */
     
     function getValoreRicerca() : string
     {
@@ -35,9 +35,9 @@ class v_ricerca extends v_oggetto
     
     
     /**
-    * Ritorna la chiave scelta dall'utente nella ricerca avanzata, contenuta nell'array globale $_GET.
-    * @return array avente come valore la chiave e il valore
-    */
+     * Ritorna la chiave scelta dall'utente nella ricerca avanzata, contenuta nell'array globale $_GET.
+     * @return array avente come valore la chiave e il valore
+     */
     
     function getKeyAndValue() : array
     {
@@ -55,12 +55,12 @@ class v_ricerca extends v_oggetto
     
     
     /**
-    * Mostra i risultati della ricerca
-    * @param e_utente $utente l'utente della sessione
-    * @param array $array contenente i risultati della ricerca | NULL se nessun oggetto e' stato costruito
-    * @param string $key la chiave di ricerca adoperata
-    * @param string $string il dato ricercato dall'utente
-    */
+     * Mostra i risultati della ricerca
+     * @param e_utente $utente l'utente della sessione
+     * @param array $array contenente i risultati della ricerca | NULL se nessun oggetto e' stato costruito
+     * @param string $key la chiave di ricerca adoperata
+     * @param string $string il dato ricercato dall'utente
+     */
     
     function mostraRisultatoRicerca (e_utente &$utente, $array, string $key, string $value, string $string)
     {
@@ -77,8 +77,10 @@ class v_ricerca extends v_oggetto
         $this->smarty->display('ricerca/ricerca.tpl');  
     }
     
-    
-   function mostraRicercaAvanzata(e_utente &$utente)
+    /**
+	 * Mostra i risultati della ricerca avanzata
+	 */
+    function mostraRicercaAvanzata(e_utente &$utente)
     {
         $this->smarty->registerObject('utente', $utente);
         $this->smarty->assign('uTipo', lcfirst(substr(get_class($utente), 2)));

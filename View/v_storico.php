@@ -4,19 +4,17 @@ include_once 'View/v_oggetto.php';
 
 
 /**
-* La classe v_libro si occupa dell'input-output per quanto riguarda i dati riguardanti i libri.
-*  Ovvero:
-* - dai dati inseriti dal bibliotecario costruiscono un oggetto e_libro
-* - predispone e visualizza le varie pagine HTML per la creazione/modifica/rimozione/visualizzazione di un testo.
-* @package View
-*/
+ * La classe v_storico si occupa dell'input-output per quanto riguarda i dati riguardanti gli storici.
+ * @author gruppo 11
+ * @package View
+ */
 class v_storico extends v_oggetto
 {
     
     /**
-    * Costruttore che inizializza il componente view e definisce l'array contenente gli errori
-    * che possono essere commessi nella form di caricamento/modifica testi
-    */
+     * Costruttore che inizializza il componente view e definisce l'array contenente gli errori
+     * che possono essere commessi nella form di caricamento/modifica storici
+     */
     
     function __construct()
     {
@@ -34,9 +32,9 @@ class v_storico extends v_oggetto
     
 
     /**
-    * Funzione che crea un prestito storico a partire dagli input della form.
-    * @return e_storico
-    */
+     * Funzione che crea un prestito storico a partire dagli input della form.
+     * @return e_storico
+     */
     
     function creaStorico() : e_storico
     {
@@ -68,11 +66,11 @@ class v_storico extends v_oggetto
     
     
     /**
-    * Mostra la pagina che consente l'inserimento di un libro da parte di un bibliotecario
-    * @param e_utente $utente l'utente della sessione
-    * @param bool $errore facoltativo, da impostare a true se il biblitecario ha inserito
-    * un titolo di un testo gia' inserita da lui
-    */
+     * Mostra la pagina che consente l'inserimento di uno storico da parte di un bibliotecario
+     * @param e_utente $utente l'utente della sessione
+     * @param bool $errore facoltativo, da impostare a true se il biblitecario ha inserito
+     * un titolo di uno storico gia' inserito da lui
+     */
     
     function mostraFormCarica (e_utente &$utente, bool $errore = NULL)
     {
@@ -91,13 +89,12 @@ class v_storico extends v_oggetto
     
     
     /**
-    
-    * Mostra la pagina che consente la modifica di un testo da parte di un bibliotecario
-    * @param e_utente $utente l'utente della sessione
-    * @param e_libro $libro il testo da modificare
-    * @param bool $error facoltativo, da impostare a true se l'utente ha inserito un titolo di una libro
-    * gia' inserito
-    */
+     * Mostra la pagina che consente la modifica di uno storico da parte di un bibliotecario
+     * @param e_utente $utente l'utente della sessione
+     * @param e_storico $storico lo storico da modificare
+     * @param bool $error facoltativo, da impostare a true se l'utente ha inserito uno storico
+     * gia' inserito
+     */
     
     function mostraFormModifica (e_utente &$utente, e_storico &$storico, bool $errore= NULL)
     {
@@ -117,10 +114,10 @@ class v_storico extends v_oggetto
     
     
     /**
-    * Mostra la pagina che consente la rimozione di un testo da parte di un bibliotecario
-    * @param e_utente $utente: l'utente della sessione
-    * @param e_libro $libro: il testo da rimuovere
-    */
+     * Mostra la pagina che consente la rimozione di uno storico da parte di un bibliotecario
+     * @param e_utente $utente: l'utente della sessione
+     * @param e_storico $storico: lo storico da rimuovere
+     */
     
     function mostraFormRimuovi(e_utente &$utente, e_storico &$storico)
     {
@@ -136,10 +133,10 @@ class v_storico extends v_oggetto
     
     
     /**
-    * Mostra il contenuto di un libro.
-    * @param e_utente $utente l'utente che sta visualizzando la pagina
-    * @param e_libro $libro il libro da visualizzare
-    */
+     * Mostra il contenuto di uno storico.
+     * @param e_utente $utente l'utente che sta visualizzando la pagina
+     * @param e_storico $storico: lo storico da visualizzare
+     */
     
     function mostraStorico(e_utente &$utente, e_storico &$storico, bool $mostra)
     {
@@ -154,9 +151,9 @@ class v_storico extends v_oggetto
     
     
     /**
-    * Funzione che controlla i campi della form per l'inserimento di un libro
-    * @return bool true se gli input sono corretti, false altrimenti
-    */
+     * Funzione che controlla i campi della form per l'inserimento di uno storico
+     * @return bool true se gli input sono corretti, false altrimenti
+     */
     
     function validazioneCarica(e_storico &$storico) : bool
     {
@@ -169,9 +166,9 @@ class v_storico extends v_oggetto
     
     
     /**
-    * Funzione che controlla i campi della form per la modifica di un testo
-    * @return bool true se gli input sono corretti, false altrimenti
-    */
+     * Funzione che controlla i campi della form per la modifica di uno storico
+     * @return bool true se gli input sono corretti, false altrimenti
+     */
     function validazioneModifica(e_storico &$storico) : bool
     {
         if( $this->check['titolo']=$libro->validazioneTitolo() &&
@@ -190,9 +187,9 @@ class v_storico extends v_oggetto
     
     
     /**
-    * Funzione che verifica se l'utente ha effettivamente richiesto la rimozione di una canzone
-    * @return bool true se l'utente vuole rimuovere il brano, false altrimenti
-    */
+     * Funzione che verifica se l'utente ha effettivamente richiesto la rimozione di uno storico
+     * @return bool true se l'utente vuole rimuovere lo storico, false altrimenti
+     */
     function validazioneRimuovi() : bool
     {
         if(isset($_POST['action']))

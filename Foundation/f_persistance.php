@@ -19,8 +19,8 @@ class f_persistance
     private $db;                      //oggetto che instanza la connessione
     
     /**
-    * Inizializza un oggetto f_persisatnce. Metodo privato per evitare duplicazioni dell'oggetto.
-    */
+     * Inizializza un oggetto f_persistance. Metodo privato per evitare duplicazioni dell'oggetto.
+     */
     
     private function __construct()
     {
@@ -35,8 +35,6 @@ class f_persistance
         }
     }
 	
-	
-	
 	/**
      * Metodo che chiude la connessione al dbms.
      */
@@ -46,13 +44,11 @@ class f_persistance
         static::$instance = null;
     }
 	
-	
     /**
      * metodo privato per evitare la clonazione dell'oggetto
      */ 
     private function __clone(){}
     
-	
 	/**
      * Metodo che restituisce l'unica istanza dell'oggetto.
      * @return f_persistance l'istanza dell'oggetto.
@@ -66,17 +62,15 @@ class f_persistance
         return static::$instance;
     }
     
-	
-	
     /**
-    * Metodo che carica dal dbms informazioni in un corrispettivo oggetto Entity.
-    * @param string $classe il nome della classe (ottenibile tramite e_class::name )
-    * @param string $target opzionale, sono accettabili solo valori di f_target
-    * $target puo essere specificato per le seguenti classi:
-    *  - e_libro ( f_target::CARICA_LIBRO )
-    *  - e_cliente ( f_target::CARICA_CLIENTE )
-    * @return object un oggetto Entity.
-    */
+     * Metodo che carica dal dbms informazioni in un corrispettivo oggetto Entity.
+     * @param string $classe il nome della classe (ottenibile tramite e_class::name )
+     * @param string $target opzionale, sono accettabili solo valori di f_target
+     * $target puo essere specificato ad esempio per le seguenti classi:
+     *  - e_libro ( f_target::CARICA_LIBRO )
+     *  - e_cliente ( f_target::CARICA_CLIENTE )
+     * @return object un oggetto Entity.
+     */
     
     function carica(string $classe, int $id, string $target=NULL)
     {
@@ -103,12 +97,12 @@ class f_persistance
     }
     
     /**
-    * Esegue una SELECT sul database
-    * @param string $classe il nome della classe (ottenibile tramite e_class::name )
-    * @param string $target opzionale, sono accettabili solo valori di f_target
-    * @param string $sql la stringa contenente il comando SQL
-    * @return boolean l'esito della transazione
-    */
+     * Esegue una SELECT sul database
+     * @param string $classe il nome della classe (ottenibile tramite e_class::name )
+     * @param string $target opzionale, sono accettabili solo valori di f_target
+     * @param string $sql la stringa contenente il comando SQL
+     * @return boolean l'esito della transazione
+     */
     
     private function eseguiCarica(string $classe, int $id, string $sql, string $target=null) 
     {   
@@ -141,14 +135,14 @@ class f_persistance
     }
     
     /**
-    * Effettua una ricerca sul database secondo vari parametri. Tale metodo e' scaturito a seguito
-    * di una ricerca da parte del cliente, puo' essere relativa ai libri secondo diversi
-    * parametri come titolo e autore.
-    * @param string $key la tabella da cui prelevare i dati
-    * @param string $value il valore per cui cercare i valori
-    * @param string $str il dato richiesto dall'utente
-    * @return array|NULL i risultati ottenuti dalla ricerca. Se la richiesta non ha match, ritorna NULL.
-    */
+     * Effettua una ricerca sul database secondo vari parametri. Tale metodo e' scaturito a seguito
+     * di una ricerca da parte del cliente, puo' essere relativa ai libri secondo diversi
+     * parametri come titolo e autore.
+     * @param string $key la tabella da cui prelevare i dati
+     * @param string $value il valore per cui cercare i valori
+     * @param string $str il dato richiesto dall'utente
+     * @return array|NULL i risultati ottenuti dalla ricerca. Se la richiesta non ha match, ritorna NULL.
+     */
     
     function ricerca(string $key, string $value, string $str)
     {
@@ -170,7 +164,6 @@ class f_persistance
             
     }
     
-	
     private function eseguiRicerca(string $nomeClasse, string $value, string $str, string $sql)
     {
         try   
@@ -200,10 +193,10 @@ class f_persistance
     }
  
     /**
-    * Metodo che permette di salvare informazioni contenute in un oggetto Entity sul database.
-    * @param object $oggetto l'oggetto da salvare
-    * @return bool $risultato il risultato dell'elaborazione
-    */
+     * Metodo che permette di salvare informazioni contenute in un oggetto Entity sul database.
+     * @param object $oggetto l'oggetto da salvare
+     * @return bool $risultato il risultato dell'elaborazione
+     */
     
     function salva(&$oggetto) : bool
     {
@@ -232,11 +225,11 @@ class f_persistance
     }
     
     /**
-    * Esegue una INSERT sul database
-    * @param mixed $oggetto l'oggetto da salvare
-    * @param string $sql la stringa contenente il comando SQL
-    * @return boolean l'esito della transazione
-    */
+     * Esegue una INSERT sul database
+     * @param mixed $oggetto l'oggetto da salvare
+     * @param string $sql la stringa contenente il comando SQL
+     * @return boolean l'esito della transazione
+     */
     
     private function eseguiSalva(&$oggetto, string $sql)
     {
@@ -283,11 +276,11 @@ class f_persistance
     }
 
     /**    
-    * Metodo che permette di aggiornare informazioni sul database, relative ad una singola ennupla.
-    * @param $oggetto l'oggetto da aggiornare
-    * @bool true se l'update ha avuto successo, false altrimenti
-    */
-    
+     * Metodo che permette di aggiornare informazioni sul database, relative ad una singola ennupla.
+     * @param $oggetto l'oggetto da aggiornare
+     * @bool true se l'update ha avuto successo, false altrimenti
+     */
+     
     function aggiorna($oggetto) : bool
     {   
         $sql=''; 
@@ -311,11 +304,11 @@ class f_persistance
     }
     
     /**
-    * Esegue una UPDATE sul database
-    * @param mixed $oggetto l'oggetto da salvare
-    * @param string $sql la stringa contenente il comando SQL
-    * @return bool l'esito della transazione
-    */
+     * Esegue una UPDATE sul database
+     * @param mixed $oggetto l'oggetto da salvare
+     * @param string $sql la stringa contenente il comando SQL
+     * @return bool l'esito della transazione
+     */
     
     private function eseguiAggiorna(&$oggetto, string $sql) : bool
     {
@@ -359,12 +352,12 @@ class f_persistance
     }
  
     /**
-    * Metodo che cancella dal database una entry di un particolare oggetto Entity.
-    * @param string $classe il nome della classe (ottenibile tramite e_class::name )
-    * @param int $id l'identificatore della entry da eliminare.
-    * @param int $id2 opzionale se l'entry nel database ha due primary key
-    * @return bool se l'operazione ha avuto successo o meno.
-    */
+     * Metodo che cancella dal database una entry di un particolare oggetto Entity.
+     * @param string $classe il nome della classe (ottenibile tramite e_class::name )
+     * @param int $id l'identificatore della entry da eliminare.
+     * @param int $id2 opzionale se l'entry nel database ha due primary key
+     * @return bool se l'operazione ha avuto successo o meno.
+     */
     
     function rimuovi(string $classe, int $id, int $id2=null) : bool
     {
@@ -392,11 +385,11 @@ class f_persistance
     }
     
     /**
-    * Rimuove una entry dal database.
-    * @param int $id della entry da eliminare
-    * @param int $id2 opzionale se l'entry ha due primary key
-    * @return bool l'esito dell'operazione
-    */
+     * Rimuove una entry dal database.
+     * @param int $id della entry da eliminare
+     * @param int $id2 opzionale se l'entry ha due primary key
+     * @return bool l'esito dell'operazione
+     */
     
     private function eseguiRimuovi(string $sql, int $id, int $id2 = NULL) : bool 
     {
@@ -423,15 +416,13 @@ class f_persistance
     }
     
     /**
-    * Metodo che verifica l'esistenza di un valore in una entry di una tabella
-    * @param string $classe il nome della classe (ottenibile tramite e_class::name )
-    * @param string $target opzionale, sono accettabili solo valori di f_target.
-    * Associazioni class - target è la seguente:
-    *  - e_utente ( f_target::MAIL_ESISTENTE )    
-    * @param string | int $valore il valore di cui controllare l'unicita'
-    * @param string | int $valore2 opzionale, se presente una doppia chiave nella table da interrogare
-    * @return bool | int true se il dato esiste, false altrimenti. un int se si richiede l'esistenza di un utente.
-    */
+     * Metodo che verifica l'esistenza di un valore in una entry di una tabella
+     * @param string $classe il nome della classe (ottenibile tramite e_class::name )
+     * @param string $target opzionale, sono accettabili solo valori di f_target.  
+     * @param string | int $valore il valore di cui controllare l'unicita'
+     * @param string | int $valore2 opzionale, se presente una doppia chiave nella tabella da interrogare
+     * @return bool | int true se il dato esiste, false altrimenti. Un int se si richiede l'esistenza di un utente.
+     */
     
     function esiste(string $classe, string $target, $value, $value2 = null)
     {
@@ -461,12 +452,12 @@ class f_persistance
     }
     
     /**
-    * Esegue l'operazione di controllo di esistenza
-    * @param string $sql la query da inviare al dbms
-    * @param string | int $valore il valore di cui controllare l'unicita'
-    * @param string | int $valore2 opzionale se presente una doppia chiave nella tabella da interrogare
-    * @return bool | id true se la entry esiste, false altrimenti
-    */
+     * Esegue l'operazione di controllo di esistenza
+     * @param string $sql la query da inviare al dbms
+     * @param string | int $valore il valore di cui controllare l'unicita'
+     * @param string | int $valore2 opzionale se presente una doppia chiave nella tabella da interrogare
+     * @return bool | id true se la entry esiste, false altrimenti
+     */
     
     private function eseguiEsiste(string $sql, $value, $value2 = NULL)
     {
@@ -512,9 +503,9 @@ class f_persistance
     }
     
     /** 
-    * Associa ai campi della query i corrispondenti valori dell'oggetto
-    * @param PDOStatement $stmt lo statement contenente i campi da riempire
-    */
+     * Associa ai campi della query i corrispondenti valori dell'oggetto
+     * @param PDOStatement $stmt lo statement contenente i campi da riempire
+     */
     
     private function bindValues(PDOStatement &$stmt, &$oggetto)
     {
@@ -531,11 +522,11 @@ class f_persistance
     }
     
     /**
-    * Da una tupla ricevuta da una query istanzia l'oggetto corrispondente
-    * @param string $classe il nome della classe (ottenibile tramite e_classe::name )
-    * @param $ennupla array la tupla restituita dal dbms
-    * @return mixed l'oggetto risultato dell'elaborazione
-    */
+     * Da una tupla ricevuta da una query istanzia l'oggetto corrispondente
+     * @param string $classe il nome della classe (ottenibile tramite e_classe::name )
+     * @param $ennupla array la tupla restituita dal dbms
+     * @return mixed l'oggetto risultato dell'elaborazione
+     */
     
     private function creaOggettoDaRiga(string $classe, $riga)
     {

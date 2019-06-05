@@ -37,6 +37,11 @@ class f_prestito
                 FROM prestito
                 WHERE id_prestito = :id ;";
     }
+	
+	/**
+	 * Query per il caricamento di più prestiti
+	 * @return string sql rappresentante la SELECT.
+	 */
 	static function caricaPrestiti() : string
     {
         return "SELECT *
@@ -57,7 +62,7 @@ class f_prestito
     
     
     /**
-     * Associazione di un oggetto e_prestito ai campi di una query sql per la tabella prenota.
+     * Associazione di un oggetto e_prestito ai campi di una query sql per la tabella prestito.
      * @param PDOStatement $stmt lo statement contenente i campi da riempire
      * @param e_prestito $pres il prestito da cui prelevare i dati
      */
@@ -71,10 +76,10 @@ class f_prestito
     }
 	
 	/**
-    * Istanzia un oggetto e_prestito a partire dai valori di una tupla ricevuta dal dbms
-    * @param array $ennupla la tupla ricevuta dal dbms
-    * @return prestito l'oggetto e_prestito risultato dell'operazione
-    */
+     * Istanzia un oggetto e_prestito a partire dai valori di una tupla ricevuta dal dbms
+     * @param array $ennupla la tupla ricevuta dal dbms
+     * @return prestito l'oggetto e_prestito risultato dell'operazione
+     */
     static function creaOggettoDaRiga($riga) : e_prestito
     {
         // creazione dell'oggetto e_storico

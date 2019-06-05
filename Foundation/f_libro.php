@@ -7,10 +7,10 @@
 class f_libro{
     
     /**
-    * Salva una e_libro nel database
-    * @param PDO $database la connessione verso il dbms
-    * @return string la query sql per la INSERT
-    */
+     * Salva una e_libro nel database
+     * @param PDO $database la connessione verso il dbms
+     * @return string la query sql per la INSERT
+     */
     static function salvaLibro() : string
     {
         return "INSERT INTO libro(num_copie,titolo,autore,durata,genere, isbn, descrizione, copieDisponibili)
@@ -18,9 +18,9 @@ class f_libro{
     }
         
     /**
-    * Carica un libro dal database.
-    * @return string la query sql per la SELECT
-    */
+     * Carica un libro dal database.
+     * @return string la query sql per la SELECT
+     */
     static function caricaLibro() : string
     {
         return "SELECT libro.*
@@ -47,10 +47,10 @@ class f_libro{
     }
         
     /**
-    * Elimina un libro dal database .
-    * @param PDO $database la connessione al dbms
-    * @param int $id il libro da eliminare
-    */
+     * Elimina un libro dal database .
+     * @param PDO $database la connessione al dbms
+     * @param int $id il libro da eliminare
+     */
     static function rimuoviLibro() : string
     {
         return "DELETE
@@ -58,7 +58,10 @@ class f_libro{
                 WHERE id = :id ;"; //query sql
     }
         
-        
+    /**
+     * Query per la ricerca di un libro dato il titolo
+	 * @return string contenente la query sql
+	 */   
     static function ricercaLibroDaTitolo() : string
     {
         return "SELECT libro.*
@@ -66,7 +69,10 @@ class f_libro{
                 WHERE LOCATE( :Titolo , libro.titolo) > 0;";
     }
         
-        
+    /**
+     * Query per la ricerca di un libro dato l'autore
+	 * @return string contenente la query sql
+	 */   
     static function ricercaLibroDaAutore() : string
     {
         return "SELECT libro.*
@@ -81,6 +87,10 @@ class f_libro{
                 WHERE LOCATE( :Genere , libro.genere) > 0;";
     }*/
 	
+	/**
+	 * Query che restituisce tutti i libri presenti nella tabella libro
+	 * @return string contenente la query sql
+	 */
 	static function ricercaLibroDaCatalogo() : string
     {
         return "SELECT libro.*
@@ -88,10 +98,10 @@ class f_libro{
     }
     
     /**
-    * Associa ai campi della query i corrispondenti attributi dell'oggetto e_libro.
-    * @param PDOStatement $stmt da cui prelevare i campi
-    * @param e_libro $lib da cui prelevare gli attributi
-    */
+     * Associa ai campi della query i corrispondenti attributi dell'oggetto e_libro.
+     * @param PDOStatement $stmt da cui prelevare i campi
+     * @param e_libro $lib da cui prelevare gli attributi
+     */
     static function bindValues(PDOStatement &$stmt, e_libro &$lib){
         $stmt->bindValue(':num_copie', $lib->getNumCopie(), PDO::PARAM_INT);
         $stmt->bindValue(':titolo', $lib->getTitolo(), PDO::PARAM_STR);
@@ -104,10 +114,10 @@ class f_libro{
     } 
     
     /**
-    * Istanzia un oggetto e_libro a partire dai valori di una tupla ricevuta dal dbms
-    * @param array $ennupla la tupla ricevuta dal dbms
-    * @return libro l'oggetto e_libro risultato dell'operazione
-    */
+     * Istanzia un oggetto e_libro a partire dai valori di una tupla ricevuta dal dbms
+     * @param array $ennupla la tupla ricevuta dal dbms
+     * @return libro l'oggetto e_libro risultato dell'operazione
+     */
     static function creaOggettoDaRiga($riga)
     {
         // creazione dell'oggetto e_libro

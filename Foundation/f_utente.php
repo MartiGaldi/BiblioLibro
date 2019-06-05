@@ -7,7 +7,7 @@
 class f_utente 
 {
 	/**
-     * Query che verifica l'esistenza di un nickname nella table utente
+     * Query che verifica l'esistenza di un nickname nella tabella utente
      * @return string contenente la query sql
      */
     static function esisteNick() : string
@@ -17,6 +17,10 @@ class f_utente
                 WHERE nick = :value ;";
     }
     
+	/**
+     * Query che verifica l'esistenza di una mail nella tabella utente
+     * @return string contenente la query sql
+     */
     static function esisteMail() : string
     {
         return "SELECT *
@@ -68,6 +72,10 @@ class f_utente
                 WHERE prestito.id_prestito = :id AND prestito.id_utente = utente.id ; ";
     }
 	
+	/**
+     * Carica gli storici di un utente in un array di e_storico
+     * @return string la stringa sql per la SELECT
+     */
 	 static function caricaStorico() : string
     {
         return "SELECT *
@@ -75,14 +83,17 @@ class f_utente
                 WHERE storico.id_storico = :id AND storico.id_utente = utente.id ; ";
     }
 	
+	/**
+     * Carica i prestiti di un utente in un array di e_prenotazione
+     * @return string la stringa sql per la SELECT
+     */
 	static function caricaPrenota() : string
     {
         return "SELECT *
                 FROM prenota, utente
                 WHERE prenota.id_prenota= :id AND prenota.id_utente = utente.id; ";
     }
-	
-	  
+	 
     /**
      * Query che rimuove un utente dalla tabella utente.
      * @return string contenente la query sql
@@ -93,7 +104,11 @@ class f_utente
                 FROM utente
                 WHERE id = :id;";
     }
-    
+	
+   /**
+    * Query per la ricerca di un utente dato il nome
+	* @return string contenente la query sql
+	*/
      static function ricercaUtenteDaNome() : string
     {
         return "SELECT utente.*
@@ -102,7 +117,7 @@ class f_utente
     }
     
     /**
-     * Associazione di un oggetto e_utente ai campi di una query sql per la tabella prenota.
+     * Associazione di un oggetto e_utente ai campi di una query sql per la tabella utente.
      * @param PDOStatement $stmt lo statement contenente i campi da riempire
      * @param e_utente $utente l'utente da cui prelevare i dati
      */

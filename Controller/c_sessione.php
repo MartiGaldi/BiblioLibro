@@ -2,10 +2,21 @@
 
 require_once 'inc.php';
 
+/**
+ * La classe CSession regola la sessione dell'utente nella navigazione dell'applicazione.
+ * @author gruppo11
+ * @package Controller
+ */
+ 
 class c_sessione
 {
+	/**
+     * Funzione che da inizio alla sessione. 
+     * @param e_utente $utente l'utente di cui memorizzare i dati
+     */
     static function inizioSessione(e_utente &$utente)
     {
+		
         session_start();
         // i suoi dati sono memorizzati all'interno della sessione
         $_SESSION['id'] =  $utente->getId();
@@ -13,8 +24,12 @@ class c_sessione
         $_SESSION['tipo'] = lcfirst(substr(get_class($utente), 2));
     }
     
-    
-    
+	/**
+     * Restituisce l'utente della sessione corrispondente alla connessione che ha richiamato
+     * il metodo. Se la sessione è attiva, restituirà l'utente corrispondente,
+     * altrimenti restituirà un utente visitatore.
+     * @return e_utente
+     */
     static function getUtenteDaSessione() : e_utente
     {
         session_start();
@@ -40,6 +55,10 @@ class c_sessione
         
     }
     
+	/**
+     * Controlla se i privilegi di amministrazione siano presenti nella sessione
+     * @return bool true se l'utente ha i privilegi di amministrazione, false altrimenti
+     */
     static function trovaPrivilegiAmministratore() : bool
     {
         if(isset($_SESSION['amministratore']))
@@ -49,18 +68,17 @@ class c_sessione
             return false; 
     }
     
-    
-    
-  
+	/**
+     * Imposta i privilegi di amministrazione.
+     */
     static function setPrivilegiAmministratore()
     {
         $_SESSION['amministratore'] = true;
     }
     
-    
-    
- 
-    
+	/**
+     * Rimuove i privilegi di amministrazione.
+     */
     static function rimuoviPrivilegiAmministratore()
     {
         session_start();
@@ -68,6 +86,9 @@ class c_sessione
         unset($_SESSION['amministratore']);
     }
     
+	/**
+     * Termina una sessione.
+     */
     static function terminaSessione()
     {
         session_start(); // recupera i parametri di sessione
@@ -76,14 +97,10 @@ class c_sessione
         
     }
     
-    
-    
     static function populateApplication()
     {
         setcookie('install', 'ok', time()+3600);
     }
-    
-    
     
     static function checkPopulateApplication() : bool
     {
@@ -94,8 +111,6 @@ class c_sessione
             return false;
                 
     }
-    
-    
     
     static function unsetCookie()
     {

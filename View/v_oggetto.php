@@ -1,10 +1,10 @@
 <?php
 
 /**
-* La classe v_oggetto contiene gli attributi e le funzioni base adoperati in tutto il package View:
-* -Metodo per la visualizzazione di una pagina di errore
-* -Istanzia l'oggetto Smarty adoperato alla visualizzazione dei template .tpl.
-*/
+ * La classe v_oggetto contiene gli attributi e le funzioni base adoperati in tutto il package View:
+ * -Metodo per la visualizzazione di una pagina di errore
+ * -Istanzia l'oggetto Smarty adoperato alla visualizzazione dei template .tpl.
+ */
 
 class v_oggetto
 {
@@ -25,11 +25,11 @@ class v_oggetto
     }
     
     /**
-    * Mostra una pagina di errore, 
-    * funzione da richiamare se un utente sta visualizzando una pagina che non risulta essere di sua competenza
-    * @param e_utente $utente l'utente della sessione
-    * @param string $errore il messaggio di errore da visualizzare
-    */
+     * Mostra una pagina di errore, 
+     * funzione da richiamare se un utente sta visualizzando una pagina che non risulta essere di sua competenza
+     * @param e_utente $utente l'utente della sessione
+     * @param string $errore il messaggio di errore da visualizzare
+     */
     
     function Errore(e_utente &$utente, string $errore)
     {
@@ -39,6 +39,11 @@ class v_oggetto
         $this->smarty->display('Errore.tpl');
     }
 	
+	/**
+     * Mostra una pagina di avviso, 
+     * @param e_utente $utente l'utente della sessione
+     * @param string $avviso il messaggio di avviso da visualizzare
+     */
 	function Avviso(e_utente &$utente, string $avviso)
     {
         $this->smarty->registerObject('utente', $utente);

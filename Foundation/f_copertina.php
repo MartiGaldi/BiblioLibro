@@ -67,7 +67,7 @@ class f_copertina
     /**
      * Crea una Entity da una riga del database
      * @param array $ennupla avente come indici i campi della tabella da cui e' stata prelevata l'entry
-     * @return e_copertina l'oggetto e_copertina risultato dell'operazione
+     * @return copertina l'oggetto e_copertina risultato dell'operazione
      */
     static function creaOggettoDaRiga($riga) : e_copertina
     {

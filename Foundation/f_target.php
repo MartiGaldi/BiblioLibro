@@ -1,7 +1,7 @@
 <?php
 
 /**
-* La classe FTarget contiene stringhe da utilizzare come parametro per f_persistance
+* La classe f_target contiene stringhe da utilizzare come parametro per f_persistance
 * per specificare, in funzionalita come carica o esiste, i tipi di query che si vogliono
 * utilizzare per una data classe.
 * @author gruppo 11

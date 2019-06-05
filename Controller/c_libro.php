@@ -2,16 +2,17 @@
 require_once 'inc.php';
 
 /**
-* Il Controller c_libro implementa le funzionalità 'Gestione Libro'.
-* Il bibliotecario può caricare, modificare e rimuovere un testo.
-* @package Controller
-*/
+ * Il Controller c_libro implementa le funzionalità 'Gestione Libro'.
+ * Il bibliotecario può caricare, modificare e rimuovere un testo.
+ * @author gruppo 11
+ * @package Controller
+ */
 
 class c_libro
 { 
     /**
     * La funzione carica permette la visualizzazione della form per il caricamento di un testo,
-    *  a seguito di una richiesta GET, o l'inserimento di un libro da parte del bibliotecario a seguito
+    * a seguito di una richiesta GET, o l'inserimento di un libro da parte del bibliotecario a seguito
     * di una richiesta POST.
     */
     
@@ -130,11 +131,10 @@ class c_libro
     
     
     /**
-    
-    * Mostra la form per la modifica di un libro. Reindirizza ad un messaggio di errore
-    * se l'utente che accede alla risorsa non e' un bibliotecario.
-    * @param int $id l'identificativo del libro.
-    */
+     * Mostra la form per la modifica di un libro. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     * @param int $id l'identificativo del libro.
+     */
     
     private function mostraFormModifica($id)
     {
@@ -167,11 +167,10 @@ class c_libro
     
     
     /**
-    
-    * Mostra la form per la rimozione di un testo. Reindirizza ad un messaggio di errore
-    * se l'utente che accede alla risorsa non e' un bibliotecario.
-    * @param int $id l'identificativo del libro.
-    */
+     * Mostra la form per la rimozione di un testo. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     * @param int $id l'identificativo del libro.
+     */
     
     private function mostraFormRimuovi ($id)
     {
@@ -198,7 +197,10 @@ class c_libro
     }
     
     
-	
+	/**
+     * Mostra il form per l'aggiunta di un libro. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     */
     private function aggiungiLibro()
     {
         $v_libro = new v_libro(); // crea la view
@@ -263,10 +265,10 @@ class c_libro
     
     
     /**
-    * Effettua la rimozione di un libro. Reindirizza ad un messaggio di errore
-    * se l'utente che vuole rimuovere il brano non è il bibliotecario.
-    * @param int $id l'identificativo del libro.
-    */
+     * Effettua la rimozione di un libro. Reindirizza ad un messaggio di errore
+     * se l'utente che vuole rimuovere il brano non è il bibliotecario.
+     * @param int $id l'identificativo del libro.
+     */
     
     private function rimuoviLibro ($id)
     {

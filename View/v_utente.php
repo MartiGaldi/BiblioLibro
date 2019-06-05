@@ -3,16 +3,21 @@ require_once 'inc.php';
 include_once 'View/v_oggetto.php';
 
 /**
-* La classe v_utente si occupa dell'input-output per quanto riguarda la gestione di un utente.
-* In particolare:
-* - Costruisce da una form un oggetto e_utente e ne verifica la validità
-* - Permette al client di visualizzare pagine relative all'utente (accedi-registrati-profilo)
-* @package View
-*/
+ * La classe v_utente si occupa dell'input-output per quanto riguarda la gestione di un utente.
+ * In particolare:
+ * - Costruisce da una form un oggetto e_utente e ne verifica la validità
+ * - Permette al client di visualizzare pagine relative all'utente (accedi-registrati-profilo)
+ * @author gruppo 11
+ * @package View
+ */
 
 class v_utente extends v_oggetto
 {
-    
+    /**
+     * Costruttore che inizializza il componente view e definisce l'array contenente gli errori
+     * che possono essere commessi nella form di caricamento/modifica utenti
+     */
+	 
     function __construct()
     {
         parent::__construct();
@@ -36,9 +41,9 @@ class v_utente extends v_oggetto
     
     
     /**
-    * Funzione che permette la creazione di utente con i valori prelevati da una form
-    * @return e_utente l'utente ottenuto dai campi della form
-    */
+     * Funzione che permette la creazione di utente con i valori prelevati da una form
+     * @return e_utente l'utente ottenuto dai campi della form
+     */
     
     function creaUtente() : e_utente
     { 
@@ -85,12 +90,10 @@ class v_utente extends v_oggetto
     return $utente;                
     }
    
-    
-    
     /**
-    * Verifica che un utente abbia rispettato i vincoli per l'inserimento dei parametri di login
-    * @return true se non si sono commessi errori, false altrimenti
-    */
+     * Verifica che un utente abbia rispettato i vincoli per l'inserimento dei parametri di login
+     * @return true se non si sono commessi errori, false altrimenti
+     */
     function validazioneLogin(e_utente $utente): bool
     {
         if($this->check['nick']=$utente->validazioneNick() && $this->check['password']=$utente->validazionePassword())
@@ -103,7 +106,10 @@ class v_utente extends v_oggetto
 		}			
     }
     
-    
+    /**
+	 * Verifica che un utente abbia inserito i dati corretti
+     * @return true se non si sono commessi errori, false altrimenti
+     */
     function validazioneIscrizione(e_utente $utente): bool
     {
         if( $this->check['nick']=$utente->validazioneNick() && 
@@ -125,12 +131,12 @@ class v_utente extends v_oggetto
    
     
     /**
-    * Mostra il profilo di un utente.
-    * @param e_utente $profiloUtente: l'utente di cui visualizzare il profilo
-    * @param e_utente $Utente: l'utente che ha effettuato l'accesso alla sessione
-    * @param string $contenuto: il contenuto da visualizzare nel profilo (Libri)
-    * @param array $array: l'array del contenuto da visualizzare
-    */
+     * Mostra il profilo di un utente.
+     * @param e_utente $profiloUtente: l'utente di cui visualizzare il profilo
+     * @param e_utente $Utente: l'utente che ha effettuato l'accesso alla sessione
+     * @param string $contnt: il contenuto da visualizzare nel profilo (Libri)
+     * @param array $array: l'array del contenuto da visualizzare
+     */
     
     function mostraProfilo (e_utente &$profiloUtente, e_utente &$Utente, string $content, array $array = NULL, array $array2 = NULL, array $array3 = NULL)
     {
@@ -151,9 +157,9 @@ class v_utente extends v_oggetto
     
     
     /**
-    * Mostra la pagina di login
-    * @param bool $errore: facoltativo se è stato rilevato un errore
-    */
+     * Mostra la pagina di login
+     * @param bool $errore: facoltativo se è stato rilevato un errore
+     */
     
     function mostraLogin(bool $errore = NULL)
     {
@@ -174,9 +180,9 @@ class v_utente extends v_oggetto
     
     
     /**
-    * Mostra la pagina di iscrizione
-    * @param bool $error: facoltativo se e' stato rilevato un errore
-    */
+     * Mostra la pagina di iscrizione
+     * @param bool $error: facoltativo se e' stato rilevato un errore
+     */
     
     function mostraIscrizione(bool $errore = NULL)
     {
@@ -196,10 +202,10 @@ class v_utente extends v_oggetto
     
     
     /**
-    * Mostra la pagina che consente la rimozione di un utente
-    * @param e_utente $utente: l'utente della sessione
-    * @param e_utente $rimuovi: se l'utente che ha richiesto la rimozione e' un bibliotecario
-    */
+     * Mostra la pagina che consente la rimozione di un utente
+     * @param e_utente $utente: l'utente della sessione
+     * @param e_utente $rimuovi: se l'utente che ha richiesto la rimozione e' un bibliotecario
+     */
     
     function mostraFormRimuovi (e_utente &$utente, e_utente &$rimuovi = null)
     {
@@ -221,12 +227,11 @@ class v_utente extends v_oggetto
         $this->smarty->display('utente/rimuoviUtente.tpl');
     }  
 	
-	 /**
-    * Mostra l'utente.
-    * @param e_utente $utente l'utente che sta visualizzando la pagina
-    * @param e_utente $Utente l'utente da visualizzare
-    */
-    
+	/**
+     * Mostra l'utente.
+     * @param e_utente $utente l'utente che sta visualizzando la pagina
+     * @param e_utente $Utente l'utente da visualizzare
+     */
     function mostraUtente(e_utente &$utente, e_utente &$Utente)
     {
         $this->smarty->registerObject('utente', $utente);

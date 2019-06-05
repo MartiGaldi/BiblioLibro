@@ -4,8 +4,8 @@ require_once 'inc.php';
 include_once 'View/v_oggetto.php';
 
 /**
-* La classe v_amministatore effettua l'input-output per quanto riguarda il pannello di amministrazione
-*/
+ * La classe v_amministatore effettua l'input-output per quanto riguarda il pannello di amministrazione
+ */
 
 class v_amministratore extends v_oggetto
 {
@@ -35,9 +35,9 @@ class v_amministratore extends v_oggetto
     }
     
     /**
-    * Ritorna la coppia mail-password inserita dall'amministratore nel login
-    * @return array
-    */
+     * Ritorna la coppia nick-password inserita dall'amministratore nel login
+     * @return array
+     */
     
     function getNickEPassword() : array
     {
@@ -46,9 +46,9 @@ class v_amministratore extends v_oggetto
     }
     
     /**
-    * Verifica che un utente abbia inserito i
-    * @return true se non si sono commessi errori, false altrimenti
-    */
+     * Verifica che un utente abbia inserito i dati corretti
+     * @return true se non si sono commessi errori, false altrimenti
+     */
     
     function validazioneIscrizione(e_utente $utente): bool
     {
@@ -59,8 +59,8 @@ class v_amministratore extends v_oggetto
     }
     
     /**
-    * Mostra la pagina di login
-    */
+     * Mostra la pagina di login
+     */
     
     function mostraLogin(bool $errore = NULL)
     {
@@ -79,9 +79,9 @@ class v_amministratore extends v_oggetto
     }
     
     /**
-    * Funzione che permette la creazione di utente con i valori prelevati da una form
-    * @return e_utent l'utente ottenuto dai campi della form
-    */
+     * Funzione che permette la creazione di utente con i valori prelevati da una form
+     * @return e_utente l'utente ottenuto dai campi della form
+     */
     
     function creaUtente(): e_utente
     {
@@ -106,9 +106,9 @@ class v_amministratore extends v_oggetto
     }
     
     /**
-    * Mostra la pagina di registrazione
-    * @param bool $errore (facoltativo se è stato rilevato un errore)
-    */
+     * Mostra la pagina di registrazione
+     * @param bool $errore (facoltativo se è stato rilevato un errore)
+     */
     
     function mostraIscrizione (bool $errore = NULL)
     {
@@ -125,9 +125,9 @@ class v_amministratore extends v_oggetto
     }
     
     /**
-    * Mostra il pannello di amministrazione
-    * @param e_utente $utente l'utente della sessione
-    */
+     * Mostra il pannello di amministrazione
+     * @param e_utente $utente l'utente della sessione
+     */
     
     function mostraPannello(e_utente &$utente)
     {
@@ -137,6 +137,10 @@ class v_amministratore extends v_oggetto
         $this->smarty->display('amministratore/pannello.tpl');
     }
 	
+	/**
+     * Funzione che permette la creazione di utente con i valori prelevati da una form
+     * @return e_utente l'utente ottenuto dai campi della form
+     */
 	function creaUtente1() : e_utente
     { 
         $utente;

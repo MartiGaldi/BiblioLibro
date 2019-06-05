@@ -2,18 +2,19 @@
 require_once 'inc.php';
 
 /**
-* La classe c_utente implementa la funzionalità 'Gestione Utenti'. I vari metodi permettono
-* la creazione, autenticazione e visualizzazione di un profilo di un utente.
-* @package Controller
-*/
+ * La classe c_utente implementa la funzionalità 'Gestione Utenti'. I vari metodi permettono
+ * la creazione, autenticazione e visualizzazione di un profilo di un utente.
+ * @author gruppo 11
+ * @package Controller
+ */
 
 class c_utente
 {  
     /**
-    * Metodo che implementa il login. Se richiamato tramite GET, fornisce
-    * la pagina di login, se richiamato tramite POST cerca di autenticare l'utente attraverso
-    * i valori che quest'ultimo ha fornito
-    */
+     * Metodo che implementa il login. Se richiamato tramite GET, fornisce
+     * la pagina di login, se richiamato tramite POST cerca di autenticare l'utente attraverso
+     * i valori che quest'ultimo ha fornito
+     */
     
     static function login()
     {
@@ -41,10 +42,10 @@ class c_utente
     
     
     /**
-    * Metodo che implementa la registrazione. Se richiamato a seguito di una richiesta
-    * GET da parte del cliente, mostra la form di compilazione; altrimenti se richiamato tramite POST
-    * riceve i dati forniti dall'utente e procede con la creazione di un nuovo utente. 
-    */
+     * Metodo che implementa la registrazione. Se richiamato a seguito di una richiesta
+     * GET da parte del cliente, mostra la form di compilazione; altrimenti se richiamato tramite POST
+     * riceve i dati forniti dall'utente e procede con la creazione di un nuovo utente. 
+     */
     
     static function iscrizione()
     { 
@@ -70,12 +71,9 @@ class c_utente
     
     
     /**
-    * La funzione mostra il profilo di un utente. A seconda del tipo di URL, saranno visualizzati contenuti differenti.
-    * In particolare:
-    *  - /BiblioLibro/utente/profilo/id mostra la pagina base;
-    *  - /BiblioLibro/utente/profilo/id&libro mostra la lista dei libri presi in prestito dall'utente
-    * @param $string l'argomento della url. Se non specificato, si viene reindirizzati ad una pagina di errore.
-    */
+     * La funzione mostra il profilo di un utente. A seconda del tipo di URL, saranno visualizzati contenuti differenti.
+     * @param $id id dell'utente. Se non specificato, si viene reindirizzati ad una pagina di errore.
+     */
     static function profilo ($id, $content = null)
     {
         $v_utente = new v_utente();
@@ -119,8 +117,8 @@ class c_utente
     
     
     /**
-    * La funzione esci effettua il logout.
-    */
+     * Logout dell'utente
+     */
     static function logout()
     {
         c_sessione::terminaSessione();
@@ -131,11 +129,11 @@ class c_utente
     
     
     /**
-    * La funzione rimuovi permette la visualizzazione della form per la rimozione di un utente,
-    * a seguito di una richiesta GET, o la conferma dell'operazione da parte di un utente a seguito
-    * di una richiesta POST.
-    * @param int $id l'identificativo del libro, prelevato dall'URL.
-    */
+     * La funzione rimuovi permette la visualizzazione della form per la rimozione di un utente,
+     * a seguito di una richiesta GET, o la conferma dell'operazione da parte di un utente a seguito
+     * di una richiesta POST.
+     * @param int $id l'identificativo dell'utente, prelevato dall'URL.
+     */
     static function rimuovi($id = null)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET')
@@ -153,10 +151,10 @@ class c_utente
     
     
     /**
-    * La funzione Autenticazione verifica che le credenziali di accesso inserite da un utente
-    * siano corrette: in tal caso, l'applicazione lo riporterà verso la sua pagina, altrimenti
-    * restituirà la schermata di login, con un messaggio di errore.
-    */
+     * La funzione Autenticazione verifica che le credenziali di accesso inserite da un utente
+     * siano corrette: in tal caso, l'applicazione lo riporterà verso la sua pagina, altrimenti
+     * restituirà la schermata di login, con un messaggio di errore.
+     */
     
     private function autenticazione()
     {
@@ -189,8 +187,8 @@ class c_utente
     
     
     /**
-    * La funzione Registra permette di creare un nuovo utente se non sono presenti utenti con stesso nickname inseriti nella form
-    */
+     * La funzione Registra permette di creare un nuovo utente se non sono presenti utenti con stesso nickname inseriti nella form
+     */
     function registra()
     {
         $v_utente = new v_utente();
@@ -216,11 +214,11 @@ class c_utente
     
     
     /**
-    * Mostra la form per la rimozione di un utente. Reindirizza ad un messaggio di errore
-    * se l'utente che accede alla risorsa non e' un utente registrato.
-    * @param int $id l'identificativo dell'utente da rimuovere. Tale identificativo puo' essere
-    * specificato SOLO da un bibliotecario.
-    */
+     * Mostra la form per la rimozione di un utente. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un utente registrato.
+     * @param int $id l'identificativo dell'utente da rimuovere. Tale identificativo puo' essere
+     * specificato SOLO dall'utente della sessione.
+     */
     
     private function mostraFormRimuovi($id = null)
     { 
@@ -252,10 +250,10 @@ class c_utente
     
     
     /**
-    * Rimuove un utente dall'applicazione
-    * @param int $id l'identificativo dell'utente da rimuovere, specificato SOLO se l'utente
-    * che sta effettuando l'operazione di rimozione sia un bibliotecario
-    */
+     * Rimuove un utente dall'applicazione
+     * @param int $id l'identificativo dell'utente da rimuovere, specificato SOLO se l'utente
+     * che sta effettuando l'operazione di rimozione sia l'utente della sessione
+     */
     
     private function rimuoviUtente($id = null)
     {
@@ -293,8 +291,8 @@ class c_utente
     } 
 	
 	 /**
-     *  la funzione mostra permette la visualizzazione degli utenti da parte del bibliotecario
-     */
+      *  la funzione mostra permette la visualizzazione degli utenti da parte del bibliotecario
+      */
     static function mostra($id)
     {
         if(is_numeric($id))

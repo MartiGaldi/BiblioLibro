@@ -2,17 +2,18 @@
 require_once 'inc.php';
 
 /**
-* Il Controller c_storico implementa le funzionalità 'Gestione Storico'.
-* Il bibliotecario può caricare, modificare e rimuovere un prestito storico.
-* @package Controller
-*/
+ * Il Controller c_storico implementa le funzionalità 'Gestione Storico'.
+ * Il bibliotecario può caricare, modificare e rimuovere un prestito storico.
+ * @author gruppo 11
+ * @package Controller
+ */
 class c_storico
 { 
     /**
-    * La funzione carica permette la visualizzazione della form per il rientro di un testo,
-    *  a seguito di una richiesta GET, o l'inserimento di un libro da parte del bibliotecario a seguito
-    * di una richiesta POST.
-    */
+     * La funzione carica permette la visualizzazione della form per il rientro di un testo,
+     *  a seguito di una richiesta GET, o l'inserimento di un libro da parte del bibliotecario a seguito
+     * di una richiesta POST.
+     */
     
     static function carica()
     {
@@ -29,10 +30,10 @@ class c_storico
     
     
     /**
-    * La funzione modifica permette la visualizzazione della form per la modifica di uno storico, 
-    * a seguito di una richiesta GET o l'inserimento delle modifiche da parte del bibliotecario a seguito di una richiesta POST.
-    * @param int $id l'identificativo del prestito storico, specificato nell'URL.
-    */
+     * La funzione modifica permette la visualizzazione della form per la modifica di uno storico, 
+     * a seguito di una richiesta GET o l'inserimento delle modifiche da parte del bibliotecario a seguito di una richiesta POST.
+     * @param int $id l'identificativo del prestito storico, specificato nell'URL.
+     */
     
     static function modifica ($id)
     {
@@ -55,12 +56,11 @@ class c_storico
     
     
     /**
-    
-    * La funzione rimuovi permette la visualizzazione della form per la rimozione di un testo,
-    * a seguito di una richiesta GET, o la conferma
-    * dell'operazione da parte del bibliotecario a seguito di una richiesta POST.
-    * @param int $id l'identificativo del libro, prelevato dall'URL.
-    */
+     * La funzione rimuovi permette la visualizzazione della form per la rimozione di uno storico,
+     * a seguito di una richiesta GET, o la conferma
+     * dell'operazione da parte del bibliotecario a seguito di una richiesta POST.
+     * @param int $id l'identificativo dello storico, prelevato dall'URL.
+     */
     
     static function rimuovi ($id)
     {
@@ -79,7 +79,7 @@ class c_storico
     }
 
     /**
-     *  la funzione mostra permette la visualizzazione del libro da parte degli utenti
+     *  la funzione mostra permette la visualizzazione dello storico da parte degli utenti
      */
     static function mostra($id)
     {
@@ -108,9 +108,9 @@ class c_storico
     
     
     /**
-    * Mostra la form per il caricamento di un libro. Reindirizza ad un messaggio di errore
-    * se l'utente che accede alla risorsa non e' un bibliotecario.
-    */
+     * Mostra la form per il caricamento di uno storico. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     */
     
     private function mostraFormCarica()
     {
@@ -126,11 +126,10 @@ class c_storico
     
     
     /**
-    
-    * Mostra la form per la modifica di un libro. Reindirizza ad un messaggio di errore
-    * se l'utente che accede alla risorsa non e' un bibliotecario.
-    * @param int $id l'identificativo del libro.
-    */
+     * Mostra la form per la modifica di uno storico. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     * @param int $id l'identificativo dello storico.
+     */
     
     private function mostraFormModifica($id)
     {
@@ -157,11 +156,10 @@ class c_storico
     
     
     /**
-    
-    * Mostra la form per la rimozione di un testo. Reindirizza ad un messaggio di errore
-    * se l'utente che accede alla risorsa non e' un bibliotecario.
-    * @param int $id l'identificativo del libro.
-    */
+     * Mostra la form per la rimozione di uno storico. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     * @param int $id l'identificativo dello storico.
+     */
     
     private function mostraFormRimuovi ($id)
     {
@@ -185,8 +183,10 @@ class c_storico
             $v_storico->Errore($utente, 'la URL non e valida.');   
     }
     
-    
-	
+    /**
+     * Mostra il form per l'aggiunta di uno storico. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     */
     private function aggiungiStorico()
     {
         $v_storico = new v_storico(); // crea la view
@@ -253,10 +253,10 @@ class c_storico
     
     
     /**
-    * Mostra il form per la modifica di un libro. Reindirizza ad un messaggio di errore
-    * se l'utente che accede alla risorsa non e' un bibliotecario.
-    * @param int $id l'identificativo del libro.
-    */
+     * Mostra il form per la modifica di uno storico. Reindirizza ad un messaggio di errore
+     * se l'utente che accede alla risorsa non e' un bibliotecario.
+     * @param int $id l'identificativo dello storico.
+     */
     
     private function modificaStorico ($id)
     {
@@ -290,10 +290,10 @@ class c_storico
     
     
     /**
-    * Effettua la rimozione di un libro. Reindirizza ad un messaggio di errore
-    * se l'utente che vuole rimuovere il brano non è il bibliotecario.
-    * @param int $id l'identificativo del libro.
-    */
+     * Effettua la rimozione di uno storico. Reindirizza ad un messaggio di errore
+     * se l'utente che vuole rimuovere lo storico non è il bibliotecario.
+     * @param int $id l'identificativo dello storico.
+     */
     
     private function rimuoviStorico ($id)
     {

@@ -8,9 +8,9 @@
 class f_prenotazione
 {
     /**
-    * Query che effettua il salvataggio di una prenotazione nella tabella prenota
-    * @return string contenente la query sql
-    */
+     * Query che effettua il salvataggio di una prenotazione nella tabella prenotazione
+     * @return string contenente la query sql
+     */
     static function salvaPrenotazione() : string
     {
         return "INSERT INTO prenotazione(id_prenotazione, id_utente, id_libro , data_scadenza)
@@ -18,9 +18,9 @@ class f_prenotazione
     }
 
     /**
-    * Query che effettua l'aggiornamento di una prenotazione nella tabella prenota
-    * @return string contenente la query sql 
-    */
+     * Query che effettua l'aggiornamento di una prenotazione nella tabella prenotazione
+     * @return string contenente la query sql 
+     */
     static function aggiornaPrenotazione() : string
     {
         return "UPDATE prenotazione
@@ -29,15 +29,20 @@ class f_prenotazione
     }
     
     /**
-    * Query per il caricamento di una prenotazione
-    * @return string sql rappresentante la SELECT.
-    */    
+     * Query per il caricamento di una prenotazione
+     * @return string sql rappresentante la SELECT.
+     */    
     static function caricaPrenotazione() : string 
     {
         return "SELECT *
                 FROM prenotazione
                 WHERE id_prenotazione = :id ";
     }
+	
+	/**
+     * Query per il caricamento di più prenotazioni
+     * @return string sql rappresentante la SELECT.
+     */ 
 	static function caricaPrenotazioni() : string 
     {
         return "SELECT *
@@ -46,9 +51,9 @@ class f_prenotazione
     }
     
     /**
-    * Query che rimuove una prenotazione dalla tabella prenota.
-    * @return string contenente la query sql
-    */
+     * Query che rimuove una prenotazione dalla tabella prenotazione.
+     * @return string contenente la query sql
+     */
     static function rimuoviPrenotazione() : string
     {
         return "DELETE
@@ -69,9 +74,9 @@ class f_prenotazione
     
     
     /**
-     * Associazione di un oggetto e_prenota ai campi di una query sql per la tabella prenota.
+     * Associazione di un oggetto e_prenotazione ai campi di una query sql per la tabella prenotazione.
      * @param PDOStatement $stmt lo statement contenente i campi da riempire
-     * @param e_prenota $pren la prenotazione da cui prelevare i dati
+     * @param e_prenotazione $prenotazione la prenotazione da cui prelevare i dati
      */
     static function bindValues(PDOStatement &$stmt, e_prenotazione &$prenotazione)
     {
@@ -82,9 +87,9 @@ class f_prenotazione
     }
     
     /**
-     * Istanzia un oggetto e_prenota a partire dai valori di una tupla ricevuta dal dbms
+     * Istanzia un oggetto e_prenotazione a partire dai valori di una tupla ricevuta dal dbms
      * @param array $ennupla la tupla ricevuta dal dbms
-     * @return prenota l'oggetto e_prenota risultato dell'operazione
+     * @return prenota l'oggetto e_prenotazione risultato dell'operazione
      */
     static function creaOggettoDaRiga($riga) : e_prenotazione
     {

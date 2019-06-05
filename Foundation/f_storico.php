@@ -7,7 +7,7 @@
 class f_storico
 {
 	/**
-     * Query che effettua il salvataggio di un prestito nella tabella prestito
+     * Query che effettua il salvataggio di un prestito nella tabella storico
      * @return string contenente la query sql
      */
     static function salvaStorico():string
@@ -17,7 +17,7 @@ class f_storico
     }
     
     /**
-     * Query che effettua l'aggiornamento di una prestito nella tabella prestito
+     * Query che effettua l'aggiornamento di una prestito nella tabella storico
      * @return string contenente la query sql
      */
     static function aggiornaStorico() : string
@@ -37,6 +37,11 @@ class f_storico
                 FROM storico
                 WHERE id_storico = :id ;";
     }
+	
+	/**
+     * Query per il caricamento di più storici
+     * @return string sql rappresentante la SELECT.
+     */
 	static function caricaStorici() : string
     {
         return "SELECT *
@@ -55,7 +60,6 @@ class f_storico
                 WHERE id_storico = :id ;";
     }
     
-    
     /**
      * Associazione di un oggetto e_storico ai campi di una query sql per la tabella storico.
      * @param PDOStatement $stmt lo statement contenente i campi da riempire
@@ -71,10 +75,10 @@ class f_storico
     }
 	
 	/**
-    * Istanzia un oggetto e_storico a partire dai valori di una tupla ricevuta dal dbms
-    * @param array $ennupla la tupla ricevuta dal dbms
-    * @return storico l'oggetto e_storico risultato dell'operazione
-    */
+     * Istanzia un oggetto e_storico a partire dai valori di una tupla ricevuta dal dbms
+     * @param array $ennupla la tupla ricevuta dal dbms
+     * @return storico l'oggetto e_storico risultato dell'operazione
+     */
     static function creaOggettoDaRiga($riga) : e_storico
     {
         // creazione dell'oggetto e_storico
