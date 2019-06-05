@@ -1,1 +1,0 @@
-<?php $indirizzo= 'localhost'; $database= 'BiblioLibro'; $admin= 'root';$pass= 'bibliolibro'; ?>
