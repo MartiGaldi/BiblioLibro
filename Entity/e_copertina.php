@@ -11,12 +11,18 @@ require_once 'inc.php';
 
 class e_copertina
 {
+	/** id copertina */
     private $id;
-    private $size; //dimensione
-	private $type; //formato
-    private $copertina; //byte immagine
+	/** dimensione copertina */
+    private $size;
+	/** formato copertina */
+	private $type; 
+	/** byte copertina */
+    private $copertina;
     
-    /**inizializzazione immagine vuota*/
+    /**
+	 *inizializzazione immagine vuota
+	 */
     function __constructor()
 	{
         $this->id = null;
@@ -39,32 +45,51 @@ class e_copertina
         $this->id=$id;
     }
 	
+	/**
+     * @param string $type il mime-type dell'immagine
+     */
     function setType(string $type)
 	{
         
         $this->type=$type;
     }
     
+    /**
+     * @return string il mime-type del file.
+     */
     function getType() : string {
         
         return $this->type;
     }
     
+	/**
+     * @param int $size la dimensione dell'immagine
+     */
     function setSize(int $size){
         
         $this->size=$size;
     }
     
+	/**
+     * @return int la dimensione dell'immagine
+     */
     function getSize() : int {
         
         return $this->size;
     }
-    
+	
+	/**
+     * @param mixed $copertina i byte contenuti nel file
+     */
     function setCopertina($copertina){
         
         $this->copertina=$copertina;
     }
     
+	/**
+     * @param bool $encode (opzionale) se posto a true, effettua la codifica in base64 per la visualizzazione
+     * @return mixed I byte dell'immagine
+     */
     function getCopertina(bool $encode=null){
         
         if($enconde)
@@ -72,7 +97,9 @@ class e_copertina
         return $this->copertina;
     }
     
-    /**imposta l'oggetto con valori statici ricavati da un'immagine nella directory di lavoro*/
+    /**
+	 *imposta l'oggetto con valori statici ricavati da un'immagine nella directory di lavoro
+	 */
     function setStatic()
     {
         $file=dirname(__DIR__)."/risorse/static/copertina.png";
@@ -83,9 +110,9 @@ class e_copertina
     }
     
     /**
-    * Controlla che l'immagine sia valida    
-    * @param bool $file che denota se l'immagine e' corretta o meno
-    */
+     * Controlla che l'immagine sia valida    
+     * @param bool $file che denota se l'immagine e' corretta o meno
+     */
     function validazione(bool &$file)
     {  
         if($this->size<=0 && $this->copertina>=65535) 

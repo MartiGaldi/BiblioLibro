@@ -13,15 +13,25 @@ require_once'inc.php';
 
 class e_libro
  {
+	/** id libro */
     private $id;
+	/** autore libro */
     private $autore;
+	/** titolo libro*/
     private $titolo;
+	/** numero copie esistenti del libro */
     private $num_copie;
+	/** durata libro */
     private $durata;
+	/** genere libro */
     private $genere;
+	/** isbn libro */
 	private $isbn;
+	/** descrizione libro */
 	private $descrizione;
+	/** numero copie disponibili alla prenotazione */
 	private $copieDisponibili;
+	/**copertina libro */
 	private $copertina;
 	
 	private $prenota;
@@ -43,93 +53,23 @@ class e_libro
         $this->id=$id;
     }
 	
+	/**
+	 * metodo che imposta l'autore del libro 
+	 * @param string $autore l'autore del libro
+	 */
     function setAutore(string $autore){
         $this->autore=$autore;
     }
     
+	/**
+     * Metodo che fornisce il nome dell'autore del libro
+     * @return string l'autore del libro 
+     */
     function getAutore() : string {
         return $this->autore;
     }
-    
-    function setTitolo(string $titolo){
-        $this->titolo=$titolo;
-    }
-    
-    function getTitolo() : string {
-        return $this->titolo;
-    }
-    
-    function setNumCopie(int $num_copie){
-        $this->num_copie=$num_copie;
-    }
-    
-    function getNumCopie() : int {
-        return $this->num_copie;
-    }
-    
-    function setDurata(string $durata){
-        $this->durata=$durata;
-    }
-    
-    function getDurata() : string {
-        return $this->durata;
-    }
-    
-    function setGenere(string $genere){
-        $this->genere=$genere;
-    }
-    
-    function getGenere() : string {
-        return $this->genere;
-    }
 	
-	function setIsbn(string $isbn)
-    {
-        $this->isbn=$isbn;
-    }
-    
-    function getIsbn() : string
-    {
-        return $this->isbn;
-    }
-	
-    function setDescrizione(string $descrizione)
-    {
-        $this->descrizione=$descrizione;
-    }
-    
-    function getDescrizione()
-    {
-        return $this->descrizione;
-    }
-    
-	
-	function setPrenota(e_prenota &$prenota)
-    {
-        $this->prenota = $prenota;
-    }
-    
-    function getPrenota() : e_prenota
-    {
-		if($this->prenota) // se la prenotazione e' gia presente, la restituisce
-            return $this->prenota;
-        else
-		{
-		$this->prenota = f_persistance::getInstance()->carica('prenota', $this->id);
-        return $this->prenota;
-		}
-    } 
-	
-	function setCopieDisponibili (int $copieDisponibili){
-        $this->copieDisponibili=$copieDisponibili;
-    }
-    
-    function getCopieDisponibili() : int {
-        return $this->copieDisponibili;
-    }
-   
-	 
-    /**
+	/**
      * Funzione che verifica che il nome dell'autore sia valido. Il nome dell'autore si intende valido se
      * contiene solamente lettere e spazi
      * @return bool true se il nome e' corretto, false altrimenti
@@ -142,7 +82,23 @@ class e_libro
             return false;
     }
     
-    /**
+	/**
+	 * metodo che imposta il titolo del libro 
+	 * @param string $titolo il titolo del libro
+	 */
+    function setTitolo(string $titolo){
+        $this->titolo=$titolo;
+    }
+    
+	/**
+     * Metodo che fornisce il titolo del libro
+     * @return string il titolo del libro 
+     */
+    function getTitolo() : string {
+        return $this->titolo;
+    }
+	
+	/**
      * Funzione che verifica che il titolo sia valido. Il titolo si intende valido se
      * contiene solamente lettere, numeri e spazi
      * @return bool true se il titolo e' corretto, false altrimenti
@@ -153,9 +109,25 @@ class e_libro
             return true;
         else
             return false;
+    }    
+	
+	/**
+	 * metodo che imposta il numero copie totali del libro 
+	 * @param int $num_copie il numero copie del libro
+	 */
+    function setNumCopie(int $num_copie){
+        $this->num_copie=$num_copie;
     }
     
-    /**
+	/**
+     * Metodo che fornisce il numero copie del libro
+     * @return int il numero copie del libro 
+     */
+    function getNumCopie() : int {
+        return $this->num_copie;
+    }
+    
+	/**
      * Funzione che verifica che il numero copie sia valido. Si intende valido se
      * contiene solamente numeri
      * @return bool true se il numero copie e' corretto, false altrimenti
@@ -167,8 +139,24 @@ class e_libro
         else
             return false;
     }
+	
+	/**
+	 * metodo che imposta la durata di un prestito del libro 
+	 * @param string $durata la durata del libro
+	 */
+    function setDurata(string $durata){
+        $this->durata=$durata;
+    }
     
-    /**
+	/**
+     * Metodo che fornisce la durata del libro
+     * @return string la durata del libro 
+     */
+    function getDurata() : string {
+        return $this->durata;
+    }
+	
+	/**
      * Funzione che verifica che la durata associata al libro sia corretta. La durata si intende
      * corretta se è pari a consultazione o breve o lungo
      * @return bool true se la durata inseita e' valida, false altrimenti
@@ -182,6 +170,22 @@ class e_libro
     }
     
 	/**
+	 * metodo che imposta il genere del libro 
+	 * @param string $genere il genere del libro
+	 */
+    function setGenere(string $genere){
+        $this->genere=$genere;
+    }
+    
+	/**
+     * Metodo che fornisce il genere del libro
+     * @return string il genere del libro 
+     */
+    function getGenere() : string {
+        return $this->genere;
+    }
+	
+	/**
      * Funzione che verifica che il genere del libro sia valido. Il genere del libro si intende valido se
      * contiene solamente lettere e spazi
      * @return bool true se il genere e' corretto, false altrimenti
@@ -192,6 +196,24 @@ class e_libro
             return true;
         else
             return false;
+    }
+	
+	/**
+	 * metodo che imposta il codice isbn del libro 
+	 * @param string $isbn il codice isbn del libro
+	 */
+	function setIsbn(string $isbn)
+    {
+        $this->isbn=$isbn;
+    }
+    
+	/**
+     * Metodo che fornisce il codice isbn del libro
+     * @return string il codice isbn del libro 
+     */
+    function getIsbn() : string
+    {
+        return $this->isbn;
     }
 	
 	/**
@@ -208,6 +230,24 @@ class e_libro
     }
 	
 	/**
+	 * metodo che imposta una descrizione del libro 
+	 * @param string $descrizione la descrizione del libro
+	 */
+    function setDescrizione(string $descrizione)
+    {
+        $this->descrizione=$descrizione;
+    }
+    
+	/**
+     * Metodo che fornisce una descrizione del libro
+     * @return string la descrizione del libro 
+     */
+    function getDescrizione()
+    {
+        return $this->descrizione;
+    }
+	
+	/**
      * Funzione che verifica che la descrizione sia valida. Il titolo si intende valido se
      * contiene solamente lettere, numeri e spazi
      * @return bool true se la descrizione e' corretta, false altrimenti
@@ -218,9 +258,42 @@ class e_libro
             return true;
         else
             return false;
-    }    
+    }   
+    
 
-    /**
+	function setPrenota(e_prenota &$prenota)
+    {
+        $this->prenota = $prenota;
+    }
+    
+    function getPrenota() : e_prenota
+    {
+		if($this->prenota) // se la prenotazione e' gia presente, la restituisce
+            return $this->prenota;
+        else
+		{
+		$this->prenota = f_persistance::getInstance()->carica('prenota', $this->id);
+        return $this->prenota;
+		}
+    } 
+	
+	/**
+	 * metodo che imposta le copie disponiobili per la prenotazione del libro 
+	 * @param int $copieDisponibili le copie disponiobili per la prenotazione del libro
+	 */
+	function setCopieDisponibili (int $copieDisponibili){
+        $this->copieDisponibili=$copieDisponibili;
+    }
+    
+	/**
+     * Metodo che fornisce le copie disponibili per la prenotazione del libro
+     * @return int le copie disponibili per la prenotazione del libro 
+     */
+    function getCopieDisponibili() : int {
+        return $this->copieDisponibili;
+    }
+	
+	/**
      * Funzione che verifica che il numero copie disponibili sia valido. Si intende valido se
      * contiene solamente numeri
      * @return bool true se il numero copie disponibili e' corretto, false altrimenti
@@ -232,7 +305,7 @@ class e_libro
         else
             return false;
     }
-
+   
 	/**
      * Restituisce la copertina del libro
      * @return e_copertina | NULL
