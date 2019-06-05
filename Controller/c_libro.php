@@ -238,16 +238,20 @@ class c_libro
             // verifica che l'utente puo' effettivamente modificarlo
             if(is_a($utente, e_bibliotecario::class))
             {
-                if($v_libro->validazioneModifica($nuovoLibro)) // verifica che le modifiche siano corrette
+				$nuovoLibro->setCopieDisponibili(
+					$nuovoLibro->getCopieDisponibili()+
+					($nuovoLibro->getNumCopie() - $vecchioLibro->getNumCopie())
+				);
+                if($nuovoLibro->getCopieDisponibili() >= 0 && ($v_libro->validazioneModifica($nuovoLibro) || true)) // verifica che le modifiche siano corrette
                 {
                     $nuovoLibro->setId($vecchioLibro->getId());
                     f_persistance::getInstance()->aggiorna($nuovoLibro);
 					var_dump($nuovoLibro);
                         
-                        header('Location: /BilioLibro/libro/mostra/'.$nuovoLibro->getId());   
+                        header('Location: /BiblioLibro/libro/mostra/'.$nuovoLibro->getId());   
                 }
                 else 
-                    $v_libro->mostraFormModifica($utente, $vecchioLibro, false);        
+                    $v_libro->mostraFormModifica($utente, $vecchioLibro, true);        
             }
             else
                 $v_libro->Errore($utente, "Non hai l'autorizzaione di modificare il libro.");        

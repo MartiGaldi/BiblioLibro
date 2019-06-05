@@ -80,6 +80,12 @@ class f_libro{
                 FROM libro
                 WHERE LOCATE( :Genere , libro.genere) > 0;";
     }*/
+	
+	static function ricercaLibroDaCatalogo() : string
+    {
+        return "SELECT libro.*
+                FROM libro;";
+    }
     
     /**
     * Associa ai campi della query i corrispondenti attributi dell'oggetto e_libro.

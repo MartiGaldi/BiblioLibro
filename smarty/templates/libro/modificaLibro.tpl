@@ -50,6 +50,12 @@
 			{/if}
 			
 			<form method="post" enctype="multipart/form-data" action="/BiblioLibro/libro/modifica/{$libro->getId()}">
+					
+					<div class="form-group row">
+						<input type="text" class="form-control" id="id" name="id" value="{$libro->getId()}" hidden>
+					</div>
+			
+					
 					<div class="form-group row">
 						<label for="libro" class="col-sm-6 col-form-label {if !$check.titolo} text-danger{/if}">Titolo: </label>
 						<input type="text" class="form-control" id="libro" name="titolo" value="{$libro->getTitolo()}" placeholder="Inserisci nuovo titolo...">
@@ -88,7 +94,7 @@
 					
 					<div class="form-group row">
 						<label for="numCopieLibro" class="col-sm-6 col-form-label {if !$check.num_copie} text-danger{/if}">Numero copie: </label>
-						<input type="text" class="form-control" id="numCopieLibro" name="numcopie" value ="{$libro->getNumCopie()}" placeholder="Inserisci numero copie...">
+						<input type="text" class="form-control" id="numCopieLibro" name="num_copie" value ="{$libro->getNumCopie()}" placeholder="Inserisci numero copie...">
 						{if ! $check.num_copie}
 						<div class="col-sm-8">
 							<small id="numcopieHelp" class="text-danger">

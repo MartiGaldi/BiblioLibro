@@ -240,9 +240,10 @@ class v_libro extends v_oggetto
 			$this->check['isbn']=$libro->validazioneIsbn() && 
 			$this->check['durata']=$libro->validazioneDurata() && 
 			$this->check['descrizione']=$libro->validazioneDescrizione() &&
-			$this->check['copieDisponibili']=$libro->validazioneCopieDisponibili())
+			$this->check['copieDisponibili']=$libro->validazioneCopieDisponibili()){
+
             return true;
-        
+		}
         else 
             return false;      
     }

@@ -1,7 +1,11 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
 	<div class="container">
 		<a class="navbar-brand">
-			<b>BiblioLibro</b>
+		{if isset($smarty.session.amministratore)}
+		<b><font color="red">BiblioLibro for Administrator</font></b>
+		{else}
+		<b><font color="white">BiblioLibro</font></b>
+		{/if}
 		</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent">
 				<span class="navbar-toggler-icon"></span>
@@ -55,7 +59,7 @@
           			
 					{if $uTipo eq 'cliente'}
           			<li class="nav-item">
-           				<a class="nav-link" href="/BiblioLibro/libro/catalogo"> Catalogo </a>
+           				<a class="nav-link" href="/BiblioLibro/ricerca/catalogo"> Catalogo </a>
           			</li>
           			{/if}
           			

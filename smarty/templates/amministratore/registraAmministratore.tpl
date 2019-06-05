@@ -160,8 +160,8 @@
 					</div>
 					
 					<div class="form-group row">
-                  <label for="inputCitta" class="col-sm-6 col-form-label {if !$check.citta} text-danger{/if}"> Città: *</label>
-				  <input type="text" class="form-control" id="inputCitta" name="citta" placeholder="Inserisci città...">
+                  <label for="inputCitta" class="col-sm-6 col-form-label {if !$check.citta} text-danger{/if}"> Citta': *</label>
+				  <input type="text" class="form-control" id="inputCitta" name="citta" placeholder="Inserisci citta'...">
                 
 					{if ! $check.citta}
 					<div class="col-sm-8">

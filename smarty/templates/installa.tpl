@@ -24,39 +24,43 @@
     </div>
   </div>
   
-	<div class="container text-center">
-	
-		<div class="col-sm-3">
+  
+  <div class="py-5 bg-light">
+	<div class="container">
+	<div class="row">
+	<div class="col-md-3"></div>
+		<div class="col-md-6">
 		
-		</div>
-		<div class="col-sm-7">
+		
+		
 			<div>
-			<h1> Applicazione Web 2017/2018</h1>
+			<h1 class="mb-4">Applicazione Web 2017/2018<h1>
 			<br>
 			<p>Questa applicazione richiede che i cookie siano abilitati</p>
 			</div>
-
+<br>
+<br>
 			{if $versione}
 			<h2>Installazione</h2>
 			<hr>
 			<form class="form-horizontal" method="post" action="install">
 				<div class="form-group">
 					<label class="control-label " for="user">Nome Utente:</label>
-					<input type="text" class="form-control" id="user" placeholder="Inserisci username" name="admin">
+					<input type="text" class="form-control" id="user" placeholder="Inserisci username..." name="admin">
 				</div>
 
 				<div class="form-group">
 					<label class="control-label" for="pwd">Password:</label>
-					<input type="password" class="form-control" id="pwd" placeholder="Inserisci password" name="pwd">
+					<input type="password" class="form-control" id="pwd" placeholder="Inserisci password..." name="pwd">
 				</div>
 
 				<div class="form-group">
 					<label class="control-label " for="db">Nome Database:</label>
-					<input type="text" class="form-control" id="db" placeholder="Inserisci nome database" name="database">
+					<input type="text" class="form-control" id="db" placeholder="Inserisci nome database..." name="database">
 				</div>
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-default">INVIA</button>
+					<button type="submit" class="btn btn-primary btn-lg active">INVIA</button>
 				</div>
 			</form>
 
@@ -65,7 +69,8 @@
 			<p>Questa applicazione richiede PHP 7.2.1</p>
 			
 			{/if}
-			
+			<br>
+			<br>
 			<div class="row-sm-7">
 			<h4>AUTORI:</h4>
 			<ul>
@@ -76,10 +81,9 @@
 
 		</div>
 	</div>
+		<div class="col-sm-3"></div>
 	
-		<div class="col-sm-3">
-		
-		</div>
-	
+	</div>
+	</div>
 </body>
 </html>

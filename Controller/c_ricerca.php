@@ -24,6 +24,8 @@ class c_ricerca
     const KEY_ADVANCED2 = 'Utente';
     //valore avanzato: ricerca per genere
     const VALUE_ADVANCED2 = 'Nome';
+	
+	const VALUE_DEFAULT2 = 'Catalogo';
     
     
     
@@ -45,6 +47,24 @@ class c_ricerca
             header('Location: /BiblioLibro/index');
     }
     
+	
+	/**
+    * Metodo che implementa la ricerca di base
+    */
+    static function catalogo()
+    {
+        $v_ricerca = new v_ricerca();
+        $utente = c_sessione::getUtenteDaSessione();
+        $string = '*';
+        
+        if($string)
+        {   
+            $oggetti = f_persistance::getInstance()->ricerca(c_ricerca::KEY_DEFAULT, c_ricerca::VALUE_DEFAULT2, $string);
+            $v_ricerca->mostraRisultatoRicerca($utente, $oggetti, c_ricerca::KEY_DEFAULT, c_ricerca::VALUE_DEFAULT2, $string);
+        }
+        else
+            header('Location: /BiblioLibro/index');
+    }
     
     
  
