@@ -3,9 +3,11 @@
 require_once'inc.php';
 
 /**
- * La classe e_prenota caratterizza le prenotazioni effettuate dall'utente.
+ * La classe e_prenotazione caratterizza le prenotazioni effettuate dall'utente.
  * Se entro tre giorni da quando viene effettuata la prenotazione per un determinato libro,
  * l'utente non si reca in biblioteca per ritirarlo, la prenotazione viene eliminata. 
+ * @author gruppo 11
+ * @package Entity
  */
 
 class e_prenotazione

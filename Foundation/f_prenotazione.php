@@ -1,7 +1,9 @@
 <?php
-require_once 'inc.php';
+
 /**
- * @author gruppo11
+ * La classe f_prenotazione fornisce query per gli oggetti e_prenotazione
+ * @author gruppo 11
+ * @package Foundation
  */
 class f_prenotazione
 {

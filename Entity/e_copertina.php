@@ -5,7 +5,7 @@ require_once 'inc.php';
 /**
  * La classe e_copertina gestisce formato, dimensione e byte immagine relativi 
  * all'immagine rappresentante la copertina di un libro presente nel catalogo della biblioteca
- * @author gruppo11
+ * @author gruppo 11
  * @package Entity
  */
 

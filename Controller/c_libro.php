@@ -275,8 +275,13 @@ class c_libro
             if(is_a($utente, e_bibliotecario::class)) // verifica che l'utente puo' effettivamente rimuoverla
             {
                 if($v_libro->validazioneRimuovi()) // se il bibliotecario ha deciso di rimuoverla
+				{
                 
                     f_persistance::getInstance()->rimuovi(e_libro::class, $libro->getId()); // rimuove il libro
+					
+					$v_libro->Avviso($utente, 'CONTENUTO RIMOSSO CON SUCCESSO');
+					
+				}
                 
                 else // altrimenti si viene reindirizzati ad una pagina di errore
                     

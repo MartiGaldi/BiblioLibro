@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * La classe f_copertina fornisce le query sql rispetto alla classe e_copertina.
+ * @author gruppo 11
+ * @package Foundation
+ */
 class f_copertina
 {
     /**

@@ -5,7 +5,7 @@ include_once 'Entity/e_utente.php';
 
 /**
  * La classe e_visitatore estende la classe padre e_utente e implementa la tipologia di utente Visitatore.
- * @author gruppo11
+ * @author gruppo 11
  * @package Entity
  */
 

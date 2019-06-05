@@ -4,8 +4,8 @@ require_once'inc.php';
 
 /**
  * La classe e_libro caratterizza i testi presenti nel catalogo della biblioteca.
- * Contiene le informazioni principali riguardanti quest'ultimi quali titolo, autore, genere e numero di copie presenti.
- * Ogni libro può essere preso un prestito per un periodo limitato(disponibile) che può corrispondere
+ * Contiene le informazioni principali riguardanti quest'ultimi quali titolo, autore, genere, isbn e numero di copie presenti.
+ * Ogni libro può essere preso in prestito per un periodo limitato(disponibile) che può corrispondere
  * a consultazione, periodo breve o periodo lungo
  * @author gruppo 11
  * @package Entity
@@ -145,7 +145,7 @@ class e_libro
     /**
      * Funzione che verifica che il titolo sia valido. Il titolo si intende valido se
      * contiene solamente lettere, numeri e spazi
-     * @return bool true se il nome e' corretto, false altrimenti
+     * @return bool true se il titolo e' corretto, false altrimenti
      */
     function validazioneTitolo() : bool
     {
@@ -158,7 +158,7 @@ class e_libro
     /**
      * Funzione che verifica che il numero copie sia valido. Si intende valido se
      * contiene solamente numeri
-     * @return bool true se il nome e' corretto, false altrimenti
+     * @return bool true se il numero copie e' corretto, false altrimenti
      */
     function validazioneNumCopie(): bool
     {
@@ -171,7 +171,7 @@ class e_libro
     /**
      * Funzione che verifica che la durata associata al libro sia corretta. La durata si intende
      * corretta se è pari a consultazione o breve o lungo
-     * @return bool true se il file e' valido, false altrimenti
+     * @return bool true se la durata inseita e' valida, false altrimenti
      */
     function validazioneDurata() : bool 
     {
@@ -181,6 +181,11 @@ class e_libro
             return false;
     }
     
+	/**
+     * Funzione che verifica che il genere del libro sia valido. Il genere del libro si intende valido se
+     * contiene solamente lettere e spazi
+     * @return bool true se il genere e' corretto, false altrimenti
+     */
     function validazioneGenere() : bool
     {
         if ($this->genere && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->genere)) // solo lettere e spazi
@@ -189,6 +194,11 @@ class e_libro
             return false;
     }
 	
+	/**
+     * Funzione che verifica che l'isbn sia valido. Si intende valido se
+     * contiene solamente numeri
+     * @return bool true se l'isbn e' corretto, false altrimenti
+     */
 	function validazioneIsbn() : bool
     {
         if($this->isbn && preg_match('/[0-9]+{13}/', $this->isbn))
@@ -197,6 +207,11 @@ class e_libro
                 return false;
     }
 	
+	/**
+     * Funzione che verifica che la descrizione sia valida. Il titolo si intende valido se
+     * contiene solamente lettere, numeri e spazi
+     * @return bool true se la descrizione e' corretta, false altrimenti
+     */
 	function validazioneDescrizione() : bool
     {
         if($this->descrizione && preg_match('/^[[:alnum:]]{10,150}$/', $this->descrizione))
@@ -206,9 +221,9 @@ class e_libro
     }    
 
     /**
-     * Funzione che verifica che il numero copie sia valido. Si intende valido se
+     * Funzione che verifica che il numero copie disponibili sia valido. Si intende valido se
      * contiene solamente numeri
-     * @return bool true se il nome e' corretto, false altrimenti
+     * @return bool true se il numero copie disponibili e' corretto, false altrimenti
      */
     function validazioneCopieDisponibili(): bool
     {
@@ -218,7 +233,7 @@ class e_libro
             return false;
     }
 
-/**
+	/**
      * Restituisce la copertina del libro
      * @return e_copertina | NULL
      */

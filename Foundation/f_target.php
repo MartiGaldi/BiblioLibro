@@ -4,7 +4,7 @@
 * La classe FTarget contiene stringhe da utilizzare come parametro per f_persistance
 * per specificare, in funzionalita come carica o esiste, i tipi di query che si vogliono
 * utilizzare per una data classe.
-* @author gruppo11
+* @author gruppo 11
 * @package Foundation
 */
 
@@ -37,10 +37,13 @@ class f_target
 	/** caricamento delle prenotazioni di un cliente */
 	const CARICA_PRENOTAZIONE = 'Prenotazione';
 	
+	/** caricamento dei prestiti di un cliente (in corso) */
 	const CARICA_PRESTITI = 'Prestiti';
 	
+	/** caricamento dei presiti di un cliente (conclusi)*/
 	const CARICA_STORICI = 'Storici';
 	
+	/** caricamento delle prenotazioni di un cliente */
 	const CARICA_PRENOTAZIONI = 'Prenotazioni';
 }
 

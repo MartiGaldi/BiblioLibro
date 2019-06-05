@@ -1,5 +1,9 @@
 <?php 
-
+/**
+ * La classe f_libro fornisce query per gli oggetti e_libro
+ * @author gruppo 11
+ * @package Foundation
+ */
 class f_libro{
     
     /**

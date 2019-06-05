@@ -1,4 +1,9 @@
 <?php
+/**
+ * La classe f_storico fornisce query per gli oggetti e_storico
+ * @author gruppo 11
+ * @package Foundation
+ */
 class f_storico
 {
 	/**

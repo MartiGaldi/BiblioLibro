@@ -1,7 +1,7 @@
 <?php
 /**
  * La classe f_utente fornisce query per gli oggetti e_utente
- * @author gruppo11
+ * @author gruppo 11
  * @package Foundation
  */
 class f_utente 

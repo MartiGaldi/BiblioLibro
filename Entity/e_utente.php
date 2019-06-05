@@ -9,7 +9,7 @@ require_once 'inc.php';
 * - mail: l'indirizzo utilizzato in fase di registrazione
 * - password: la password per accedere nell'applicazione
 * - ...
-* @author gruppo11
+* @author gruppo 11
 * @package Entity
 */
 
@@ -54,8 +54,7 @@ class e_utente
         return $this->nick;
     }
 	
-    
-    
+        
     function setNome (string $nome)
     {
         $this->nome = $nome;  
@@ -170,6 +169,11 @@ class e_utente
             return $this->lgNasc;
      }
      
+	/**
+     * Funzione che verifica che il nome utente sia valido. Il nome dell'utente si intende valido se
+     * contiene solamente lettere e spazi
+     * @return bool true se il nome utente e' corretto, false altrimenti
+     */
      function validazioneNome() : bool
     {
         if ($this->nome && preg_match('/^[a-zA-Z_-]{3,20}$/', $this->nome))
@@ -178,6 +182,11 @@ class e_utente
             return false;
     }
 	
+	/**
+     * Funzione che verifica che il cognome utente sia valido. Il cognome utente si intende valido se
+     * contiene solamente lettere e spazi
+     * @return bool true se il cognome utente e' corretto, false altrimenti
+     */
 	function validazioneCognome() : bool
     {
         if ($this->cognome && preg_match('/^[a-zA-Z_-]{3,20}$/', $this->cognome))
@@ -186,6 +195,11 @@ class e_utente
             return false;
     }
 	
+	/**
+     * Funzione che verifica che il nick utente sia valido. Il nick utente si intende valido se
+     * contiene solamente lettere e spazi
+     * @return bool true se il nick utente e' corretto, false altrimenti
+     */
 	function validazioneNick() : bool
     {
         if ($this->nick && preg_match('/^[a-zA-Z0-9_-]{3,20}$/', $this->nick))
@@ -203,6 +217,12 @@ class e_utente
     {
         return $this->citta;
     }
+	
+	/**
+     * Funzione che verifica che la città inserita sia valido. La città si intende valida se
+     * contiene solamente lettere e spazi
+     * @return bool true se la città e' corretta, false altrimenti
+     */
 	function validazioneCitta() : bool
     {
         if ($this->citta && preg_match('/^[a-zA-Z_-]{3,20}$/', $this->citta))
@@ -220,6 +240,12 @@ class e_utente
     {
         return $this->cap;
     }
+	
+	/**
+     * Funzione che verifica che il CAP sia valido. Il CAP si intende valido se
+     * contiene solamente numeri
+     * @return bool true se il CAP utente e' corretto, false altrimenti
+     */
     function validazioneCap() : bool
     {
         if ($this->cap && preg_match('/^[a-zA-Z0-9_-]{3,20}$/', $this->cap))
@@ -237,6 +263,12 @@ class e_utente
     {
         return $this->via;
     }
+	
+	/**
+     * Funzione che verifica che la via sia valida. La via si intende valida se
+     * contiene solamente lettere e spazi
+     * @return bool true se la via e' corretta, false altrimenti
+     */
 	function validazioneVia() : bool
     {
         if ($this->via && preg_match('/^[a-zA-Z_-]{3,20}$/', $this->via))
@@ -253,7 +285,12 @@ class e_utente
             return false;
     }*/
 	
-	 function validazioneLgNasc() : bool
+	/**
+     * Funzione che verifica che il luogo nascita sia valido. Il luogo nascita si intende valido se
+     * contiene solamente lettere e spazi
+     * @return bool true se il luogo nascita e' corretto, false altrimenti
+     */
+	function validazioneLgNasc() : bool
     {
         if ($this->lgNasc && preg_match('/^[a-zA-Z_-]{3,15}$/', $this->lgNasc))
             return true;

@@ -4,7 +4,7 @@
  * Lo scopo di questa classe e' quello di fornire un accesso unico al DBMS, incapsulando
  * al proprio interno i metodi statici di tutte le altre classi Foundation, cosi che l'accesso
  * ai dati persistenti da parte degli strati superiore dell'applicazione sia piu' intuitivo.
- * @author gruppo11
+ * @author gruppo 11
  * @package Foundation
  */
  

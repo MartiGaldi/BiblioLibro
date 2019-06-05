@@ -74,7 +74,11 @@ class e_storico
         $this->idPrestito = $idPrestito;
     }
 	
-	
+	/**
+     * Funzione che verifica che il nome utente sia valido. Il nome dell'autore si intende valido se
+     * contiene solamente lettere e spazi
+     * @return bool true se il nome utente e' corretto, false altrimenti
+     */
 	function validazioneUtenteStorico() : bool
     {
         if ($this->utenteStorico && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->utenteStorico)) // solo lettere e spazi
@@ -83,7 +87,12 @@ class e_storico
             return false;
     }
 	
-	  function validazioneLibroStorico() : bool
+	/**
+     * Funzione che verifica che il libro sia valido. Il libro si intende valido se
+     * contiene solamente lettere e spazi
+     * @return bool true se il libro e' corretto, false altrimenti
+     */
+	function validazioneLibroStorico() : bool
     {
         if ($this->libroStorico && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->libroStorico)) // solo lettere e spazi
             return true;
@@ -91,7 +100,11 @@ class e_storico
             return false;
     }
 	
-	
+	/**
+     * Funzione che verifica che l'id prestito sia valido. L'id prestito si intende valido se
+     * contiene solamente lettere e spazi
+     * @return bool true se l'id prestito e' corretto, false altrimenti
+     */
 	function validazioneIdPrestito() : bool
     {
         if ($this->idPrestito && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->idPrestito)) // solo lettere e spazi

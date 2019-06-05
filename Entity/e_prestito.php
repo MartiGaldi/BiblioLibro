@@ -4,6 +4,8 @@ require_once "inc.php";
 
 /**
  * La classe e_prestito contiene le informazioni riguardanti i prestiti ancora in corso.
+ * @author gruppo 11
+ * @package Entity
  */
 class e_prestito 
 {
@@ -88,14 +90,24 @@ class e_prestito
 		return $this->prenotazione;
 	}
 	
+	/**
+     * Funzione che verifica che il nome utente sia valido. Il nome dell'autore si intende valido se
+     * contiene solamente lettere e spazi
+     * @return bool true se il nome utente e' corretto, false altrimenti
+     */
 	function validazioneUtentePrestito() : bool
     {
-        if ($this->utentePrestito && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->utentePrestito)) // solo lettere e spazi
+        if ($this->utentePrestito && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->utentePrestito)) 
             return true;
         else
             return false;
     }
 	
+	/**
+     * Funzione che verifica che il libro sia valido. Il libro si intende valido se
+     * contiene solamente lettere e spazi
+     * @return bool true se il libro e' corretto, false altrimenti
+     */
 	  function validazioneLibroPrestito() : bool
     {
         if ($this->libroPrestito && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->libroPrestito)) // solo lettere e spazi
@@ -104,6 +116,11 @@ class e_prestito
             return false;
     }
 	
+	/**
+     * Funzione che verifica che la prenotazione sia valida. La prenotazione si intende valida se
+     * contiene solamente lettere e spazi
+     * @return bool true se la prenotazione e' corretta, false altrimenti
+     */
 	function validazionePrenotazione() : bool
     {
         if ($this->prenotazione && preg_match("/^[a-zA-Z][a-zA-Z -]+$/", $this->prenotazione)) // solo lettere e spazi

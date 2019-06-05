@@ -56,8 +56,8 @@
 						{if ! $check.titolo}
 						<div class="col-sm-8">
 							<small id="titoloHelp" class="text-danger">
-  							Solo caratteri alfanumerici
-						</small>      
+								Solo caratteri alfanumerici
+							</small>      
 						</div>
 						{/if}
 					</div>

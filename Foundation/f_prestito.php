@@ -1,4 +1,9 @@
 <?php
+/**
+ * La classe f_prestito fornisce query per gli oggetti e_prestito
+ * @author gruppo 11
+ * @package Foundation
+ */
 class f_prestito
 {
     /**
