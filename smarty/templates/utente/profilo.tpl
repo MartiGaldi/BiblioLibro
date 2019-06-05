@@ -56,7 +56,7 @@
 		<br>
 		<br>
 		
-		<div class="col-sm-100">
+		<div class="col-sm-200">
 		<!-- Contenuto principale -->
 		
 				
