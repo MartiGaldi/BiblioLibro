@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 28, 2019 alle 00:51
+-- Creato il: Giu 05, 2019 alle 10:25
 -- Versione del server: 10.1.30-MariaDB
 -- Versione PHP: 7.2.2
 
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `copertina` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `tipo` varchar(30) NOT NULL,
-  `size` varchar(30) NOT NULL,
-  `immagine` blob NOT NULL
+  `type` varchar(25) NOT NULL,
+  `size` varchar(25) NOT NULL,
+  `copertina` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -71,7 +71,12 @@ INSERT INTO `libro` (`id`, `num_copie`, `titolo`, `autore`, `durata`, `genere`, 
 (27, 3, 'Provalibro7', 'Martina', 'consultazione', 'Horror', '1234567890234', 'Provaprova7', 0),
 (28, 3, 'Provalibro7', 'Martina', 'consultazione', 'Horror', '1234567890234', 'Provaprova7', 0),
 (29, 3, 'Provalibro7', 'Martina', 'consultazione', 'Horror', '1234567890234', 'Provaprova7', 0),
-(30, 5, 'Provalibro8', 'Martina', 'lungo', 'Fantasy', '1234567891234', 'Provaprova8', 5);
+(30, 5, 'Provalibro8', 'Martina', 'lungo', 'Fantasy', '1234567891234', 'Provaprova8', 5),
+(31, 3, 'Provalibro9', 'Martina', 'lungo', 'Thriller', '1234567891234', 'Provaprova9', 3),
+(32, 5, 'Provalibro10', 'Martina', 'lungo', 'Giallo', '1234567891235', 'Provaprova10', 5),
+(33, 3, 'Provalibro11', 'Martina', 'consultazione', 'Horror', '1234567891234', 'Provaprova11', 3),
+(34, 3, 'Provalibro11', 'Martina', 'consultazione', 'Horror', '1234567891234', 'Provaprova11', 3),
+(35, 5, 'Provalibro12', 'Martina', 'breve', 'Thriller', '1234567891237', 'Provaprova12', 4);
 
 -- --------------------------------------------------------
 
@@ -136,7 +141,13 @@ INSERT INTO `prenotazione` (`id_prenotazione`, `id_utente`, `id_libro`, `data_sc
 (43, 44, 30, '2019-05-30'),
 (44, 44, 30, '2019-05-30'),
 (45, 44, 30, '2019-05-30'),
-(46, 44, 30, '2019-05-30');
+(46, 44, 30, '2019-05-30'),
+(47, 44, 30, '2019-06-05'),
+(48, 44, 30, '2019-06-05'),
+(49, 44, 30, '2019-06-05'),
+(50, 44, 30, '2019-06-05'),
+(51, 44, 30, '2019-06-05'),
+(52, 44, 35, '2019-06-07');
 
 -- --------------------------------------------------------
 
@@ -167,7 +178,8 @@ INSERT INTO `prestito` (`id_prestito`, `id_utente`, `id_libro`, `data_scadenza`,
 (8, 43, 17, '2019-05-28', 15),
 (9, 44, 20, '2019-06-26', 16),
 (10, 44, 20, '2019-06-26', 16),
-(11, 43, 17, '2019-05-28', 15);
+(11, 43, 17, '2019-05-28', 15),
+(12, 44, 30, '2019-07-02', 50);
 
 -- --------------------------------------------------------
 
@@ -179,8 +191,25 @@ CREATE TABLE `storico` (
   `id_storico` smallint(6) NOT NULL,
   `id_utente` smallint(6) NOT NULL,
   `id_libro` smallint(6) NOT NULL,
-  `dataScadenzaPrestito` date NOT NULL
+  `data_scadenza` date NOT NULL,
+  `id_prestito` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `storico`
+--
+
+INSERT INTO `storico` (`id_storico`, `id_utente`, `id_libro`, `data_scadenza`, `id_prestito`) VALUES
+(1, 44, 30, '2019-07-02', 12),
+(2, 44, 30, '2019-07-02', 12),
+(3, 44, 30, '2019-07-02', 12),
+(4, 44, 30, '2019-07-02', 12),
+(5, 44, 30, '2019-07-02', 12),
+(6, 44, 30, '2019-07-02', 12),
+(7, 44, 30, '2019-07-02', 12),
+(8, 44, 30, '2019-07-02', 12),
+(9, 44, 30, '2019-07-02', 12),
+(10, 48, 23, '2019-06-05', 14);
 
 -- --------------------------------------------------------
 
@@ -230,7 +259,8 @@ INSERT INTO `utente` (`id`, `nick`, `mail`, `password`, `tipo`, `nome`, `cognome
 (44, 'mirkovicaretti', 'mirko.vicaretti@gmail.com', '$2y$10$TXhSe8mFEYu6tQWCJG9nkOnkXsuK6JQNm7kYJwK0okH60GXBPIfMG', 'bibliotecario', 'mirko', 'vicaretti', '1992-04-04', 'avezzano', 'garibaldi', 'trasacco', '67059'),
 (45, 'domidomi', 'domidomi@gmail.com', '$2y$10$db7qdTs1YXFrBISLG9j39Ol.PV8Ikwb3vWUNDlOt3FWNUKv41pe5O', 'bibliotecario', 'domi', 'domi', '1998-05-09', 'arezzo', 'frati', 'celano', '67056'),
 (46, 'pamipami', 'pamipami@gmail.com', '$2y$10$PKpFR9gC8wUM9CGYKSx.7e/nE3pvyNlgo0XIO/1RdhgTPRdIo38FO', 'cliente', 'pami', 'pami', '1996-05-07', 'tagliacozzo', 'trevi', 'pisa', '67894'),
-(47, 'antoniobarbonetti', 'antonio.barbonetti@gmail.com', '$2y$10$D0Gf9LVy7g.7SwpmVk1tZurJaHuCIYdf2J9YpGlxXbc9.He8Euq7G', 'bibliotecario', 'antonio', 'barbonetti', '2007-01-06', 'avellino', 'treviso', 'ancona', '64789');
+(47, 'antoniobarbonetti', 'antonio.barbonetti@gmail.com', '$2y$10$D0Gf9LVy7g.7SwpmVk1tZurJaHuCIYdf2J9YpGlxXbc9.He8Euq7G', 'bibliotecario', 'antonio', 'barbonetti', '2007-01-06', 'avellino', 'treviso', 'ancona', '64789'),
+(48, 'testtest', 'test@gmail.com', '$2y$10$BxxBi2Pl9mdwLnOwn7Qh7efukyEej0iBZnQxeYeBVjTTS/xI98P86', 'bibliotecario', 'test', 'test', '1997-01-01', 'test', 'test', 'test', '10102');
 
 --
 -- Indici per le tabelle scaricate
@@ -282,31 +312,31 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `id_prenotazione` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_prenotazione` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT per la tabella `prestito`
 --
 ALTER TABLE `prestito`
-  MODIFY `id_prestito` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_prestito` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `storico`
 --
 ALTER TABLE `storico`
-  MODIFY `id_storico` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_storico` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Limiti per le tabelle scaricate
