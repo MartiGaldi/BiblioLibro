@@ -5,6 +5,9 @@ include_once 'View/v_oggetto.php';
 
 /**
  * La classe v_amministatore effettua l'input-output per quanto riguarda il pannello di amministrazione
+ author Gruppo 11
+ * @author gruppo 11
+ * @package View
  */
 
 class v_amministratore extends v_oggetto
