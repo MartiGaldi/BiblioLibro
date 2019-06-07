@@ -127,7 +127,7 @@
 					{if ! $check.dtNasc}
 					<div class="col-sm-8">
 						<small id="dtNascHelp" class="text-danger">
-  							Deve rispettare il formato GG-MM-AAAA
+  							Deve rispettare il formato AAAA-MM-GG
 						</small>      
 					</div>
 					{/if}
@@ -140,7 +140,7 @@
 					{if ! $check.lgNasc}
 					<div class="col-sm-8">
 						<small id="lgNascHelp" class="text-danger">
-  							Deve comprendere dagli 6 ai 20 caratteri.
+  							Deve comprendere dagli 3 ai 20 caratteri.
 						</small>      
 					</div>
 					{/if}

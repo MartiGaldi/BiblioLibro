@@ -2,7 +2,7 @@
 	<div class="container">
 		<a class="navbar-brand">
 		{if isset($smarty.session.amministratore)}
-		<b><font color="red">BiblioLibro for Administrator</font></b>
+		<a class="nav-link" href="/BiblioLibro/amministratore/login"><font color="red">BiblioLibro for Administrator</font></a>
 		{else}
 		<b><font color="white">BiblioLibro</font></b>
 		{/if}

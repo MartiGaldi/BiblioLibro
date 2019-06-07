@@ -55,30 +55,9 @@ INSERT INTO `libro` (`id`, `num_copie`, `titolo`, `autore`, `durata`, `genere`, 
 --
 
 INSERT INTO `prenotazione` (`id_prenotazione`, `id_utente`, `id_libro`, `data_scadenza`) VALUES
-(1, 43, 17, '2019-05-28'),
-(2, 43, 17, '2019-05-28'),
-(3, 44, 20, '2019-05-28'),
-(4, 44, 23, '2019-05-30'),
-(5, 44, 23, '2019-05-30'),
-(6, 44, 23, '2019-05-30'),
-(7, 44, 23, '2019-05-30'),
-(8, 44, 23, '2019-05-30'),
-(9, 44, 23, '2019-05-30'),
-(10, 44, 23, '2019-05-30'),
-(11, 44, 23, '2019-05-30'),
-(12, 44, 25, '2019-05-30'),
-(13, 44, 23, '2019-05-30'),
-(14, 43, 23, '2019-05-30'),
-(15, 44, 30, '2019-05-30'),
-(16, 44, 30, '2019-05-30'),
-(17, 44, 30, '2019-05-30'),
-(18, 44, 30, '2019-05-30'),
-(19, 44, 30, '2019-06-05'),
-(20, 44, 30, '2019-06-05'),
-(21, 44, 30, '2019-06-05'),
-(22, 44, 30, '2019-06-05'),
-(23, 44, 30, '2019-06-05'),
-(24, 44, 35, '2019-06-07');
+(2, 3, 2, '2019-06-10'),
+(7, 5, 9, '2019-06-10'),
+(8, 5, 10, '2019-06-10');
 
 -- --------------------------------------------------------
 
@@ -91,19 +70,11 @@ INSERT INTO `prenotazione` (`id_prenotazione`, `id_utente`, `id_libro`, `data_sc
 --
 
 INSERT INTO `prestito` (`id_prestito`, `id_utente`, `id_libro`, `data_scadenza`, `id_prenotazione`) VALUES
-(1, 43, 17, '2019-06-25', 0),
-(2, 43, 17, '2019-06-25', 0),
-(3, 43, 17, '2019-05-27', 0),
-(4, 43, 18, '2019-06-25', 0),
-(5, 44, 21, '2019-06-02', 0),
-(6, 43, 21, '2019-06-02', 0),
-(7, 43, 18, '2019-06-26', 15),
-(8, 43, 17, '2019-05-28', 15),
-(9, 44, 20, '2019-06-26', 16),
-(10, 44, 20, '2019-06-26', 16),
-(11, 43, 17, '2019-05-28', 15),
-(12, 44, 30, '2019-07-02', 50);
-
+(2, 3, 4, '2019-07-07', 3),
+(3, 4, 5, '2019-06-14', 4),
+(4, 4, 7, '2019-06-08', 5),
+(6, 5, 11, '2019-06-08', 9),
+(7, 5, 12, '2019-06-14', 10);
 -- --------------------------------------------------------
 
 --
@@ -115,16 +86,8 @@ INSERT INTO `prestito` (`id_prestito`, `id_utente`, `id_libro`, `data_scadenza`,
 --
 
 INSERT INTO `storico` (`id_storico`, `id_utente`, `id_libro`, `data_scadenza`, `id_prestito`) VALUES
-(1, 44, 30, '2019-07-02', 12),
-(2, 44, 30, '2019-07-02', 12),
-(3, 44, 30, '2019-07-02', 12),
-(4, 44, 30, '2019-07-02', 12),
-(5, 44, 30, '2019-07-02', 12),
-(6, 44, 30, '2019-07-02', 12),
-(7, 44, 30, '2019-07-02', 12),
-(8, 44, 30, '2019-07-02', 12),
-(9, 44, 30, '2019-07-02', 12),
-(10, 48, 23, '2019-06-05', 14);
+(1, 3, 1, '2019-06-08', 1),
+(2, 4, 8, '2019-07-07', 5);
 
 -- --------------------------------------------------------
 
@@ -136,12 +99,11 @@ INSERT INTO `storico` (`id_storico`, `id_utente`, `id_libro`, `data_scadenza`, `
 --
 
 INSERT INTO `utente` (`id`, `nick`, `mail`, `password`, `tipo`, `nome`, `cognome`, `dtNasc`, `lgNasc`, `via`, `citta`, `cap`) VALUES
-(43, 'martinamartina', 'martinamartina@gmail.com', '$2y$10$e/GDKAQDwGNl2VSDsJw0cu3E8znVoct/AYOpOk3T7jNqEGqhqdPhC', 'cliente', 'martina', 'rossi', '1981-07-16', 'latina', 'trieste', 'roma', '67100'),
-(44, 'mirkovicaretti', 'mirko.vicaretti@gmail.com', '$2y$10$TXhSe8mFEYu6tQWCJG9nkOnkXsuK6JQNm7kYJwK0okH60GXBPIfMG', 'bibliotecario', 'mirko', 'vicaretti', '1992-04-04', 'avezzano', 'garibaldi', 'trasacco', '67059'),
-(45, 'domidomi', 'domidomi@gmail.com', '$2y$10$db7qdTs1YXFrBISLG9j39Ol.PV8Ikwb3vWUNDlOt3FWNUKv41pe5O', 'bibliotecario', 'domi', 'domi', '1998-05-09', 'arezzo', 'frati', 'celano', '67056'),
-(46, 'pamipami', 'pamipami@gmail.com', '$2y$10$PKpFR9gC8wUM9CGYKSx.7e/nE3pvyNlgo0XIO/1RdhgTPRdIo38FO', 'cliente', 'pami', 'pami', '1996-05-07', 'tagliacozzo', 'trevi', 'pisa', '67894'),
-(47, 'antoniobarbonetti', 'antonio.barbonetti@gmail.com', '$2y$10$D0Gf9LVy7g.7SwpmVk1tZurJaHuCIYdf2J9YpGlxXbc9.He8Euq7G', 'bibliotecario', 'antonio', 'barbonetti', '2007-01-06', 'avellino', 'treviso', 'ancona', '64789'),
-(48, 'testtest', 'test@gmail.com', '$2y$10$BxxBi2Pl9mdwLnOwn7Qh7efukyEej0iBZnQxeYeBVjTTS/xI98P86', 'bibliotecario', 'test', 'test', '1997-01-01', 'test', 'test', 'test', '10102');
+(1, 'MartinaGaldi', 'martina.galdi46@gmail.com', '$2y$10$lNFVpLjSIBvuZp6G5TW8muQETmwbazjFPIG2gmo6hrPjtU/lns.ju', 'bibliotecario', 'martina', 'galdi', '1996-11-25', 'avezzano', 'marche', 'avezzano', '67056'),
+(2, 'SaraCasimirri', 'sara.casimirri@student.univaq.it', '$2y$10$jWJ5Td74Y8lwMXaVPWxS9uLe9rH1qhyR8dgYX9yiL8T6JklZB14ae', 'bibliotecario', 'sara', 'casimirri', '1996-06-15', 'teramo', 'roma', 'teramo', '64100'),
+(3, 'utente1', 'utente1@gmail.com', '$2y$10$BmtA0642ak4KqV1BagsZJ.3A6oAa09zh5IPU9wrsGdp2JprkR.OK6', 'cliente', 'utente', 'utente', '1990-02-23', 'roma', 'prova', 'roma', '00193'),
+(4, 'utente2', 'utente2@gmail.com', '$2y$10$IH3h6rrRQSmvKhWt5ECPyOkRCEcoB0QsdKp8GmgSvKZzAHhVR2XL2', 'cliente', 'utente', 'utente', '1984-06-01', 'torino', 'prova', 'torino', '10122'),
+(5, 'utente3', 'utente3@gmail.com', '$2y$10$ZWphE9PIHDYNnwLbYfokuO6cDA9cwhBxHuwtkFNlJIZCdpVfCtHsa', 'cliente', 'utente', 'utente', '1970-02-15', 'sulmona', 'prova', 'sulmona', '67039');
 
 COMMIT;
 
