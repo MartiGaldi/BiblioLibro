@@ -1,12 +1,11 @@
 <?php
 require_once 'inc.php';
-
-/**
- * Il Controller c_storico implementa le funzionalità 'Gestione Storico'.
- * Il bibliotecario può caricare, modificare e rimuovere un prestito storico.
- * @author gruppo 11
- * @package Controller
- */
+	/**
+		* Il Controller c_storico implementa le funzionalità 'Gestione Storico'.
+		* Il bibliotecario può caricare, modificare e rimuovere un prestito storico.
+		* @author gruppo 11
+		* @package Controller
+	*/
 class c_storico
 { 
     /**

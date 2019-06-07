@@ -189,8 +189,6 @@ class v_amministratore extends v_oggetto
     return $utente;                
     }
 	
-	
-	
 }
 
 ?>

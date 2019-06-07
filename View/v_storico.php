@@ -22,9 +22,6 @@ class v_storico extends v_oggetto
         
        // l'array è istanziato con indici i campi delle varie form, i cui valori sono di default a false (no errori)
         $this->check = array(
-           /* 'utenteStorico' => true,
-			'libroStorico' => true,
-			'dataScadenzaPrestito' => true,*/
 			'idPrestito' => true
         );
     }
@@ -40,24 +37,11 @@ class v_storico extends v_oggetto
     {
         $storico = new e_storico();
 		
-		/*if(isset($_POST['utenteStorico']))
-            $storico->setUtenteStorico(ucfirst($_POST['utenteStorico']));
-		
-        if(isset($_POST['libroStorico']))
-            $storico->setLibroStorico(ucfirst($_POST['libroStorico']));
-		
-		if(isset($_POST['dataScadenzaPrestito']))
-            $storico->setDataScadenzaPrestito(ucfirst($_POST['dataScadenzaPrestito']));*/
-		
-		
 		if(isset($_POST['idPrestito']))
             $storico->setIdPrestito(ucfirst($_POST['idPrestito']));
                     
-        if ( /*isset($_POST['utenteStorico'])&& isset($_POST['libroStorico']) && isset($_POST['dataScadenzaPrestito']) && */isset($_POST['idPrestito']) )
+        if (isset($_POST['idPrestito']))
         {
-			/*$storico->setUtenteStorico(ucfirst($_POST['utenteStorico']));
-			$storico->setLibroStorico(ucfirst($_POST['libroStorico']));
-			$storico->setDataScadenzaPrestito(ucfirst($_POST['dataScadenzaPrestito']));*/
 			$storico->setIdPrestito(ucfirst($_POST['idPrestito']));
         }     
         return $storico;

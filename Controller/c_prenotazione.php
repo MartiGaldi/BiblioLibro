@@ -1,11 +1,10 @@
 <?php
 require_once 'inc.php';
-
-/**
- * La classe c_prenotazione implementa la funzionalità 'Prenota'.
- * @author gruppo 11
- * @package Controller
- */
+	/**
+		* La classe c_prenotazione implementa la funzionalità 'Prenota'.
+		* @author gruppo 11
+		* @package Controller
+	*/
 class c_prenotazione
 {
     /**

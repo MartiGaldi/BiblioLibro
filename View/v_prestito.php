@@ -25,7 +25,6 @@ class v_prestito extends v_oggetto
             'utentePrestito' => true,
 			'libroPrestito' => true,
 			'prenotazione' => true
-			//'dataScadenza' => true
         );
     }
     

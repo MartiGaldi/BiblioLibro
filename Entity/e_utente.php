@@ -258,13 +258,13 @@ class e_utente
             return NULL;
     }
 	
-	/*function validazioneDtNasc() : bool
+	function validazioneDtNasc() : bool
     {
         if ($this->dtNasc && preg_match('/^[0-9_-]{10,11}$/', $this->dtNasc))
             return true;
         else
             return false;
-    }*/
+    }
 
 	/**
 	 * metodo che imposta il luogo di nascita dell'utente

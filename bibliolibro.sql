@@ -35,18 +35,18 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `libro` (`id`, `num_copie`, `titolo`, `autore`, `durata`, `genere`, `isbn`, `descrizione`, `copieDisponibili`) VALUES
-(17, 2, 'Provalibro', 'Martina', 'consultazione', 'Giallo', '1234567891234', 'Prova', 0),
-(18, 3, 'Provalibro2', 'Martina', 'lungo', 'Horror', '1234567891234', 'Provaprova2', 0),
-(19, 1, 'Provalibro3', 'Sara', 'lungo', 'Thriller', '1234567891234', 'Provaprova3', 0),
-(20, 4, 'Provalibro4', 'Martina', 'lungo', 'Fantasy', '1234567891234', 'Provaprova4', 0),
-(21, 3, 'Provalibro5', 'Martina', 'breve', 'Romantic', '1234567891234', 'Provaprova5', 0),
-(22, 3, 'Provalibro6', 'Martina', 'breve', 'Thriller', '1234567891234', 'Provaprova6', 0),
-(23, 3, 'Provalibro7', 'Martina', 'consultazione', 'Horror', '1234567890234', 'Provaprova7', 2),
-(30, 5, 'Provalibro8', 'Martina', 'lungo', 'Fantasy', '1234567891234', 'Provaprova8', 5),
-(31, 3, 'Provalibro9', 'Martina', 'lungo', 'Thriller', '1234567891234', 'Provaprova9', 3),
-(32, 5, 'Provalibro10', 'Martina', 'lungo', 'Giallo', '1234567891235', 'Provaprova10', 5),
-(33, 3, 'Provalibro11', 'Martina', 'consultazione', 'Horror', '1234567891234', 'Provaprova11', 3),
-(35, 5, 'Provalibro12', 'Martina', 'breve', 'Thriller', '1234567891237', 'Provaprova12', 4);
+(1, 2, 'Provalibro1', 'Martina', 'consultazione', 'Giallo', '1234567891234', 'Provaprova1', 1),
+(2, 3, 'Provalibro2', 'Martina', 'lungo', 'Horror', '1234567891235', 'Provaprova2', 3),
+(3, 1, 'Provalibro3', 'Sara', 'lungo', 'Thriller', '1234567891236', 'Provaprova3', 0),
+(4, 4, 'Provalibro4', 'Sara', 'lungo', 'Fantasy', '1234567891237', 'Provaprova4', 3),
+(5, 3, 'Provalibro5', 'Martina', 'breve', 'Romantic', '1234567891238', 'Provaprova5', 1),
+(6, 3, 'Provalibro6', 'Martina', 'breve', 'Thriller', '1234567891239', 'Provaprova6', 0),
+(7, 3, 'Provalibro7', 'Martina', 'consultazione', 'Horror', '1234567890234', 'Provaprova7', 2),
+(8, 5, 'Provalibro8', 'Sara', 'lungo', 'Fantasy', '1234567891230', 'Provaprova8', 5),
+(9, 3, 'Provalibro9', 'Martina', 'lungo', 'Thriller', '1234567891231', 'Provaprova9', 3),
+(10, 5, 'Provalibro10', 'Martina', 'lungo', 'Giallo', '1234567891232', 'Provaprova10', 5),
+(11, 3, 'Provalibro11', 'Martina', 'consultazione', 'Horror', '1234567891233', 'Provaprova11', 3),
+(12, 5, 'Provalibro12', 'Martina', 'breve', 'Thriller', '1234467891237', 'Provaprova12', 4);
 
 -- --------------------------------------------------------
 
@@ -55,30 +55,30 @@ INSERT INTO `libro` (`id`, `num_copie`, `titolo`, `autore`, `durata`, `genere`, 
 --
 
 INSERT INTO `prenotazione` (`id_prenotazione`, `id_utente`, `id_libro`, `data_scadenza`) VALUES
-(14, 43, 17, '2019-05-28'),
-(15, 43, 17, '2019-05-28'),
-(16, 44, 20, '2019-05-28'),
-(17, 44, 23, '2019-05-30'),
-(18, 44, 23, '2019-05-30'),
-(19, 44, 23, '2019-05-30'),
-(20, 44, 23, '2019-05-30'),
-(21, 44, 23, '2019-05-30'),
-(22, 44, 23, '2019-05-30'),
-(23, 44, 23, '2019-05-30'),
-(24, 44, 23, '2019-05-30'),
-(40, 44, 25, '2019-05-30'),
-(41, 44, 23, '2019-05-30'),
-(42, 43, 23, '2019-05-30'),
-(43, 44, 30, '2019-05-30'),
-(44, 44, 30, '2019-05-30'),
-(45, 44, 30, '2019-05-30'),
-(46, 44, 30, '2019-05-30'),
-(47, 44, 30, '2019-06-05'),
-(48, 44, 30, '2019-06-05'),
-(49, 44, 30, '2019-06-05'),
-(50, 44, 30, '2019-06-05'),
-(51, 44, 30, '2019-06-05'),
-(52, 44, 35, '2019-06-07');
+(1, 43, 17, '2019-05-28'),
+(2, 43, 17, '2019-05-28'),
+(3, 44, 20, '2019-05-28'),
+(4, 44, 23, '2019-05-30'),
+(5, 44, 23, '2019-05-30'),
+(6, 44, 23, '2019-05-30'),
+(7, 44, 23, '2019-05-30'),
+(8, 44, 23, '2019-05-30'),
+(9, 44, 23, '2019-05-30'),
+(10, 44, 23, '2019-05-30'),
+(11, 44, 23, '2019-05-30'),
+(12, 44, 25, '2019-05-30'),
+(13, 44, 23, '2019-05-30'),
+(14, 43, 23, '2019-05-30'),
+(15, 44, 30, '2019-05-30'),
+(16, 44, 30, '2019-05-30'),
+(17, 44, 30, '2019-05-30'),
+(18, 44, 30, '2019-05-30'),
+(19, 44, 30, '2019-06-05'),
+(20, 44, 30, '2019-06-05'),
+(21, 44, 30, '2019-06-05'),
+(22, 44, 30, '2019-06-05'),
+(23, 44, 30, '2019-06-05'),
+(24, 44, 35, '2019-06-07');
 
 -- --------------------------------------------------------
 

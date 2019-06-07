@@ -3,7 +3,7 @@
 require_once 'inc.php';
 
 /**
- * La classe CSession regola la sessione dell'utente nella navigazione dell'applicazione.
+ * La classe c_essione regola la sessione dell'utente nella navigazione dell'applicazione.
  * @author gruppo11
  * @package Controller
  */

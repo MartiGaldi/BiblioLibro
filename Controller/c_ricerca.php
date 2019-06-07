@@ -1,14 +1,12 @@
 <?php
 require_once 'inc.php';
-
 /**
- * La classe c_ricerca implementa la funzionalità di Ricerca all'interno del catalogo. Al suo interno presenta inoltre delle 
- * costanti che definiscono chiavi (ovvero risorse da ricercare) e valori (ovvero indici rispetto a cui cercare)
- * di default e avanzati.
- * @author gruppo 11
- * @package Controller
- */
-
+	* La classe c_ricerca implementa la funzionalità di Ricerca all'interno del catalogo. Al suo interno presenta inoltre delle 
+	* costanti che definiscono chiavi (ovvero risorse da ricercare) e valori (ovvero indici rispetto a cui cercare)
+	* di default e avanzati.
+	* @author gruppo 11
+	* @package Controller
+*/
 class c_ricerca
 {
     /** chiave di default */

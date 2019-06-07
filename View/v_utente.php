@@ -117,7 +117,7 @@ class v_utente extends v_oggetto
             $this->check['password']=$utente->validazionePassword() &&
 			$this->check['nome']=$utente->validazioneNome() && 
 			$this->check['cognome']=$utente->validazioneCognome() && 
-			//$this->check['dtNasc']=$utente->validazioneDtNasc() && 
+			
 			$this->check['lgNasc']=$utente->validazioneLgNasc() &&
 			$this->check['via']=$utente->validazioneVia() && 
 			$this->check['citta']=$utente->validazioneCitta() && 

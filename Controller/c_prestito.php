@@ -1,13 +1,11 @@
 <?php
 require_once 'inc.php';
-
 /**
- * Il Controller c_prestito implementa le funzionalità 'Prestito'.
- * Il bibliotecario può caricare, modificare e rimuovere un prestito.
- * @author gruppo 11
- * @package Controller
- */
-
+	* Il Controller c_prestito implementa le funzionalità 'Prestito'.
+	* Il bibliotecario può caricare, modificare e rimuovere un prestito.
+	* @author gruppo 11
+	* @package Controller
+*/
 class c_prestito
 { 
     /**

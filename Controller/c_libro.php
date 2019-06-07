@@ -1,13 +1,11 @@
 <?php
 require_once 'inc.php';
-
 /**
- * Il Controller c_libro implementa le funzionalità 'Gestione Libro'.
- * Il bibliotecario può caricare, modificare e rimuovere un testo.
- * @author gruppo 11
- * @package Controller
- */
-
+	* Il Controller c_libro implementa le funzionalità 'Gestione Libro'.
+	* Il bibliotecario può caricare, modificare e rimuovere un testo.
+	* @author gruppo 11
+	* @package Controller
+*/
 class c_libro
 { 
     /**
@@ -300,3 +298,4 @@ class c_libro
             $v_libro->Errore($utente, "L'id non corrisponde a nessun libro."); 
     }
 }
+?>

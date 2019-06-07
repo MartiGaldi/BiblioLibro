@@ -1,15 +1,14 @@
 <?php 
 
 require_once'inc.php';
-
-/**
- * La classe e_libro caratterizza i testi presenti nel catalogo della biblioteca.
- * Contiene le informazioni principali riguardanti quest'ultimi quali titolo, autore, genere, isbn e numero di copie presenti.
- * Ogni libro può essere preso in prestito per un periodo limitato(disponibile) che può corrispondere
- * a consultazione, periodo breve o periodo lungo
- * @author gruppo 11
- * @package Entity
- */
+	/**
+		* La classe e_libro caratterizza i testi presenti nel catalogo della biblioteca.
+		* Contiene le informazioni principali riguardanti quest'ultimi quali titolo, autore, genere, isbn e numero di copie presenti.
+		* Ogni libro può essere preso in prestito per un periodo limitato(disponibile) che può corrispondere
+		* a consultazione, periodo breve o periodo lungo
+		* @author gruppo 11
+		* @package Entity
+	*/
 
 class e_libro
  {

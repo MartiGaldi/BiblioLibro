@@ -1,12 +1,11 @@
 <?php
 require_once 'inc.php';
-
-/**
- * La classe c_utente implementa la funzionalità 'Gestione Utenti'. I vari metodi permettono
- * la creazione, autenticazione e visualizzazione di un profilo di un utente.
- * @author gruppo 11
- * @package Controller
- */
+	/**
+		* La classe c_utente implementa la funzionalità 'Gestione Utenti'. I vari metodi permettono
+		* la creazione, autenticazione e visualizzazione di un profilo di un utente.
+		* @author gruppo 11
+		* @package Controller
+	*/
 
 class c_utente
 {  
