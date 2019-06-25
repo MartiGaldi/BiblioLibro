@@ -122,7 +122,7 @@ class c_utente
     {
         c_sessione::terminaSessione();
         
-        header('Location: /BiblioLibro/home');
+        header('Location: /BiblioLibro');
     }
     
     
@@ -174,7 +174,7 @@ class c_utente
                     $utente = f_persistance::getInstance()->carica(e_utente::class, $idUtente); // viene caricato l'utente
                     $autenticato = true; // l'utente e' autenticato
                     c_sessione::inizioSessione($utente);
-                    header('Location: /BiblioLibro/index');   
+                    header('Location: /BiblioLibro/');   
                 } 
             }
             if(!$autenticato)
@@ -268,7 +268,7 @@ class c_utente
                 if($rimuoviUtente)
                 {
                     f_persistance::getInstance()->rimuovi(e_utente::class, $rimuoviUtente->getId());
-                    header('Location: /BiblioLibro/indice');
+                    header('Location: /BiblioLibro/');
                 }
                 else
                     $v_utente->Errore($utente, "L'id non corrisponde a nessun utente"); 
@@ -282,7 +282,7 @@ class c_utente
             {
                 f_persistance::getInstance()->rimuovi(e_utente::class, $utente->getId());
                 c_sessione::terminaSessione(); // viene rimossa la sessione
-                header('Location: /BiblioLibro/index');
+                header('Location: /BiblioLibro/');
             }
             else
                 $v_utente->Errore($utente, 'Non puoi eliminare un visitatore'); 

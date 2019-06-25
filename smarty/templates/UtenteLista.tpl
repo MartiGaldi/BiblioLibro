@@ -1,12 +1,12 @@
 {if $array}
-<table class="table table-responsive">
-	<tbody>					
-	{foreach $array as $utente}
+<table class="table">
+	<tbody>	
 		<tr>
 		<td>NOME</td>
 		<td>COGNOME</td>
 		<td>NICKNAME</td>
-		<td>MAIL</td>
+		<td>MAIL</td>	
+	{foreach $array as $utente}
 		<tr>
 		<td><a href="/BiblioLibro/utente/profilo/{$utente->getId()}">{$utente->getNome()}</a></td>
 		<td>{$utente->getCognome()}</td>

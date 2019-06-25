@@ -146,15 +146,11 @@ class c_libro
                 if($libro) // se il libro esiste
                   {
                       if(is_a($utente, e_bibliotecario::class))
-                    
                            $v_libro->mostraFormModifica($utente, $libro);
                     
                        else
-                        
                            $v_libro->Errore($utente, 'Non hai il permesso per modificare il libro');
-                        
                     }
-            
                   else // altrimenti mostra una pagina d'errore. 
                          $v_libro->Errore($utente, 'ID non valido');  
         }

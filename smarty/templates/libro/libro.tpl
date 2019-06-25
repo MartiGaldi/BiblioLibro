@@ -52,19 +52,25 @@
 			<br>
 			<br>
 			
-		{if $uTipo eq 'cliente' or $uTipo eq 'bibliotecario'}
+		{if $uTipo eq 'cliente'}
 			{if $prenota}
 				<a href="/BiblioLibro/prenotazione/prenota/{$libro->getId()}" 
 				class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">PRENOTA</a>
 			{/if }
 			
-			{else}
+			{elseif $uTipo eq 'visitatore'}
 			<h4>Effettua il <a href="/BiblioLibro/utente/login">Login</a> per procedere con la prenotazione</h4>
 			{/if}
 			<br>
 			<br>
 			<br>
 			{if $uTipo eq 'bibliotecario'}
+			<a href="/BiblioLibro/storico/carica/{$libro->getId()}" 
+				class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">RIENTRO</a>
+			<br>
+			<br>
+			<br>
+			
 			<a href="/BiblioLibro/libro/modifica/{$libro->getId()}" 
 				class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Modifica</a>
 	

@@ -73,6 +73,9 @@
 					<li class="nav-item">
            				<a class="nav-link" href="/BiblioLibro/storico/carica"> - Rientro </a>
           			</li>
+					<li class="nav-item">
+           				<a class="nav-link" href="/BiblioLibro/ricerca/catalogo"> Catalogo </a>
+          			</li>
           			{/if}
           			
           			

@@ -49,6 +49,8 @@
 		<br>
 		<br>
 		<!-- Rimozione profilo (se il profilo e' dell'utente della sessione o se si è un bibliotecario)-->
+		<br>
+		<br>
 		<a href="/BiblioLibro/utente/rimuovi/" class="btn btn-primary btn-lg btn-danger active" role="button" aria-pressed="true">Rimuovi Profilo</a>
 		</div>
 		{/if}
@@ -56,6 +58,7 @@
 		<br>
 		<br>
 		
+		{if $uTipo eq 'cliente'}
 		<div class="col-sm-200">
 		<!-- Contenuto principale -->
 		
@@ -71,13 +74,14 @@
 				
 				
 				<!--lista prestiti (conclusi)-->
-				<h4>LISTA PRESTITI CONCLUSI (Storico):</h4>
+				<h4>STORICO (prestiti conclusi):</h4>
 				{include file="Storico.tpl"}
 				
 				{if $content eq 'None'}
 				<!-- introduzione semplice -->
 				<h3></h3>
 				{/if}
+		{/if}	
 		</div>
 	</div>
 	</form>
