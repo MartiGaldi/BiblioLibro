@@ -1,7 +1,6 @@
 <?php 
 
 require_once 'Installazione.php';
-require_once 'SampleUsers.php';
 
 require_once 'Entity/e_cliente.php';
 require_once 'Entity/e_libro.php';

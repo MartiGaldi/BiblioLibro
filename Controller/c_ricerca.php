@@ -43,7 +43,7 @@ class c_ricerca
             $v_ricerca->mostraRisultatoRicerca($utente, $oggetti, c_ricerca::KEY_DEFAULT, c_ricerca::VALUE_DEFAULT, $string);
         }
         else
-            header('Location: /BiblioLibro/index');
+            header('Location: /BiblioLibro/');
     }
     
 	

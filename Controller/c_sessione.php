@@ -97,24 +97,4 @@ class c_sessione
         
     }
     
-    static function populateApplication()
-    {
-        setcookie('install', 'ok', time()+3600);
-    }
-    
-    static function checkPopulateApplication() : bool
-    {
-        if(isset($_COOKIE['installa']))
-            return true;
-            
-        else
-            return false;
-                
-    }
-    
-    static function unsetCookie()
-    {
-        setcookie('installa', 'ok', time()-3600);
-    }
-    
 }
